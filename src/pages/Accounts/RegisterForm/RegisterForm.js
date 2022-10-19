@@ -5,9 +5,9 @@ import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styles from '../FormAccounts.module.scss';
-import { ButtonSubmit } from '~/StyledComponent/Button';
 import { fetchRegister } from '../accountsSlice';
 import { accountsMessageSelector } from '~/redux/Selectors/authSelector';
+import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 
@@ -132,7 +132,9 @@ function RegisterForm() {
                         {messageError}
                     </div>
 
-                    <ButtonSubmit
+                    <Button
+                        primary
+                        rounded
                         onClick={() => {
                             handleSubmit();
                         }}
@@ -140,7 +142,7 @@ function RegisterForm() {
                         className={cx('button-form')}
                     >
                         <span>ĐĂNG KÝ</span>
-                    </ButtonSubmit>
+                    </Button>
                 </Form>
             </Formik>
         </div>

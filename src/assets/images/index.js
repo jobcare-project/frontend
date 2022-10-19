@@ -5,6 +5,7 @@ const images = {
     logoXL: require('~/assets/images/logo-demo-xl.png'),
     backgroundAccounts: require('~/assets/images/background-recruitment.jpg'),
     avatarDefault: require('~/assets/images/avatar-default.png'),
+    findJobs: require('~/assets/images/find-jobs-img.png'),
     svg: {
         facebook: (
             <svg
