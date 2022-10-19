@@ -1,0 +1,91 @@
+.wrapper {
+    height: 100%;
+    padding-bottom: 30px;
+    margin-top: 30px;
+}
+.section {
+    margin: auto;
+    width: 80%;
+    font-size: 30px;
+    border-left: var(--primary-color) solid 30px;
+}
+
+.information {
+    font-size: 50px;
+    margin-bottom: 40px;
+    margin-left: 50px;
+}
+
+.title-image,
+.title-describe,
+.title-quiz {
+    margin-left: 50px;
+}
+
+.security {
+    margin-bottom: 30px;
+    margin-left: 50px;
+}
+.input-title-quiz,
+.input-describe {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 1000px;
+    border: 1px solid #9c9a9a;
+    border-radius: 10px;
+    font-size: 20px;
+    height: 50px;
+    margin-left: 50px;
+}
+.upload-image {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    margin-left: 50px;
+    border-radius: 20px;
+}
+
+.wrapper-add-question {
+    margin: auto;
+    width: 80%;
+    border-left: blue solid 30px;
+    margin-top: 50px;
+}
+
+.information-add-question {
+    font-size: 50px;
+    margin-bottom: 40px;
+    margin-left: 50px;
+}
+
+.heading-add-question {
+    display: flex;
+    margin-left: 50px;
+    font-size: 20px;
+    border-radius: 20px;
+    height: 150px;
+    border: 1px solid #9c9a9a;
+}
+
+.type {
+    font-size: 30px;
+}
+
+.typeshowanswer {
+    margin-top: 20px;
+    margin-left: 50px;
+}
+
+.typeswork {
+    margin-top: 20px;
+    margin-left: 50px;
+}
+
+.set-time {
+    margin-top: 20px;
+    height: 50px;
+    width: 200px;
+    margin-left: 50px;
+    font-size: 20px;
+}

@@ -1,0 +1,21 @@
+.menu-item-IT,
+.menu-item-marketing,
+.menu-item-business {
+    width: 300px;
+    height: 20px;
+    left: 1100px;
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 400;
+    position: relative;   
+}
+.title-IT,
+.title-marketing,
+.title-business {
+    color: var(--black-color);
+    transition: background-color ease-in-out 200ms;
+
+    &:hover {
+        color: var(--primary-color);
+    }
+}
