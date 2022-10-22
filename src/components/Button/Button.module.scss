@@ -57,21 +57,12 @@
         opacity: 0.9;
     }
 }
-.reInput {
+.saveInput {
     color: var(--black-color) !important;
     background-color: var(--white-color);
-    border-color: var(--primary-color);
+    border: 0.5px solid #ccc;
     &:hover {
-        border-color: var(--white-color);
-        opacity: 0.9;
-    }
-}
-.saveInput {
-    color: var(--white-color) !important;
-    background-color: var(--save-color);
-    border-color: var(--primary-color);
-    &:hover {
-        border-color: var(--primary-color);
+        border-color: var(--save-color);
         opacity: 0.9;
     }
 }

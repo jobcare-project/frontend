@@ -4,13 +4,15 @@ const routes = {
     profile: '/profile',
     accounts: '/accounts',
     blog: '/blog',
-    recruitment: '/recruitment/post',
+    recruitment: '/recruitmentpage',
     testuser: '/testuser',
     informationtechnology: '/informationtechnology',
     marketing: '/marketing',
     businessadministration: '/businessadministration',
     linguistics: '/linguistics',
     postquiz: '/postquiz',
+    recruiterpost: '/recruiterpost/post',
+    recruitmentdetail: '/recruitmentdetail',
 };
 
 export default routes;

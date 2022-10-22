@@ -4,14 +4,14 @@ import Accounts from '~/pages/Accounts/Accounts';
 import Profile from '~/pages/Profile/Profile';
 import Admin from '~/pages/Admin/Admin';
 import Blog from '~/pages/Blogs/Blog';
-import Recruitment from '~/pages/Recruitment/Recruitment';
 import TestUser from '~/pages/TestUser';
 import InformationTechnology from '~/pages/InformationTechnology';
 import DisplayQuizz from '~/pages/DisplayQuizz';
+import RecruiterPost from '~/pages/RecruiterPost/RecruiterPost';
+import RecruitmentDetail from '~/pages/RecruitmentDetail/RecruitmentDetail';
 
 export const publicRoutes = [
     { path: config.routes.home, component: Home },
-    { path: config.routes.recruitment, component: Recruitment },
     { path: config.routes.accounts, component: Accounts, layout: null },
     { path: config.routes.blog, component: Blog },
     { path: config.routes.accounts, component: TestUser },
@@ -20,6 +20,10 @@ export const publicRoutes = [
 ];
 
 export const privateRoutes = [
+    { path: config.routes.recruiterpost, component: RecruiterPost },
+
+    { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
+
     { path: config.routes.profile, component: Profile },
 ];
 
