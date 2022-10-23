@@ -1,24 +1,17 @@
 import classNames from 'classnames/bind';
-import Form from 'react-bootstrap/Form';
-
 import styles from './PostQuiz.module.scss';
-import Uploady from '@rpldy/uploady';
-import UploadButton from '@rpldy/upload-button';
-import UploadPreview from '@rpldy/upload-preview';
 
-import UserForm from './UserForm';
+import Form from 'react-bootstrap/Form';
+import AddQuestion from './AddQuestion';
+
+import UploadImage from './UploadImage';
 
 const cx = classNames.bind(styles);
 
 function PostQuiz() {
-    const filterBySize = (file) => {
-        return file.size <= 5242880;
-    };
-
     return (
         <div className={cx('wrapper')}>
             <br></br>
-
             <div className={cx('section')}>
                 <div className={cx('question-title-section')}>
                     <div className={cx('information')}>Thông tin chung</div>
@@ -45,68 +38,45 @@ function PostQuiz() {
                     <div className={cx('title-image')}>
                         Chọn hình đại diện của Quiz
                     </div>
-                    <div className={cx('upload-image')}>
-                        <Uploady
-                            destination={{ url: 'my-server.com/upload' }}
-                            fileFilter={filterBySize}
-                            accept="image/*"
-                        >
-                            <UploadButton />
-                            <UploadPreview />
-                        </Uploady>
-                    </div>
+                    <h2 className={cx('upload-image')}>
+                        <UploadImage />
+                    </h2>
                 </div>
             </div>
             <div className={cx('wrapper-add-question')}>
                 <div className={cx('information-add-question')}>
                     Câu hỏi và trả lời
                 </div>
+            <Form className={cx('inner-type')} >
+                <Form.Group className={cx('mode')} >
+                    Chế độ hiện đáp án
+                    <Form.Check name = 'mode' label=' Sau khi trả lời mỗi câu hỏi ' type='radio' />
+                    <Form.Check name = 'mode' label=' Không hiện đáp án ' type='radio' />
+                </Form.Group >
 
-                <div className={cx('heading-add-question')}>
-                    <Form>
-                        {['radio'].map((type) => (
-                            <div
-                                key={`default-${type}`}
-                                className={cx('typeshowanswer')}
-                            >
-                                Chế độ
-                                <Form.Check
-                                    type={type}
-                                    name="group1"
-                                    label={`Sau khi trả lời mỗi câu hỏi `}
-                                />
-                                <Form.Check
-                                    type={type}
-                                    name="group1"
-                                    label={`Không hiện đáp án `}
-                                />
-                            </div>
-                        ))}
-                    </Form>
-                    <Form>
-                        {['radio'].map((type) => (
-                            <div
-                                key={`default-${type}`}
-                                className={cx('typeswork')}
-                            >
-                                Loại câu hỏi
-                                <Form.Check
-                                    type={type}
-                                    label={`Trắc nghiệm `}
-                                />
-                            </div>
-                        ))}
-                    </Form>
-                    <Form.Select className={cx('set-time')}>
-                        <option value="1">Thời gian làm bài</option>
-                        <option value="2">Không giới hạn</option>
-                        <option value="3">30 phút</option>
-                        <option value="4">60 phút</option>
-                        <option value="5">90 phút</option>
-                        <option value="6">120 phút</option>
-                    </Form.Select>
+                <Form.Group className={cx('gender')} >
+                    Loại câu hỏi
+                    <Form.Check name = 'gender ' label=' Trắc nghiệm ' type='radio' />
+                </Form.Group>
+
+                <Form.Group className={cx('set-time')} >
+                    <Form.Control as='select' >
+                        <option> 5 phút </option>
+                        <option> 10 phút </option>
+                        <option> 30 phút </option>
+                        <option> 60 phút </option>
+                        <option> 90 phút </option>
+                        <option> 120 phút </option>
+                        <option> 180 phút </option>
+                    </Form.Control>
+                </Form.Group>
+
+            </Form>
+
+                <div className={cx('add-question-title')}>Xây dựng quiz</div>
+                <div className={cx('add-question')}>
+                    <AddQuestion/>   
                 </div>
-                <UserForm />
             </div>
         </div>
     );

@@ -1,11 +1,9 @@
-import BestRecruitment from './BestRecruitment/BestRecruitment';
-import Search from './Search';
+import ShowQuiz from './ShowQuiz/ShowQuiz';
 
 export default function TestUser() {
     return (
         <>
-            <Search/>
-            <BestRecruitment />
+            <ShowQuiz />
         </>
     );
 }

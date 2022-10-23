@@ -6,17 +6,20 @@ import Admin from '~/pages/Admin/Admin';
 import Blog from '~/pages/Blogs/Blog';
 import Recruitment from '~/pages/Recruitment/Recruitment';
 import TestUser from '~/pages/TestUser';
-import InformationTechnology from '~/pages/InformationTechnology';
 import DisplayQuizz from '~/pages/DisplayQuizz';
+import InformationTechnology from '~/pages/InformationTechnology';
+import PostQuiz from '~/pages/PostQuiz';
+
 
 export const publicRoutes = [
     { path: config.routes.home, component: Home },
     { path: config.routes.recruitment, component: Recruitment },
     { path: config.routes.accounts, component: Accounts, layout: null },
     { path: config.routes.blog, component: Blog },
-    { path: config.routes.accounts, component: TestUser },
-    { path: config.routes.accounts, component: InformationTechnology },
-    { path: config.routes.accounts, component: DisplayQuizz },
+    { path: config.routes.testuser, component: TestUser },
+    { path: config.routes.displayquizz, component: DisplayQuizz },
+    { path: config.routes.informationtechnology, component: InformationTechnology },
+    { path: config.routes.postquiz, component: PostQuiz },
 ];
 
 export const privateRoutes = [
