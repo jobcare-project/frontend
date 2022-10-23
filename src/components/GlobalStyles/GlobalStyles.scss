@@ -59,8 +59,10 @@ body {
     --margin-top-0: 20px;
     --margin-tb: 30px 0 30px 0;
     // box shadown
-    --box--shadown-0: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    --box-shadown-0: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
         rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    --box-shadown-1: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+        rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 ion-icon {
     color: var(--primary-color);
