@@ -13,6 +13,7 @@ const routes = {
     postquiz: '/postquiz',
     recruiterpost: '/recruiterpost/post',
     recruitmentdetail: '/recruitmentdetail',
+    recruitmentpage: '/recruitmentpage/user',
 };
 
 export default routes;

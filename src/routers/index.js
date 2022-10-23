@@ -9,6 +9,7 @@ import InformationTechnology from '~/pages/InformationTechnology';
 import DisplayQuizz from '~/pages/DisplayQuizz';
 import RecruiterPost from '~/pages/RecruiterPost/RecruiterPost';
 import RecruitmentDetail from '~/pages/RecruitmentDetail/RecruitmentDetail';
+import RecruitmentPage from '~/pages/RecruitmentPage/RecruitmentPage';
 
 export const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -20,8 +21,8 @@ export const publicRoutes = [
 ];
 
 export const privateRoutes = [
+    { path: config.routes.recruitmentpage, component: RecruitmentPage },
     { path: config.routes.recruiterpost, component: RecruiterPost },
-
     { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
 
     { path: config.routes.profile, component: Profile },

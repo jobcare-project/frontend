@@ -1,12 +1,12 @@
-import React from 'react';
-import styles from './RelatedJob..module.scss';
 import classNames from 'classnames/bind';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import Card from '~/components/Card/Card';
 import { Container } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import styles from './RecruitmentPage.module.scss';
+import RuleBottom from '~/components/RuleBottom/RuleBottom';
+
 const cx = classNames.bind(styles);
 const recruitmentList = [
     {
@@ -92,18 +92,11 @@ const recruitmentList = [
         createAt: '4 ngày trước',
     },
 ];
-export default function RelatedJob({ data, to }) {
+export default function RecruitmentPage() {
     return (
         <Container>
             <div className={cx('wrapper')}>
-                <div className={cx('related-job')}>
-                    <div className={cx('related-title')}>
-                        Việc làm liên quan
-                    </div>
-                    <div className={cx('related-more')}>
-                        <Link to="/recruitmentpage/user">Hiển thị thêm</Link>
-                    </div>
-                </div>
+                <h2 className={cx('heading')}>Việc làm nổi bật</h2>
                 <Row>
                     {recruitmentList.slice(0, 8).map((recruitment, index) => {
                         return (
@@ -113,6 +106,7 @@ export default function RelatedJob({ data, to }) {
                         );
                     })}
                 </Row>
+                <RuleBottom></RuleBottom>
             </div>
         </Container>
     );
