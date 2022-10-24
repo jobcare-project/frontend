@@ -7,9 +7,9 @@ import FindJobs from './FindJobs/FindJobs';
 export default function Home() {
     return (
         <>
-            {/* <Carousel /> */}
             <FindJobs />
             <BestRecruitment />
+            {/* <Carousel /> */}
         </>
     );
 }
