@@ -1,0 +1,65 @@
+.wrapper {
+    margin-right: auto;
+    margin-left: auto;
+    width: 1200px;
+    .box {
+        display: flex;
+        justify-content: space-between;
+        box-shadow: var(--box--shadown-0);
+        border-radius: var(--radius-1);
+        margin: 20px 0 20px 0;
+        padding: 5px;
+        .box-left {
+            .title,
+            .company,
+            .time {
+                margin-top: 20px;
+                font-size: 15px;
+            }
+        }
+    }
+    .content-detail {
+        display: flex;
+        .detail {
+            display: flex;
+            justify-content: space-between;
+            .detail-require {
+                width: 97%;
+                margin-top: var(--margin-top-0);
+                padding: 10px;
+                height: 230px;
+                box-shadow: var(--box--shadown-0);
+            }
+            .type-work {
+                font-weight: 800;
+                span {
+                    padding-left: 4px;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                }
+                ion-icon {
+                    color: var(--primary-color);
+                }
+            }
+            .type-detail {
+                padding-left: 20px;
+            }
+        }
+        .location,
+        .content-post {
+            margin-top: var(--margin-top-0);
+            padding: 10px;
+            width: 97%;
+            box-shadow: var(--box--shadown-0);
+            p {
+                font-size: 20px;
+            }
+        }
+    }
+    .detail-ads {
+        img {
+            width: 400px;
+        }
+    }
+}

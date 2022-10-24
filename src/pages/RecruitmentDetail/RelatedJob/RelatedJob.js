@@ -1,13 +1,13 @@
+import React from 'react';
+import styles from './RelatedJob..module.scss';
 import classNames from 'classnames/bind';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import Card from '~/components/Card/Card';
 import { Container } from 'react-bootstrap';
-import styles from './BestRecruitment.module.scss';
-
+import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
-
 const recruitmentList = [
     {
         thumbnail:
@@ -92,12 +92,18 @@ const recruitmentList = [
         createAt: '4 ngày trước',
     },
 ];
-
-export default function BestRecruitment() {
+export default function RelatedJob({ data, to }) {
     return (
         <Container>
             <div className={cx('wrapper')}>
-                <h2 className={cx('heading')}>Việc làm nổi bật</h2>
+                <div className={cx('related-job')}>
+                    <div className={cx('related-title')}>
+                        Việc làm liên quan
+                    </div>
+                    <div className={cx('related-more')}>
+                        <Link to="/recruitmentpage/user">Hiển thị thêm</Link>
+                    </div>
+                </div>
                 <Row>
                     {recruitmentList.slice(0, 8).map((recruitment, index) => {
                         return (

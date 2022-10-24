@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 export default function Card({ data, to }) {
     return (
         <div className={cx('wrapper')}>
-            <Link className={cx('link')} to={to}>
+            <Link className={cx('link')} to="/recruitmentdetail">
                 <div className={cx('image-block')}>
                     <img
                         className={cx('image')}

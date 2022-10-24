@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 const navigationMenu = [
     {
         title: 'Tuyển dụng',
-        to: '/recruitment/user',
+        to: '/recruitmentpage/user',
         role: ['user'],
     },
     {

@@ -3,7 +3,10 @@ const images = {
     logoM: require('~/assets/images/logo-demo-m.png'),
     logoL: require('~/assets/images/logo-demo-l.png'),
     logoXL: require('~/assets/images/logo-demo-xl.png'),
+    CV: require('~/assets/images/CV.jpg'),
     backgroundAccounts: require('~/assets/images/background-recruitment.jpg'),
+    cvBox: require('~/assets/images/banner-cv.png'),
+    testBox: require('~/assets/images/banner-test.png'),
     avatarDefault: require('~/assets/images/avatar-default.png'),
     findJobs: require('~/assets/images/find-jobs-img.png'),
     svg: {
