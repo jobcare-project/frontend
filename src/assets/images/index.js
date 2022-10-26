@@ -1,8 +1,6 @@
 const images = {
-    logoS: require('~/assets/images/logo-demo-s.png'),
-    logoM: require('~/assets/images/logo-demo-m.png'),
-    logoL: require('~/assets/images/logo-demo-l.png'),
-    logoXL: require('~/assets/images/logo-demo-xl.png'),
+    logoM: require('~/assets/images/logo-jobcare.png'),
+    logoL: require('~/assets/images/logo-jobcare-l.png'),
     CV: require('~/assets/images/CV.jpg'),
     backgroundAccounts: require('~/assets/images/background-recruitment.jpg'),
     cvBox: require('~/assets/images/banner-cv.png'),
