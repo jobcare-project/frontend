@@ -1,119 +1,171 @@
 import classNames from 'classnames/bind';
+
+
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
-import styles from './BestRecruitment.module.scss';
+import styles from './ShowQuiz.module.scss';
 import CardTestUser from '~/components/CardTestUser/CardTestUser';
 import config from '~/config';
 import Menu from '../Menu';
 import { MenuItemIT , MenuItemBusiness , MenuItemLinguistics , MenuItemMarketing } from '../Menu';
+import { Container } from 'react-bootstrap';
 
 
 const cx = classNames.bind(styles);
 
 //Quizz Công nghệ thông tin
 
-const recruitmentListCNTT = [
+const CNTTList = [
     {
         thumbnail:
             'https://bizflyportal.mediacdn.vn/bizflyportal/375/470/2020/04/28/21/33/115880627863553.jpg',
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
+        maxScore: ' Điểm tối đá 10 điểm',
+        timeQuiz: ' Thời gian làm bài 60 phút  ',
+        listQuiz: ' 30 câu hỏi ',
     },
     {
         thumbnail:
             'https://bizflyportal.mediacdn.vn/bizflyportal/375/470/2020/04/28/21/33/115880627863553.jpg',
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
+        maxScore: ' Điểm tối đá 10 điểm',
+        timeQuiz: ' Thời gian làm bài 60 phút  ',
+        listQuiz: ' 30 câu hỏi ',
     },
     {
         thumbnail:
             'https://bizflyportal.mediacdn.vn/bizflyportal/375/470/2020/04/28/21/33/115880627863553.jpg',
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
+        maxScore: ' Điểm tối đá 10 điểm',
+        timeQuiz: ' Thời gian làm bài 60 phút  ',
+        listQuiz: ' 30 câu hỏi ',
     },
     {
         thumbnail:
             'https://bizflyportal.mediacdn.vn/bizflyportal/375/470/2020/04/28/21/33/115880627863553.jpg',
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
+        maxScore: ' Điểm tối đá 10 điểm',
+        timeQuiz: ' Thời gian làm bài 60 phút  ',
+        listQuiz: ' 30 câu hỏi ',
     },
 ];
 
 // Quizz Marketing
 
-const recruitmentListMarketing = [
+const marketingList = [
     {
         thumbnail:
             'https://amis.misa.vn/wp-content/uploads/2021/09/marketing-la-gi.png',
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
+        maxScore: ' Điểm tối đá 10 điểm',
+        timeQuiz: ' Thời gian làm bài 60 phút  ',
+        listQuiz: ' 30 câu hỏi '
     },
     {
         thumbnail:
             'https://amis.misa.vn/wp-content/uploads/2021/09/marketing-la-gi.png',
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
+        maxScore: ' Điểm tối đá 10 điểm',
+        timeQuiz: ' Thời gian làm bài 60 phút  ',
+        listQuiz: ' 30 câu hỏi '
     },
     {
         thumbnail:
             'https://amis.misa.vn/wp-content/uploads/2021/09/marketing-la-gi.png',
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
+        maxScore: ' Điểm tối đá 10 điểm',
+        timeQuiz: ' Thời gian làm bài 60 phút  ',
+        listQuiz: ' 30 câu hỏi '
     },
     {
         thumbnail:
             'https://amis.misa.vn/wp-content/uploads/2021/09/marketing-la-gi.png',
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
+        maxScore: ' Điểm tối đá 10 điểm',
+        timeQuiz: ' Thời gian làm bài 60 phút  ',
+        listQuiz: ' 30 câu hỏi '
     },
 ];
 
 // Quizz quản trị kinh doanh
 
-const recruitmentListBusinessAdministration = [
+const businessAdministrationList = [
     {
         thumbnail:
             'https://www.study365.co.uk/wp-content/uploads/2016/09/Business-Administration-Skills.jpg',
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
+        maxScore: ' Điểm tối đá 10 điểm',
+        timeQuiz: ' Thời gian làm bài 60 phút  ',
+        listQuiz: ' 30 câu hỏi '
     },
     {
         thumbnail:
             'https://www.study365.co.uk/wp-content/uploads/2016/09/Business-Administration-Skills.jpg',
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
+        maxScore: ' Điểm tối đá 10 điểm',
+        timeQuiz: ' Thời gian làm bài 60 phút  ',
+        listQuiz: ' 30 câu hỏi '
     },
     {
         thumbnail:
             'https://www.study365.co.uk/wp-content/uploads/2016/09/Business-Administration-Skills.jpg',
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
+        maxScore: ' Điểm tối đá 10 điểm',
+        timeQuiz: ' Thời gian làm bài 60 phút  ',
+        listQuiz: ' 30 câu hỏi '
     },
     {
         thumbnail:
             'https://www.study365.co.uk/wp-content/uploads/2016/09/Business-Administration-Skills.jpg',
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
+        maxScore: ' Điểm tối đá 10 điểm',
+        timeQuiz: ' Thời gian làm bài 60 phút  ',
+        listQuiz: ' 30 câu hỏi '
     },
 ];
 
 // Quizz ngôn ngữ học
 
-const recruitmentListLinguistics = [
+const linguisticsList = [
     {
         thumbnail:
             'https://www.thoughtco.com/thmb/AJgCBOXOrDV_THLddckAHGy-EBQ=/2042x1149/smart/filters:no_upscale()/Getty_linguistics-175416686-570f1f255f9b581408973018.jpg',
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
+        maxScore: ' Điểm tối đá 10 điểm',
+        timeQuiz: ' Thời gian làm bài 60 phút  ',
+        listQuiz: ' 30 câu hỏi '
     },
     {
         thumbnail:
             'https://www.thoughtco.com/thmb/AJgCBOXOrDV_THLddckAHGy-EBQ=/2042x1149/smart/filters:no_upscale()/Getty_linguistics-175416686-570f1f255f9b581408973018.jpg',
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
+        maxScore: ' Điểm tối đá 10 điểm',
+        timeQuiz: ' Thời gian làm bài 60 phút  ',
+        listQuiz: ' 30 câu hỏi '
     },
     {
         thumbnail:
             'https://www.thoughtco.com/thmb/AJgCBOXOrDV_THLddckAHGy-EBQ=/2042x1149/smart/filters:no_upscale()/Getty_linguistics-175416686-570f1f255f9b581408973018.jpg',
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
+        maxScore: ' Điểm tối đá 10 điểm',
+        timeQuiz: ' Thời gian làm bài 60 phút  ',
+        listQuiz: ' 30 câu hỏi '
     },
     {
         thumbnail:
             'https://www.thoughtco.com/thmb/AJgCBOXOrDV_THLddckAHGy-EBQ=/2042x1149/smart/filters:no_upscale()/Getty_linguistics-175416686-570f1f255f9b581408973018.jpg',
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
+        maxScore: ' Điểm tối đá 10 điểm',
+        timeQuiz: ' Thời gian làm bài 60 phút  ',
+        listQuiz: ' 30 câu hỏi '
     },
 ];
 
-export default function BestRecruitment() {
+export default function ShowQuiz() {
     return (
+       
         <div className={cx('wrapper')}>
+             <Container>
             <h2 className={cx('heading')}>Công nghệ thông tin</h2>
             <Menu>
                 <MenuItemIT
@@ -123,11 +175,11 @@ export default function BestRecruitment() {
                 />
             </Menu>
             <Row>
-                {recruitmentListCNTT.slice(0, 8).map((recruitment, index) => {
+                {CNTTList.slice(0, 8).map((CNTTList, index) => {
 
                     return (
                         <Col key={index} lg={3} md={4} sm={6}>
-                            <CardTestUser data={recruitment}></CardTestUser>
+                            <CardTestUser quiz={CNTTList} to={'displayquizz'} ></CardTestUser>
                         </Col>
                     );
                 })}
@@ -142,12 +194,12 @@ export default function BestRecruitment() {
                 />
             </Menu>
             <Row>
-                {recruitmentListMarketing
+                {marketingList
                     .slice(0, 8)
-                    .map((recruitment, index) => {
+                    .map((marketingList, index) => {
                         return (
                             <Col key={index} lg={3} md={4} sm={6}>
-                                <CardTestUser data={recruitment}></CardTestUser>
+                                <CardTestUser quiz={marketingList}></CardTestUser>
                             </Col>
                         );
                     })}
@@ -162,12 +214,12 @@ export default function BestRecruitment() {
                 />
             </Menu>
             <Row>
-                {recruitmentListBusinessAdministration
+                {businessAdministrationList
                     .slice(0, 8)
-                    .map((recruitment, index) => {
+                    .map((businessAdministrationList, index) => {
                         return (
                             <Col key={index} lg={3} md={4} sm={6}>
-                                <CardTestUser data={recruitment}></CardTestUser>
+                                <CardTestUser quiz={businessAdministrationList}></CardTestUser>
                             </Col>
                         );
                     })}
@@ -182,16 +234,18 @@ export default function BestRecruitment() {
                 />
             </Menu>
             <Row>
-                {recruitmentListLinguistics
+                
+                {linguisticsList
                     .slice(0, 8)
-                    .map((recruitment, index) => {
+                    .map((linguisticsList, index) => {
                         return (
                             <Col key={index} lg={3} md={4} sm={6}>
-                                <CardTestUser data={recruitment}></CardTestUser>
+                                <CardTestUser quiz={linguisticsList}></CardTestUser>
                             </Col>
                         );
                     })}
             </Row>
+            </Container>
         </div>
     );
 }

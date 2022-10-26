@@ -35,13 +35,46 @@
         }
     }
     .information {
-        height: 100px;
+        min-height: 130px;
         padding: 10px;
         width: 100%;
         .title {
             font-size: 2rem;
-            font-weight: 600;      
+            font-weight: 600;
+            display: -webkit-box;
+        }
+        .description {
+            height: 50px;
+            margin-bottom: 6px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
             overflow: hidden;
+        }
+        .subdesc {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .subdesc-left {
+                flex: 1;
+                max-width: 50%;
+            }
+            .subdesc-right {
+                flex: 1;
+            }
+        }
+        .subdesc-text {
+            display: flex;
+            align-items: center;
+            margin: 0;
+            span {
+                display: -webkit-box;
+                padding-left: 4px;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
         }
     }
 }

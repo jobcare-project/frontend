@@ -5,26 +5,30 @@ import Profile from '~/pages/Profile/Profile';
 import Admin from '~/pages/Admin/Admin';
 import Blog from '~/pages/Blogs/Blog';
 import TestUser from '~/pages/TestUser';
-import InformationTechnology from '~/pages/InformationTechnology';
 import DisplayQuizz from '~/pages/DisplayQuizz';
 import RecruiterPost from '~/pages/RecruiterPost/RecruiterPost';
 import RecruitmentDetail from '~/pages/RecruitmentDetail/RecruitmentDetail';
 import RecruitmentPage from '~/pages/RecruitmentPage/RecruitmentPage';
+import InformationTechnology from '~/pages/InformationTechnology';
+import PostQuiz from '~/pages/PostQuiz';
 
 export const publicRoutes = [
     { path: config.routes.home, component: Home },
     { path: config.routes.accounts, component: Accounts, layout: null },
     { path: config.routes.blog, component: Blog },
-    { path: config.routes.accounts, component: TestUser },
-    { path: config.routes.accounts, component: InformationTechnology },
-    { path: config.routes.accounts, component: DisplayQuizz },
-];
-
-export const privateRoutes = [
+    { path: config.routes.testuser, component: TestUser },
+    { path: config.routes.displayquizz, component: DisplayQuizz },
+    {
+        path: config.routes.informationtechnology,
+        component: InformationTechnology,
+    },
+    { path: config.routes.postquiz, component: PostQuiz },
     { path: config.routes.recruitmentpage, component: RecruitmentPage },
     { path: config.routes.recruiterpost, component: RecruiterPost },
     { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
+];
 
+export const privateRoutes = [
     { path: config.routes.profile, component: Profile },
 ];
 

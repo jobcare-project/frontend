@@ -2,43 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './Input.module.scss';
-import styled from 'styled-components';
-import clsx from 'clsx';
 const cx = classNames.bind(styles);
-// const SelectStyled = styled.div`
-//     select {
-//         width: 100%;
-//         height: 30px;
-//         border: 1px solid #000;
-//         border-radius: 5px;
-//     }
-// `;
-// const Salary = [
-//     {
-//         id: 1,
-//         title: 'Thoả thuận',
-//     },
-//     {
-//         id: 2,
-//         title: 'Từ',
-//     },
-//     {
-//         id: 3,
-//         title: 'Toàn thời gian',
-//     },
-//     {
-//         id: 4,
-//         title: 'Bán thời gian',
-//     },
-//     {
-//         id: 5,
-//         title: 'Thực tập',
-//     },
-//     {
-//         id: 3,
-//         title: 'Toàn thời gian',
-//     },
-// ];
+
 export const FormInput = ({
     type,
     typeInput,
@@ -54,7 +19,7 @@ export const FormInput = ({
     options,
     ...passProps
 }) => {
-    const classes = clsx(styles.input, {
+    const classes = cx(styles.input, {
         [className]: className,
         [styles.primary]: primary,
         [styles.header]: header,
@@ -93,10 +58,6 @@ export const FormInput = ({
         </>
     );
 };
-{
-    /* <SelectStyled style={{ width: '100%' }}>
-</SelectStyled> */
-}
 
 FormInput.propTypes = {
     type: PropTypes.string,

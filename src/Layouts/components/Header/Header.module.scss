@@ -23,14 +23,13 @@
     --size: 2.8rem;
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
     .notification {
         font-size: var(--size);
         display: flex;
         margin: auto;
         cursor: pointer;
     }
-
     .avatar {
         position: relative;
         width: var(--size);

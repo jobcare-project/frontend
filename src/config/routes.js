@@ -6,14 +6,15 @@ const routes = {
     blog: '/blog',
     recruitment: '/recruitmentpage',
     testuser: '/testuser',
-    informationtechnology: '/informationtechnology',
-    marketing: '/marketing',
-    businessadministration: '/businessadministration',
-    linguistics: '/linguistics',
+    informationtechnology: '/testuser/informationtechnology',
+    marketing: '/testuser/marketing',
+    businessadministration: '/testuser/businessadministration',
+    linguistics: '/testuser/linguistics',
     postquiz: '/postquiz',
     recruiterpost: '/recruiterpost/post',
     recruitmentdetail: '/recruitmentdetail',
     recruitmentpage: '/recruitmentpage/user',
+    displayquizz: 'testuser/displayquizz',
 };
 
 export default routes;

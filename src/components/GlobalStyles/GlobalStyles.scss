@@ -44,6 +44,11 @@ body {
     --invalid-color: #f33a58;
     --desc-color: #0000008a;
     --save-color: #90a399;
+
+    // Font-size
+    --fs-0: 24px;
+    --fs-1: 40px;
+
     // Font
     --font-family: 'Roboto', sans-serif;
 
@@ -64,9 +69,7 @@ body {
     --box-shadown-1: rgba(0, 0, 0, 0.19) 0px 10px 20px,
         rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
-ion-icon {
-    color: var(--primary-color);
-}
+
 a {
     text-decoration: none;
     color: var(--text-color);

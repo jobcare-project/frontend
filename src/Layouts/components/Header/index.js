@@ -69,9 +69,14 @@ function Header() {
                         </div>
                     </>
                 ) : (
-                    <Button primary rounded to={config.routes.accounts}>
-                        Đăng nhập
-                    </Button>
+                    <>
+                        <Button rounded to="/forBussiness">
+                            Đăng tuyển
+                        </Button>
+                        <Button primary rounded to={config.routes.accounts}>
+                            Đăng nhập
+                        </Button>
+                    </>
                 )}
             </div>
         </header>

@@ -8,6 +8,7 @@ function Input({
     rightIcon,
     className,
     rounded,
+    border,
     disabled,
     children,
     ...passprops
@@ -16,6 +17,7 @@ function Input({
         [className]: className,
         disabled,
         rounded,
+        border,
     });
 
     return (

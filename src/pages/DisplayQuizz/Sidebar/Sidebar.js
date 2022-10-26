@@ -1,7 +1,7 @@
-import BestRecruitment from './BestRecruitment/BestRecruitment';
+import SidebarDisplayQuiz from './SidebarDisplayQuiz/SidebarDisplayQuiz';
 function Sidebar() {
     return (
-        <BestRecruitment />
+        <SidebarDisplayQuiz />
      );
 }
 

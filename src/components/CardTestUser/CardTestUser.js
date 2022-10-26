@@ -5,41 +5,33 @@ import styles from './CardTestUser.module.scss';
 
 const cx = classNames.bind(styles);
 
-export default function Card({ data }) {
+export default function CardTestUser({ quiz, to }) {
     return (
         <div className={cx('wrapper')}>
-            <Link className={cx('link')} to="/">
+            <Link className={cx('link')} to={to}>
                 <div className={cx('image-block')}>
                     <img
                         className={cx('image')}
-                        src={data?.thumbnail}
-                        alt="anh nha tuyen dung"
+                        src={quiz?.thumbnail}
+                        alt="anh quiz"
                     />
                 </div>
                 <div className={cx('information')}>
-                    <div className={cx('title')}>{data?.title}</div>
-                    <div className={cx('description')}>{data?.description}</div>
+                    <div className={cx('title')}>{quiz?.title}</div>
                     <div className={cx('subdesc')}>
                         <div className={cx('subdesc-item subdesc-left')}>
                             <div className={cx('subdesc-text')}>
-                                <ion-icon name="cash-outline"></ion-icon>
-                                <span>{data?.salary}</span>
+                            <ion-icon name="contract-outline"></ion-icon>
+                                <span>{quiz?.maxScore}</span>
                             </div>
                             <div className={cx('subdesc-text')}>
-                                <ion-icon name="location-outline"></ion-icon>
-                                <span>{data?.location}</span>
+                            <ion-icon name="time-outline"></ion-icon>
+                                <span>{quiz?.timeQuiz}</span>
                             </div>
                             <div className={cx('subdesc-text')}>
-                                <ion-icon name="timer-outline"></ion-icon>
-                                <span>{data?.createAt}</span>
+                            <ion-icon name="list-outline"></ion-icon>
+                                <span>{quiz?.listQuiz}</span>
                             </div>
-                        </div>
-                        <div className={cx('subdesc-item subdesc-right')}>
-                            {/* <div className={cx('subdesc-text')}>
-                                <ion-icon name="timer-outline"></ion-icon>
-                                <span>{data?.createAt}</span>
-                            </div> */}
-                            {/* <span>{data?.createAt}</span> */}
                         </div>
                     </div>
                 </div>

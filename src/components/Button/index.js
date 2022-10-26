@@ -21,6 +21,7 @@ function Button({
     className,
     leftIcon,
     rightIcon,
+    right,
     onClick,
     ...passProps
 }) {
@@ -57,6 +58,7 @@ function Button({
         rounded,
         small,
         large,
+        right,
     });
 
     return (
