@@ -3,11 +3,10 @@ import classNames from 'classnames/bind';
 import styles from './Profile.module.scss';
 import Button from '~/components/Button';
 import { AddLogo } from '../RecruiterPost/Addlogo/AddLogo';
-import ColComp1 from '~/components/Col/Col1';
 import Row from 'react-bootstrap/Row';
-import ColComp2 from '~/components/Col/Col2';
 import { FormInput } from '../RecruiterPost/Input/Input';
 import { Container } from 'react-bootstrap';
+import Col from 'react-bootstrap/Col';
 
 const cx = classNames.bind(styles);
 function Profile() {
@@ -21,7 +20,7 @@ function Profile() {
                     <div className={cx('infor-header')}>TRANG CÁ NHÂN</div>
                     <div className={cx('infor-content')}>
                         <Row>
-                            <ColComp2>
+                            <Col md={6} className={'mb-5'}>
                                 <div className={cx('infor-set', 'name')}>
                                     <h3>Tên người dùng</h3>
                                     <FormInput
@@ -29,8 +28,8 @@ function Profile() {
                                         header
                                     ></FormInput>
                                 </div>
-                            </ColComp2>
-                            <ColComp2>
+                            </Col>
+                            <Col md={6} className={'mb-5'}>
                                 <div className={cx('infor-set', 'email')}>
                                     <h3>Email</h3>
                                     <FormInput
@@ -38,9 +37,9 @@ function Profile() {
                                         header
                                     ></FormInput>
                                 </div>{' '}
-                            </ColComp2>
+                            </Col>
 
-                            <ColComp2>
+                            <Col md={6} className={'mb-5'}>
                                 <div className={cx('infor-set', 'phone')}>
                                     <h3>Số điện thoại</h3>
                                     <FormInput
@@ -48,9 +47,9 @@ function Profile() {
                                         header
                                     ></FormInput>
                                 </div>
-                            </ColComp2>
+                            </Col>
 
-                            <ColComp2>
+                            <Col md={6} className={'mb-5'}>
                                 <div className={cx('infor-set', 'birth')}>
                                     <h3>Ngày sinh</h3>
                                     <FormInput
@@ -58,9 +57,9 @@ function Profile() {
                                         header
                                     ></FormInput>
                                 </div>
-                            </ColComp2>
+                            </Col>
 
-                            <ColComp2>
+                            <Col md={6} className={'mb-5'}>
                                 <div className={cx('infor-set', 'gender')}>
                                     <h3>Giới tính</h3>
                                     <FormInput
@@ -68,9 +67,9 @@ function Profile() {
                                         header
                                     ></FormInput>
                                 </div>
-                            </ColComp2>
+                            </Col>
 
-                            <ColComp2>
+                            <Col md={6} className={'mb-5'}>
                                 <div className={cx('infor-set', 'edu')}>
                                     <h3>Trình độ học vấn</h3>
                                     <FormInput
@@ -78,7 +77,7 @@ function Profile() {
                                         header
                                     ></FormInput>
                                 </div>
-                            </ColComp2>
+                            </Col>
                         </Row>
                     </div>
                     <div className={cx('descript')}>
