@@ -6,7 +6,7 @@ import styles from './BoxHeader.module.scss';
 import { Link } from 'react-router-dom';
 import DescriptDetail from '~/pages/RecruitmentDetail/RecruitDetail/DescriptDetail';
 import RelatedJob from '../RelatedJob/RelatedJob';
-import RuleBottom from '~/components/RuleBottom/RuleBottom';
+import RuleBottom from '~/pages/Home/RuleBottom/RuleBottom';
 
 const cx = classNames.bind(styles);
 export default function BoxHeader({ data, to }) {

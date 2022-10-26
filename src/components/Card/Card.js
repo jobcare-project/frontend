@@ -29,18 +29,18 @@ export default function Card({ data, to }) {
                                 <ion-icon name="location-outline"></ion-icon>
                                 <span>{data?.location}</span>
                             </div>
-                            <div className={cx('subdesc-text')}>
+                            <div className={cx('subdesc-bottom')}>
                                 <ion-icon name="timer-outline"></ion-icon>
                                 <span>{data?.createAt}</span>
                             </div>
                         </div>
-                        <div className={cx('subdesc-item subdesc-right')}>
-                            {/* <div className={cx('subdesc-text')}>
+                        {/* <div className={cx('subdesc-item subdesc-right')}>
+                            <div className={cx('subdesc-text')}>
                                 <ion-icon name="timer-outline"></ion-icon>
                                 <span>{data?.createAt}</span>
-                            </div> */}
-                            {/* <span>{data?.createAt}</span> */}
-                        </div>
+                            </div>
+                            <span>{data?.createAt}</span>
+                        </div> */}
                     </div>
                 </div>
             </Link>
