@@ -57,7 +57,10 @@ export default function Signin() {
                             })}
                         >
                             {(formik) => (
-                                <form onSubmit={formik.handleSubmit}>
+                                <form
+                                    className={cx('form')}
+                                    onSubmit={formik.handleSubmit}
+                                >
                                     <Row>
                                         <Col
                                             className={cx('input-block')}

@@ -6,8 +6,8 @@
     background-image: linear-gradient(
         62deg,
         #d0eef9 0%,
-        #f8e6ec 60%,
-        #ffffff 100%
+        #f8edef 70%,
+        #faf3f6 100%
     );
 }
 
@@ -21,7 +21,7 @@
         margin-bottom: 30px;
     }
     .number {
-        color: var(--primary-color);
+        color: var(--secondary-color);
         font-size: var(--fs-1);
         font-weight: 600;
         & ~ div {
@@ -31,9 +31,12 @@
 }
 
 .right {
-    padding: 20px;
+    padding: 20px 10px;
     background: hsla(0, 0%, 100%, 0.3);
     border-radius: 10px;
+    .form {
+        margin: 0 10px;
+    }
     .input-block {
         margin-bottom: 8px;
     }

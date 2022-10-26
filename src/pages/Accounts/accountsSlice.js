@@ -50,6 +50,9 @@ export const accountsSlice = createSlice({
                     tokenService.updateLocalAccessToken(
                         action.payload.data.accessToken,
                     );
+                    tokenService.updateLocalRefreshToken(
+                        action.payload.data.refreshToken,
+                    );
                     state.message = '';
                     state.data = action.payload.data;
                 } else {
@@ -114,19 +117,10 @@ export const fetchLogin = createAsyncThunk(
 );
 
 export const fetchUser = createAsyncThunk('accounts/fetchUser', async () => {
-    const localAccessToken = tokenService.getLocalAccessToken(
-        LOCAL_STORAGE_TOKEN_NAME,
-    );
-
-    if (localAccessToken) {
-        setAuthToken(localAccessToken);
-    }
     try {
         const res = await fetchUserApi();
         return res.data;
     } catch (error) {
-        tokenService.removeAccessToken(LOCAL_STORAGE_TOKEN_NAME);
-        setAuthToken(null);
         return isRejectedWithValue(error.response);
     }
 });

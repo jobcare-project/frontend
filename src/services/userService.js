@@ -1,8 +1,10 @@
 import axios from 'axios';
+import axiosClient from '~/apis/config';
+import config from '~/config';
 import { API_URL } from '~/constants/constants';
 
 export const registerApi = async (email, password, fullname) => {
-    return await axios.post(`${API_URL}/api/auth/register`, {
+    return await axiosClient.post(config.authApiUrl.register, {
         email,
         password,
         fullname,
@@ -10,14 +12,17 @@ export const registerApi = async (email, password, fullname) => {
 };
 
 export const loginApi = async (data) => {
-    return await axios.post(`${API_URL}/api/auth/login`, data);
+    return await axiosClient.post(config.authApiUrl.login, data);
+};
+
+export const refreshTokenApi = async (data) => {
+    return await axiosClient.post(config.authApiUrl.refreshToken, data);
 };
 
 export const fetchUserApi = async () => {
-    return await axios.get(`${API_URL}/api/auth/fetchUser`);
-    // return await api.get(`/api/auth/fetchUser`);
+    return await axiosClient.get(config.authApiUrl.fetchUser);
 };
 
 export const logoutApi = async () => {
-    return await axios.delete(`${API_URL}/api/auth/logout`);
+    return await axiosClient.delete(config.authApiUrl.logout);
 };
