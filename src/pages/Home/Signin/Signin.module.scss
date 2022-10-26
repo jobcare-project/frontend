@@ -45,4 +45,9 @@
             font-weight: 600;
         }
     }
+    .error-message {
+        color: var(--invalid-color);
+        font-size: 12px;
+        margin-left: 20px;
+    }
 }
