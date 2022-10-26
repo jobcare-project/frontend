@@ -1,7 +1,5 @@
-import axios from 'axios';
 import axiosClient from '~/apis/config';
 import config from '~/config';
-import { API_URL } from '~/constants/constants';
 
 export const registerApi = async (email, password, fullname) => {
     return await axiosClient.post(config.authApiUrl.register, {

@@ -49,7 +49,11 @@ function Navigation({ role }) {
                 return (
                     <li key={index} className={cx('navigation-item')}>
                         <NavLink
-                            className={cx('navigation-item-link')}
+                            className={({ isActive }) =>
+                                isActive
+                                    ? cx('navigation-item-link', 'active')
+                                    : cx('navigation-item-link')
+                            }
                             to={option.to}
                         >
                             <span>{option.title}</span>

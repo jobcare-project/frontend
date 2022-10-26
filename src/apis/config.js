@@ -33,9 +33,10 @@ axiosClient.interceptors.response.use(
                 TokenService.updateLocalAccessToken(token);
             }
 
-            return response;
+            return response.data;
         }
-        return response;
+
+        return response.data;
     },
     async (err) => {
         const originalConfig = err.config;

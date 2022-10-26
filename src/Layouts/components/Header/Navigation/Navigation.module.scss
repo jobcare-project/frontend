@@ -7,7 +7,6 @@
     align-items: center;
     gap: 50px;
     margin: 0;
-    // justify-content: center;
     .navigation-item {
         .navigation-item-link {
             transition: all 0.3s;
@@ -16,6 +15,9 @@
             &:hover {
                 color: var(--primary-color);
             }
+        }
+        .active {
+            color: var(--primary-color);
         }
     }
 }
