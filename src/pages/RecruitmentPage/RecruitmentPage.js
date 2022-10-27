@@ -97,7 +97,6 @@ export default function RecruitmentPage() {
     return (
         <Container>
             <div className={cx('wrapper')}>
-                <CardAds></CardAds>
                 <h2 className={cx('heading')}>Việc làm nổi bật</h2>
                 <Row>
                     {recruitmentList.slice(0, 8).map((recruitment, index) => {
@@ -108,7 +107,6 @@ export default function RecruitmentPage() {
                         );
                     })}
                 </Row>
-                <RuleBottom></RuleBottom>
             </div>
         </Container>
     );

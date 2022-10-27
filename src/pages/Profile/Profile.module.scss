@@ -1,9 +1,10 @@
 .container {
+    margin-top: 20px;
+    display: flex;
     .avatar {
         border-right: 1px dashed var(--desc-color);
     }
-    margin-top: 20px;
-    display: flex;
+
     .infor {
         margin-left: 20px;
         .infor-content {
@@ -13,7 +14,7 @@
         }
     }
     .descript {
-        width: 90%;
+        width: 100%;
         h3 {
             font-weight: 800;
             margin-bottom: 20px;
@@ -28,5 +29,5 @@
 }
 .submit-btn {
     margin: var(--margin-tb);
-    margin-left: 82.2%;
+    margin-left: 90%;
 }

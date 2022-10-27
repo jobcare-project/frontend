@@ -7,6 +7,9 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import { AddLogo } from './Addlogo/AddLogo';
 import { FormInput } from '../RecruiterPost/Input/Input';
+
+
+
 const cx = classNames.bind(styles);
 function RecruiterPost() {
     return (
@@ -34,7 +37,7 @@ function RecruiterPost() {
                     </div>
                     <div className={cx('content-detail')}>
                         <Row>
-                            <Col>
+                            <Col md={6} className={'mb-5'}>
                                 <div className={cx('content-input')}>
                                     <div className={cx('detail-name')}>
                                         Nhập mức lương
@@ -45,7 +48,7 @@ function RecruiterPost() {
                                     ></FormInput>
                                 </div>
                             </Col>
-                            <Col>
+                            <Col md={6} className={'mb-5'}>
                                 <div className={cx('content-input')}>
                                     <div className={cx('detail-name')}>
                                         Số lượng người
@@ -53,7 +56,7 @@ function RecruiterPost() {
                                     <FormInput primary></FormInput>
                                 </div>
                             </Col>
-                            <Col>
+                            <Col md={6} className={'mb-5'}>
                                 <div className={cx('content-input')}>
                                     <div className={cx('detail-name')}>
                                         Hình thức làm việc
@@ -64,7 +67,7 @@ function RecruiterPost() {
                                     ></FormInput>
                                 </div>
                             </Col>
-                            <Col>
+                            <Col md={6} className={'mb-5'}>
                                 <div className={cx('content-input')}>
                                     <div className={cx('detail-name')}>
                                         Giới tính
@@ -75,7 +78,7 @@ function RecruiterPost() {
                                     ></FormInput>
                                 </div>
                             </Col>
-                            <Col>
+                            <Col md={6} className={'mb-5'}>
                                 <div className={cx('content-input')}>
                                     <div className={cx('detail-name')}>
                                         Cấp bậc
@@ -83,7 +86,7 @@ function RecruiterPost() {
                                     <FormInput primary></FormInput>
                                 </div>
                             </Col>
-                            <Col>
+                            <Col md={6} className={'mb-5'}>
                                 <div className={cx('content-input')}>
                                     <div className={cx('detail-name')}>
                                         Kinh nghiệm
@@ -94,7 +97,7 @@ function RecruiterPost() {
                                     ></FormInput>
                                 </div>
                             </Col>
-                            <Col>
+                            <Col md={6} className={'mb-5'}>
                                 <div className={cx('content-input')}>
                                     <div className={cx('detail-name')}>
                                         Tỉnh thành
@@ -105,7 +108,7 @@ function RecruiterPost() {
                                     ></FormInput>
                                 </div>
                             </Col>
-                            <Col>
+                            <Col md={6} className={'mb-5'}>
                                 <div className={cx('content-input')}>
                                     <div className={cx('detail-name')}>
                                         Quận/Huyện
@@ -116,7 +119,7 @@ function RecruiterPost() {
                                     ></FormInput>
                                 </div>
                             </Col>
-                            <Col>
+                            <Col md={6} className={'mb-5'}>
                                 <div className={cx('content-input')}>
                                     <div className={cx('detail-name')}>
                                         Địa chỉ
@@ -125,7 +128,7 @@ function RecruiterPost() {
                                 </div>
                             </Col>
 
-                            <Col>
+                            <Col md={6} className={'mb-5'}>
                                 <div className={cx('content-input')}>
                                     <div className={cx('detail-name')}>
                                         Đường phố

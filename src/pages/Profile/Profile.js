@@ -23,71 +23,55 @@ function Profile() {
                             <Col md={6} className={'mb-5'}>
                                 <div className={cx('infor-set', 'name')}>
                                     <h3>Tên người dùng</h3>
-                                    <FormInput
-                                        placeholder="Văn Đông"
-                                        header
-                                    ></FormInput>
+                                    <FormInput discript></FormInput>
                                 </div>
                             </Col>
                             <Col md={6} className={'mb-5'}>
                                 <div className={cx('infor-set', 'email')}>
                                     <h3>Email</h3>
-                                    <FormInput
-                                        placeholder="dongpham21082001@gmail.com"
-                                        header
-                                    ></FormInput>
+                                    <FormInput discript></FormInput>
                                 </div>{' '}
                             </Col>
 
                             <Col md={6} className={'mb-5'}>
                                 <div className={cx('infor-set', 'phone')}>
                                     <h3>Số điện thoại</h3>
-                                    <FormInput
-                                        placeholder="0853390931"
-                                        header
-                                    ></FormInput>
+                                    <FormInput discript></FormInput>
                                 </div>
                             </Col>
 
                             <Col md={6} className={'mb-5'}>
                                 <div className={cx('infor-set', 'birth')}>
                                     <h3>Ngày sinh</h3>
-                                    <FormInput
-                                        placeholder="21/08/2001"
-                                        header
-                                    ></FormInput>
+                                    <FormInput discript></FormInput>
                                 </div>
                             </Col>
 
                             <Col md={6} className={'mb-5'}>
                                 <div className={cx('infor-set', 'gender')}>
                                     <h3>Giới tính</h3>
-                                    <FormInput
-                                        placeholder="Nam"
-                                        header
-                                    ></FormInput>
+                                    <FormInput discript></FormInput>
                                 </div>
                             </Col>
 
                             <Col md={6} className={'mb-5'}>
                                 <div className={cx('infor-set', 'edu')}>
                                     <h3>Trình độ học vấn</h3>
-                                    <FormInput
-                                        placeholder="Đại học"
-                                        header
-                                    ></FormInput>
+                                    <FormInput discript></FormInput>
                                 </div>
                             </Col>
                         </Row>
                     </div>
                     <div className={cx('descript')}>
                         <h3>Mô tả về bạn</h3>
-                        <FormInput discript></FormInput>
+                        <textarea></textarea>
                     </div>
                 </div>
             </div>
             <div className={cx('submit-btn')}>
-                <Button saveInput>Sửa thông tin</Button>
+                <Button primary small>
+                    Sửa thông tin
+                </Button>
             </div>
         </Container>
     );

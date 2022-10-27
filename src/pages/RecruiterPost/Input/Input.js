@@ -51,7 +51,6 @@ export const FormInput = ({
     selected,
     className,
     error,
-    options,
     ...passProps
 }) => {
     const classes = clsx(styles.input, {
@@ -79,7 +78,7 @@ export const FormInput = ({
                             )
                         })
                     } */}
-                    <option>Quận/huyện</option>
+                    <option></option>
                 </select>
             ) : (
                 <input
