@@ -1,6 +1,5 @@
 import classNames from 'classnames/bind';
 import styles from './DisplayQuizz.module.scss';
-import Sidebar from './Sidebar';
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -224,8 +223,9 @@ function DisplayQuizz() {
     const history = useNavigate();
     const Ref = useRef(null);
     const [timer, setTimer] = useState('00:00');
+    const [pause, setPause] = useState(false);
 
-    const buttonOnChangeHandler = (evt) => {
+    const Quiz = (evt) => {
         if (evt.target.attributes.iscorrect.value === 'true') {
             setScore(score + 1);
             evt.target.classList.add(cx('correct'));
@@ -242,7 +242,7 @@ function DisplayQuizz() {
             setCurrentQuestion(nextQuestion);
         } else {
             setShowScore(true);
-            clearTimer(notime());
+            pausetime();
             setQuizHeading('Chúc mừng bạn đã hoàn thành bài Quiz');
         }
     };
@@ -272,7 +272,7 @@ function DisplayQuizz() {
             );
         }
         if (total < 0) {
-            alert('no time');
+            alert('Hết giờ');
             clearTimer(notime());
             setShowScore(true);
             setQuizHeading('Chúc mừng bạn đã hoàn thành bài Quiz');
@@ -280,17 +280,18 @@ function DisplayQuizz() {
     };
 
     const clearTimer = (e) => {
-        setTimer('00:10');
+        setTimer('60:00');
         if (Ref.current) clearInterval(Ref.current);
         const id = setInterval(() => {
             startTimer(e);
         }, 1000);
         Ref.current = id;
+        
     };
 
     const getDeadTime = () => {
         let deadline = new Date();
-        deadline.setSeconds(deadline.getSeconds() + 10);
+        deadline.setSeconds(deadline.getSeconds() + 3600);
         return deadline;
     };
 
@@ -300,11 +301,21 @@ function DisplayQuizz() {
         return deadline;
     };
 
+    const pausetime = () => {
+        if (!pause) {
+            clearInterval(Ref.current)
+        } else {
+            Ref.current = setInterval();
+        }
+        setPause((prev) => !prev);
+      };
+
     useEffect(() => {
         // do some
         clearTimer(getDeadTime());
          // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
 
 
     //time remaining
@@ -320,7 +331,7 @@ function DisplayQuizz() {
             <div className={cx('inner')}>
                 <div className={cx('notification-bar')}>
                     <h5 className={cx('total-question-icon')}>
-                        <ion-icon name="list-outline"></ion-icon>
+                        <ion-icon name="reader-outline"></ion-icon>
                     </h5>
                     <h5 className={cx('total-question')}>
                         {Questions.length} câu
@@ -340,8 +351,8 @@ function DisplayQuizz() {
                             {showScore && (
                                 <div className={cx('score-section')}>
                                     <div className={cx('score-text')}>
-                                        Bạn đã làm đúng {score} câu trên{' '}
-                                        {Questions.length} câu hỏi
+                                         {score} /
+                                        {Questions.length} 
                                     </div>
                                     <div className={cx('text-bottom')}>
                                         {' '}
@@ -360,7 +371,7 @@ function DisplayQuizz() {
                                                 return (
                                                     <li
                                                         className={cx(
-                                                            'quiz-item',
+                                                            'quiz-item-after',
                                                         )}
                                                         key={index}
                                                     >
@@ -426,10 +437,11 @@ function DisplayQuizz() {
                                                         type={cx('button')}
                                                         disabled={false}
                                                         onClick={
-                                                            buttonOnChangeHandler
+                                                            Quiz
                                                         }
-                                                    >
-                                                        {answerOption.option}.{' '}
+                                                    >   
+                                                        
+                                                        {answerOption.option} . {' '}
                                                         {
                                                             answerOption.answerText
                                                         }
@@ -444,9 +456,7 @@ function DisplayQuizz() {
                     }
                 </div>
             </div>
-            <div className={cx('container-sidebar')}>
-                <Sidebar />
-            </div>
+
         </div>
     );
 }

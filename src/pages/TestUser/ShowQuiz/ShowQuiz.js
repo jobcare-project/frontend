@@ -1,21 +1,18 @@
 import classNames from 'classnames/bind';
 
-
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import styles from './ShowQuiz.module.scss';
-import CardTestUser from '~/components/CardTestUser/CardTestUser';
 import config from '~/config';
-import Menu from '../Menu';
-import { MenuItemIT , MenuItemBusiness , MenuItemLinguistics , MenuItemMarketing } from '../Menu';
+import Menu, { MenuItem } from '../Menu';
+import CardShowQuiz from '~/components/CardShowQuiz/CardShowQuiz';
 import { Container } from 'react-bootstrap';
-
 
 const cx = classNames.bind(styles);
 
 //Quizz Công nghệ thông tin
 
-const CNTTList = [
+const itList = [
     {
         thumbnail:
             'https://bizflyportal.mediacdn.vn/bizflyportal/375/470/2020/04/28/21/33/115880627863553.jpg',
@@ -59,7 +56,7 @@ const marketingList = [
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
         maxScore: ' Điểm tối đá 10 điểm',
         timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi '
+        listQuiz: ' 30 câu hỏi ',
     },
     {
         thumbnail:
@@ -67,7 +64,7 @@ const marketingList = [
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
         maxScore: ' Điểm tối đá 10 điểm',
         timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi '
+        listQuiz: ' 30 câu hỏi ',
     },
     {
         thumbnail:
@@ -75,7 +72,7 @@ const marketingList = [
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
         maxScore: ' Điểm tối đá 10 điểm',
         timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi '
+        listQuiz: ' 30 câu hỏi ',
     },
     {
         thumbnail:
@@ -83,7 +80,7 @@ const marketingList = [
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
         maxScore: ' Điểm tối đá 10 điểm',
         timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi '
+        listQuiz: ' 30 câu hỏi ',
     },
 ];
 
@@ -96,7 +93,7 @@ const businessAdministrationList = [
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
         maxScore: ' Điểm tối đá 10 điểm',
         timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi '
+        listQuiz: ' 30 câu hỏi ',
     },
     {
         thumbnail:
@@ -104,7 +101,7 @@ const businessAdministrationList = [
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
         maxScore: ' Điểm tối đá 10 điểm',
         timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi '
+        listQuiz: ' 30 câu hỏi ',
     },
     {
         thumbnail:
@@ -112,7 +109,7 @@ const businessAdministrationList = [
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
         maxScore: ' Điểm tối đá 10 điểm',
         timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi '
+        listQuiz: ' 30 câu hỏi ',
     },
     {
         thumbnail:
@@ -120,7 +117,7 @@ const businessAdministrationList = [
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
         maxScore: ' Điểm tối đá 10 điểm',
         timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi '
+        listQuiz: ' 30 câu hỏi ',
     },
 ];
 
@@ -133,7 +130,7 @@ const linguisticsList = [
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
         maxScore: ' Điểm tối đá 10 điểm',
         timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi '
+        listQuiz: ' 30 câu hỏi ',
     },
     {
         thumbnail:
@@ -141,7 +138,7 @@ const linguisticsList = [
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
         maxScore: ' Điểm tối đá 10 điểm',
         timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi '
+        listQuiz: ' 30 câu hỏi ',
     },
     {
         thumbnail:
@@ -149,7 +146,7 @@ const linguisticsList = [
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
         maxScore: ' Điểm tối đá 10 điểm',
         timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi '
+        listQuiz: ' 30 câu hỏi ',
     },
     {
         thumbnail:
@@ -157,94 +154,103 @@ const linguisticsList = [
         title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
         maxScore: ' Điểm tối đá 10 điểm',
         timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi '
+        listQuiz: ' 30 câu hỏi ',
     },
 ];
 
 export default function ShowQuiz() {
     return (
-       
         <div className={cx('wrapper')}>
-             <Container>
-            <h2 className={cx('heading')}>Công nghệ thông tin</h2>
-            <Menu>
-                <MenuItemIT
-                    title=" Xem thêm  "
-                    to={config.routes.informationtechnology}
-                    icon={null}
-                />
-            </Menu>
-            <Row>
-                {CNTTList.slice(0, 8).map((CNTTList, index) => {
+            <Container className={cx('container')}>
+                <h2 className={cx('heading')}>
+                    Công nghệ thông tin
+                    <Menu>
+                        <MenuItem title="Xem thêm" to={config.routes.itech} />
+                    </Menu>
+                </h2>
 
-                    return (
-                        <Col key={index} lg={3} md={4} sm={6}>
-                            <CardTestUser quiz={CNTTList} to={'displayquizz'} ></CardTestUser>
-                        </Col>
-                    );
-                })}
-            </Row>
-
-            <h2 className={cx('heading')}>Marketing</h2>
-            <Menu>
-                <MenuItemMarketing
-                    title=" Xem thêm  "
-                    to={config.routes.marketing}
-                    icon={null}
-                />
-            </Menu>
-            <Row>
-                {marketingList
-                    .slice(0, 8)
-                    .map((marketingList, index) => {
+                <Row>
+                    {itList.slice(0, 8).map((itList, index) => {
                         return (
                             <Col key={index} lg={3} md={4} sm={6}>
-                                <CardTestUser quiz={marketingList}></CardTestUser>
+                                <CardShowQuiz
+                                    quiz={itList}
+                                    to={'displayquizz'}
+                                ></CardShowQuiz>
                             </Col>
                         );
                     })}
-            </Row>
+                </Row>
 
-            <h2 className={cx('heading')}>Quản trị kinh doanh</h2>
-            <Menu>
-                <MenuItemBusiness
-                    title=" Xem thêm  "
-                    to={config.routes.businessadministration}
-                    icon={null}
-                />
-            </Menu>
-            <Row>
-                {businessAdministrationList
-                    .slice(0, 8)
-                    .map((businessAdministrationList, index) => {
+                <h2 className={cx('heading')}>
+                    Marketing
+                    <Menu>
+                        <MenuItem
+                            title="Xem thêm"
+                            to={config.routes.marketing}
+                        />
+                    </Menu>
+                </h2>
+
+                <Row>
+                    {marketingList.slice(0, 8).map((marketingList, index) => {
                         return (
                             <Col key={index} lg={3} md={4} sm={6}>
-                                <CardTestUser quiz={businessAdministrationList}></CardTestUser>
+                                <CardShowQuiz
+                                    quiz={marketingList}
+                                ></CardShowQuiz>
                             </Col>
                         );
                     })}
-            </Row>
+                </Row>
 
-            <h2 className={cx('heading')}>Ngôn ngữ học</h2>
-            <Menu>
-                <MenuItemLinguistics
-                    title=" Xem thêm  "
-                    to={config.routes.linguistics}
-                    icon={null}
-                />
-            </Menu>
-            <Row>
-                
-                {linguisticsList
-                    .slice(0, 8)
-                    .map((linguisticsList, index) => {
-                        return (
-                            <Col key={index} lg={3} md={4} sm={6}>
-                                <CardTestUser quiz={linguisticsList}></CardTestUser>
-                            </Col>
-                        );
-                    })}
-            </Row>
+                <h2 className={cx('heading')}>
+                    Quản trị kinh doanh
+                    <Menu>
+                        <MenuItem
+                            title="Xem thêm"
+                            to={config.routes.businessadministration}
+                        />
+                    </Menu>
+                </h2>
+
+                <Row>
+                    {businessAdministrationList
+                        .slice(0, 8)
+                        .map((businessAdministrationList, index) => {
+                            return (
+                                <Col key={index} lg={3} md={4} sm={6}>
+                                    <CardShowQuiz
+                                        quiz={businessAdministrationList}
+                                    ></CardShowQuiz>
+                                </Col>
+                            );
+                        })}
+                </Row>
+
+                <h2 className={cx('heading')}>
+                    Ngôn ngữ học
+                    <Menu>
+                        <MenuItem
+                            title="Xem thêm"
+                            to={config.routes.linguistics}
+                        />
+                    </Menu>
+                </h2>
+
+                <Row>
+                    {linguisticsList
+                        .slice(0, 8)
+                        .map((linguisticsList, index) => {
+                            return (
+                                <Col key={index} lg={3} md={4} sm={6}>
+                                    <CardShowQuiz
+                                        quiz={linguisticsList}
+                                    ></CardShowQuiz>
+                                </Col>
+                            );
+                        })}
+                </Row>
             </Container>
         </div>
     );

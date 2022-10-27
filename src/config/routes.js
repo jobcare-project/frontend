@@ -6,7 +6,7 @@ const routes = {
     blog: '/blog',
     recruitment: '/recruitment/post',
     testuser: '/testuser',
-    informationtechnology: '/testuser/informationtechnology',
+    itech: '/testuser/IT',
     marketing: '/testuser/marketing',
     businessadministration: '/testuser/businessadministration',
     linguistics: '/testuser/linguistics',
