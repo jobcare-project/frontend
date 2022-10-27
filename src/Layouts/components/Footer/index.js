@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
-
+import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
@@ -14,9 +14,9 @@ const cx = classNames.bind(styles);
 function Footer() {
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('container')}>
+            <Container>
                 <Row>
-                    <Col lg={5}>
+                    <Col md={5}>
                         <div className={cx('footer-left')}>
                             <Link to={config.routes.home}>
                                 <img
@@ -37,9 +37,9 @@ function Footer() {
                             </div>
                         </div>
                     </Col>
-                    <Col lg={7}>
+                    <Col md={7}>
                         <Row>
-                            <Col lg={4}>
+                            <Col md={4}>
                                 <h3 className={cx('title')}>Công ty</h3>
                                 <div className={cx('text-item')}>
                                     <Link to="/vechungtoi">Về chúng tôi</Link>
@@ -56,7 +56,7 @@ function Footer() {
                                     </Link>
                                 </div>
                             </Col>
-                            <Col lg={4}>
+                            <Col md={4}>
                                 <h3 className={cx('title')}>Chính sách</h3>
                                 <div className={cx('text-item')}>
                                     <Link to="/vechungtoi">
@@ -74,25 +74,25 @@ function Footer() {
                                     </Link>
                                 </div>
                             </Col>
-                            <Col lg={4}>
+                            <Col md={4}>
                                 <h3 className={cx('title')}>Mạng xã hội</h3>
                                 <Row>
-                                    <Col lg={3}>
+                                    <Col md={3}>
                                         <Link className={cx('social-item')}>
                                             {images.svg.facebook}
                                         </Link>
                                     </Col>
-                                    <Col lg={3}>
+                                    <Col md={3}>
                                         <Link className={cx('social-item')}>
                                             {images.svg.instagram}
                                         </Link>
                                     </Col>
-                                    <Col lg={3}>
+                                    <Col md={3}>
                                         <Link className={cx('social-item')}>
                                             {images.svg.youtube}
                                         </Link>
                                     </Col>
-                                    <Col lg={3}>
+                                    <Col md={3}>
                                         <Link className={cx('social-item')}>
                                             {images.svg.twitter}
                                         </Link>
@@ -102,7 +102,7 @@ function Footer() {
                         </Row>
                     </Col>
                 </Row>
-            </div>
+            </Container>
         </div>
     );
 }
