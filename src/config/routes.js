@@ -2,6 +2,7 @@ const routes = {
     home: '/',
     admin: '/admin',
     profile: '/profile',
+    settings: '/settings',
     accounts: '/accounts',
     blog: '/blog',
     recruitment: '/recruitmentpage',

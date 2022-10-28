@@ -5,3 +5,7 @@ export const authApiUrl = {
     fetchUser: '/api/auth/fetchUser',
     logout: '/api/auth/logout',
 };
+
+export const jobsApiUrl = {
+    getList: '/api/job',
+};

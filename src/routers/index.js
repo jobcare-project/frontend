@@ -11,6 +11,7 @@ import RecruitmentDetail from '~/pages/RecruitmentDetail/RecruitmentDetail';
 import RecruitmentPage from '~/pages/RecruitmentPage/RecruitmentPage';
 import InformationTechnology from '~/pages/InformationTechnology';
 import PostQuiz from '~/pages/PostQuiz';
+import Settings from '~/pages/settings/Settings';
 
 export const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -30,6 +31,7 @@ export const publicRoutes = [
 
 export const privateRoutes = [
     { path: config.routes.profile, component: Profile },
+    { path: config.routes.settings, component: Settings },
 ];
 
 export const userPrivateRoutes = [];

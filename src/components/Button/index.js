@@ -22,6 +22,7 @@ function Button({
     leftIcon,
     rightIcon,
     right,
+    secondary,
     onClick,
     ...passProps
 }) {
@@ -51,6 +52,7 @@ function Button({
     const classes = cx('wrapper', {
         [className]: className,
         primary,
+        secondary,
         saveInput,
         outline,
         text,

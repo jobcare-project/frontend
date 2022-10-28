@@ -22,7 +22,6 @@ export const accountsSlice = createSlice({
         message: '',
         data: {},
     },
-
     reducers: {},
     extraReducers: (builder) => {
         builder

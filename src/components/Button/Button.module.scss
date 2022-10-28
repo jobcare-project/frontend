@@ -57,6 +57,11 @@
         opacity: 0.9;
     }
 }
+
+.secondary {
+    color: var(--text-color);
+}
+
 .saveInput {
     color: var(--black-color) !important;
     background-color: var(--white-color);

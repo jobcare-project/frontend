@@ -7,6 +7,7 @@ const images = {
     testBox: require('~/assets/images/banner-test.png'),
     avatarDefault: require('~/assets/images/avatar-default.png'),
     findJobs: require('~/assets/images/find-jobs-img.png'),
+    recruitmentCard: require('~/assets/images/recruitment-card.jpg'),
     svg: {
         facebook: (
             <svg
