@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './RelatedJob..module.scss';
+import styles from './RelatedJob.module.scss';
 import classNames from 'classnames/bind';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -101,7 +101,9 @@ export default function RelatedJob({ data, to }) {
                         Việc làm liên quan
                     </div>
                     <div className={cx('related-more')}>
-                        <Link to="/recruitmentpage/user">Hiển thị thêm</Link>
+                        <Link to="/recruitmentpage/user">
+                            <span>Hiển thị thêm</span>
+                        </Link>
                     </div>
                 </div>
                 <Row>

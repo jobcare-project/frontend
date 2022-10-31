@@ -11,11 +11,11 @@ export default function RuleBottom({ data }) {
             <div className={cx('wrapper')}>
                 <h1>Tại sao nên sử dụng JobCare</h1>
                 <div className={cx('content')}>
-                    <div className={cx('content-describe')}>
-                        <strong>
+                    <div className={cx('content-rule')}>
+                        <h3>
                             Cơ hội ứng tuyển việc làm với đãi ngộ hấp dẫn tại
                             các công ty hàng đầu
-                        </strong>
+                        </h3>
                         <p>
                             Trước sự phát triển vượt bậc của nền kinh tế, rất
                             nhiều ngành nghề trở nên khan hiếm nhân lực hoặc
@@ -27,7 +27,9 @@ export default function RuleBottom({ data }) {
                             TopCV mang đến cho bạn những cơ hội việc làm tại
                             những môi trường làm việc năng động, chuyên nghiệp.
                         </p>
-                        <strong>Việc làm Chất lượng</strong>
+                    </div>
+                    <div className={cx('content-rule')}>
+                        <h3>Việc làm Chất lượng</h3>
                         <p>
                             Hàng ngàn tin tuyển dụng chất lượng cao được cập
                             nhật thường xuyên để đáp ứng nhu cầu tìm việc của

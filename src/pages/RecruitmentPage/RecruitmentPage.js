@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Card from '~/components/Card/Card';
 import { Container } from 'react-bootstrap';
 import styles from './RecruitmentPage.module.scss';
-import RuleBottom from '~/components/RuleBottom/RuleBottom';
+import RuleBottom from '~/pages/Home/RuleBottom/RuleBottom';
 import CardAds from '~/components/CardAds/CardAds';
 
 const cx = classNames.bind(styles);
@@ -97,7 +97,6 @@ export default function RecruitmentPage() {
     return (
         <Container>
             <div className={cx('wrapper')}>
-                <CardAds></CardAds>
                 <h2 className={cx('heading')}>Việc làm nổi bật</h2>
                 <Row>
                     {recruitmentList.slice(0, 8).map((recruitment, index) => {
@@ -108,7 +107,6 @@ export default function RecruitmentPage() {
                         );
                     })}
                 </Row>
-                <RuleBottom></RuleBottom>
             </div>
         </Container>
     );
