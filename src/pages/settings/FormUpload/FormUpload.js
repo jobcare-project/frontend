@@ -9,6 +9,7 @@ import images from '~/assets/images';
 import Button from '~/components/Button';
 import { fetchUploadImage } from '~/pages/Accounts/accountsSlice';
 import styles from './FormUpload.module.scss';
+import { getBase64 } from '~/utils/common';
 
 const cx = classNames.bind(styles);
 
@@ -41,6 +42,10 @@ function FormGroup({ label, data }) {
         //     ...file,
         //     data: e.target.files[0],
         // };
+
+        const base64url = getBase64(e.target.files[0]);
+        console.log('base64url', base64url);
+
         const img = {
             preview: URL.createObjectURL(e.target.files[0]),
             data: e.target.files[0],
