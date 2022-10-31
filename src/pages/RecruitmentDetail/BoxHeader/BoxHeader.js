@@ -9,6 +9,10 @@ import RuleBottom from '~/pages/Home/RuleBottom/RuleBottom';
 import Button from '~/components/Button';
 import config from '~/config';
 
+window.scroll = function () {
+    console.log(document.body.scroll);
+};
+
 const cx = classNames.bind(styles);
 export default function BoxHeader({ data, to }) {
     return (
@@ -116,7 +120,12 @@ export default function BoxHeader({ data, to }) {
                                     <Button rounded>Lưu tin</Button>
                                 </div>
                                 <div className={cx('btn-apply')}>
-                                    <Button primary>Ứng tuyển ngay</Button>
+                                    <Button
+                                        primary
+                                        className={cx('btn-submit')}
+                                    >
+                                        Ứng tuyển ngay
+                                    </Button>
                                 </div>
                             </div>
                             <div className={cx('time')}>
