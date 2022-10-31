@@ -1,17 +1,17 @@
 import React from 'react';
-import { Container, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import classNames from 'classnames/bind';
-import styles from './CardAds.module.scss';
-import ColComp2 from '../Col/Col2';
-import images from '~/assets/images';
 import { Link } from 'react-router-dom';
+
+import styles from './CardAds.module.scss';
+import images from '~/assets/images';
 const cx = classNames.bind(styles);
 export default function CardAds({ to }) {
     return (
         <Container>
             <div className={cx('wrapper')}>
-                <Row>
-                    <ColComp2>
+                <Row md={6} className={'mb-5'}>
+                    <Col md={6} className={'mb-5'}>
                         <div className={cx('box')}>
                             <div className={cx('box-title')}>
                                 <h2>Tạo CV ấn tượng</h2>
@@ -27,8 +27,8 @@ export default function CardAds({ to }) {
                                 <img src={images.cvBox} alt="" />
                             </div>
                         </div>
-                    </ColComp2>
-                    <ColComp2>
+                    </Col>
+                    <Col md={6} className={'mb-5'}>
                         <div className={cx('box')}>
                             <div className={cx('box-title')}>
                                 <h2>Làm bài đánh giá năng lực bản thân</h2>
@@ -43,7 +43,7 @@ export default function CardAds({ to }) {
                                 <img src={images.testBox} alt="" />
                             </div>
                         </div>
-                    </ColComp2>
+                    </Col>
                 </Row>
             </div>
         </Container>

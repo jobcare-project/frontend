@@ -17,6 +17,5 @@ export const getBase64 = (file) => {
             resolve(baseURL);
         };
         return fileInfo;
-        console.log(fileInfo);
     });
 };
