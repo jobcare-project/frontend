@@ -12,6 +12,7 @@ import {
     registerApi,
 } from '~/services/userService';
 import tokenService from '~/services/tokenService';
+import { uploadImageApi } from '~/services/uploadService';
 
 export const accountsSlice = createSlice({
     name: 'accounts',
@@ -131,6 +132,19 @@ export const fetchLogout = createAsyncThunk(
         } catch (error) {
             tokenService.removeAccessToken(LOCAL_STORAGE_TOKEN_NAME);
             setAuthToken(null);
+            return isRejectedWithValue(error.response);
+        }
+    },
+);
+
+export const fetchUploadImage = createAsyncThunk(
+    'accounts/fetchUploadImage',
+    async (payload) => {
+        try {
+            const res = await uploadImageApi(payload);
+            console.log('res fetchUploadImage:', res);
+            return res;
+        } catch (error) {
             return isRejectedWithValue(error.response);
         }
     },

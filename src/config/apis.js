@@ -9,3 +9,7 @@ export const authApiUrl = {
 export const jobsApiUrl = {
     getList: '/api/job',
 };
+
+export const uploadApiUrl = {
+    uploadImage: 'api/upload',
+};

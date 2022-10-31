@@ -7,6 +7,11 @@ const store = configureStore({
         accounts: accountsSlice.reducer,
         home: homeSlice.reducer,
     },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            immutableCheck: false,
+            serializableCheck: false,
+        }),
 });
 
 export default store;
