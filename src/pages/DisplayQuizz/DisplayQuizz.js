@@ -1,8 +1,9 @@
 import classNames from 'classnames/bind';
-import styles from './DisplayQuizz.module.scss';
-import Sidebar from './Sidebar';
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import styles from './DisplayQuizz.module.scss';
+import Sidebar from './Sidebar';
 
 const cx = classNames.bind(styles);
 
@@ -247,7 +248,6 @@ function DisplayQuizz() {
         }
     };
 
-
     //time remaining
 
     const getTimeRemaining = (e) => {
@@ -303,9 +303,8 @@ function DisplayQuizz() {
     useEffect(() => {
         // do some
         clearTimer(getDeadTime());
-         // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
 
     //time remaining
 

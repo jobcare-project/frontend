@@ -5,8 +5,6 @@ import Col from 'react-bootstrap/Col';
 import Card from '~/components/Card/Card';
 import { Container } from 'react-bootstrap';
 import styles from './RecruitmentPage.module.scss';
-import RuleBottom from '~/pages/Home/RuleBottom/RuleBottom';
-import CardAds from '~/components/CardAds/CardAds';
 
 const cx = classNames.bind(styles);
 const recruitmentList = [
