@@ -1,17 +1,13 @@
 import React from 'react';
-import styles from './RecruitmentDetail.module.scss';
-import classNames from 'classnames/bind';
-import images from '~/assets/images';
 import { Container } from 'react-bootstrap';
 import BoxHeader from '~/pages/RecruitmentDetail/BoxHeader/BoxHeader';
-import DescriptDetail from './RecruitDetail/DescriptDetail';
-const cx = classNames.bind(styles);
+import FormSubmitCV from '../RecruitmentPage/FormSubmitCV/FormSubmitCV';
 function RecruitmentDetail() {
     return (
         <Container>
             <BoxHeader></BoxHeader>
+            <FormSubmitCV></FormSubmitCV>
         </Container>
     );
 }
-
 export default RecruitmentDetail;

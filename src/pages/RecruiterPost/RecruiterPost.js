@@ -10,6 +10,7 @@ import ColComp2 from '~/components/Col/Col2';
 import ColComp1 from '~/components/Col/Col1';
 import { AddLogo } from './Addlogo/AddLogo';
 import { FormInput } from '../RecruiterPost/Input/Input';
+
 const cx = classNames.bind(styles);
 function RecruiterPost() {
     return (
@@ -182,10 +183,17 @@ function RecruiterPost() {
                                         <span>Tin thường</span>
                                     </div>
                                     <div className={cx('type-days')}>
-                                        <FormInput
-                                            type="select"
-                                            selected
-                                        ></FormInput>
+                                        <span>
+                                            * Tin thường phải chờ để được kiểm
+                                            duyệt trước khi hiển thị, thường sẽ
+                                            mất từ 5 phút đến 1 tiếng, tuỳ thuộc
+                                            vào lượng tin đăng trong ngày
+                                            <br />
+                                            * Tin thường sẽ có thời gian hiển
+                                            thị là 30 ngày
+                                            <br />* Sẽ bị trôi nhanh do có nhiều
+                                            tin đăng trong ngày
+                                        </span>
                                     </div>
                                 </div>
                             </div>

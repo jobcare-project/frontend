@@ -8,6 +8,10 @@ import DescriptDetail from '~/pages/RecruitmentDetail/RecruitDetail/DescriptDeta
 import RelatedJob from '../RelatedJob/RelatedJob';
 import RuleBottom from '~/components/RuleBottom/RuleBottom';
 
+window.scroll = function () {
+    console.log(document.body.scroll);
+};
+
 const cx = classNames.bind(styles);
 export default function BoxHeader({ data, to }) {
     return (
@@ -115,9 +119,13 @@ export default function BoxHeader({ data, to }) {
                                     <Button primary>Ứng tuyển ngay</Button>
                                     <Button rounded>Lưu tin</Button>
                                 </div>
-                                <div className={cx('time')}>
-                                    <ion-icon name="time-outline"></ion-icon>
-                                    <span>Hạn nộp hồ sơ: {data?.time}</span>
+                                <div className={cx('btn-apply')}>
+                                    <Button
+                                        primary
+                                        className={cx('btn-submit')}
+                                    >
+                                        Ứng tuyển ngay
+                                    </Button>
                                 </div>
                             </div>
                         </div>
