@@ -7,6 +7,9 @@ function Input({
     leftIcon,
     rightIcon,
     className,
+    primary,
+    selected,
+    checkbox,
     rounded,
     border,
     disabled,
@@ -18,6 +21,9 @@ function Input({
         disabled,
         rounded,
         border,
+        checkbox,
+        primary,
+        selected,
     });
 
     return (

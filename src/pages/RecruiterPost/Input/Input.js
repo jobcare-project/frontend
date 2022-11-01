@@ -27,7 +27,7 @@ export const FormInput = ({
     });
     return (
         <>
-            <label htmlFor={id}>{label}</label>
+            {/* <label htmlFor={id}>{label}</label>
             {type === 'select' ? (
                 <select
                     type={type}
@@ -35,15 +35,15 @@ export const FormInput = ({
                     name={name}
                     {...passProps}
                     className={classes}
-                >
-                    {/* {
+                > */}
+            {/* {
                         options.map(_elt => {
                             return (
                                 <option>1</option>
                             )
                         })
                     } */}
-                    <option></option>
+            {/* <option></option>
                 </select>
             ) : (
                 <input
@@ -53,7 +53,7 @@ export const FormInput = ({
                     {...passProps}
                     className={classes}
                 />
-            )}
+            )} */}
         </>
     );
 };
