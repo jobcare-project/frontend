@@ -358,7 +358,9 @@ function RecruiterPost() {
                         <div className={cx('type-normal')}>
                             <div className={cx('type-name')}>
                                 <input type="checkbox" />
-                                <span className={cx('type-post')}>Tin thường</span>
+                                <span className={cx('type-post')}>
+                                    Tin thường
+                                </span>
                             </div>
                             <div className={cx('type-days')}>
                                 <span>
@@ -381,7 +383,9 @@ function RecruiterPost() {
                         <div className={cx('type-normal')}>
                             <div className={cx('type-name')}>
                                 <input type="checkbox" />
-                                <span className={cx('type-post')}>Tin VIP theo ngày</span>
+                                <span className={cx('type-post')}>
+                                    Tin VIP theo ngày
+                                </span>
                             </div>
                             <div className={cx('type-vip')}>
                                 <DropDown
@@ -408,7 +412,9 @@ function RecruiterPost() {
                         <div className={cx('type-normal')}>
                             <div className={cx('type-name')}>
                                 <input type="checkbox" />
-                                <span className={cx('type-post')}>Tin VIP theo tháng</span>
+                                <span className={cx('type-post')}>
+                                    Tin VIP theo tháng
+                                </span>
                             </div>
                             <div className={cx('type-vip')}>
                                 <DropDown data={vipMonthData} />

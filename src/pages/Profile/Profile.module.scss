@@ -1,6 +1,7 @@
 .container {
     margin-top: 20px;
     display: flex;
+    z-index: 0;
     .avatar {
         border-right: 1px dashed var(--desc-color);
     }

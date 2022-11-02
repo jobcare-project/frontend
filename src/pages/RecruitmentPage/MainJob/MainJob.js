@@ -1,13 +1,9 @@
+import React from 'react';
 import classNames from 'classnames/bind';
-import styles from './RecruitmentPage.module.scss';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Card from '~/components/Card/Card';
-import FindJobs from '../Home/FindJobs/FindJobs';
+import styles from './MainJob.module.scss';
 
-import { Container } from 'react-bootstrap';
-import MainJob from './MainJob/MainJob';
-import RuleBottom from '../Home/RuleBottom/RuleBottom';
+import { Col, Container, Row } from 'react-bootstrap';
+import Card from '~/components/Card/Card';
 
 const cx = classNames.bind(styles);
 const recruitmentList = [
@@ -94,14 +90,23 @@ const recruitmentList = [
         createAt: '4 ngày trước',
     },
 ];
-export default function RecruitmentPage() {
+function MainJob() {
     return (
-        <div>
-            <FindJobs></FindJobs>
-            <Container>
-                <MainJob></MainJob>
-                <RuleBottom></RuleBottom>
-            </Container>
-        </div>
+        <Container>
+            <div className={cx('wrapper')}>
+                <h2 className={cx('heading')}>Việc làm nổi bật</h2>
+                <Row>
+                    {recruitmentList.slice(0, 8).map((recruitment, index) => {
+                        return (
+                            <Col key={index} lg={3} md={4} sm={6}>
+                                <Card data={recruitment}></Card>
+                            </Col>
+                        );
+                    })}
+                </Row>
+            </div>
+        </Container>
     );
 }
+
+export default MainJob;

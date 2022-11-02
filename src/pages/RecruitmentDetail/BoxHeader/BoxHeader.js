@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -7,6 +8,7 @@ import styles from './BoxHeader.module.scss';
 import DescriptDetail from '~/pages/RecruitmentDetail/RecruitDetail/DescriptDetail';
 import RelatedJob from '../RelatedJob/RelatedJob';
 import Button from '~/components/Button';
+import Modal from '~/pages/Profile/Modal/Modal';
 
 window.scroll = function () {
     console.log(document.body.scroll);
@@ -17,7 +19,10 @@ window.scroll = function () {
 };
 
 const cx = classNames.bind(styles);
+
 export default function BoxHeader({ data, to }) {
+    const [modalOpen, setModalOpen] = useState(false);
+
     return (
         <Container>
             <div className={cx('wrapper')}>
@@ -38,7 +43,7 @@ export default function BoxHeader({ data, to }) {
                         </div>
                     </div>
                     <div className={cx('box-logo')}>
-                        <img src={images.logoL} alt="" />
+                        <img src={images.CV} alt="" />
                     </div>
                 </div>
                 <div className={cx('content-detail')}>
@@ -126,9 +131,15 @@ export default function BoxHeader({ data, to }) {
                                     <Button
                                         primary
                                         className={cx('btn-submit')}
+                                        onClick={() => {
+                                            setModalOpen(true);
+                                        }}
                                     >
                                         Ứng tuyển ngay
                                     </Button>
+                                    {modalOpen && (
+                                        <Modal setOpenModal={setModalOpen} />
+                                    )}
                                 </div>
                             </div>
                             <div className={cx('time')}>
@@ -143,8 +154,8 @@ export default function BoxHeader({ data, to }) {
                         </Link>
                     </div>
                 </div>
-                <RelatedJob></RelatedJob>
             </div>
+            <RelatedJob></RelatedJob>
         </Container>
     );
 }

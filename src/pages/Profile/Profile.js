@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Profile.module.scss';
 import Button from '~/components/Button';
@@ -7,14 +7,16 @@ import Row from 'react-bootstrap/Row';
 import { FormInput } from '../RecruiterPost/Input/Input';
 import { Container } from 'react-bootstrap';
 import Col from 'react-bootstrap/Col';
+import Modal from './Modal/Modal';
 
 const cx = classNames.bind(styles);
 
 function Profile() {
+    const [modalOpen, setModalOpen] = useState(false);
     return (
         <Container>
             <div className={cx('container')}>
-                <div className={cx('avatar')}>
+                <div c lassName={cx('avatar')}>
                     <AddLogo></AddLogo>
                 </div>
                 <div className={cx('infor')}>
@@ -70,9 +72,16 @@ function Profile() {
                 </div>
             </div>
             <div className={cx('submit-btn')}>
-                <Button primary small>
+                <Button
+                    primary
+                    small
+                    onClick={() => {
+                        setModalOpen(true);
+                    }}
+                >
                     Sửa thông tin
                 </Button>
+                {modalOpen && <Modal setOpenModal={setModalOpen} />}
             </div>
         </Container>
     );
