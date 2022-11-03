@@ -62,6 +62,7 @@ function Search({ data }) {
                                 //     handleClickFindJobsBtn();
                                 // }}
                                 primary
+                                className={cx('btn')}
                             >
                                 Tìm kiếm
                             </Button>

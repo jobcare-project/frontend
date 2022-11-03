@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
-import { Col, Container, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-
-import images from '~/assets/images';
 import styles from './BoxHeader.module.scss';
 import DescriptDetail from '~/pages/RecruitmentDetail/RecruitDetail/DescriptDetail';
-import RelatedJob from '../RelatedJob/RelatedJob';
+import images from '~/assets/images';
 import Button from '~/components/Button';
 import Modal from '~/pages/Profile/Modal/Modal';
+
+import { Col, Container, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 window.scroll = function () {
     console.log(document.body.scroll);
@@ -155,7 +154,6 @@ export default function BoxHeader({ data, to }) {
                     </div>
                 </div>
             </div>
-            <RelatedJob></RelatedJob>
         </Container>
     );
 }
