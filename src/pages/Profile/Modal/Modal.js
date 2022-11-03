@@ -18,13 +18,14 @@ function Modal({ setOpenModal, data, to }) {
                             Frontend Developer
                         </span>
                     </h2>
-                    <button
+                    <span
                         onClick={() => {
                             setOpenModal(false);
                         }}
+                        className={cx('close')}
                     >
                         X
-                    </button>
+                    </span>
                 </div>
                 <div className={cx('modal-upload')}>
                     <div className={cx('modal-cv')}>
@@ -37,7 +38,6 @@ function Modal({ setOpenModal, data, to }) {
                     </div>
                     <div className={cx('modal-file')}>
                         <Button primary>Chọn file</Button>
-                        {/* <Input type="file" name="" className={cx('input')}></Input> */}
                     </div>
                     <div className={cx('modal-letter')}>
                         <h4>Thư giới thiệu:</h4>
