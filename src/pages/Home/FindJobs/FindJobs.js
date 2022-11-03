@@ -1,11 +1,12 @@
 import classNames from 'classnames/bind';
+import styles from './FindJobs.module.scss';
+import DropDown from '~/components/Input/DropDown/DropDown';
+import Input from '~/components/Input/Input/Input';
+
 import { Col, Row } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import images from '~/assets/images';
 import Button from '~/components/Button';
-import DropDown from '~/components/Input/DropDown/DropDown';
-import Input from '~/components/Input/Input/Input';
-import styles from './FindJobs.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -56,7 +57,6 @@ export default function FindJobs() {
                                         }
                                         placeholder="Tên công việc, vị trí bạn muốn ứng tuyển..."
                                     />
-
                                     <div className={cx('advanced')}>
                                         <h5 className={cx('advanced-title')}>
                                             Tìm kiếm nâng cao

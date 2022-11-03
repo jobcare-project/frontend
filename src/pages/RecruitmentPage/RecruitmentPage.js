@@ -1,13 +1,10 @@
 import classNames from 'classnames/bind';
 import styles from './RecruitmentPage.module.scss';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Card from '~/components/Card/Card';
-import FindJobs from '../Home/FindJobs/FindJobs';
 
 import { Container } from 'react-bootstrap';
 import MainJob from './MainJob/MainJob';
 import RuleBottom from '../Home/RuleBottom/RuleBottom';
+import Search from './Search/Search';
 
 const cx = classNames.bind(styles);
 const recruitmentList = [
@@ -97,7 +94,7 @@ const recruitmentList = [
 export default function RecruitmentPage() {
     return (
         <div>
-            <FindJobs></FindJobs>
+            <Search></Search>
             <Container>
                 <MainJob></MainJob>
                 <RuleBottom></RuleBottom>
