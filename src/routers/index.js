@@ -12,6 +12,9 @@ import RecruitmentPage from '~/pages/RecruitmentPage/RecruitmentPage';
 import InformationTechnology from '~/pages/InformationTechnology';
 import PostQuiz from '~/pages/PostQuiz';
 import Settings from '~/pages/settings/Settings';
+import SidebarLayout from '~/Layouts/SidebarLayout';
+import CV from '~/pages/CV';
+import NonFooterLayout from '~/Layouts/NonFooterLayout';
 
 export const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -27,6 +30,8 @@ export const publicRoutes = [
     { path: config.routes.recruitmentpage, component: RecruitmentPage },
     { path: config.routes.recruiterpost, component: RecruiterPost },
     { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
+    { path: config.routes.cv, component: CV, layout: NonFooterLayout },
+    { path: '/dashboard', component: Admin, layout: SidebarLayout },
 ];
 
 export const privateRoutes = [

@@ -5,6 +5,7 @@ const routes = {
     settings: '/settings',
     accounts: '/accounts',
     blog: '/blog',
+    cv: '/cv',
     recruitment: '/recruitmentpage',
     testuser: '/testuser',
     informationtechnology: '/testuser/informationtechnology',

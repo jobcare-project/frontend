@@ -9,7 +9,6 @@ import images from '~/assets/images';
 import Button from '~/components/Button';
 import { fetchUploadImage } from '~/pages/Accounts/accountsSlice';
 import styles from './FormUpload.module.scss';
-import { getBase64 } from '~/utils/common';
 
 const cx = classNames.bind(styles);
 
@@ -28,26 +27,17 @@ function FormGroup({ label, data }) {
         };
     }, [file]);
 
-    const handleChangeFile = (e) => {
-        // const reader = new FileReader();
-        // reader.onloadend = () => {
-        //     setFile({
-        //         ...file,
-        //         preview: reader.result,
-        //     });
-        // };
-        // reader.readAsDataURL(e.target.files[0]);
-
-        // const img = {
-        //     ...file,
-        //     data: e.target.files[0],
-        // };
-
-        const base64url = getBase64(e.target.files[0]);
-        console.log('base64url', base64url);
+    const handleChangeFile = async (e) => {
+        // const fileChanged = e.target.files[0];
+        // const base64image = await getBase64FromFile(e.target.files[0]);
 
         const img = {
             preview: URL.createObjectURL(e.target.files[0]),
+            // data: {
+            //     name: fileChanged.name,
+            //     type: fileChanged.type,
+            //     data: base64image,
+            // },
             data: e.target.files[0],
         };
         setFile(img);
@@ -61,6 +51,7 @@ function FormGroup({ label, data }) {
         formData.append('file', file.data);
 
         dispatch(fetchUploadImage(formData));
+        setVisibleControls(false);
     };
 
     return (
@@ -89,7 +80,7 @@ function FormGroup({ label, data }) {
                                                     data.type
                                                 };base64,${Buffer.from(
                                                     data.data.data,
-                                                ).toString('base64')} `}
+                                                ).toString('base64')}`}
                                                 alt="avatar"
                                             />
                                         ) : (

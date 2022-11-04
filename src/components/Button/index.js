@@ -23,6 +23,7 @@ function Button({
     rightIcon,
     right,
     secondary,
+    white,
     onClick,
     ...passProps
 }) {
@@ -53,6 +54,7 @@ function Button({
         [className]: className,
         primary,
         secondary,
+        white,
         saveInput,
         outline,
         text,
