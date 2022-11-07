@@ -4,24 +4,35 @@ import { useState } from 'react';
 import styles from './DropDown.module.scss';
 
 const cx = classNames.bind(styles);
+const FunC = () => {};
 
-export default function DropDown({ data }) {
+export default function DropDown({
+    data = [],
+    onChangeDictrictID = FunC,
+    title = '',
+    onSelectedValue = FunC,
+}) {
     const [visible, setVisible] = useState(false);
     const [value, setValue] = useState('');
+    const [name, setName] = useState('');
 
     const handleChangeSelect = (e) => {
         setValue(e.target.value);
-        console.log('value', e.target.value);
+        onChangeDictrictID(e.target.value);
+        setName(e.target.name);
     };
 
     const renderDropDownData = () => {
-        return data.map((dropdown, index) => {
-            return (
-                <option key={index} value={dropdown.value}>
-                    &nbsp;{dropdown.name}
-                </option>
-            );
-        });
+        return (
+            data.length > 0 &&
+            data?.map((dropdown, index) => {
+                return (
+                    <option key={index} value={dropdown.value}>
+                        &nbsp;{dropdown.name}
+                    </option>
+                );
+            })
+        );
     };
 
     return (
@@ -34,13 +45,14 @@ export default function DropDown({ data }) {
             <div className={cx('content')}>
                 <select
                     onChange={handleChangeSelect}
-                    value={value}
                     className={cx('category')}
-                    name="category"
                     id="category"
                     tabIndex="-1"
                     aria-hidden="true"
                 >
+                    <option value="" selected disabled hidden>
+                        {title}
+                    </option>
                     {renderDropDownData()}
                 </select>
             </div>

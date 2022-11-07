@@ -64,31 +64,37 @@ export default function FindJobs() {
                                         <Row>
                                             <Col lg={6}>
                                                 <DropDown
+                                                    title="Nghành nghề"
                                                     data={nganhngheData}
                                                 />
                                             </Col>
                                             <Col lg={6}>
                                                 <DropDown
+                                                    title="Vị trí"
                                                     data={nganhngheData}
                                                 />
                                             </Col>
                                             <Col lg={6}>
                                                 <DropDown
+                                                    title="Thành phố"
                                                     data={nganhngheData}
                                                 />
                                             </Col>
                                             <Col lg={6}>
                                                 <DropDown
+                                                    title="Mức lương"
                                                     data={nganhngheData}
                                                 />
                                             </Col>
                                             <Col lg={6}>
                                                 <DropDown
+                                                    title="Hình thức làm việc"
                                                     data={nganhngheData}
                                                 />
                                             </Col>
                                             <Col lg={6}>
                                                 <DropDown
+                                                    title="Cấp bậc"
                                                     data={nganhngheData}
                                                 />
                                             </Col>
