@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import classNames from 'classnames/bind';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -11,6 +12,14 @@ import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 export default function Signin() {
+    const formikRef = useRef(null);
+
+    const handleSubmit = () => {
+        const value = formikRef.current.values;
+
+        console.log('value-signup:', value);
+    };
+
     return (
         <div className={cx('wrapper')}>
             <Container>
@@ -39,11 +48,13 @@ export default function Signin() {
                         md={{ span: 5, offset: 3 }}
                     >
                         <Formik
+                            innerRef={formikRef}
                             initialValues={{
                                 fullname: '',
                                 email: '',
                                 phoneNumber: '',
                             }}
+                            onSubmit={handleSubmit}
                             validationSchema={Yup.object({
                                 fullname: Yup.string().required(
                                     'Mục này không được để trống!',
