@@ -245,6 +245,21 @@ const checkboxData = [
         name: 'Tin VIP theo tháng',
     },
 ];
+
+const optionVipData = [
+    {
+        id: '1',
+        name: 'Tin thường',
+    },
+    {
+        id: '2',
+        name: 'Tin VIP theo ngày',
+    },
+    {
+        id: '3',
+        name: 'Tin VIP theo tháng',
+    },
+];
 function RecruiterPost() {
     // const [position, setPosition] = useState('');
     // const [name, setName] = useState('');
@@ -255,6 +270,7 @@ function RecruiterPost() {
     // const [require, setRequire] = useState('');
     // const [benefit, setBenefit] = useState('');
     const [districtID, setDictricID] = useState('');
+    const [checked, setChecked] = useState('');
 
     // Lấy dữ liệu Quận
     const handleChangeDictrictID = (dictrictID) => {
@@ -265,10 +281,9 @@ function RecruiterPost() {
     const onSubmitPost = (values) => {
         console.log(values);
     };
-    // const handleInput = (e) => {
-    //     setPosition(e.target.value);
-    // };
-
+    const handleCheckBox = (e) => {
+        console.log(e.target.value);
+    };
     const formik = useFormik({
         initialValues: {
             position: '',
@@ -551,7 +566,12 @@ function RecruiterPost() {
                             <div className={cx('type-normal')}>
                                 <div className={cx('type-name')}>
                                     <div className={cx('checkbox')}>
-                                        <Input type="checkbox" checkbox />
+                                        <Input
+                                            type="checkbox"
+                                            checkbox
+                                            value="normal"
+                                            onChange={handleCheckBox}
+                                        />
                                     </div>
                                     <span className={cx('type-post')}>
                                         Tin thường
@@ -578,7 +598,12 @@ function RecruiterPost() {
                             <div className={cx('type-normal')}>
                                 <div className={cx('type-name')}>
                                     <div className={cx('checkbox')}>
-                                        <Input type="checkbox" checkbox />
+                                        <Input
+                                            type="checkbox"
+                                            checkbox
+                                            value="vip"
+                                            onChange={handleCheckBox}
+                                        />
                                     </div>
                                     <span className={cx('type-post')}>
                                         Tin VIP theo ngày
@@ -611,7 +636,12 @@ function RecruiterPost() {
                             <div className={cx('type-normal')}>
                                 <div className={cx('type-name')}>
                                     <div className={cx('checkbox')}>
-                                        <Input type="checkbox" checkbox />
+                                        <Input
+                                            type="checkbox"
+                                            checkbox
+                                            value="special"
+                                            onChange={handleCheckBox}
+                                        />
                                     </div>
                                     <span className={cx('type-post')}>
                                         Tin VIP theo tháng
