@@ -70,6 +70,7 @@ export default function Signin() {
                                                 <Input
                                                     rounded
                                                     type="text"
+                                                    id="fullname"
                                                     name="fullname"
                                                     placeholder="Tên của bạn"
                                                     {...formik.getFieldProps(
@@ -96,6 +97,7 @@ export default function Signin() {
                                                 <Input
                                                     rounded
                                                     type="email"
+                                                    id="email"
                                                     name="email"
                                                     placeholder="Email"
                                                     {...formik.getFieldProps(
@@ -122,6 +124,7 @@ export default function Signin() {
                                                 <Input
                                                     rounded
                                                     type="text"
+                                                    id="phoneNumber"
                                                     name="phoneNumber"
                                                     placeholder="Số điện thoại"
                                                     {...formik.getFieldProps(
