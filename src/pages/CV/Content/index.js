@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import { useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
+import InputEditor from '~/components/Editor/InputEditor';
 
 import { themeSelector } from '~/redux/Selectors/cvSelector';
 import styles from './Content.module.scss';
@@ -16,6 +17,7 @@ function Content() {
             <div className={cx('wrapper')}>
                 <div className={cx('page')}>
                     <Overview />
+                    <InputEditor />
                 </div>
             </div>
         </ThemeProvider>

@@ -79,22 +79,22 @@ function Footer() {
                                 <Row>
                                     <Col md={3}>
                                         <Link className={cx('social-item')}>
-                                            {images.svg.facebook}
+                                            <ion-icon name="logo-facebook"></ion-icon>
                                         </Link>
                                     </Col>
                                     <Col md={3}>
                                         <Link className={cx('social-item')}>
-                                            {images.svg.instagram}
+                                            <ion-icon name="logo-instagram"></ion-icon>
                                         </Link>
                                     </Col>
                                     <Col md={3}>
                                         <Link className={cx('social-item')}>
-                                            {images.svg.youtube}
+                                            <ion-icon name="logo-youtube"></ion-icon>
                                         </Link>
                                     </Col>
                                     <Col md={3}>
                                         <Link className={cx('social-item')}>
-                                            {images.svg.twitter}
+                                            <ion-icon name="logo-twitter"></ion-icon>
                                         </Link>
                                     </Col>
                                 </Row>

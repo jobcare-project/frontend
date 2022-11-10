@@ -1,0 +1,40 @@
+.wrapper {
+    position: relative;
+    div {
+        margin: 0;
+    }
+}
+
+.toolbar-editor {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    background-color: var(--dark-color-0);
+    bottom: calc(100% + 10px);
+    border-radius: 10px;
+    padding: 8px;
+    box-shadow: var(--box-shadow-2);
+}
+
+.editor {
+    padding: 0 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    &:hover {
+        box-shadow: var(--box-shadow-2);
+        background-color: var(--gray-light-color-3);
+    }
+}
+
+.editor-item {
+    background-color: transparent;
+    border: none;
+    svg {
+        fill: var(--white-color);
+        fill: #fff;
+    }
+    &:hover {
+        box-shadow: none;
+        outline: none;
+    }
+}

@@ -4,6 +4,7 @@
     min-height: 100vh;
     padding: 70px 0;
     background-color: var(--gray-light-color);
+    // background-color: #313131;
     .toolbar {
         height: var(--toolbar-height);
         display: flex;
@@ -23,6 +24,7 @@
 
     .suggestor {
         position: fixed;
+        // background-color: #3d3d3d;
         background-color: var(--gray-light-color-2);
         top: var(--default-layout-header-height);
         right: 0;
