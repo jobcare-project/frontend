@@ -1,7 +1,7 @@
 .wrapper {
     margin-top: 40px;
     display: flex;
-    justify-content: right;
+    justify-content: center;
     text-align: left;
 }
 
@@ -25,7 +25,6 @@
     z-index: 100;
     background-color: #fffaf0;
 }
-
 .total-question {
     margin-left: 10px;
     font-size: 15px;
@@ -52,15 +51,6 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 150px;
-}
-
-.quiz-heading {
-    text-align: center;
-    width: 800px;
-    margin: 0 auto;
-    margin-bottom: 50px;
-    border-radius: 10px;
-    font-size: 40px;
 }
 
 .quiz-list {
@@ -91,21 +81,31 @@
     margin-bottom: 200px;
     margin-top: 100px;
     .text-submit {
-        display: flex;
-        align-items: center;
-        margin: 0;
-        font-size: 25px;
-        span {
-            display: -webkit-box;
-            padding-left: 4px;
-            -webkit-line-clamp: 1;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            margin-right: 5px;
-            font-size: 20px;
-        }
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+}
+
+.back {
+    cursor: pointer;
+    width: 160px;
+    height: 50px;
+    margin-bottom: 50px;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--gray-color);
+    background-color: white;
+    border-radius: 40px;
+    border: solid var(--gray-color);
+    transition: all 0.2s;
+    letter-spacing: 1px;
+    &:hover {
+        background: var(--gray-color);
+        color: white;
     }
 }
+
 .modal-title {
     font-size: 25px;
 }
@@ -127,48 +127,21 @@
     text-align: center;
 }
 
-.sort {
-    display: flex;
-    justify-content: center;
-
-
-    .back {
-        margin-top: 50px;
-        margin-bottom: 50px;
-        .back-text {
-            display: flex;
-            align-items: center;
-            margin: 0;
-            font-size: 25px;
-            span {
-                display: -webkit-box;
-                padding-left: 4px;
-                -webkit-line-clamp: 1;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                font-size: 20px;
-            }
-        }
+.back-after {
+    margin-top: 50px;
+    margin-left: 30px;
+    margin-bottom: 50px;
+    .back-after-text {
+        font-size: 20px;
     }
-    .reload {
-        margin-top: 50px;
-        margin-left: 30px;
-        margin-bottom: 50px;
+}
+.reload {
+    margin-top: 50px;
+    margin-left: 30px;
+    width: 195.97px;
+    margin-bottom: 50px;
 
-        .reload-text {
-            display: flex;
-            align-items: center;
-            margin: 0;
-            font-size: 25px;
-            span {
-                display: -webkit-box;
-                padding-left: 4px;
-                -webkit-line-clamp: 1;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                margin-right: 5px;
-                font-size: 20px;
-            }
-        }
+    .reload-text {
+        font-size: 20px;
     }
 }

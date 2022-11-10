@@ -21,30 +21,6 @@ const itList = [
         timeQuiz: ' Thời gian làm bài 60 phút  ',
         listQuiz: ' 30 câu hỏi ',
     },
-    {
-        thumbnail:
-            'https://bizflyportal.mediacdn.vn/bizflyportal/375/470/2020/04/28/21/33/115880627863553.jpg',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-    {
-        thumbnail:
-            'https://bizflyportal.mediacdn.vn/bizflyportal/375/470/2020/04/28/21/33/115880627863553.jpg',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-    {
-        thumbnail:
-            'https://bizflyportal.mediacdn.vn/bizflyportal/375/470/2020/04/28/21/33/115880627863553.jpg',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
 ];
 
 // Quizz Marketing
