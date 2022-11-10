@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './AddLogo.module.scss';
 const cx = classNames.bind(styles);
 
-export const AddLogo = ({}) => {
+export const AddLogo = () => {
     return (
         <>
             <div className={cx('logo')}>

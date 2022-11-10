@@ -1,7 +1,6 @@
 import config from '~/config';
 import Home from '~/pages/Home';
 import Accounts from '~/pages/Accounts/Accounts';
-import Profile from '~/pages/Profile/Profile';
 import Admin from '~/pages/Admin/Admin';
 import Blog from '~/pages/Blogs/Blog';
 import TestUser from '~/pages/TestUser';
@@ -15,6 +14,7 @@ import Settings from '~/pages/settings/Settings';
 import SidebarLayout from '~/Layouts/SidebarLayout';
 import CV from '~/pages/CV';
 import NonFooterLayout from '~/Layouts/NonFooterLayout';
+import Profile from '~/pages/Profile';
 
 export const publicRoutes = [
     { path: config.routes.home, component: Home },

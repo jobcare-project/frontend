@@ -1,20 +1,14 @@
-import { useState } from 'react';
 import Tippy from '@tippyjs/react/headless';
 
 import SubMenu from '../../SubMenu';
 import MenuItem from '../../MenuItem';
 
 function ImageControl() {
-    const [visible, setVisible] = useState(false);
-
-    const handleToggle = () => {
-        setVisible(!visible);
-    };
-
     return (
         <Tippy
+            hideOnClick
+            trigger="click"
             interactive
-            visible={visible}
             appendTo={document.body}
             render={(attrs) => (
                 <div {...attrs} tabIndex="-1">
@@ -22,7 +16,7 @@ function ImageControl() {
                 </div>
             )}
         >
-            <div onClick={handleToggle}>
+            <div>
                 <MenuItem
                     title="Ảnh hồ sơ"
                     icon={<ion-icon name="image-outline"></ion-icon>}

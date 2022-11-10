@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Tippy from '@tippyjs/react/headless';
 import { Col, Row } from 'react-bootstrap';
 
@@ -8,16 +7,11 @@ import ColorItem from './ColorItem';
 import { arrThemes } from '~/pages/CV/themes';
 
 function ColorControl() {
-    const [visible, setVisible] = useState(false);
-
-    const handleToggle = () => {
-        setVisible(!visible);
-    };
-
     return (
         <Tippy
             interactive
-            visible={visible}
+            hideOnClick
+            trigger="click"
             appendTo={document.body}
             render={(attrs) => (
                 <div {...attrs} tabIndex="-1">
@@ -35,7 +29,7 @@ function ColorControl() {
                 </div>
             )}
         >
-            <div onClick={handleToggle}>
+            <div>
                 <MenuItem
                     title="Màu sắc"
                     icon={<ion-icon name="color-palette-outline"></ion-icon>}

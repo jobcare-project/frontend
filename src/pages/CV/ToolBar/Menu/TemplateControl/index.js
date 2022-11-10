@@ -1,20 +1,14 @@
-import { useState } from 'react';
 import Tippy from '@tippyjs/react/headless';
 
 import SubMenu from '../../SubMenu';
 import MenuItem from '../../MenuItem';
 
 function TemplateControl() {
-    const [visible, setVisible] = useState(false);
-
-    const handleToggle = () => {
-        setVisible(!visible);
-    };
-
     return (
         <Tippy
             interactive
-            visible={visible}
+            hideOnClick
+            trigger="click"
             appendTo={document.body}
             render={(attrs) => (
                 <div {...attrs} tabIndex="-1">
@@ -22,7 +16,7 @@ function TemplateControl() {
                 </div>
             )}
         >
-            <div onClick={handleToggle}>
+            <div>
                 <MenuItem
                     title="Mẫu CV"
                     icon={<ion-icon name="layers-outline"></ion-icon>}
