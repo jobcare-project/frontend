@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const TitleLarge = styled.h1`
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 700;
     color: ${(props) => props.theme.color};
 `;

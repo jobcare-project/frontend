@@ -8,6 +8,10 @@ const images = {
     avatarDefault: require('~/assets/images/avatar-default.png'),
     findJobs: require('~/assets/images/find-jobs-img.png'),
     recruitmentCard: require('~/assets/images/recruitment-card.jpg'),
+    cvAvatar: require('~/assets/images/cv-avatar-default.png'),
+    icon: {
+        list: require('~/assets/images/list.png'),
+    },
 };
 
 export default images;

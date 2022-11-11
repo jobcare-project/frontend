@@ -1,22 +1,28 @@
+import { Editor } from 'react-draft-wysiwyg';
+import { ContentState, convertFromHTML, EditorState } from 'draft-js';
 import classNames from 'classnames/bind';
 import { useState } from 'react';
-import { Editor } from 'react-draft-wysiwyg';
-import { convertToRaw, EditorState } from 'draft-js';
+
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-
 import styles from './InputEditor.module.scss';
-
 const cx = classNames.bind(styles);
 
-function InputEditor() {
-    const [editorState, setEditorState] = useState(EditorState.createEmpty());
+function InputEditor({ defaultValue }) {
+    // const [editorState, setEditorState] = useState(EditorState.createEmpty());
+    const [editorState, setEditorState] = useState(
+        EditorState.createWithContent(
+            ContentState.createFromBlockArray(
+                convertFromHTML(`<p>${defaultValue}</p>`),
+            ),
+        ),
+    );
 
     const onEditorStateChange = (editorState) => {
         setEditorState(editorState);
-        console.log(
-            'editorState:::: ',
-            convertToRaw(editorState.getCurrentContent()),
-        );
+        // console.log(
+        //     'editorState:::: ',
+        //     convertToRaw(editorState.getCurrentContent()),
+        // );
     };
 
     return (
@@ -29,13 +35,17 @@ function InputEditor() {
                 editorClassName={cx('editor')}
                 toolbarOnFocus
                 toolbar={{
-                    options: ['inline'],
+                    options: ['inline', 'list'],
                     inline: {
+                        options: ['bold', 'italic', 'underline'],
                         bold: { className: cx('editor-item') },
-                        italic: { className: 'demo-option-custom' },
-                        underline: { className: 'demo-option-custom' },
-                        // options: ['bold', 'italic', 'underline'],
-                        // className: cx('editor-item'),
+                        italic: { className: cx('editor-item') },
+                        underline: { className: cx('editor-item') },
+                    },
+                    list: {
+                        options: ['unordered', 'ordered'],
+                        unordered: { className: cx('editor-item') },
+                        ordered: { className: cx('editor-item') },
                     },
                 }}
             />
