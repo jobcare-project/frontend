@@ -15,7 +15,7 @@ function AvatarOverview() {
                 <div className={cx('avatar-block')}>
                     <img
                         className={cx('avatar-img')}
-                        src={images.backgroundAccounts}
+                        src={images.cvAvatar}
                         alt="avatar-default"
                     />
                     <div className={cx('upload-avatar')}>

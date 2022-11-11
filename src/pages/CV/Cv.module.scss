@@ -14,7 +14,7 @@
         position: fixed;
         right: var(--suggestor-width);
         top: var(--default-layout-header-height);
-        z-index: 9;
+        z-index: 999;
     }
     .content {
         padding: 100px 0;
