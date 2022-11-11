@@ -93,13 +93,11 @@ const recruitmentList = [
 ];
 export default function RecruitmentPage() {
     return (
-        <div>
+        <div className={cx('wrapper')}>
             <Search></Search>
-            <Container>
-                <Carousel></Carousel>
-                <MainJob></MainJob>
-                <RuleBottom></RuleBottom>
-            </Container>
+            <Carousel></Carousel>
+            <MainJob></MainJob>
+            <RuleBottom></RuleBottom>
         </div>
     );
 }

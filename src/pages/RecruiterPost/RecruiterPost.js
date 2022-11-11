@@ -280,8 +280,8 @@ function RecruiterPost() {
         console.log(Formik);
     };
     return (
-        <Container>
-            <div className={cx('wrapper')}>
+        <div className={cx('wrapper')}>
+            <Container>
                 <Formik
                     initialValues={{
                         position: '',
@@ -306,6 +306,7 @@ function RecruiterPost() {
                             .min(20, 'Tiêu đề phải lớn hơn 20 ký tự')
                             .max(70, 'Tiêu đề không được vượt quá 80 ký tự'),
                         amount: Yup.number()
+                            .required('Vui lòng nhập ô này')
                             .typeError('Vui lòng nhập số')
                             .min(1, 'Tối thiểu 1 người'),
                         department: Yup.string().required(
@@ -650,8 +651,8 @@ function RecruiterPost() {
                         </div>
                     </Form>
                 </Formik>
-            </div>
-        </Container>
+            </Container>
+        </div>
     );
 }
 

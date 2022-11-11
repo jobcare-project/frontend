@@ -40,8 +40,8 @@ function Carousel() {
     };
 
     return (
-        <Container>
-            <div className={cx('wrapper')}>
+        <div className={cx('wrapper')}>
+            <Container>
                 <div className={cx('heading')}>
                     <h2 className={cx('carousel-job')}>
                         Tìm việc làm nhanh 24h, việc làm mới nhất mỗi ngày được
@@ -63,8 +63,8 @@ function Carousel() {
                         );
                     })}
                 </Slider>
-            </div>
-        </Container>
+            </Container>
+        </div>
     );
 }
 

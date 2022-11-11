@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss';
 import { Col, Container, Row } from 'react-bootstrap';
@@ -6,28 +7,32 @@ import Input from '~/components/Input/Input/Input';
 import DropDown from '~/components/Input/DropDown/DropDown';
 import Button from '~/components/Button';
 
+import { getAllProvinces, getAllDistricts } from '~/helper/geomap';
+
 const cx = classNames.bind(styles);
 const nganhngheData = [
-    {
-        value: '',
-        name: 'Tất cả ngành nghề',
-    },
     {
         value: '10101',
         name: 'An toàn lao động',
     },
-];
-const diadiemData = [
     {
-        value: '',
-        name: 'Thành phố',
+        value: '10101',
+        name: 'Công nghệ thông tin',
     },
     {
-        value: '20101',
-        name: 'Đà Nẵng',
+        value: '10101',
+        name: 'Ngôn ngữ anh',
+    },
+    {
+        value: '10101',
+        name: 'Ngôn ngữ trung',
     },
 ];
 function Search({ data }) {
+    const [districtID, setDictricID] = useState('');
+    const handleChangeDictrictID = (dictrictID) => {
+        setDictricID(dictrictID);
+    };
     return (
         <div className={cx('wrapper')}>
             <Container>
@@ -47,12 +52,22 @@ function Search({ data }) {
                         <div className={cx('search-advanced')}>
                             <div className={cx('advanced-left')}>
                                 <Col lg={12}>
-                                    <DropDown data={nganhngheData} />
+                                    <DropDown
+                                        data={nganhngheData}
+                                        title="Tất cả nghành nghề"
+                                    />
                                 </Col>
                             </div>
                             <div className={cx('advanced-right')}>
                                 <Col lg={12}>
-                                    <DropDown data={diadiemData} />
+                                    <DropDown
+                                        title=" Thành phố"
+                                        onChangeDictrictID={
+                                            handleChangeDictrictID
+                                        }
+                                        data={getAllProvinces()}
+                                        className={cx('dropdown-detail')}
+                                    />
                                 </Col>
                             </div>
                         </div>
