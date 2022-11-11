@@ -67,7 +67,7 @@ function UserOptions({ user }) {
 
                     <Link
                         className={cx('option-item-link')}
-                        to={config.routes.blog}
+                        to={config.routes.savepost}
                     >
                         <li className={cx('option-item')}>Bài viết đã lưu</li>
                     </Link>

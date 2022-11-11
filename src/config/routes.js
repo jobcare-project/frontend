@@ -16,6 +16,7 @@ const routes = {
     recruitmentdetail: '/recruitmentdetail',
     recruitmentpage: '/recruitmentpage/user',
     displayquizz: 'testuser/displayquizz',
+    savepost: '/savepost',
 };
 
 export default routes;

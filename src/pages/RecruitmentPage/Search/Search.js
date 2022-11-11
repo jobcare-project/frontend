@@ -61,6 +61,12 @@ function Search({ data }) {
                                 // onClick={() => {
                                 //     handleClickFindJobsBtn();
                                 // }}
+                                leftIcon={
+                                    <ion-icon
+                                        name="search-outline"
+                                        classname={cx('search-icon')}
+                                    ></ion-icon>
+                                }
                                 primary
                                 className={cx('btn')}
                             >

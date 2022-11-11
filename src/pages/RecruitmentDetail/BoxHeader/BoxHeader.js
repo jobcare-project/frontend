@@ -9,13 +9,13 @@ import Modal from '~/pages/Profile/Modal/Modal';
 import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-window.scroll = function () {
-    console.log(document.body.scroll);
-};
+// window.scroll = function () {
+//     console.log(document.body.scroll);
+// };
 
-window.scroll = function () {
-    console.log(document.body.scroll);
-};
+// window.scroll = function () {
+//     console.log(document.body.scroll);
+// };
 
 const cx = classNames.bind(styles);
 
@@ -29,15 +29,22 @@ export default function BoxHeader({ data, to }) {
                     {/* <div className={cx('title')}>{data?.title}</div> */}
                     <div className={cx('box-left')}>
                         <div className={cx('title')}>
-                            <h2>
+                            <h2 className={cx('title-header')}>
                                 Tuyển thực tập sinh lập trình website (FrontEnd)
+                                <ion-icon
+                                    name="checkmark-circle-outline"
+                                    className={cx('check-icon')}
+                                ></ion-icon>
                             </h2>
                         </div>
-                        <div className={cx('company')}>
-                            <h3>Công ty công nghệ BAP</h3>
-                        </div>
+                        <h3 className={cx('company-name')}>
+                            Công ty công nghệ BAP
+                        </h3>
                         <div className={cx('time')}>
-                            <ion-icon name="time-outline"></ion-icon>
+                            <ion-icon
+                                name="time-outline"
+                                className={cx('time-icon')}
+                            ></ion-icon>
                             <span>Hạn nộp hồ sơ: {data?.time}</span>
                         </div>
                     </div>
@@ -47,9 +54,11 @@ export default function BoxHeader({ data, to }) {
                 </div>
                 <div className={cx('content-detail')}>
                     <div className={cx('recruitment-detail')}>
-                        <h1>Chi tiết tuyển dụng</h1>
                         <div className={cx('detail')}>
                             <div className={cx('detail-require')}>
+                                <h2 className={cx('adress')}>
+                                    Chi tiết tuyển dụng
+                                </h2>
                                 <Row>
                                     <Col md={6} className={'mb-5'}>
                                         <div className={cx('type-work')}>
@@ -109,12 +118,9 @@ export default function BoxHeader({ data, to }) {
                             </div>
                         </div>
                         <div className={cx('location')}>
-                            <h2 className={cx('adress')}>
-                                <ion-icon name="location-outline"></ion-icon>
-                                Địa điểm làm việc
-                            </h2>
+                            <h2 className={cx('adress')}>Địa điểm làm việc</h2>
                             <span className={cx('address-detail')}>
-                                Đà Nẵng, 47 Bạch Đằng - Hải Châu
+                                - Đà Nẵng, 47 Bạch Đằng - Hải Châu
                             </span>
                         </div>
                         <div className={cx('content-post')}>

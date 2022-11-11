@@ -5,7 +5,7 @@ import { Container } from 'react-bootstrap';
 import MainJob from './MainJob/MainJob';
 import RuleBottom from '../Home/RuleBottom/RuleBottom';
 import Search from './Search/Search';
-
+import Carousel from '../Home/Slider/Slider';
 const cx = classNames.bind(styles);
 const recruitmentList = [
     {
@@ -96,6 +96,7 @@ export default function RecruitmentPage() {
         <div>
             <Search></Search>
             <Container>
+                <Carousel></Carousel>
                 <MainJob></MainJob>
                 <RuleBottom></RuleBottom>
             </Container>
