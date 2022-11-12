@@ -7,6 +7,9 @@ export const cvSlice = createSlice({
     initialState: {
         loading: false,
         theme: DefaultTheme,
+        data: {
+            overview: {},
+        },
     },
     reducers: {
         changeTheme(state, action) {

@@ -1,12 +1,14 @@
 import classNames from 'classnames/bind';
 
 import InputEditor from '~/components/Editor/InputEditor';
+import { BoxIconStyled } from '../styledComponents/BoxIcon';
+import { Title } from '../styledComponents/Title';
 
 import styles from './BoxEditor.module.scss';
 
 const cx = classNames.bind(styles);
 
-function BoxEditor({ title, editorValue = '' }) {
+function BoxEditor({ icon, heading, title, editorValue = '' }) {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('controls-left', 'controls')}>
@@ -30,14 +32,34 @@ function BoxEditor({ title, editorValue = '' }) {
             </div>
             <div className={cx('controls-mark')}></div>
 
-            <div className={cx('title')}>
-                <span className={cx('title-content')}>
-                    <InputEditor defaultValue={title} />
-                </span>
-            </div>
-            <div className={cx('editor')}>
-                <InputEditor defaultValue={editorValue} />
-            </div>
+            {heading && (
+                <div className={cx('header')}>
+                    {icon && (
+                        <BoxIconStyled className={cx('header-icon')}>
+                            {icon}
+                        </BoxIconStyled>
+                    )}
+                    <div className={cx('heading')}>
+                        <Title>
+                            <InputEditor defaultValue={heading} />
+                        </Title>
+                    </div>
+                </div>
+            )}
+
+            {/* Cần tách riêng component */}
+            {title && (
+                <div className={cx('title')}>
+                    <span className={cx('title-content')}>
+                        <InputEditor defaultValue={title} />
+                    </span>
+                </div>
+            )}
+            {editorValue && (
+                <div className={cx('editor')}>
+                    <InputEditor defaultValue={editorValue} />
+                </div>
+            )}
         </div>
     );
 }

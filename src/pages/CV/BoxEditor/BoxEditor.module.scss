@@ -10,6 +10,20 @@
             display: block;
         }
     }
+    &:has(.header) {
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 -8px;
+        .editor {
+            width: 100%;
+        }
+    }
+    .header {
+        display: flex;
+        align-items: center;
+        text-align: left;
+        width: 100%;
+    }
 }
 
 .controls {
@@ -22,6 +36,7 @@
     width: 60px;
     height: calc(100% + 150px);
     border-radius: 8px;
+    z-index: 100;
     .controls-icon {
         cursor: pointer;
         display: flex;

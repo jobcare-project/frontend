@@ -1,26 +1,64 @@
 import classNames from 'classnames/bind';
-import { useState } from 'react';
-import images from '~/assets/images';
+import { useEffect, useState, useRef } from 'react';
 
+import images from '~/assets/images';
 import styles from './Avatar.module.scss';
 
 const cx = classNames.bind(styles);
 
 function AvatarOverview() {
+    const inputRef = useRef(null);
     const [visible, setVisible] = useState(true);
+    const [file, setFile] = useState({
+        preview: '',
+        data: '',
+    });
+
+    useEffect(() => {
+        return () => {
+            file && URL.revokeObjectURL(file);
+        };
+    }, [file]);
+
+    const handleChangeFile = async (e) => {
+        const img = {
+            preview: URL.createObjectURL(e.target.files[0]),
+            data: e.target.files[0],
+        };
+        setFile(img);
+    };
 
     return (
         <div className={cx('wrapper')}>
             {visible && (
                 <div className={cx('avatar-block')}>
-                    <img
-                        className={cx('avatar-img')}
-                        src={images.cvAvatar}
-                        alt="avatar-default"
-                    />
-                    <div className={cx('upload-avatar')}>
-                        <ion-icon name="push-outline"></ion-icon>
-                    </div>
+                    {file.preview ? (
+                        <img
+                            className={cx('avatar-img')}
+                            src={file.preview}
+                            alt="avatar"
+                        />
+                    ) : (
+                        <img
+                            className={cx('avatar-img')}
+                            src={images.cvAvatar}
+                            alt="avatar"
+                        />
+                    )}
+
+                    <label htmlFor="file">
+                        <input
+                            className={cx('input', 'input-file')}
+                            name="file"
+                            id="file"
+                            ref={inputRef}
+                            type="file"
+                            onChange={handleChangeFile}
+                        />
+                        <div className={cx('upload-avatar')}>
+                            <ion-icon name="push-outline"></ion-icon>
+                        </div>
+                    </label>
                 </div>
             )}
             <div className={cx('controls')}>

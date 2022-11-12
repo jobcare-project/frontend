@@ -1,5 +1,10 @@
 import { Editor } from 'react-draft-wysiwyg';
-import { ContentState, convertFromHTML, EditorState } from 'draft-js';
+import {
+    ContentState,
+    convertFromHTML,
+    convertToRaw,
+    EditorState,
+} from 'draft-js';
 import classNames from 'classnames/bind';
 import { useState } from 'react';
 

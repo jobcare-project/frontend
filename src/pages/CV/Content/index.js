@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 
 import { themeSelector } from '~/redux/Selectors/cvSelector';
 import styles from './Content.module.scss';
+import EditorGroup from './Group';
 import Overview from './Overview';
 
 const cx = classNames.bind(styles);
@@ -16,6 +17,9 @@ function Content() {
             <div className={cx('wrapper')}>
                 <div className={cx('page')}>
                     <Overview />
+                    <div className={cx('container')}>
+                        <EditorGroup />
+                    </div>
                 </div>
             </div>
         </ThemeProvider>
