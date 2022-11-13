@@ -1,94 +1,135 @@
 .wrapper {
-    max-width: 900px;
+    max-width: 1060px;
     margin: 0 auto;
-    border: 1px solid #ccc;
+    // border: 1px solid #ccc;
     padding: 10px;
-    .content-detail {
-        margin-top: 20px;
-        .message {
-            display: flex;
-            justify-content: flex-end;
-            font-size: 12px;
-            line-height: 16px;
-            font-weight: 400;
-            color: rgb(224, 60, 49);
-        }
-        .content-input {
-            display: flex;
-            .type-normal {
-                width: 100%;
-                min-height: 100px;
-                border: 1px solid #000;
-                padding: 10px;
-                .type-name {
-                    display: flex;
-                    font-size: 18px;
-                    font-weight: 700;
-                    color: #f47425;
-                    .type-post {
-                        margin-left: 5px;
-                    }
-                    .checkbox {
-                        width: 4%;
-                    }
-                }
-            }
-            .input-text {
-                width: 100%;
-                border: 1px solid #ccc;
-                border-radius: 10px;
-                padding: 10px;
-                &:focus {
-                    border: 1px solid var(--black-color);
-                }
-            }
-            .detail-name {
-                font-size: 18px;
-                font-weight: 600;
-                min-width: 170px;
-                max-height: 48px;
-            }
-            .type-vip {
-                width: 75% !important;
+    margin-bottom: 10px;
+    .title-header {
+        font-size: 30px;
+        display: flex;
+        justify-content: center;
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-top: 15px;
+    }
+    .post-title {
+        text-transform: uppercase;
+        background-color: var(--white-color);
+        font-weight: 600;
+        font-size: 22px;
+        display: inline-block;
+        position: relative;
+        top: 23px;
+        left: 15px;
+        padding: 5px;
+    }
+    .title-post {
+        border: 1px solid #ccc;
+        padding: 15px;
+        border-radius: 2px;
+
+        .content-detail {
+            margin-top: 20px;
+            .message {
                 display: flex;
-                .multip,
-                .cost {
-                    margin: 8px;
-                    .cost-total {
-                        margin-left: 2px;
-                        color: var(--secondary-color);
+                justify-content: flex-end;
+                font-size: 12px;
+                line-height: 16px;
+                font-weight: 400;
+                color: rgb(224, 60, 49);
+            }
+            .content-input {
+                .content-salary {
+                    width: 47%;
+                }
+                .form-choice {
+                    width: 100%;
+                    min-height: 100px;
+                    border: 1px solid #000;
+                    padding: 10px;
+                    .type-name {
+                        display: flex;
+                        font-size: 18px;
+                        font-weight: 700;
+                        color: #f47425;
+                        .type-post {
+                            margin-left: 5px;
+                        }
+                        .checkbox {
+                            width: 3%;
+                        }
                     }
                 }
-            }
-            .type-vip-special {
-                width: 29%;
-            }
-            textarea {
-                width: 100%;
-                border: 1px solid black;
-                height: 150px;
+
+                .input-text {
+                    width: 100%;
+                    border: 1px solid #ccc;
+                    border-radius: 10px;
+                    padding: 10px;
+                    &:focus {
+                        border: 1px solid var(--black-color);
+                    }
+                }
+                .detail-name {
+                    font-size: 18px;
+                    font-weight: 500;
+                    min-width: 170px;
+                    max-height: 48px;
+                }
+                .salary-detail {
+                    display: flex;
+                }
+                .type-vip {
+                    width: 55% !important;
+                    display: flex;
+                    .multip,
+                    .cost {
+                        margin: 8px;
+                        .cost-total {
+                            margin-left: 2px;
+                            color: var(--secondary-color);
+                        }
+                    }
+                }
+                .type-vip-special {
+                    width: 24%;
+                }
+                textarea {
+                    width: 100%;
+                    border: 1px solid black;
+                    height: 150px;
+                }
             }
         }
     }
 
+    .input-salary {
+        width: 60%;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        padding: 10px;
+        height: 47px;
+    }
     .content-rule {
         margin: 20px 0 20px 0;
         display: flex;
+        width: 100%;
         .rule {
-            margin-left: 20px;
+            margin-left: 5px;
             font-weight: 800;
+        }
+        .checkbox-rule {
+            width: 3%;
         }
     }
     .submit-btn {
         display: flex;
         justify-content: flex-end;
-
-        .btn-right {
-        }
     }
 }
 
-@media all and (max-width: 768px) {
+@media all and (max-width: 1205px) {
     .wrapper {
         .content-detail {
             .content-input {
@@ -96,8 +137,13 @@
                     width: 100% !important;
                     display: flex;
                 }
-                .type-vip-special {
-                    width: 50%;
+                .checkbox {
+                    width: 7%;
+                }
+                .type-normal {
+                    .checkbox {
+                        width: 7%;
+                    }
                 }
             }
         }
