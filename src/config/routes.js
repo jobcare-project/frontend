@@ -1,6 +1,6 @@
 const routes = {
     home: '/',
-    admin: '/admin',
+    admin: '/dashboard',
     profile: '/profile',
     settings: '/settings',
     accounts: '/accounts',

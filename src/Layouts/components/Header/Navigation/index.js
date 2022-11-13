@@ -39,6 +39,11 @@ const navigationMenu = [
         to: '/blog',
         role: ['user', 'recruiter', 'admin'],
     },
+    {
+        title: 'Dashboard',
+        to: '/dashboard',
+        role: ['admin'],
+    },
 ];
 
 function Navigation({ role }) {

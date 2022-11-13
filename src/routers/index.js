@@ -1,7 +1,6 @@
 import config from '~/config';
 import Home from '~/pages/Home';
 import Accounts from '~/pages/Accounts/Accounts';
-import Admin from '~/pages/Admin/Admin';
 import Blog from '~/pages/Blogs/Blog';
 import TestUser from '~/pages/TestUser';
 import DisplayQuizz from '~/pages/DisplayQuizz';
@@ -15,6 +14,7 @@ import SidebarLayout from '~/Layouts/SidebarLayout';
 import CV from '~/pages/CV';
 import NonFooterLayout from '~/Layouts/NonFooterLayout';
 import Profile from '~/pages/Profile';
+import Admin from '~/pages/Admin';
 
 export const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -31,7 +31,6 @@ export const publicRoutes = [
     { path: config.routes.recruiterpost, component: RecruiterPost },
     { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
     { path: config.routes.cv, component: CV, layout: NonFooterLayout },
-    { path: '/dashboard', component: Admin, layout: SidebarLayout },
 ];
 
 export const privateRoutes = [
@@ -42,5 +41,5 @@ export const privateRoutes = [
 export const userPrivateRoutes = [];
 export const recruiterPrivateRoutes = [];
 export const adminPrivateRoutes = [
-    { path: config.routes.admin, component: Admin },
+    { path: config.routes.admin, component: Admin, layout: SidebarLayout },
 ];
