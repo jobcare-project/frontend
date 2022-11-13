@@ -66,6 +66,7 @@ function Navigation({ role }) {
                     </li>
                 );
             }
+            return '';
         });
     };
 
