@@ -1,0 +1,27 @@
+.wrapper {
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .heading {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+        }
+    }
+}
+
+.content {
+    margin-top: 40px;
+    .action-column {
+        width: 60px;
+        text-align: center;
+    }
+    &-icon {
+        font-size: 22px;
+        color: var(--invalid-color);
+    }
+    td {
+        vertical-align: middle;
+    }
+}

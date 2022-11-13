@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { memo } from 'react';
 
 import styles from './Navigation.module.scss';
+import config from '~/config';
 
 const cx = classNames.bind(styles);
 
@@ -26,7 +27,7 @@ const navigationMenu = [
 
     {
         title: 'Tạo CV',
-        to: '/cv',
+        to: config.routes.cv,
         role: ['user'],
     },
     {
@@ -36,12 +37,12 @@ const navigationMenu = [
     },
     {
         title: 'Blog',
-        to: '/blog',
+        to: config.routes.blog,
         role: ['user', 'recruiter', 'admin'],
     },
     {
-        title: 'Dashboard',
-        to: '/dashboard',
+        title: 'Manage',
+        to: config.routes.admin,
         role: ['admin'],
     },
 ];

@@ -30,8 +30,6 @@ function App() {
     const isAuth = useSelector(isAuthSelector);
     const user = useSelector(accountsDataSelector);
 
-    console.log('account-data:::::', user);
-
     useEffect(() => {
         dispatch(fetchUser());
         // eslint-disable-next-line react-hooks/exhaustive-deps

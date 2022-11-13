@@ -1,6 +1,6 @@
 const routes = {
     home: '/',
-    admin: '/dashboard',
+    admin: '/admin/chart',
     profile: '/profile',
     settings: '/settings',
     accounts: '/accounts',
@@ -17,6 +17,7 @@ const routes = {
     recruitmentdetail: '/recruitmentdetail',
     recruitmentpage: '/recruitmentpage/user',
     displayquizz: 'testuser/displayquizz',
+    usersManagement: '/admin/usermanagement',
 };
 
 export default routes;

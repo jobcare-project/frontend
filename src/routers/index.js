@@ -15,6 +15,7 @@ import CV from '~/pages/CV';
 import NonFooterLayout from '~/Layouts/NonFooterLayout';
 import Profile from '~/pages/Profile';
 import Admin from '~/pages/Admin';
+import UsersManage from '~/pages/Admin/UsersManage';
 
 export const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -42,4 +43,9 @@ export const userPrivateRoutes = [];
 export const recruiterPrivateRoutes = [];
 export const adminPrivateRoutes = [
     { path: config.routes.admin, component: Admin, layout: SidebarLayout },
+    {
+        path: config.routes.usersManagement,
+        component: UsersManage,
+        layout: SidebarLayout,
+    },
 ];

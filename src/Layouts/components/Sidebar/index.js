@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind';
 import { NavLink } from 'react-router-dom';
+import config from '~/config';
 
 import styles from './Sidebar.module.scss';
 
@@ -8,13 +9,13 @@ const cx = classNames.bind(styles);
 const sidebarMenu = [
     {
         title: 'Chart',
-        to: '/dashboard/chart',
+        to: config.routes.admin,
         role: ['admin'],
         icon: <ion-icon name="stats-chart-sharp"></ion-icon>,
     },
     {
         title: 'Users',
-        to: '/dashboard/usermanagement',
+        to: config.routes.usersManagement,
         role: ['admin'],
         icon: <ion-icon name="people-sharp"></ion-icon>,
     },
