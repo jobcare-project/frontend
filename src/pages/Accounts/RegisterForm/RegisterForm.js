@@ -8,6 +8,7 @@ import styles from '../FormAccounts.module.scss';
 import { fetchRegister } from '../accountsSlice';
 import { accountsMessageSelector } from '~/redux/Selectors/authSelector';
 import Button from '~/components/Button';
+import { fetchRegisterRecruiter } from '~/pages/Admin/adminSlice';
 
 const cx = classNames.bind(styles);
 
@@ -21,7 +22,7 @@ function RegisterForm({ adminAddAccountForm }) {
     const handleSubmit = () => {
         if (formikRef.current.isSubmitting) {
             if (adminAddAccountForm) {
-                console.log('handle adminAddAccountForm');
+                dispatch(fetchRegisterRecruiter(formikRef.current.values));
             } else {
                 dispatch(fetchRegister(formikRef.current.values));
             }

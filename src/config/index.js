@@ -1,11 +1,12 @@
 import routes from './routes';
-import { authApiUrl, jobsApiUrl, uploadApiUrl } from './apis';
+import { authApiUrl, jobsApiUrl, uploadApiUrl, usersApiUrl } from './apis';
 
 const config = {
     routes,
     authApiUrl,
     jobsApiUrl,
     uploadApiUrl,
+    usersApiUrl,
 };
 
 export default config;

@@ -18,22 +18,6 @@ function AddAccountModal({ show, onClose }) {
                     </Modal.Header>
                     <Modal.Body>
                         <RegisterForm adminAddAccountForm />
-                        {/* <Button
-                            secondary
-                            rounded
-                            variant="secondary"
-                            onClick={onClose}
-                        >
-                            Close
-                        </Button>
-                        <Button
-                            primary
-                            rounded
-                            type="submit"
-                            onClick={handleSubmitForm}
-                        >
-                            Add Account
-                        </Button> */}
                     </Modal.Body>
                 </Modal>
             </div>
