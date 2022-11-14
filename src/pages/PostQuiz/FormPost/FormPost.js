@@ -4,6 +4,9 @@ import { useState } from 'react';
 import TodoQuiz from '../components/TodoQuiz';
 import Button from '~/components/Button';
 
+import Menu , {MenuItem} from './Menu';
+import config from '~/config';
+
 const cx = classNames.bind(styles);
 
 function FormPost() {
@@ -70,15 +73,11 @@ function FormPost() {
                 không truy cập được.
             </div>
             <br />
-            <Button
-                primary
-                onClick={submit}
-                className={cx('submit-question-btn')}
-            >
-                <div className={cx('submit-question-text')}>
-                    Đăng bài
-                </div>
-            </Button>{' '}
+            <h2>
+                    <Menu>
+                        <MenuItem title="Đăng bài" to={config.routes.managequiz} />
+                    </Menu>
+                </h2>
         </div>
     );
 }

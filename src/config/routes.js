@@ -12,6 +12,7 @@ const routes = {
     linguistics: '/testuser/linguistics',
     postquiz: '/postquiz',
     displayquizz: 'testuser/displayquizz',
+    managequiz: '/managequiz'
 };
 
 export default routes;

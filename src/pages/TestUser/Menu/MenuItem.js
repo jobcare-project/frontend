@@ -10,6 +10,7 @@ function MenuItem({ title, to}) {
         <NavLink className={(nav) => cx('menu-item', { active: nav.isActive })} to={to}>
             <span className={cx('title')}>{title}</span>
         </NavLink>
+
     );
 }
 
