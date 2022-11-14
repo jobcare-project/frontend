@@ -24,6 +24,10 @@ function InputEditor({ defaultValue }) {
 
     const onEditorStateChange = (editorState) => {
         setEditorState(editorState);
+        console.log(
+            'onEditorStateChange:::',
+            editorState.getCurrentContent().getPlainText(''),
+        );
         // console.log(
         //     'editorState:::: ',
         //     convertToRaw(editorState.getCurrentContent()),

@@ -1,51 +1,42 @@
 import classNames from 'classnames/bind';
-import { useRef } from 'react';
 import Modal from 'react-bootstrap/Modal';
-import Button from '~/components/Button';
-import AddAccountForm from '../AddAccountForm';
 
 import styles from './AddAccountModal.module.scss';
+import RegisterForm from '~/pages/Accounts/RegisterForm/RegisterForm';
 
 const cx = classNames.bind(styles);
 
 function AddAccountModal({ show, onClose }) {
-    const formRef = useRef();
-
-    const handleSubmitForm = () => {
-        console.log('subbmit:::::', formRef.current);
-    };
-
     return (
         <>
-            <Modal show={show} onHide={onClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Add Account</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <AddAccountForm
-                        onSubmitForm={handleSubmitForm}
-                        ref={formRef}
-                    />
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button
-                        secondary
-                        rounded
-                        variant="secondary"
-                        onClick={onClose}
-                    >
-                        Close
-                    </Button>
-                    <Button
-                        primary
-                        rounded
-                        type="submit"
-                        onClick={handleSubmitForm}
-                    >
-                        Add Account
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+            <div className={cx('wrapper')}>
+                <Modal show={show} onHide={onClose}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>
+                            ĐĂNG KÝ KHOẢN CHO DOANH NGHIỆP
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <RegisterForm adminAddAccountForm />
+                        {/* <Button
+                            secondary
+                            rounded
+                            variant="secondary"
+                            onClick={onClose}
+                        >
+                            Close
+                        </Button>
+                        <Button
+                            primary
+                            rounded
+                            type="submit"
+                            onClick={handleSubmitForm}
+                        >
+                            Add Account
+                        </Button> */}
+                    </Modal.Body>
+                </Modal>
+            </div>
         </>
     );
 }

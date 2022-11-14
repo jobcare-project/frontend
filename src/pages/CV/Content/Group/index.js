@@ -7,8 +7,12 @@ function EditorGroup() {
             <BoxEditor
                 heading="Giới thiệu bản thân"
                 icon={<ion-icon name="contract-outline"></ion-icon>}
-                editorValue="- Over 2 years of experience in programming with good communication and quick learning skills"
             />
+            <BoxEditor editorValue="Giới thiệu bản thân mình đi" />
+            <BoxEditor editorValue="Giới thiệu bản thân mình đi" />
+            <BoxEditor editorValue="Giới thiệu bản thân mình đi" />
+            <BoxEditor editorValue="Giới thiệu bản thân mình đi" />
+            <BoxEditor editorValue="Giới thiệu bản thân mình đi" />
         </section>
     );
 }
