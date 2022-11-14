@@ -1,13 +1,20 @@
 import classNames from 'classnames/bind';
-import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
+import { useRef } from 'react';
 import Modal from 'react-bootstrap/Modal';
+import Button from '~/components/Button';
+import AddAccountForm from '../AddAccountForm';
 
 import styles from './AddAccountModal.module.scss';
 
 const cx = classNames.bind(styles);
 
 function AddAccountModal({ show, onClose }) {
+    const formRef = useRef();
+
+    const handleSubmitForm = () => {
+        console.log('subbmit:::::', formRef.current);
+    };
+
     return (
         <>
             <Modal show={show} onHide={onClose}>
@@ -15,14 +22,27 @@ function AddAccountModal({ show, onClose }) {
                     <Modal.Title>Add Account</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    Woohoo, you're reading this text in a modal!
+                    <AddAccountForm
+                        onSubmitForm={handleSubmitForm}
+                        ref={formRef}
+                    />
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={onClose}>
+                    <Button
+                        secondary
+                        rounded
+                        variant="secondary"
+                        onClick={onClose}
+                    >
                         Close
                     </Button>
-                    <Button variant="primary" onClick={onClose}>
-                        Save Changes
+                    <Button
+                        primary
+                        rounded
+                        type="submit"
+                        onClick={handleSubmitForm}
+                    >
+                        Add Account
                     </Button>
                 </Modal.Footer>
             </Modal>
