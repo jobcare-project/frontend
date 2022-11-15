@@ -1,8 +1,8 @@
 import React from 'react';
+import styles from './SavedPost.module.scss';
 import classNames from 'classnames/bind';
-import styles from './MainJob.module.scss';
-
 import { Col, Container, Row } from 'react-bootstrap';
+import DropDownPage from './DropDownPage/DropDownPage';
 import Card from '~/components/Card/Card';
 
 const cx = classNames.bind(styles);
@@ -90,21 +90,29 @@ const recruitmentList = [
         createAt: '4 ngày trước',
     },
 ];
-function MainJob() {
+function SavePost() {
     return (
         <Container>
             <div className={cx('wrapper')}>
-                <h2 className={cx('heading')}>Việc làm nổi bật</h2>
+                <div className={cx('heading')}>
+                    <h2 className={cx('title-header')}>Bài viết</h2>
+                    <DropDownPage></DropDownPage>
+                </div>
+
                 <Row>
                     {recruitmentList.slice(0, 8).map((recruitment, index) => {
                         return (
                             <Col key={index} lg={3} md={4} sm={6}>
                                 <Card
                                     data={recruitment}
-                                    repair={
-                                        <ion-icon name="heart-outline"></ion-icon>
+                                    deleted={
+                                        <ion-icon name="trash-outline"></ion-icon>
                                     }
-                                    titlRepair="Lưu tin"
+                                    titleDeleted="Xoá tin"
+                                    repair={
+                                        <ion-icon name="pencil-outline"></ion-icon>
+                                    }
+                                    titlRepair="Sửa tin"
                                 ></Card>
                             </Col>
                         );
@@ -115,4 +123,4 @@ function MainJob() {
     );
 }
 
-export default MainJob;
+export default SavePost;

@@ -31,20 +31,24 @@ export default function BoxHeader({ data, to }) {
                         <div className={cx('title')}>
                             <h2 className={cx('title-header')}>
                                 Tuyển thực tập sinh lập trình website (FrontEnd)
-                                <ion-icon
-                                    name="checkmark-circle-outline"
-                                    className={cx('check-icon')}
-                                ></ion-icon>
+                                <span>
+                                    <ion-icon
+                                        name="checkmark-circle-outline"
+                                        className={cx('check-icon')}
+                                    ></ion-icon>
+                                </span>
                             </h2>
                         </div>
                         <h3 className={cx('company-name')}>
                             Công ty công nghệ BAP
                         </h3>
                         <div className={cx('time')}>
-                            <ion-icon
-                                name="time-outline"
-                                className={cx('time-icon')}
-                            ></ion-icon>
+                            <span>
+                                <ion-icon
+                                    name="time-outline"
+                                    className={cx('time-icon')}
+                                ></ion-icon>
+                            </span>
                             <span>Hạn nộp hồ sơ: {data?.time}</span>
                         </div>
                     </div>
@@ -62,7 +66,9 @@ export default function BoxHeader({ data, to }) {
                                 <Row>
                                     <Col md={6} className={'mb-5'}>
                                         <div className={cx('type-work')}>
-                                            <ion-icon name="cash-outline"></ion-icon>
+                                            <span>
+                                                <ion-icon name="cash-outline"></ion-icon>
+                                            </span>
                                             <span>Mức lương</span>
                                         </div>
                                         <span className={cx('type-detail')}>
@@ -71,7 +77,9 @@ export default function BoxHeader({ data, to }) {
                                     </Col>
                                     <Col md={6} className={'mb-5'}>
                                         <div className={cx('type-work')}>
-                                            <ion-icon name="people-outline"></ion-icon>
+                                            <span>
+                                                <ion-icon name="people-outline"></ion-icon>
+                                            </span>
                                             <span>Số lượng người</span>
                                         </div>
                                         <span className={cx('type-detail')}>
@@ -80,7 +88,9 @@ export default function BoxHeader({ data, to }) {
                                     </Col>
                                     <Col md={6} className={'mb-5'}>
                                         <div className={cx('type-work')}>
-                                            <ion-icon name="time-outline"></ion-icon>
+                                            <span>
+                                                <ion-icon name="time-outline"></ion-icon>
+                                            </span>
                                             <span>Hình thức làm việc</span>
                                         </div>
                                         <span className={cx('type-detail')}>
@@ -89,7 +99,9 @@ export default function BoxHeader({ data, to }) {
                                     </Col>
                                     <Col md={6} className={'mb-5'}>
                                         <div className={cx('type-work')}>
-                                            <ion-icon name="female-outline"></ion-icon>
+                                            <span>
+                                                <ion-icon name="female-outline"></ion-icon>
+                                            </span>
                                             <span>Giới tính</span>
                                         </div>
                                         <span className={cx('type-detail')}>
@@ -98,7 +110,9 @@ export default function BoxHeader({ data, to }) {
                                     </Col>
                                     <Col md={6} className={'mb-5'}>
                                         <div className={cx('type-work')}>
-                                            <ion-icon name="podium-outline"></ion-icon>
+                                            <span>
+                                                <ion-icon name="podium-outline"></ion-icon>
+                                            </span>
                                             <span>Cấp bậc</span>
                                         </div>
                                         <span className={cx('type-detail')}>
@@ -107,7 +121,9 @@ export default function BoxHeader({ data, to }) {
                                     </Col>
                                     <Col md={6} className={'mb-5'}>
                                         <div className={cx('type-work')}>
-                                            <ion-icon name="accessibility-outline"></ion-icon>
+                                            <span>
+                                                <ion-icon name="accessibility-outline"></ion-icon>
+                                            </span>
                                             <span>Kinh nghiệm</span>
                                         </div>
                                         <span className={cx('type-detail')}>
@@ -148,7 +164,9 @@ export default function BoxHeader({ data, to }) {
                                 </div>
                             </div>
                             <div className={cx('time')}>
-                                <ion-icon name="time-outline"></ion-icon>
+                                <span>
+                                    <ion-icon name="time-outline"></ion-icon>
+                                </span>
                                 <span>Hạn nộp hồ sơ: {data?.time}</span>
                             </div>
                         </div>

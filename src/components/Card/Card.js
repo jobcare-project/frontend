@@ -6,7 +6,16 @@ import styles from './Card.module.scss';
 
 const cx = classNames.bind(styles);
 
-export default function Card({ data, to }) {
+export default function Card({
+    data,
+    to,
+    deleted,
+    repair,
+    saved,
+    titleDeleted = '',
+    titlRepair = '',
+    titleSaved = '',
+}) {
     return (
         <div className={cx('wrapper')}>
             <Link className={cx('link')} to={to}>
@@ -47,21 +56,34 @@ export default function Card({ data, to }) {
                                 <ion-icon name="location-outline"></ion-icon>
                                 <span>{data?.location}</span>
                             </div>
-                            <div className={cx('subdesc-bottom')}>
+                            {/* <div className={cx('subdesc-bottom')}>
                                 <ion-icon name="timer-outline"></ion-icon>
                                 <span>{data?.endDate}</span>
+                            </div> */}
+                            <div className={cx('subdesc-item subdesc-right')}>
+                                <div className={cx('subdesc-text')}>
+                                    <ion-icon name="timer-outline"></ion-icon>
+                                    <span>{data?.createAt}</span>
+                                </div>
                             </div>
                         </div>
-                        {/* <div className={cx('subdesc-item subdesc-right')}>
-                            <div className={cx('subdesc-text')}>
-                                <ion-icon name="timer-outline"></ion-icon>
-                                <span>{data?.createAt}</span>
-                            </div>
-                            <span>{data?.createAt}</span>
-                        </div> */}
                     </div>
                 </div>
             </Link>
+            <div className={cx('subdesc-control')}>
+                <div className={cx('subdesc-text')}>
+                    {deleted && (
+                        <span className={cx('subdesc-text')}>{deleted}</span>
+                    )}
+                    <span>{titleDeleted}</span>
+                </div>
+                <div className={cx('subdesc-text')}>
+                    {repair && (
+                        <span className={cx('subdesc-text')}>{repair}</span>
+                    )}
+                    <span>{titlRepair}</span>
+                </div>
+            </div>
         </div>
     );
 }

@@ -39,6 +39,11 @@
                 color: rgb(224, 60, 49);
             }
             .content-input {
+                .input-input {
+                    width: 100%;
+                    border: 1px solid #ccc;
+                    height: 200px;
+                }
                 .content-salary {
                     width: 47%;
                 }
@@ -52,9 +57,6 @@
                         font-size: 18px;
                         font-weight: 700;
                         color: #f47425;
-                        .type-post {
-                            margin-left: 5px;
-                        }
                         .checkbox {
                             width: 3%;
                         }
@@ -79,9 +81,16 @@
                 .salary-detail {
                     display: flex;
                 }
+                .overlay {
+                    background-color: #ccc;
+                    // width: 100%;
+                    z-index: 999;
+                    // pointer-events: none;
+                }
                 .type-vip {
                     width: 55% !important;
                     display: flex;
+                    z-index: -1;
                     .multip,
                     .cost {
                         margin: 8px;
@@ -91,8 +100,10 @@
                         }
                     }
                 }
+
                 .type-vip-special {
                     width: 24%;
+                    z-index: -1;
                 }
                 textarea {
                     width: 100%;

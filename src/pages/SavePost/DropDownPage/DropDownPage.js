@@ -4,25 +4,26 @@ import styles from './DropDownPage.module.scss';
 import DropDown from '~/components/Input/DropDown/DropDown';
 
 const cx = classNames.bind(styles);
-const mucluongData = [
+const tinluuData = [
     {
-        value: '101',
-        name: 'Tin đã lưu',
-    },
-    {
-        value: '102',
-        name: 'Bài viết đã lưu',
-    },
-    {
-        value: '103',
+        value: '1',
         name: 'Bài đăng của bạn',
     },
+    {
+        value: '2',
+        name: 'Tin tuyển dụng đã lưu',
+    },
+    {
+        value: '3',
+        name: 'Bài viết đã lưu',
+    },
 ];
+
 function DropDownPage() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('dropdown-right')}>
-                <DropDown data={mucluongData} title="Đã lưu"></DropDown>
+                <DropDown data={tinluuData} title="Bài đăng của bạn"></DropDown>
             </div>
         </div>
     );

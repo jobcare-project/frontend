@@ -12,7 +12,7 @@ import RecruitmentPage from '~/pages/RecruitmentPage/RecruitmentPage';
 import InformationTechnology from '~/pages/InformationTechnology';
 import PostQuiz from '~/pages/PostQuiz';
 import Settings from '~/pages/settings/Settings';
-import SavePost from '~/pages/SavePost/SavePost';
+import SavePost from '~/pages/SavePost/SavedPost';
 
 export const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -20,20 +20,21 @@ export const publicRoutes = [
     { path: config.routes.blog, component: Blog },
     { path: config.routes.testuser, component: TestUser },
     { path: config.routes.displayquizz, component: DisplayQuizz },
+    { path: config.routes.recruitmentpage, component: RecruitmentPage },
+
     {
         path: config.routes.informationtechnology,
         component: InformationTechnology,
     },
     { path: config.routes.postquiz, component: PostQuiz },
-    { path: config.routes.recruitmentpage, component: RecruitmentPage },
-    { path: config.routes.recruiterpost, component: RecruiterPost },
-    { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
 ];
 
 export const privateRoutes = [
     { path: config.routes.profile, component: Profile },
     { path: config.routes.settings, component: Settings },
     { path: config.routes.savepost, component: SavePost },
+    { path: config.routes.recruiterpost, component: RecruiterPost },
+    { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
 ];
 
 export const userPrivateRoutes = [];

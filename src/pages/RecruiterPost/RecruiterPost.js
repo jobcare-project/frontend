@@ -260,7 +260,6 @@ const optionVipData = [
 ];
 function RecruiterPost() {
     const [districtID, setDictricID] = useState('');
-    const [checked, setChecked] = useState('');
     const [textArea, setTextArea] = useState('');
     const [selectForm, setSelectForm] = useState({
         salary: '',
@@ -270,12 +269,11 @@ function RecruiterPost() {
         district: '',
         typeWork: '',
     });
-
-    const [checkboxRule, setCheckboxRule] = useState({
-        rule: false,
+    const [checked, setChecked] = useState('');
+    const [typeChecked, setTypeChecked] = useState('');
+    const [checkboxForm, setCheckboxRule] = useState({
+        vip: 'false',
     });
-    const [checkboxForm, setCheckboxForm] = useState({});
-
     const [quantityVipDay, setQuantityVipDay] = useState({
         typeVipDay: '',
         quantiyDay: '',
@@ -322,19 +320,22 @@ function RecruiterPost() {
             };
         });
     };
-    const handleChangeCheckbox = () => {
-        setCheckboxForm((prev, id) => {
-            return {
-                ...prev,
-                ruleVip: !prev.ruleVip,
-            };
-        });
+    // check type vip
+    const handleChangeTypeChecked = (name) => {
+        setTypeChecked(name);
     };
-    console.log({ checkboxForm });
-    console.log({ checkboxRule });
+    // console.log({ checkboxRule });
     const handleTextChange = (e) => {
         setTextArea(e.target.value);
     };
+
+    const typeCheckedOverLayClassNames = (name) => {
+        console.log({ name });
+        return cx('wrapper', {
+            overlay: typeChecked !== name,
+        });
+    };
+
     return (
         <div className={cx('wrapper')}>
             <Container>
@@ -345,7 +346,7 @@ function RecruiterPost() {
                         amount: '',
                         department: '',
                         location: '',
-                        // descript: '',
+                        description: '',
                         // require: '',
                         // benefit: '',
                     }}
@@ -375,7 +376,9 @@ function RecruiterPost() {
                         location: Yup.string()
                             .required('Vui lòng nhập ô này')
                             .min(10, 'Vui lòng nhập đầy đủ địa chỉ làm việc'),
-                        // descript: Yup.string().required('Vui lòng nhập ô này'),
+                        description: Yup.string().required(
+                            'Vui lòng nhập ô này nè',
+                        ),
                         // require: Yup.string().required('Vui lòng nhập ô này'),
                         // benefit: Yup.string().required('Vui lòng nhập ô này'),
                     })}
@@ -630,13 +633,13 @@ function RecruiterPost() {
                                                 Nhập mô tả công việc
                                             </div>
                                             <textarea
-                                                name="descript"
+                                                name="description"
                                                 onChange={handleTextChange}
                                             ></textarea>
                                         </div>
 
                                         <p className={cx('message')}>
-                                            <ErrorMessage name="descript" />
+                                            <ErrorMessage name="description" />
                                         </p>
                                     </Col>
                                 </Row>
@@ -647,12 +650,12 @@ function RecruiterPost() {
                                                 Yêu cầu ứng viên
                                             </div>
                                             <textarea
-                                                name="require"
+                                                name="description"
                                                 onChange={handleTextChange}
                                             ></textarea>
                                         </div>
                                         <p className={cx('message')}>
-                                            <ErrorMessage name="require" />
+                                            <ErrorMessage name="description" />
                                         </p>
                                     </Col>
                                 </Row>
@@ -664,12 +667,12 @@ function RecruiterPost() {
                                                 Quyền lợi
                                             </div>
                                             <textarea
-                                                name="benefit"
+                                                name="description"
                                                 onChange={handleTextChange}
                                             ></textarea>
                                         </div>
                                         <p className={cx('message')}>
-                                            <ErrorMessage name="benefit" />
+                                            <ErrorMessage name="description" />
                                         </p>
                                     </Col>
                                 </Row>
@@ -683,12 +686,13 @@ function RecruiterPost() {
                                             <div className={cx('checkbox')}>
                                                 <input
                                                     type="radio"
-                                                    id="1"
                                                     checked={
-                                                        checkboxForm.ruleVip
+                                                        typeChecked === 'normal'
                                                     }
-                                                    onChange={
-                                                        handleChangeCheckbox
+                                                    onChange={() =>
+                                                        handleChangeTypeChecked(
+                                                            'normal',
+                                                        )
                                                     }
                                                 />
                                             </div>
@@ -696,19 +700,27 @@ function RecruiterPost() {
                                                 Tin thường
                                             </span>
                                         </div>
-                                        <div className={cx('type-days')}>
-                                            <span>
-                                                * Tin thường phải chờ để được
-                                                kiểm duyệt trước khi hiển thị,
-                                                thường sẽ mất từ 5 phút đến 1
-                                                tiếng, tuỳ thuộc vào lượng tin
-                                                đăng trong ngày
-                                                <br />
-                                                * Tin thường sẽ có thời gian
-                                                hiển thị là 30 ngày
-                                                <br />* Sẽ bị trôi nhanh do có
-                                                nhiều tin đăng trong ngày
-                                            </span>
+                                        <div
+                                            className={cx('', {
+                                                overlay:
+                                                    typeChecked !== 'normal',
+                                            })}
+                                        >
+                                            <div className={cx('type-days')}>
+                                                <span>
+                                                    * Tin thường phải chờ để
+                                                    được kiểm duyệt trước khi
+                                                    hiển thị, thường sẽ mất từ 5
+                                                    phút đến 1 tiếng, tuỳ thuộc
+                                                    vào lượng tin đăng trong
+                                                    ngày
+                                                    <br />
+                                                    * Tin thường sẽ có thời gian
+                                                    hiển thị là 30 ngày
+                                                    <br />* Sẽ bị trôi nhanh do
+                                                    có nhiều tin đăng trong ngày
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -721,10 +733,13 @@ function RecruiterPost() {
                                                 <input
                                                     type="radio"
                                                     checked={
-                                                        checkboxForm.ruleVip
+                                                        typeChecked ===
+                                                        'vipDate'
                                                     }
-                                                    onChange={
-                                                        handleChangeCheckbox
+                                                    onChange={() =>
+                                                        handleChangeTypeChecked(
+                                                            'vipDate',
+                                                        )
                                                     }
                                                 />
                                             </div>
@@ -732,41 +747,57 @@ function RecruiterPost() {
                                                 Tin VIP theo ngày
                                             </span>
                                         </div>
-                                        <div className={cx('type-vip')}>
-                                            <DropDown
-                                                data={vipDateData}
-                                                className={cx('select-vip')}
-                                                title="Loại VIP"
-                                                onChangeSelect={(value, name) =>
-                                                    handleChangeVipValues(
-                                                        value,
-                                                        name,
-                                                        'typeVipDay',
-                                                    )
-                                                }
-                                            />
-                                            <span className={cx('multip')}>
-                                                x
-                                            </span>
-                                            <DropDown
-                                                data={dateData}
-                                                className={cx('select-vip')}
-                                                title="Số ngày"
-                                                onChangeSelect={(value, name) =>
-                                                    handleChangeVipValues(
-                                                        value,
-                                                        name,
-                                                        'quantiyDay',
-                                                    )
-                                                }
-                                            />
 
-                                            <span className={cx('cost')}>
-                                                ={totalQuantityVipDays}đ
-                                                <span
-                                                    className={cx('cost-total')}
-                                                ></span>
-                                            </span>
+                                        <div
+                                            className={cx('', {
+                                                overlay:
+                                                    typeChecked !== 'vipDate',
+                                            })}
+                                        >
+                                            <div className={cx('type-vip')}>
+                                                <DropDown
+                                                    data={vipDateData}
+                                                    className={cx('select-vip')}
+                                                    title="Loại VIP"
+                                                    onChangeSelect={(
+                                                        value,
+                                                        name,
+                                                    ) =>
+                                                        handleChangeVipValues(
+                                                            value,
+                                                            name,
+                                                            'typeVipDay',
+                                                        )
+                                                    }
+                                                />
+                                                <span className={cx('multip')}>
+                                                    x
+                                                </span>
+                                                <DropDown
+                                                    data={dateData}
+                                                    className={cx('select-vip')}
+                                                    title="Số ngày"
+                                                    onChangeSelect={(
+                                                        value,
+                                                        name,
+                                                    ) =>
+                                                        handleChangeVipValues(
+                                                            value,
+                                                            name,
+                                                            'quantiyDay',
+                                                        )
+                                                    }
+                                                />
+
+                                                <span className={cx('cost')}>
+                                                    ={totalQuantityVipDays}đ
+                                                    <span
+                                                        className={cx(
+                                                            'cost-total',
+                                                        )}
+                                                    ></span>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -778,10 +809,13 @@ function RecruiterPost() {
                                                 <input
                                                     type="radio"
                                                     checked={
-                                                        checkboxForm.ruleVip
+                                                        typeChecked ===
+                                                        'vipMonth'
                                                     }
-                                                    onChange={
-                                                        handleChangeCheckbox
+                                                    onChange={() =>
+                                                        handleChangeTypeChecked(
+                                                            'vipMonth',
+                                                        )
                                                     }
                                                 />
                                             </div>
@@ -789,11 +823,22 @@ function RecruiterPost() {
                                                 Tin VIP theo tháng
                                             </span>
                                         </div>
-                                        <div className={cx('type-vip-special')}>
-                                            <DropDown
-                                                data={vipMonthData}
-                                                title="Loại VIP"
-                                            />
+                                        <div
+                                            className={cx('', {
+                                                overlay:
+                                                    typeChecked !== 'vipMonth',
+                                            })}
+                                        >
+                                            <div
+                                                className={cx(
+                                                    'type-vip-special',
+                                                )}
+                                            >
+                                                <DropDown
+                                                    data={vipMonthData}
+                                                    title="Loại VIP"
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
