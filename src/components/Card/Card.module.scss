@@ -58,12 +58,12 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            .subdesc-left {
-                flex: 1;
-                max-width: 50%;
-            }
+            // .subdesc-left {
+            //     // flex: 1;
+            //     // max-width: 50%;
+            // }
             .subdesc-right {
-                flex: 1;
+                margin-top: 50px;
             }
         }
         .subdesc-text {
@@ -77,6 +77,12 @@
                 -webkit-box-orient: vertical;
                 overflow: hidden;
             }
+            .subdesc-bottom {
+                display: flex;
+            }
+        }
+        .subdesc-bottom {
+            display: flex;
         }
     }
 }

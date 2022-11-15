@@ -34,9 +34,11 @@ body {
     --secondary-color: #f47425;
     --white-color: #fff;
     --black-color: #000000;
+    --dark-color-0: #425061;
     --gray-color: #666;
     --gray-light-color: #dce0e3;
     --gray-light-color-2: #edeef0;
+    --gray-light-color-3: #f7f8f7;
     --text-color: #292929;
     --plum-color: #b80257;
     --fb-color: #4080ff;
@@ -44,17 +46,32 @@ body {
     --invalid-color: #f33a58;
     --desc-color: #0000008a;
     --save-color: #90a399;
+    --transparent-color: hsla(0, 0%, 100%, 0.8);
+
+    // Font-size
+    --fs-0: 24px;
+    --fs-1: 40px;
+
     // Font
     --font-family: 'Roboto', sans-serif;
 
     // radius
     --radius-0: 20px;
-
+    --radius-1: 5px;
     // padding
     --padding-0: 14px;
-
+    --padding-1: 8px;
+    --padding-2: 30px;
     // margin
     --margin-0: 50px;
+    --margin-top-0: 20px;
+    --margin-tb: 30px 0 30px 0;
+    // box shadown
+    --box-shadown-0: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+        rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    --box-shadown-1: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+        rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    --box-shadow-2: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 a {
@@ -87,4 +104,14 @@ html *::-webkit-scrollbar-thumb {
 html *::-webkit-scrollbar-track {
     border-radius: 0;
     background-color: rgba(0, 0, 0, 0);
+}
+h2 {
+    font-weight: 700;
+}
+textarea {
+    width: 100%;
+    border: 1px solid black;
+    padding: 5px;
+    min-height: 150px;
+    border-radius: 5px;
 }

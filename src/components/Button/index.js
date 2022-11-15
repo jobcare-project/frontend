@@ -14,12 +14,16 @@ function Button({
     text = false,
     rounded = false,
     disabled = false,
+    saveInput = false,
     small = false,
     large = false,
     children,
     className,
     leftIcon,
     rightIcon,
+    right,
+    secondary,
+    white,
     onClick,
     ...passProps
 }) {
@@ -49,12 +53,16 @@ function Button({
     const classes = cx('wrapper', {
         [className]: className,
         primary,
+        secondary,
+        white,
+        saveInput,
         outline,
         text,
         disabled,
         rounded,
         small,
         large,
+        right,
     });
 
     return (
@@ -74,6 +82,8 @@ Button.propTypes = {
     text: PropTypes.bool,
     rounded: PropTypes.bool,
     disabled: PropTypes.bool,
+    reInput: PropTypes.bool,
+    saveInput: PropTypes.bool,
     small: PropTypes.bool,
     large: PropTypes.bool,
     children: PropTypes.node.isRequired,

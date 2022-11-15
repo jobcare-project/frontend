@@ -1,10 +1,16 @@
-import { LOCAL_STORAGE_TOKEN_NAME } from '~/constants/constants';
+import {
+    LOCAL_STORAGE_REFRESH_TOKEN_NAME,
+    LOCAL_STORAGE_TOKEN_NAME,
+} from '~/constants/constants';
 
 class TokenService {
-    // getLocalRefreshToken() {
-    //     const user = JSON.parse(localStorage.getItem('user'));
-    //     return user?.refreshToken;
-    // }
+    getLocalRefreshToken() {
+        return localStorage[LOCAL_STORAGE_REFRESH_TOKEN_NAME];
+    }
+
+    updateLocalRefreshToken(token) {
+        localStorage.setItem(LOCAL_STORAGE_REFRESH_TOKEN_NAME, token);
+    }
 
     getLocalAccessToken() {
         return localStorage[LOCAL_STORAGE_TOKEN_NAME];

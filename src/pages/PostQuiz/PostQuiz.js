@@ -14,7 +14,6 @@ function PostQuiz() {
             <div className={cx('section')}>
                <AddInformation/>
             </div>
-
             <div className={cx('wrapper-add-question')}>
                 <div className={cx('add-question-title')}>Xây dựng quiz</div>
                 <div className={cx('add-question')}>

@@ -7,14 +7,9 @@
     padding-top: 50px;
 }
 
-.container {
-    width: var(--default-layout-width);
-    padding: 0 var(--default-layout-horizontal-spacer);
-    max-width: 100%;
-}
-
 .logo {
-    max-width: 80px;
+    user-select: none;
+    max-width: 140px;
     margin-bottom: 30px;
 }
 
@@ -37,8 +32,5 @@ a {
 }
 
 .social-item {
-    svg {
-        width: 35px;
-        height: 35px;
-    }
+    font-size: 30px;
 }

@@ -1,18 +1,26 @@
 const routes = {
     home: '/',
-    admin: '/admin',
+    admin: '/admin/chart',
     profile: '/profile',
+    settings: '/settings',
     accounts: '/accounts',
     blog: '/blog',
-    recruitment: '/recruitment/post',
+    cv: '/cv',
+    recruitment: '/recruitmentpage',
     testuser: '/testuser',
     itech: '/testuser/IT',
+    informationtechnology: '/testuser/informationtechnology',
     marketing: '/testuser/marketing',
     businessadministration: '/testuser/businessadministration',
     linguistics: '/testuser/linguistics',
     postquiz: '/postquiz',
     displayquizz: 'testuser/displayquizz',
-    managequiz: '/managequiz'
+    managequiz: '/managequiz',
+    recruiterpost: '/recruiterpost/post',
+    recruitmentdetail: '/recruitmentdetail',
+    recruitmentpage: '/recruitmentpage/user',
+    displayquizz: 'testuser/displayquizz',
+    usersManagement: '/admin/usermanagement',
 };
 
 export default routes;
