@@ -10,7 +10,7 @@ import {
     isLoadingSelector,
     userListSelector,
 } from '~/redux/Selectors/adminSelector';
-import { fetchGetAllUsers } from '../adminSlice';
+import { fetchDeleteUser, fetchGetAllUsers } from '../adminSlice';
 import AddAccountModal from './AddAccountModal';
 
 import styles from './UsersManage.module.scss';
@@ -26,11 +26,14 @@ function UsersManage() {
     const handleClose = () => setShowModal(false);
     const handleShow = () => setShowModal(true);
 
+    const handleDeleteUser = (userId) => {
+        dispatch(fetchDeleteUser(userId));
+    };
+
     useEffect(() => {
         dispatch(fetchGetAllUsers());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    console.log('userList:::', userList);
 
     return (
         <>
@@ -75,6 +78,11 @@ function UsersManage() {
                                             <td>{user.phoneNumber}</td>
                                             <td className={cx('action-column')}>
                                                 <span
+                                                    onClick={() => {
+                                                        handleDeleteUser(
+                                                            user.id,
+                                                        );
+                                                    }}
                                                     className={cx(
                                                         'content-icon',
                                                     )}

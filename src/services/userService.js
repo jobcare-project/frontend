@@ -37,3 +37,7 @@ export const logoutApi = async () => {
 export const getAllUsersApi = async () => {
     return await axiosClient.get(config.usersApiUrl.allUsers);
 };
+
+export const deleteUserApi = async (id) => {
+    return await axiosClient.delete(config.usersApiUrl.deleteUser + id);
+};

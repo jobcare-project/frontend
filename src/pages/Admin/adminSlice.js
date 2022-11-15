@@ -4,7 +4,11 @@ import {
     isRejectedWithValue,
 } from '@reduxjs/toolkit';
 
-import { getAllUsersApi, registerRecruiterApi } from '~/services/userService';
+import {
+    deleteUserApi,
+    getAllUsersApi,
+    registerRecruiterApi,
+} from '~/services/userService';
 
 export const adminSlice = createSlice({
     name: 'admin',
@@ -38,6 +42,13 @@ export const adminSlice = createSlice({
             .addCase(fetchGetAllUsers.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.data = action.payload.data;
+            })
+            .addCase(fetchDeleteUser.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(fetchDeleteUser.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.data = action.payload.data;
             });
     },
 });
@@ -58,6 +69,17 @@ export const fetchGetAllUsers = createAsyncThunk(
     async () => {
         try {
             return await getAllUsersApi();
+        } catch (error) {
+            return isRejectedWithValue(error.response);
+        }
+    },
+);
+
+export const fetchDeleteUser = createAsyncThunk(
+    'admin/fetchDeleteUser',
+    async (id) => {
+        try {
+            return await deleteUserApi(id);
         } catch (error) {
             return isRejectedWithValue(error.response);
         }

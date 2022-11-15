@@ -17,4 +17,5 @@ export const uploadApiUrl = {
 
 export const usersApiUrl = {
     allUsers: '/api/user/',
+    deleteUser: '/api/user/',
 };
