@@ -18,9 +18,9 @@ export default function BestRecruitment() {
 
     useEffect(() => {
         dispatch(fetchListJob());
+        /* eslint-disable react-hooks/exhaustive-deps */
     }, []);
 
-    console.log('jobListData', jobListData);
     return (
         <Container>
             {jobListData.length ? (

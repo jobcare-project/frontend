@@ -34,7 +34,7 @@ function FormGroup({ unUpdate, label, desc, value, type }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (type === 'file') {
-            console.log('file', file);
+            // console.log('file', file);
             // let formData = new FormData();
             // formData.append('file', file.data);
             // console.log('form data:', formData);

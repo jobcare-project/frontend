@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Table } from 'react-bootstrap';
+import { Modal, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Button from '~/components/Button';
@@ -22,12 +22,14 @@ function UsersManage() {
     const isLoading = useSelector(isLoadingSelector);
     const userList = useSelector(userListSelector);
     const [showModal, setShowModal] = useState(false);
+    const [showModalDelete, setShowModalDelete] = useState(false);
+    const [idUserDelete, setIdUserDelete] = useState(null);
 
     const handleClose = () => setShowModal(false);
     const handleShow = () => setShowModal(true);
 
-    const handleDeleteUser = (userId) => {
-        dispatch(fetchDeleteUser(userId));
+    const handleDeleteUser = (idUserDelete) => {
+        dispatch(fetchDeleteUser(idUserDelete));
     };
 
     useEffect(() => {
@@ -38,6 +40,38 @@ function UsersManage() {
     return (
         <>
             {isLoading && <Loading />}
+            <Modal
+                className={cx('modal')}
+                show={showModalDelete}
+                onHide={() => {
+                    setShowModalDelete(false);
+                }}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>Tiếp tục xóa?</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Button
+                        rounded
+                        secondary
+                        onClick={() => {
+                            setShowModalDelete(false);
+                        }}
+                    >
+                        Hủy
+                    </Button>
+                    <Button
+                        primary
+                        rounded
+                        onClick={() => {
+                            handleDeleteUser(idUserDelete);
+                            setShowModalDelete(false);
+                        }}
+                    >
+                        Xóa
+                    </Button>
+                </Modal.Body>
+            </Modal>
             <div className={cx('wrapper')}>
                 <AddAccountModal show={showModal} onClose={handleClose} />
                 <div className={cx('header')}>
@@ -79,8 +113,11 @@ function UsersManage() {
                                             <td className={cx('action-column')}>
                                                 <span
                                                     onClick={() => {
-                                                        handleDeleteUser(
+                                                        setIdUserDelete(
                                                             user.id,
+                                                        );
+                                                        setShowModalDelete(
+                                                            true,
                                                         );
                                                     }}
                                                     className={cx(

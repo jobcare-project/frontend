@@ -22,6 +22,7 @@ function RegisterForm({ adminAddAccountForm }) {
     const handleSubmit = () => {
         if (formikRef.current.isSubmitting) {
             if (adminAddAccountForm) {
+                // console.log('click - adminAddAccountForm');
                 dispatch(fetchRegisterRecruiter(formikRef.current.values));
             } else {
                 dispatch(fetchRegister(formikRef.current.values));
