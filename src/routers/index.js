@@ -9,6 +9,8 @@ import TestUser from '~/pages/TestUser';
 import DisplayQuizz from '~/pages/DisplayQuizz';
 import InformationTechnology from '~/pages/InformationTechnology';
 import PostQuiz from '~/pages/PostQuiz';
+import ManageQuiz from '~/pages/ManageQuiz';
+
 
 
 export const publicRoutes = [
@@ -20,6 +22,7 @@ export const publicRoutes = [
     { path: config.routes.displayquizz, component: DisplayQuizz },
     { path: config.routes.informationtechnology, component: InformationTechnology },
     { path: config.routes.postquiz, component: PostQuiz },
+    { path: config.routes.managequiz, component: ManageQuiz },
 ];
 
 export const privateRoutes = [
