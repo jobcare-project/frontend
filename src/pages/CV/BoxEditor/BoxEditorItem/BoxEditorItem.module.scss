@@ -2,14 +2,14 @@
     display: flex;
     align-items: center;
     position: relative;
-    // &:focus-within {
-    //     .controls {
-    //         display: flex;
-    //     }
-    //     .controls-mark {
-    //         display: block;
-    //     }
-    // }
+    &:focus-within {
+        .controls {
+            display: flex;
+        }
+        .controls-mark {
+            display: block;
+        }
+    }
     &:has(.header) {
         flex-direction: column;
         justify-content: center;
@@ -25,9 +25,6 @@
         width: 100%;
         margin-top: 24px;
     }
-    .content {
-        width: 100%;
-    }
 }
 
 .controls {
@@ -41,7 +38,6 @@
     height: calc(100% + 150px);
     border-radius: 8px;
     z-index: 100;
-    display: flex;
     .controls-icon {
         cursor: pointer;
         display: flex;
@@ -56,6 +52,7 @@
 .controls-mark {
     content: '';
     position: absolute;
+    display: none;
     background: hsla(0deg, 0%, 95%, 0.7);
 }
 
@@ -64,16 +61,10 @@
     border-bottom-left-radius: 8px;
     height: calc(100% + 40px);
     width: 100%;
-    display: block;
 }
 
 .controls-left {
     right: 100%;
-    height: calc(100% + 40px);
-
-    .controls-left-list {
-        max-height: 200px;
-    }
 }
 
 .controls-right {

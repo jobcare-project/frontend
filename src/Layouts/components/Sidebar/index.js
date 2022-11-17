@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind';
+import { useMemo } from 'react';
 import { NavLink } from 'react-router-dom';
 import config from '~/config';
 
@@ -8,19 +9,19 @@ const cx = classNames.bind(styles);
 
 const sidebarMenu = [
     {
-        title: 'Chart',
+        title: 'Thống kê',
         to: config.routes.admin,
         role: ['admin'],
         icon: <ion-icon name="stats-chart-sharp"></ion-icon>,
     },
     {
-        title: 'Users',
+        title: 'Người dùng',
         to: config.routes.usersManagement,
         role: ['admin'],
         icon: <ion-icon name="people-sharp"></ion-icon>,
     },
     {
-        title: 'Recruitment',
+        title: 'Tuyển dụng',
         to: '/dashboard/recruitment',
         role: ['admin'],
         icon: <ion-icon name="id-card-sharp"></ion-icon>,
@@ -32,7 +33,7 @@ const sidebarMenu = [
         icon: <ion-icon name="book-sharp"></ion-icon>,
     },
     {
-        title: 'Quizz',
+        title: 'Bài kiểm tra',
         to: '/dashboard/quiz',
         role: ['admin'],
         icon: <ion-icon name="create-sharp"></ion-icon>,
