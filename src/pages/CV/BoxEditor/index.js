@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind';
+import { useState } from 'react';
 
 import InputEditor from '~/components/Editor/InputEditor';
 import { BoxIconStyled } from '../styledComponents/BoxIcon';
@@ -8,32 +9,48 @@ import styles from './BoxEditor.module.scss';
 
 const cx = classNames.bind(styles);
 
-function BoxEditor({ icon, heading, title, editorValue = '' }) {
+function BoxEditor({ icon, heading, children }) {
+    const [visibleControls, setVisibleControls] = useState(false);
+
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('controls-left', 'controls')}>
-                <span className={cx('controls-icon')}>
-                    <ion-icon name="add-circle-sharp"></ion-icon>
-                </span>
-                <span className={cx('controls-icon')}>
-                    <ion-icon name="chevron-up-circle-sharp"></ion-icon>
-                </span>
-                <span className={cx('controls-icon')}>
-                    <ion-icon name="chevron-down-circle-sharp"></ion-icon>
-                </span>
-                <span className={cx('controls-icon')}>
-                    <ion-icon name="add-circle-sharp"></ion-icon>
-                </span>
-            </div>
-            <div className={cx('controls-right', 'controls')}>
-                <span className={cx('controls-icon')}>
-                    <ion-icon name="trash-sharp"></ion-icon>
-                </span>
-            </div>
-            <div className={cx('controls-mark')}></div>
+            {visibleControls && (
+                <>
+                    <div className={cx('controls-left', 'controls')}>
+                        <div className={cx('controls-left-list')}>
+                            <span className={cx('controls-icon')}>
+                                <ion-icon name="add-circle-sharp"></ion-icon>
+                            </span>
+                            <span className={cx('controls-icon')}>
+                                <ion-icon name="chevron-up-circle-sharp"></ion-icon>
+                            </span>
+                            <span className={cx('controls-icon')}>
+                                <ion-icon name="chevron-down-circle-sharp"></ion-icon>
+                            </span>
+                            <span className={cx('controls-icon')}>
+                                <ion-icon name="add-circle-sharp"></ion-icon>
+                            </span>
+                        </div>
+                    </div>
+                    <div className={cx('controls-right', 'controls')}>
+                        <span className={cx('controls-icon')}>
+                            <ion-icon name="trash-sharp"></ion-icon>
+                        </span>
+                    </div>
+                    <div className={cx('controls-mark')}></div>
+                </>
+            )}
 
             {heading && (
-                <div className={cx('header')}>
+                <div
+                    className={cx('header')}
+                    onClick={() => {
+                        setVisibleControls(true);
+                    }}
+                    onBlur={() => {
+                        setVisibleControls(false);
+                    }}
+                >
                     {icon && (
                         <BoxIconStyled className={cx('header-icon')}>
                             {icon}
@@ -48,7 +65,7 @@ function BoxEditor({ icon, heading, title, editorValue = '' }) {
             )}
 
             {/* Cần tách riêng component */}
-            {title && (
+            {/* {title && (
                 <div className={cx('title')}>
                     <span className={cx('title-content')}>
                         <InputEditor defaultValue={title} />
@@ -59,7 +76,8 @@ function BoxEditor({ icon, heading, title, editorValue = '' }) {
                 <div className={cx('editor')}>
                     <InputEditor defaultValue={editorValue} />
                 </div>
-            )}
+            )} */}
+            <div className={cx('content')}>{children}</div>
         </div>
     );
 }

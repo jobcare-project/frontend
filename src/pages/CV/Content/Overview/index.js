@@ -1,8 +1,9 @@
 import classNames from 'classnames/bind';
 import { useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
+
 import InputEditor from '~/components/Editor/InputEditor';
-import BoxEditor from '../../BoxEditor';
+import BoxEditorItem from '../../BoxEditor/BoxEditorItem';
 import { TitleLarge } from '../../styledComponents/Title';
 import AvatarOverview from './Avatar';
 import styles from './Overview.module.scss';
@@ -41,7 +42,7 @@ function Overview() {
                         {overviewArr.map((editor, index) => {
                             return (
                                 <Col key={index} md={6}>
-                                    <BoxEditor
+                                    <BoxEditorItem
                                         title={editor.title}
                                         editorValue={editor.value}
                                     />
