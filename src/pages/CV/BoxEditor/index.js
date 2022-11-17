@@ -12,6 +12,10 @@ const cx = classNames.bind(styles);
 function BoxEditor({ icon, heading, children }) {
     const [visibleControls, setVisibleControls] = useState(false);
 
+    const handleDelete = () => {
+        console.log('handleDelete');
+    };
+
     return (
         <div className={cx('wrapper')}>
             {visibleControls && (
@@ -33,7 +37,12 @@ function BoxEditor({ icon, heading, children }) {
                         </div>
                     </div>
                     <div className={cx('controls-right', 'controls')}>
-                        <span className={cx('controls-icon')}>
+                        <span
+                            onClick={() => {
+                                handleDelete();
+                            }}
+                            className={cx('controls-icon')}
+                        >
                             <ion-icon name="trash-sharp"></ion-icon>
                         </span>
                     </div>
@@ -42,22 +51,21 @@ function BoxEditor({ icon, heading, children }) {
             )}
 
             {heading && (
-                <div
-                    className={cx('header')}
-                    onClick={() => {
-                        setVisibleControls(true);
-                    }}
-                    onBlur={() => {
-                        setVisibleControls(false);
-                    }}
-                >
+                <div className={cx('header')}>
                     {icon && (
                         <BoxIconStyled className={cx('header-icon')}>
                             {icon}
                         </BoxIconStyled>
                     )}
                     <div className={cx('heading')}>
-                        <Title>
+                        <Title
+                            onBlur={() => {
+                                setVisibleControls(false);
+                            }}
+                            onClick={() => {
+                                setVisibleControls(true);
+                            }}
+                        >
                             <InputEditor defaultValue={heading} />
                         </Title>
                     </div>
