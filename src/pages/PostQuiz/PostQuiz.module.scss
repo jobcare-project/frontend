@@ -3,60 +3,22 @@
     padding-bottom: 30px;
     margin-top: 30px;
 }
+
 .section {
     margin: auto;
     width: 80%;
     font-size: 30px;
-    border-left: var(--primary-color) solid 30px;
-}
-
-.information {
-    font-size: 50px;
-    margin-bottom: 40px;
-    margin-left: 50px;
-}
-
-.title-image,
-.title-describe,
-.title-quiz {
-    margin-left: 50px;
-}
-
-.security {
-    margin-bottom: 30px;
-    margin-left: 50px;
-}
-.input-title-quiz,
-.input-describe {
-    margin-top: 30px;
-    margin-bottom: 30px;
-    width: 1000px;
-    border: 1px solid #9c9a9a;
-    border-radius: 10px;
-    font-size: 20px;
-    height: 50px;
-    margin-left: 50px;
-}
-.upload-image {
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    margin-top: 30px;
-    margin-left: 50px;
-    border-radius: 20px;
 }
 
 .wrapper-add-question {
     margin: auto;
-    width: 80%;
-    border-left: blue solid 30px;
     margin-top: 50px;
+    width: 80%;
 }
 
 .information-add-question {
     font-size: 50px;
-    margin-bottom: 40px;
-    margin-left: 50px;
+    margin: 0 0 40px 50px;
 }
 
 .heading-add-question {
@@ -65,6 +27,7 @@
     font-size: 20px;
     border-radius: 20px;
     height: 150px;
+    width: 800px;
     border: 1px solid #9c9a9a;
 }
 
@@ -72,20 +35,45 @@
     font-size: 30px;
 }
 
-.typeshowanswer {
-    margin-top: 20px;
-    margin-left: 50px;
-}
-
-.typeswork {
-    margin-top: 20px;
-    margin-left: 50px;
-}
-
-.set-time {
-    margin-top: 20px;
-    height: 50px;
-    width: 200px;
-    margin-left: 50px;
+.inner-type {
+    display: flex;
     font-size: 20px;
+    border: 1px solid #b1154a;
+    margin-left: 200px;
+    border-radius: 20px;
+    width: 800px;
+    padding: 20px 0;
+
+    .mode {
+        margin-top: 20px;
+        margin-left: 50px;
+    }
+
+    .gender {
+        margin-top: 20px;
+        margin-left: 50px;
+    }
+
+    .set-time {
+        margin-top: 20px;
+        height: 50px;
+        width: 200px;
+        margin-left: 50px;
+    }
+}
+
+.add-question-title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    font-size: 50px;
+}
+
+.add-question-title {
+    margin: 20px 0 20px 50px;
+    font-size: 50px;
+}
+
+.add-question {
+    margin: 20px 0 0 50px;
 }

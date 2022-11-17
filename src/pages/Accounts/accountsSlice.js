@@ -12,6 +12,7 @@ import {
     registerApi,
 } from '~/services/userService';
 import tokenService from '~/services/tokenService';
+import { uploadImageApi } from '~/services/uploadService';
 
 export const accountsSlice = createSlice({
     name: 'accounts',
@@ -22,7 +23,6 @@ export const accountsSlice = createSlice({
         message: '',
         data: {},
     },
-
     reducers: {},
     extraReducers: (builder) => {
         builder
@@ -43,15 +43,19 @@ export const accountsSlice = createSlice({
                 state.status = 'pending';
             })
             .addCase(fetchLogin.fulfilled, (state, action) => {
-                if (action.payload.success) {
+                const resData = action.payload;
+                if (resData.success) {
                     state.status = 'idle';
                     state.success = true;
                     state.isAuth = true;
                     tokenService.updateLocalAccessToken(
-                        action.payload.data.accessToken,
+                        resData.data.accessToken,
+                    );
+                    tokenService.updateLocalRefreshToken(
+                        resData.data.refreshToken,
                     );
                     state.message = '';
-                    state.data = action.payload.data;
+                    state.data = resData.data;
                 } else {
                     state.status = 'idle';
                     state.message = 'Tài khoản hoặc mật khẩu không chính xác';
@@ -62,15 +66,16 @@ export const accountsSlice = createSlice({
                 state.status = 'pending';
             })
             .addCase(fetchRegister.fulfilled, (state, action) => {
-                if (action.payload.success) {
+                const resData = action.payload;
+                if (resData.success) {
                     state.status = 'idle';
                     state.success = true;
                     state.isAuth = true;
                     state.message = '';
                     tokenService.updateLocalAccessToken(
-                        action.payload.data.accessToken,
+                        resData.data.accessToken,
                     );
-                    state.data = action.payload.data;
+                    state.data = resData.data;
                 } else {
                     state.status = 'idle';
                     state.success = false;
@@ -93,8 +98,7 @@ export const fetchRegister = createAsyncThunk(
     'accounts/fetchRegister',
     async ({ email, password, fullname }) => {
         try {
-            const res = await registerApi(email, password, fullname);
-            return res.data;
+            return await registerApi(email, password, fullname);
         } catch (error) {
             return isRejectedWithValue(error.response);
         }
@@ -105,8 +109,7 @@ export const fetchLogin = createAsyncThunk(
     'accounts/fetchLogin',
     async (data) => {
         try {
-            const res = await loginApi(data);
-            return res.data;
+            return await loginApi(data);
         } catch (error) {
             return isRejectedWithValue(error.response);
         }
@@ -114,19 +117,9 @@ export const fetchLogin = createAsyncThunk(
 );
 
 export const fetchUser = createAsyncThunk('accounts/fetchUser', async () => {
-    const localAccessToken = tokenService.getLocalAccessToken(
-        LOCAL_STORAGE_TOKEN_NAME,
-    );
-
-    if (localAccessToken) {
-        setAuthToken(localAccessToken);
-    }
     try {
-        const res = await fetchUserApi();
-        return res.data;
+        return await fetchUserApi();
     } catch (error) {
-        tokenService.removeAccessToken(LOCAL_STORAGE_TOKEN_NAME);
-        setAuthToken(null);
         return isRejectedWithValue(error.response);
     }
 });
@@ -135,11 +128,23 @@ export const fetchLogout = createAsyncThunk(
     'accounts/fetchLogout',
     async () => {
         try {
-            const res = await logoutApi();
-            return res.data;
+            return await logoutApi();
         } catch (error) {
             tokenService.removeAccessToken(LOCAL_STORAGE_TOKEN_NAME);
             setAuthToken(null);
+            return isRejectedWithValue(error.response);
+        }
+    },
+);
+
+export const fetchUploadImage = createAsyncThunk(
+    'accounts/fetchUploadImage',
+    async (payload) => {
+        try {
+            const res = await uploadImageApi(payload);
+            console.log('res fetchUploadImage:', res);
+            return res;
+        } catch (error) {
             return isRejectedWithValue(error.response);
         }
     },

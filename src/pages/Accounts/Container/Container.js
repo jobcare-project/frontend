@@ -1,11 +1,13 @@
 import classNames from 'classnames/bind';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import LoginForm from '../LoginForm/LoginForm';
 import RegisterForm from '../RegisterForm/RegisterForm';
 import images from '~/assets/images';
 
 import styles from './Container.module.scss';
+import config from '~/config';
 
 const cx = classNames.bind(styles);
 
@@ -38,11 +40,14 @@ function Container() {
                 )}
 
                 <div className={cx('header')}>
-                    <img
-                        className={cx('logo')}
-                        src={images.logoM}
-                        alt="logo-test"
-                    />
+                    <Link to={config.routes.home}>
+                        <img
+                            className={cx('logo')}
+                            src={images.logoM}
+                            alt="logo-test"
+                        />
+                    </Link>
+
                     {form ? (
                         <h2 className={cx('heading')}>Đăng nhập vào JobCare</h2>
                     ) : (

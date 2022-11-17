@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
@@ -63,9 +64,7 @@ function App() {
                         element={
                             <ProtectedRoute
                                 redirectPath={config.routes.home}
-                                isAllowed={
-                                    isAuth && user?.data?.role === 'recruiter'
-                                }
+                                isAllowed={isAuth && user?.role === 'recruiter'}
                             ></ProtectedRoute>
                         }
                     >
@@ -76,9 +75,7 @@ function App() {
                         element={
                             <ProtectedRoute
                                 redirectPath={config.routes.home}
-                                isAllowed={
-                                    isAuth && user?.data?.role === 'admin'
-                                }
+                                isAllowed={isAuth && user?.role === 'admin'}
                             ></ProtectedRoute>
                         }
                     >

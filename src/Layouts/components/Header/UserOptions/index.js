@@ -2,6 +2,7 @@ import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
+import { Buffer } from 'buffer';
 
 import styles from './UserOptions.module.scss';
 import images from '~/assets/images';
@@ -21,11 +22,15 @@ function UserOptions({ user }) {
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
                 <div className={cx('header-left')}>
-                    {user.avatar ? (
+                    {user.image ? (
                         <img
-                            className={cx('avatar')}
-                            src={user.avatar}
-                            alt="Avatar"
+                            className={cx('avatar-img', 'avatar')}
+                            src={`data:${
+                                user.image.data.type
+                            };base64,${Buffer.from(
+                                user.image.data.data,
+                            ).toString('base64')} `}
+                            alt={user.image.name}
                         />
                     ) : (
                         <img
@@ -72,7 +77,7 @@ function UserOptions({ user }) {
                 <ul className={cx('option-list')}>
                     <Link
                         className={cx('option-item-link')}
-                        to={config.routes.blog}
+                        to={config.routes.settings}
                     >
                         <li className={cx('option-item')}>Cài đặt</li>
                     </Link>

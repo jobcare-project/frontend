@@ -1,13 +1,13 @@
 import classNames from 'classnames/bind';
-import styles from '../FormAccounts.module.scss';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { ButtonSubmit } from '~/StyledComponent/Button';
+import styles from '../FormAccounts.module.scss';
 import { fetchLogin } from '../accountsSlice';
 import { accountsMessageSelector } from '~/redux/Selectors/authSelector';
+import Button from '~/components/Button';
 
 const cx = classNames.bind(styles);
 
@@ -92,7 +92,9 @@ function LoginForm() {
                         {messageError}
                     </div>
 
-                    <ButtonSubmit
+                    <Button
+                        primary
+                        rounded
                         onClick={() => {
                             handleSubmit();
                         }}
@@ -100,7 +102,7 @@ function LoginForm() {
                         className={cx('button-form')}
                     >
                         <span>ĐĂNG NHẬP</span>
-                    </ButtonSubmit>
+                    </Button>
                 </Form>
             </Formik>
         </div>

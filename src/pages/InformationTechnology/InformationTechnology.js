@@ -1,11 +1,10 @@
-import BestRecruitment from './BestRecruitment/BestRecruitment';
-import Search from './Search';
+import DisplayIT from './DisplayIT/DisplayIT';
+
 
 export default function InformationTechnology() {
     return (
         <>
-            <Search/>
-            <BestRecruitment/>
+            <DisplayIT/>
         </>
     );
 }

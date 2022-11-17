@@ -1,8 +1,9 @@
 import classNames from 'classnames/bind';
-import styles from './DisplayQuizz.module.scss';
-import Sidebar from './Sidebar';
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import styles from './DisplayQuizz.module.scss';
+import Sidebar from './Sidebar';
 
 const cx = classNames.bind(styles);
 
@@ -247,14 +248,6 @@ function DisplayQuizz() {
         }
     };
 
-    const buttonCheckAnswer = (evt) => {
-        if (evt.target.attributes.iscorrect.value === 'true') {
-            evt.target.classList.add(cx('correct-after'));
-        } else {
-            evt.target.classList.add(cx('incorrect-after'));
-        }
-    };
-
     //time remaining
 
     const getTimeRemaining = (e) => {
@@ -308,17 +301,17 @@ function DisplayQuizz() {
     };
 
     useEffect(() => {
+        // do some
         clearTimer(getDeadTime());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    const onClickReset = () => {
-        clearTimer(getDeadTime());
-    };
 
     //time remaining
 
     useEffect(() => {
+        // do some
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [showScore]);
 
     return (
