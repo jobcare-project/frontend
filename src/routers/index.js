@@ -28,7 +28,6 @@ export const publicRoutes = [
     { path: config.routes.testuser, component: TestUser },
     { path: config.routes.displayquizz, component: DisplayQuizz },
     { path: config.routes.itech, component: IT },
-    { path: config.routes.postquiz, component: PostQuiz },
     { path: config.routes.managequiz, component: ManageQuiz },
     {
         path: config.routes.informationtechnology,
