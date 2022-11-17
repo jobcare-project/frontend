@@ -6,10 +6,13 @@ import styles from './Card.module.scss';
 
 const cx = classNames.bind(styles);
 
-export default function Card({ data, to }) {
+export default function Card({ data, to , quiz }) {
     return (
         <div className={cx('wrapper')}>
             <Link className={cx('link')} to={to}>
+                    
+                
+
                 <div className={cx('image-block')}>
                     {data?.thumbnail ? (
                         <img

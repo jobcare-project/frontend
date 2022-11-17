@@ -1,0 +1,25 @@
+.wrapper {
+    height: 100%;
+    padding-bottom: 30px;
+    margin-top: 30px;
+}
+.information {
+    font-size: 50px;
+    margin: 0 0 40px 50px;
+}
+.title-describe,
+.title-quiz {
+    margin-left: 50px;
+}
+.input-title-quiz,
+.input-describe {
+    margin: 30px 0 30px 50px;
+    width: 1000px;
+    border: 1px solid #9c9a9a;
+    border-radius: 10px;
+    font-size: 20px;
+    height: 50px;
+}
+.submit-btn {
+    margin: 30px 0 30px 50px
+}

@@ -16,6 +16,7 @@ import NonFooterLayout from '~/Layouts/NonFooterLayout';
 import Profile from '~/pages/Profile';
 import Admin from '~/pages/Admin';
 import UsersManage from '~/pages/Admin/UsersManage';
+import ManageQuiz from '~/pages/ManageQuiz';
 
 export const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -23,15 +24,16 @@ export const publicRoutes = [
     { path: config.routes.blog, component: Blog },
     { path: config.routes.testuser, component: TestUser },
     { path: config.routes.displayquizz, component: DisplayQuizz },
+    { path: config.routes.recruitmentpage, component: RecruitmentPage },
+    { path: config.routes.recruiterpost, component: RecruiterPost },
+    { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
+    { path: config.routes.cv, component: CV, layout: NonFooterLayout },
     {
         path: config.routes.informationtechnology,
         component: InformationTechnology,
     },
     { path: config.routes.postquiz, component: PostQuiz },
-    { path: config.routes.recruitmentpage, component: RecruitmentPage },
-    { path: config.routes.recruiterpost, component: RecruiterPost },
-    { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
-    { path: config.routes.cv, component: CV, layout: NonFooterLayout },
+    { path: config.routes.managequiz, component: ManageQuiz },
 ];
 
 export const privateRoutes = [

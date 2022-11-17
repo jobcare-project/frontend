@@ -173,6 +173,7 @@ export default function ShowQuiz() {
                     <MenuItemIT
                         title=" Xem thêm  "
                         to={config.routes.informationtechnology}
+                        icon={null}
                     />
                 </Menu>
                 <Row>

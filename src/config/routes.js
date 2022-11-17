@@ -18,6 +18,7 @@ const routes = {
     recruitmentpage: '/recruitmentpage/user',
     displayquizz: 'testuser/displayquizz',
     usersManagement: '/admin/usermanagement',
+    managequiz: '/managequiz',
 };
 
 export default routes;

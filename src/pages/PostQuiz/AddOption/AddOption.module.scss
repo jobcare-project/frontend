@@ -1,9 +1,20 @@
 .wrapper {
     display: block;
-    
 }
 .options-input {
     margin-bottom: 30px;
+}
+
+.option,
+.answer,
+.question {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.option-input,
+.answer-input {
+    margin: 0 0 30px 20px;
     width: 500px;
     border: 1px solid #9c9a9a;
     border-radius: 10px;
@@ -12,11 +23,20 @@
     margin-left: 20px;
 }
 
-.check{
+.check {
     color: var(--gray-color);
 }
 
-.delete-option-btn {
+.question-input {
+    margin: 0 0 30px 20px;
+    width: 1000px;
+    border: 1px solid #9c9a9a;
+    border-radius: 10px;
+    font-size: 20px;
+    height: 50px;
+}
+
+.add-option-btn {
     margin-left: 10px;
     height: 30px;
     font-size: 20px;
@@ -24,14 +44,14 @@
 
 .add-option-btn {
     margin-left: 10px;
-    height: 30px;   
-    font-size: 20px;    
+    height: 30px;
+    font-size: 20px;
 }
 
 .save-option-btn {
     margin-top: 10px;
     margin-left: 300px;
-    .save-option-text{
+    .save-option-text {
         font-size: 15px;
     }
 }
