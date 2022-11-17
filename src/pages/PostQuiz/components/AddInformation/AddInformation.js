@@ -4,7 +4,9 @@ import styles from './AddInformation.module.scss';
 import { db } from '../../firebase';
 import { useState, useEffect } from 'react';
 import { collection, onSnapshot, addDoc } from 'firebase/firestore';
+
 import Button from '~/components/Button';
+import Input from '~/components/Input/Input/Input';
 
 const cx = classNames.bind(styles);
 
@@ -57,7 +59,7 @@ function AddInformation() {
                                     <div className={cx('title-quiz')}>
                                         Tên bài quiz
                                     </div>
-                                    <input
+                                    <Input
                                         className={cx('input-title-quiz')}
                                         type="text"
                                         value={form.title}
@@ -74,7 +76,7 @@ function AddInformation() {
                                     <div className={cx('title-describe')}>
                                         Mô tả bài quiz
                                     </div>
-                                    <input
+                                    <Input
                                         className={cx('input-describe')}
                                         type="text"
                                         value={form.desc}

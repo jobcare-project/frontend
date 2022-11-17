@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { collection, onSnapshot, addDoc } from 'firebase/firestore';
 
 import Button from '~/components/Button';
+import Input from '~/components/Input/Input/Input';
 
 const cx = classNames.bind(styles);
 
@@ -69,7 +70,7 @@ function TodoQuiz() {
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <div className={cx('question')}></div>
-                                <input
+                                <Input
                                     className={cx('question-input')}
                                     type="text"
                                     value={form.question}
@@ -86,7 +87,7 @@ function TodoQuiz() {
                             <div className="form-group">
                                 <div className={cx('option')}>Câu trả lời</div>
                                 {form.options.map((opt, i) => (
-                                    <input
+                                    <Input
                                         className={cx('option-input')}
                                         type="text"
                                         key={i}
@@ -106,7 +107,7 @@ function TodoQuiz() {
                             </div>
                             <div className="form-group">
                                 <div className={cx('answer')}>Đáp án</div>
-                                <input
+                                <Input
                                     className={cx('answer-input')}
                                     type="text"
                                     value={form.answer}
