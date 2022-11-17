@@ -8,6 +8,7 @@ import Button from '~/components/Button';
 import Loading from '~/components/Loading/Loading';
 import {
     isLoadingSelector,
+    isSuccessSelector,
     userListSelector,
 } from '~/redux/Selectors/adminSelector';
 import { fetchDeleteUser, fetchGetAllUsers } from '../adminSlice';
@@ -21,6 +22,7 @@ function UsersManage() {
     const dispatch = useDispatch();
     const isLoading = useSelector(isLoadingSelector);
     const userList = useSelector(userListSelector);
+    const isSuccess = useSelector(isSuccessSelector);
     const [showModal, setShowModal] = useState(false);
     const [showModalDelete, setShowModalDelete] = useState(false);
     const [idUserDelete, setIdUserDelete] = useState(null);
@@ -36,6 +38,12 @@ function UsersManage() {
         dispatch(fetchGetAllUsers());
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect(() => {
+        if (isSuccess) {
+            setShowModal(false);
+        }
+    }, [isSuccess]);
 
     return (
         <>

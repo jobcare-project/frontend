@@ -14,7 +14,7 @@ export const adminSlice = createSlice({
     name: 'admin',
     initialState: {
         isLoading: false,
-        success: false,
+        isSuccess: false,
         message: '',
         data: {},
     },
@@ -26,14 +26,13 @@ export const adminSlice = createSlice({
             })
             .addCase(fetchRegisterRecruiter.fulfilled, (state, action) => {
                 const resData = action.payload;
-                console.log('resData:::', resData);
                 state.isLoading = false;
                 if (resData.success) {
                     state.message = '';
-                    state.success = true;
+                    state.isSuccess = true;
                 } else {
-                    state.success = false;
-                    state.message = resData.message;
+                    state.isSuccess = false;
+                    state.message = 'Email đã tồn tại!';
                 }
             })
             .addCase(fetchGetAllUsers.pending, (state) => {

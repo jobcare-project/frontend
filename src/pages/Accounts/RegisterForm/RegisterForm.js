@@ -9,6 +9,7 @@ import { fetchRegister } from '../accountsSlice';
 import { accountsMessageSelector } from '~/redux/Selectors/authSelector';
 import Button from '~/components/Button';
 import { fetchRegisterRecruiter } from '~/pages/Admin/adminSlice';
+import { messageAdminAddAccountSelector } from '~/redux/Selectors/adminSelector';
 
 const cx = classNames.bind(styles);
 
@@ -18,6 +19,9 @@ function RegisterForm({ adminAddAccountForm }) {
     const formikRef = useRef(null);
     const messageRef = useRef(null);
     const messageError = useSelector(accountsMessageSelector);
+    const messageErrorAdminAddAccount = useSelector(
+        messageAdminAddAccountSelector,
+    );
 
     const handleSubmit = () => {
         if (formikRef.current.isSubmitting) {
@@ -141,7 +145,9 @@ function RegisterForm({ adminAddAccountForm }) {
                         style={{ color: 'red', fontSize: '1.4rem' }}
                         className={cx('error-message')}
                     >
-                        {messageError}
+                        {adminAddAccountForm
+                            ? messageErrorAdminAddAccount
+                            : messageError}
                     </div>
 
                     <Button
