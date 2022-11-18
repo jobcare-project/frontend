@@ -50,6 +50,11 @@
             opacity: 0.7;
         }
     }
+    .trash-icon {
+        &:hover {
+            color: var(--invalid-color);
+        }
+    }
 }
 
 .controls,
@@ -75,8 +80,11 @@
     border-bottom-right-radius: 0;
 
     .controls-left-list {
-        max-height: 200px;
+        width: 220px;
         display: flex;
+        div {
+            display: flex;
+        }
     }
 }
 

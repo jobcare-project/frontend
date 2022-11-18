@@ -9,21 +9,25 @@ function BoxEditorItem({ title, editorValue = '' }) {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('controls-left', 'controls')}>
-                <span className={cx('controls-icon')}>
-                    <ion-icon name="add-circle-sharp"></ion-icon>
-                </span>
-                <span className={cx('controls-icon')}>
-                    <ion-icon name="chevron-up-circle-sharp"></ion-icon>
-                </span>
-                <span className={cx('controls-icon')}>
-                    <ion-icon name="chevron-down-circle-sharp"></ion-icon>
-                </span>
-                <span className={cx('controls-icon')}>
-                    <ion-icon name="add-circle-sharp"></ion-icon>
-                </span>
+                <div className={cx('controls-left-list')}>
+                    <span className={cx('controls-icon')}>
+                        <ion-icon name="add-circle-sharp"></ion-icon>
+                    </span>
+                    <div>
+                        <span className={cx('controls-icon')}>
+                            <ion-icon name="chevron-up-circle-sharp"></ion-icon>
+                        </span>
+                        <span className={cx('controls-icon')}>
+                            <ion-icon name="chevron-down-circle-sharp"></ion-icon>
+                        </span>
+                    </div>
+                    <span className={cx('controls-icon')}>
+                        <ion-icon name="add-circle-sharp"></ion-icon>
+                    </span>
+                </div>
             </div>
             <div className={cx('controls-right', 'controls')}>
-                <span className={cx('controls-icon')}>
+                <span className={cx('controls-icon', 'trash-icon')}>
                     <ion-icon name="trash-sharp"></ion-icon>
                 </span>
             </div>

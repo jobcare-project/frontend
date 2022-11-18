@@ -9,6 +9,8 @@
         .controls-mark {
             display: block;
         }
+        border-top: 1px solid var(--gray-color);
+        border-bottom: 1px solid var(--gray-color);
     }
     &:has(.header) {
         flex-direction: column;
@@ -46,6 +48,11 @@
             opacity: 0.7;
         }
     }
+    .trash-icon {
+        &:hover {
+            color: var(--invalid-color);
+        }
+    }
 }
 
 .controls,
@@ -65,6 +72,12 @@
 
 .controls-left {
     right: 100%;
+    .controls-left-list {
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
 }
 
 .controls-right {

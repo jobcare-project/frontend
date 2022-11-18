@@ -1,13 +1,12 @@
 import classNames from 'classnames/bind';
 import styles from './AddInformation.module.scss';
 
-import { db, storage } from '../../firebase';
+import { db } from '../../firebase';
 import { useState, useEffect } from 'react';
 import { collection, onSnapshot, addDoc } from 'firebase/firestore';
 
 import Button from '~/components/Button';
 import Input from '~/components/Input/Input/Input';
-import DropDown from '~/components/Input/DropDown/DropDown';
 
 const cx = classNames.bind(styles);
 

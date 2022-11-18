@@ -20,12 +20,14 @@ function BoxEditor({ icon, heading, children }) {
                     <span className={cx('controls-icon')}>
                         <ion-icon name="add-circle-sharp"></ion-icon>
                     </span>
-                    <span className={cx('controls-icon')}>
-                        <ion-icon name="chevron-up-circle-sharp"></ion-icon>
-                    </span>
-                    <span className={cx('controls-icon')}>
-                        <ion-icon name="chevron-down-circle-sharp"></ion-icon>
-                    </span>
+                    <div>
+                        <span className={cx('controls-icon')}>
+                            <ion-icon name="chevron-up-circle-sharp"></ion-icon>
+                        </span>
+                        <span className={cx('controls-icon')}>
+                            <ion-icon name="chevron-down-circle-sharp"></ion-icon>
+                        </span>
+                    </div>
                     <span className={cx('controls-icon')}>
                         <ion-icon name="add-circle-sharp"></ion-icon>
                     </span>
@@ -33,7 +35,7 @@ function BoxEditor({ icon, heading, children }) {
                         onClick={() => {
                             handleDelete();
                         }}
-                        className={cx('controls-icon')}
+                        className={cx('controls-icon', 'trash-icon')}
                     >
                         <ion-icon name="trash-sharp"></ion-icon>
                     </span>
