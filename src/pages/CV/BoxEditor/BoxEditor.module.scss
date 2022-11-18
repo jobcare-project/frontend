@@ -41,7 +41,19 @@
     height: calc(100% + 150px);
     border-radius: 8px;
     z-index: 100;
+    bottom: calc(100% + 20px);
+    right: -8px;
+    width: 200px;
+    height: 40px;
+    border-bottom-right-radius: 0;
     display: none;
+    .controls-left-list {
+        width: 220px;
+        display: flex;
+        div {
+            display: flex;
+        }
+    }
     .controls-icon {
         cursor: pointer;
         display: flex;
@@ -70,31 +82,6 @@
     height: calc(100% + 40px);
     width: 100%;
     display: none;
-}
-
-.controls-left {
-    bottom: calc(100% + 20px);
-    right: -8px;
-    width: 200px;
-    height: 40px;
-    border-bottom-right-radius: 0;
-
-    .controls-left-list {
-        width: 220px;
-        display: flex;
-        div {
-            display: flex;
-        }
-    }
-}
-
-.controls-right {
-    left: 100%;
-    height: calc(100% + 40px);
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    border-top-right-radius: 0px;
-    z-index: 100;
 }
 
 .title {
