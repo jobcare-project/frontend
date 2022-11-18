@@ -19,8 +19,8 @@ function Content() {
                     <Overview />
                     <div className={cx('container')}>
                         <EditorGroup />
-                        <EditorGroup />
-                        <EditorGroup />
+                        {/* <EditorGroup />
+                        <EditorGroup /> */}
                     </div>
                 </div>
             </div>

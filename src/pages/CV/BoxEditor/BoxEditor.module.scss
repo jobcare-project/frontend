@@ -2,14 +2,14 @@
     display: flex;
     align-items: center;
     position: relative;
-    // &:focus-within {
-    //     .controls {
-    //         display: flex;
-    //     }
-    //     .controls-mark {
-    //         display: block;
-    //     }
-    // }
+    &:hover {
+        .controls {
+            display: flex;
+        }
+        .controls-mark {
+            display: block;
+        }
+    }
     &:has(.header) {
         flex-direction: column;
         justify-content: center;
@@ -41,7 +41,7 @@
     height: calc(100% + 150px);
     border-radius: 8px;
     z-index: 100;
-    display: flex;
+    display: none;
     .controls-icon {
         cursor: pointer;
         display: flex;
@@ -64,15 +64,19 @@
     border-bottom-left-radius: 8px;
     height: calc(100% + 40px);
     width: 100%;
-    display: block;
+    display: none;
 }
 
 .controls-left {
-    right: 100%;
-    height: calc(100% + 40px);
+    bottom: calc(100% + 20px);
+    right: -8px;
+    width: 200px;
+    height: 40px;
+    border-bottom-right-radius: 0;
 
     .controls-left-list {
         max-height: 200px;
+        display: flex;
     }
 }
 
@@ -81,6 +85,7 @@
     height: calc(100% + 40px);
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+    border-top-right-radius: 0px;
     z-index: 100;
 }
 

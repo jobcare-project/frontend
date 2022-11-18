@@ -29,7 +29,6 @@ function BoxEditorItem({ title, editorValue = '' }) {
             </div>
             <div className={cx('controls-mark')}></div>
 
-            {/* Cần tách riêng component */}
             {title && (
                 <div className={cx('title')}>
                     <span className={cx('title-content')}>
