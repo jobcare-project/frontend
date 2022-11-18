@@ -1,10 +1,13 @@
 const routes = {
     home: '/',
-    admin: '/admin',
+    admin: '/admin/chart',
+    recruiter: '/recruiter/recruiterpost',
+    recruitersaved: '/recruiter/savedpost',
     profile: '/profile',
     settings: '/settings',
     accounts: '/accounts',
     blog: '/blog',
+    cv: '/cv',
     recruitment: '/recruitmentpage',
     testuser: '/testuser',
     informationtechnology: '/testuser/informationtechnology',
@@ -12,11 +15,12 @@ const routes = {
     businessadministration: '/testuser/businessadministration',
     linguistics: '/testuser/linguistics',
     postquiz: '/postquiz',
-    recruiterpost: '/recruiterpost/post',
+    recruiterpost: '/recruiter/recruiterpostjob',
     recruitmentdetail: '/recruitmentdetail',
     recruitmentpage: '/recruitmentpage/user',
     displayquizz: 'testuser/displayquizz',
     savepost: '/savedPost',
+    usersManagement: '/admin/usermanagement',
 };
 
 export default routes;

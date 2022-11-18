@@ -32,6 +32,7 @@
         cursor: pointer;
     }
     .avatar {
+        z-index: 20;
         position: relative;
         width: var(--size);
         height: var(--size);

@@ -4,13 +4,14 @@ import { NavLink } from 'react-router-dom';
 import { memo } from 'react';
 
 import styles from './Navigation.module.scss';
+import config from '~/config';
 
 const cx = classNames.bind(styles);
 
 const navigationMenu = [
     {
         title: 'Tuyển dụng',
-        to: '/recruitmentpage/user',
+        to: config.routes.recruitmentpage,
         role: ['user'],
     },
     {
@@ -26,18 +27,28 @@ const navigationMenu = [
 
     {
         title: 'Tạo CV',
-        to: '/cv',
+        to: config.routes.cv,
         role: ['user'],
     },
     {
         title: 'Test Manage',
         to: '/test-manage',
-        role: ['recruiter', 'admin'],
+        role: ['admin'],
     },
     {
         title: 'Blog',
-        to: '/blog',
+        to: config.routes.blog,
         role: ['user', 'recruiter', 'admin'],
+    },
+    {
+        title: 'Manage',
+        to: config.routes.admin,
+        role: ['admin'],
+    },
+    {
+        title: 'Đăng bài',
+        to: config.routes.recruiter,
+        role: ['recruiter'],
     },
 ];
 
@@ -61,6 +72,7 @@ function Navigation({ role }) {
                     </li>
                 );
             }
+            return '';
         });
     };
 

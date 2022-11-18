@@ -64,9 +64,7 @@ function App() {
                         element={
                             <ProtectedRoute
                                 redirectPath={config.routes.home}
-                                isAllowed={
-                                    isAuth && user?.data?.role === 'recruiter'
-                                }
+                                isAllowed={isAuth && user?.role === 'recruiter'}
                             ></ProtectedRoute>
                         }
                     >
@@ -77,9 +75,7 @@ function App() {
                         element={
                             <ProtectedRoute
                                 redirectPath={config.routes.home}
-                                isAllowed={
-                                    isAuth && user?.data?.role === 'admin'
-                                }
+                                isAllowed={isAuth && user?.role === 'admin'}
                             ></ProtectedRoute>
                         }
                     >

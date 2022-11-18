@@ -1,6 +1,7 @@
-export const getBase64 = (file) => {
-    return new Promise((resolve) => {
-        let fileInfo;
+import { Buffer } from 'buffer';
+
+export const getBase64FromFile = async (file) => {
+    const data = await new Promise((resolve) => {
         let baseURL = '';
         // Make new FileReader
         let reader = new FileReader();
@@ -10,12 +11,14 @@ export const getBase64 = (file) => {
 
         // on reader load somthing...
         reader.onload = () => {
-            // Make a fileInfo Object
-            // console.log('Called', reader);
             baseURL = reader.result;
-            // console.log(baseURL);
             resolve(baseURL);
         };
-        return fileInfo;
     });
+    return data;
+};
+
+export const getBase64FromBuffer = (buffer) => {
+    const data = Buffer.from(buffer).toString('base64');
+    return data;
 };

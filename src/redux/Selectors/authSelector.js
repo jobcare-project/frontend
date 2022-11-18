@@ -17,3 +17,5 @@ export const accountsDataSelector = (state) => {
 export const accountsMessageSelector = (state) => {
     return state.accounts.message;
 };
+
+export const roleSelector = (state) => state.accounts.data.role;

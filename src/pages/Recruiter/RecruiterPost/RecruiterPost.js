@@ -2,7 +2,6 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import styles from './RecruiterPost.module.scss';
 import Button from '~/components/Button';
-import { AddLogo } from './Addlogo/AddLogo';
 import { useState } from 'react';
 import { getAllProvinces, getAllDistricts } from '~/helper/geomap';
 import { Formik, Form, Field, ErrorMessage } from 'formik';

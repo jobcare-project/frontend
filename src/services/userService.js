@@ -9,6 +9,15 @@ export const registerApi = async (email, password, fullname) => {
     });
 };
 
+export const registerRecruiterApi = async (email, password, fullname) => {
+    return await axiosClient.post(config.authApiUrl.registerRecruiter, {
+        role: 'recruiter',
+        email,
+        password,
+        fullname,
+    });
+};
+
 export const loginApi = async (data) => {
     return await axiosClient.post(config.authApiUrl.login, data);
 };
@@ -23,4 +32,12 @@ export const fetchUserApi = async () => {
 
 export const logoutApi = async () => {
     return await axiosClient.delete(config.authApiUrl.logout);
+};
+
+export const getAllUsersApi = async () => {
+    return await axiosClient.get(config.usersApiUrl.allUsers);
+};
+
+export const deleteUserApi = async (id) => {
+    return await axiosClient.delete(config.usersApiUrl.deleteUser + id);
 };

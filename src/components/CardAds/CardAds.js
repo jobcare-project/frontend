@@ -1,9 +1,10 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import classNames from 'classnames/bind';
+import { Link } from 'react-router-dom';
+
 import styles from './CardAds.module.scss';
 import images from '~/assets/images';
-import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
 export default function CardAds({ to }) {
     return (

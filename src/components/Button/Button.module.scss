@@ -31,9 +31,11 @@
 }
 
 .icon {
-    display: inline-block;
-    width: 24px;
+    display: flex;
+    align-items: center;
     text-align: center;
+    font-size: 20px;
+    width: 24px;
 }
 
 // Button types
@@ -58,6 +60,11 @@
 
 .secondary {
     color: var(--text-color);
+}
+
+.white {
+    border-color: var(--white-color);
+    color: var(--white-color);
 }
 
 .saveInput {

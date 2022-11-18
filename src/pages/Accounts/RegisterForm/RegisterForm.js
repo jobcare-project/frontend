@@ -8,10 +8,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchRegister } from '../accountsSlice';
 import { accountsMessageSelector } from '~/redux/Selectors/authSelector';
 import Button from '~/components/Button';
+import { fetchRegisterRecruiter } from '~/pages/Admin/adminSlice';
 
 const cx = classNames.bind(styles);
 
-function RegisterForm() {
+function RegisterForm({ adminAddAccountForm }) {
     const dispatch = useDispatch();
 
     const formikRef = useRef(null);
@@ -20,7 +21,11 @@ function RegisterForm() {
 
     const handleSubmit = () => {
         if (formikRef.current.isSubmitting) {
-            dispatch(fetchRegister(formikRef.current.values));
+            if (adminAddAccountForm) {
+                dispatch(fetchRegisterRecruiter(formikRef.current.values));
+            } else {
+                dispatch(fetchRegister(formikRef.current.values));
+            }
         }
     };
 
@@ -59,7 +64,13 @@ function RegisterForm() {
                     {/* Full name */}
                     <div className={cx('form-group')}>
                         <div className={cx('label-form-accounts')}>
-                            <label htmlFor="fullname">Tên của bạn?</label>
+                            {adminAddAccountForm ? (
+                                <label htmlFor="fullname">
+                                    Tên doanh nghiệp?
+                                </label>
+                            ) : (
+                                <label htmlFor="fullname">Tên của bạn?</label>
+                            )}
                         </div>
                         <div className={cx('input-block')}>
                             <Field
@@ -141,7 +152,11 @@ function RegisterForm() {
                         type="submit"
                         className={cx('button-form')}
                     >
-                        <span>ĐĂNG KÝ</span>
+                        {adminAddAccountForm ? (
+                            <span>THÊM TÀI KHOẢN</span>
+                        ) : (
+                            <span>ĐĂNG KÝ</span>
+                        )}
                     </Button>
                 </Form>
             </Formik>

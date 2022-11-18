@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './Profile.module.scss';
 import Button from '~/components/Button';
-import { AddLogo } from '../RecruiterPost/Addlogo/AddLogo';
+import { AddLogo } from '../Recruiter/RecruiterPost/Addlogo/AddLogo';
 import Row from 'react-bootstrap/Row';
 // import { FormInput } fro../RecruiterPost/Input/Input';
 import { Container } from 'react-bootstrap';
