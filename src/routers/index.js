@@ -7,7 +7,6 @@ import DisplayQuizz from '~/pages/DisplayQuizz';
 import RecruiterPost from '~/pages/RecruiterPost/RecruiterPost';
 import RecruitmentDetail from '~/pages/RecruitmentDetail/RecruitmentDetail';
 import RecruitmentPage from '~/pages/RecruitmentPage/RecruitmentPage';
-import InformationTechnology from '~/pages/InformationTechnology';
 import PostQuiz from '~/pages/PostQuiz';
 import Settings from '~/pages/settings/Settings';
 import SidebarLayout from '~/Layouts/SidebarLayout';
@@ -15,8 +14,10 @@ import CV from '~/pages/CV';
 import NonFooterLayout from '~/Layouts/NonFooterLayout';
 import Profile from '~/pages/Profile';
 import Admin from '~/pages/Admin';
-import UsersManage from '~/pages/Admin/UsersManage';
 import ManageQuiz from '~/pages/ManageQuiz';
+import IT from '~/pages/IT';
+import UsersManage from '~/pages/Admin/UsersManage';
+import InformationTechnology from '~/pages/InformationTechnology/InformationTechnology';
 
 export const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -28,12 +29,13 @@ export const publicRoutes = [
     { path: config.routes.recruiterpost, component: RecruiterPost },
     { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
     { path: config.routes.cv, component: CV, layout: NonFooterLayout },
+    { path: config.routes.itech, component: IT },
+    { path: config.routes.managequiz, component: ManageQuiz },
     {
         path: config.routes.informationtechnology,
         component: InformationTechnology,
     },
     { path: config.routes.postquiz, component: PostQuiz },
-    { path: config.routes.managequiz, component: ManageQuiz },
 ];
 
 export const privateRoutes = [

@@ -1,6 +1,7 @@
 function ManageQuiz() {
     return ( <div>
         hello
+        aaaaaaa
     </div> );
 }
 

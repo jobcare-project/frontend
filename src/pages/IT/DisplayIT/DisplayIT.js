@@ -127,10 +127,10 @@ export default function DisplayIT() {
                             alt="something-img"
                         />
                         <div className={cx('describe')}>
-                            <p className={cx('heading-informationtechnology')}>
+                            <p className={cx('heading-IT')}>
                                 Công nghệ thông tin
                             </p>
-                            <p className={cx('title-informationtechnology')}>
+                            <p className={cx('title-IT')}>
                                 Dưới đây là những quizz phổ biến nhất để bạn
                                 luyện tập chuẩn bị cho cuộc phỏng vấn sắp tới !
                             </p>

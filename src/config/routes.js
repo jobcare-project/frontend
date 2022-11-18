@@ -8,17 +8,18 @@ const routes = {
     cv: '/cv',
     recruitment: '/recruitmentpage',
     testuser: '/testuser',
+    itech: '/testuser/IT',
     informationtechnology: '/testuser/informationtechnology',
     marketing: '/testuser/marketing',
     businessadministration: '/testuser/businessadministration',
     linguistics: '/testuser/linguistics',
     postquiz: '/postquiz',
+    managequiz: '/managequiz',
     recruiterpost: '/recruiterpost/post',
     recruitmentdetail: '/recruitmentdetail',
     recruitmentpage: '/recruitmentpage/user',
     displayquizz: 'testuser/displayquizz',
     usersManagement: '/admin/usermanagement',
-    managequiz: '/managequiz',
 };
 
 export default routes;

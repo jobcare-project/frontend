@@ -1,11 +1,11 @@
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 
-import styles from './CardTestUser.module.scss';
+import styles from './CardShowQuiz.module.scss'
 
 const cx = classNames.bind(styles);
 
-export default function CardTestUser({ quiz, to }) {
+export default function CardShowQuiz({ quiz, to }) {
     return (
         <div className={cx('wrapper')}>
             <Link className={cx('link')} to={to}>

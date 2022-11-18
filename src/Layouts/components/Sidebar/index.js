@@ -1,5 +1,4 @@
 import classNames from 'classnames/bind';
-import { useMemo } from 'react';
 import { NavLink } from 'react-router-dom';
 import config from '~/config';
 
