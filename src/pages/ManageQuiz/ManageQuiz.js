@@ -1,6 +1,8 @@
+import Information from "./Information";
+
 function ManageQuiz() {
     return ( <div>
-        aaaaaaa
+        <Information/>
     </div> );
 }
 

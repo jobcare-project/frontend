@@ -10,8 +10,6 @@ import Button from '~/components/Button';
 import Modal from 'react-bootstrap/Modal';
 import Accordion from 'react-bootstrap/Accordion';
 
-import Information from '../Information';
-
 const cx = classNames.bind(styles);
 
 const getResults = (questions, answers) => {
@@ -155,7 +153,6 @@ function TodoQuiz() {
                     </h5>
                     <h5 className={cx('time')}>{timer}</h5>
                 </div>
-                <Information />
                 <div className={cx('inner')}>
                     <div className={cx('container')}>
                         {

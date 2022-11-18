@@ -1,8 +1,8 @@
 import classNames from 'classnames/bind';
+import styles from './ShowQuiz.module.scss';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import styles from './ShowQuiz.module.scss';
 import config from '~/config';
 import Menu, { MenuItem } from '../Menu';
 import CardShowQuiz from '~/components/CardShowQuiz/CardShowQuiz';

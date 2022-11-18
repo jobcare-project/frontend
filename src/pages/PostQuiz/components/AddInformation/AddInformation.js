@@ -4,6 +4,9 @@ import styles from './AddInformation.module.scss';
 import { db, storage } from '../../firebase';
 import { useState, useEffect } from 'react';
 import { collection, onSnapshot, addDoc } from 'firebase/firestore';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+
+import { Col, Row } from 'react-bootstrap';
 
 import Button from '~/components/Button';
 import Input from '~/components/Input/Input/Input';
@@ -13,6 +16,8 @@ const cx = classNames.bind(styles);
 
 function AddInformation() {
     const [, setInformation] = useState([]);
+    const [file, setFile] = useState(null);
+    const [, setProgress] = useState(null);
     const [form, setForm] = useState({
         title: '',
         desc: '',
@@ -20,13 +25,25 @@ function AddInformation() {
     });
 
     const categoryOption = [
-        'Công nghệ thông tin',
-        'Marketing',
-        'Quản trị kinh doanh',
-        'Ngôn ngữ học',
+        {
+            value: '',
+            name: 'Công nghệ thông tin',
+        },
+        {
+            value: '1',
+            name: 'Marketing',
+        },
+        {
+            value: '2',
+            name: 'Quản trị kinh doanh',
+        },
+        {
+            value: '3',
+            name: 'Ngôn ngữ học',
+        },
     ];
 
-    const informationCollectionRef = collection(db, 'information');
+    const informationCollectionRef = collection(db, 'quiz');
 
     useEffect(() => {
         onSnapshot(informationCollectionRef, (snapshot) => {
@@ -42,17 +59,53 @@ function AddInformation() {
         });
     }, [informationCollectionRef, form]);
 
+    useEffect(() => {
+        const uploadFile = () => {
+            const storageRef = ref(storage, file.name);
+            const uploadTask = uploadBytesResumable(storageRef, file);
+            uploadTask.on(
+                'state_changed',
+                (snapshot) => {
+                    const progress =
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                    setProgress(progress);
+                    switch (snapshot.state) {
+                        case 'paused':
+                            console.log('Upload is paused');
+                            break;
+                        case 'running':
+                            console.log('Upload is running');
+                            break;
+                        default:
+                            break;
+                    }
+                },
+                (error) => {
+                    console.log(error);
+                },
+                () => {
+                    getDownloadURL(uploadTask.snapshot.ref).then(
+                        (downloadUrl) => {
+                            setForm((prev) => ({
+                                ...prev,
+                                imgUrl: downloadUrl,
+                            }));
+                        },
+                    );
+                },
+            );
+        };
+
+        file && uploadFile();
+    }, [file]);
+
     const onCategoryChange = (e) => {
         setForm({ ...form, category: e.target.value });
-      };
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        if (!form.title || !form.desc || !form.category) {
-            alert('Please fill out all fields');
-            return;
-        }
 
         addDoc(informationCollectionRef, form);
     };
@@ -68,23 +121,32 @@ function AddInformation() {
                                     Thông tin về quiz
                                 </div>
                                 <form onSubmit={handleSubmit}>
-                                     <div className={cx('category')}>
-                                    <select
-                                        value={form.category}
-                                        onChange={onCategoryChange}
-                                        className={cx('dropdown')}
-                                    >
-                                        <option>Bạn hãy chọn lĩnh vực về bài Quiz của bạn</option>
-                                        {categoryOption.map((option, index) => (
-                                            <option
-                                                value={option || ''}
-                                                key={index}
-                                            >
-                                                {option}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
+                                    <div className={cx('category')}>
+                                        <div
+                                            value={form.category}
+                                            onChange={onCategoryChange}
+                                        >
+                                            <div>
+                                                Bạn hãy chọn lĩnh vực về bài
+                                                Quiz của bạn
+                                            </div>
+                                            <Row lg={4}>
+                                                <Col>
+                                                    <div
+                                                        className={cx(
+                                                            'dropdown',
+                                                        )}
+                                                    >
+                                                        <DropDown
+                                                            data={
+                                                                categoryOption
+                                                            }
+                                                        />
+                                                    </div>
+                                                </Col>
+                                            </Row>
+                                        </div>
+                                    </div>
                                     <div>
                                         <div className={cx('title-quiz')}>
                                             Tên bài quiz
@@ -119,7 +181,16 @@ function AddInformation() {
                                             placeholder="Nhập mô tả bài quiz ở đây"
                                         />
                                     </div>
-
+                                    <div>
+                                        <div className={cx('title-image')} >Chọn ảnh đại diện</div>
+                                        <input
+                                            type="file"
+                                            className={cx('image')}
+                                            onChange={(e) =>
+                                                setFile(e.target.files[0])
+                                            }
+                                        />
+                                    </div>
                                     <div className={cx('submit-btn')}>
                                         <Button primary type="submit">
                                             Lưu

@@ -10,7 +10,7 @@ const cx = classNames.bind(styles);
 function Information() {
     const [quiz, setQuiz] = useState([]);
 
-    const quizCollectionRef = collection(db, 'information');
+    const quizCollectionRef = collection(db, 'quiz');
 
     useEffect(() => {
         onSnapshot(quizCollectionRef, (snapshot) => {
