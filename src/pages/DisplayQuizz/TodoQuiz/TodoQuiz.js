@@ -3,7 +3,8 @@ import styles from './TodoQuiz.module.scss';
 
 import { db } from '~/pages/PostQuiz/firebase';
 import { useState, useEffect, useRef } from 'react';
-import { collection, onSnapshot } from 'firebase/firestore';
+
+import {collection, onSnapshot} from 'firebase/firestore'
 
 import { useNavigate } from 'react-router-dom';
 import Button from '~/components/Button';
