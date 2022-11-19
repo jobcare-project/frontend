@@ -25,6 +25,7 @@ export default function BestRecruitment() {
         <Container>
             {jobListData.length ? (
                 <div className={cx('wrapper')}>
+                    <h2 className={cx('heading')}>Việc làm tiêu biểu</h2>
                     <Row>
                         {jobListData &&
                             jobListData.slice(0, 16).map((recruitment) => {

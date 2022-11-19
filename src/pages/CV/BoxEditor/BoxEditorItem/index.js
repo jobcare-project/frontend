@@ -6,7 +6,7 @@ import Tippy from '@tippyjs/react';
 
 const cx = classNames.bind(styles);
 
-function BoxEditorItem({ title, editorValue = '' }) {
+function BoxEditorItem({ title, editorValue = '', timeline }) {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('controls-left', 'controls')}>
@@ -60,18 +60,27 @@ function BoxEditorItem({ title, editorValue = '' }) {
             </div>
             <div className={cx('controls-mark')}></div>
 
-            {title && (
-                <div className={cx('title')}>
+            {timeline && (
+                <div className={cx('timeline-block')}>
                     <span className={cx('title-content')}>
-                        <InputEditor defaultValue={title} />
+                        <InputEditor defaultValue="20/10/2022 - 20/11/2022" />
                     </span>
                 </div>
             )}
-            {editorValue && (
-                <div className={cx('editor')}>
-                    <InputEditor defaultValue={editorValue} />
-                </div>
-            )}
+            <div className={cx('editor-block')}>
+                {title && (
+                    <div className={cx('title')}>
+                        <span className={cx('title-content')}>
+                            <InputEditor defaultValue={title} />
+                        </span>
+                    </div>
+                )}
+                {editorValue && (
+                    <div className={cx('editor')}>
+                        <InputEditor defaultValue={editorValue} />
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

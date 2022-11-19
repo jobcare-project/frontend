@@ -9,7 +9,11 @@ function EditorGroup() {
                 heading="Giới thiệu bản thân"
                 icon={<ion-icon name="contract-outline"></ion-icon>}
             >
-                <BoxEditorItem editorValue="Giới thiệu bản thân mình đi" />
+                <BoxEditorItem
+                    timeline
+                    title="main"
+                    editorValue="Giới thiệu bản thân mình đi"
+                />
                 <BoxEditorItem editorValue="Giới thiệu bản thân mình đi" />
                 <BoxEditorItem editorValue="Giới thiệu bản thân mình đi" />
                 <BoxEditorItem editorValue="Giới thiệu bản thân mình đi" />
