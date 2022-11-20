@@ -1,4 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { v4 as uuidv4 } from 'uuid';
+
+import { newIconicContainerItem } from '~/constants/cvConstant';
 import { arrThemes } from './themes';
 import { DefaultTheme } from './themes/themeList';
 
@@ -8,7 +11,133 @@ export const cvSlice = createSlice({
         loading: false,
         theme: DefaultTheme,
         data: {
-            overview: {},
+            overview: {
+                iconic: {
+                    name: {
+                        blocks: [
+                            {
+                                key: 'jdsk2',
+                                text: 'Nguyen Van A',
+                                type: 'unstyled',
+                                depth: 0,
+                                inlineStyleRanges: [],
+                                entityRanges: [],
+                                data: {},
+                            },
+                        ],
+                        entityMap: {},
+                    },
+                    position: {
+                        blocks: [
+                            {
+                                key: 'asve5',
+                                text: 'Fullstack Developer',
+                                type: 'unstyled',
+                                depth: 0,
+                                inlineStyleRanges: [],
+                                entityRanges: [],
+                                data: {},
+                            },
+                        ],
+                        entityMap: {},
+                    },
+                },
+                container: [
+                    {
+                        id: uuidv4(),
+                        title: {
+                            blocks: [
+                                {
+                                    key: 'ekrg0',
+                                    text: 'Họ tên',
+                                    type: 'unstyled',
+                                    depth: 0,
+                                    inlineStyleRanges: [],
+                                    entityRanges: [],
+                                    data: {},
+                                },
+                            ],
+                            entityMap: {},
+                        },
+                        value: {
+                            blocks: [
+                                {
+                                    key: '8ga22',
+                                    text: 'Nguyễn Văn A',
+                                    type: 'unstyled',
+                                    depth: 0,
+                                    inlineStyleRanges: [],
+                                    entityRanges: [],
+                                    data: {},
+                                },
+                            ],
+                            entityMap: {},
+                        },
+                    },
+                    {
+                        id: uuidv4(),
+                        title: {
+                            blocks: [
+                                {
+                                    key: 'colgd',
+                                    text: 'Ngày sinh',
+                                    type: 'unstyled',
+                                    depth: 0,
+                                    inlineStyleRanges: [],
+                                    entityRanges: [],
+                                    data: {},
+                                },
+                            ],
+                            entityMap: {},
+                        },
+                        value: {
+                            blocks: [
+                                {
+                                    key: 'gnc1',
+                                    text: '20/04/2000',
+                                    type: 'unstyled',
+                                    depth: 0,
+                                    inlineStyleRanges: [],
+                                    entityRanges: [],
+                                    data: {},
+                                },
+                            ],
+                            entityMap: {},
+                        },
+                    },
+                    {
+                        id: uuidv4(),
+                        title: {
+                            blocks: [
+                                {
+                                    key: '34fbc',
+                                    text: 'Địa chỉ',
+                                    type: 'unstyled',
+                                    depth: 0,
+                                    inlineStyleRanges: [],
+                                    entityRanges: [],
+                                    data: {},
+                                },
+                            ],
+                            entityMap: {},
+                        },
+                        value: {
+                            blocks: [
+                                {
+                                    key: '9qsm1',
+                                    text: '03 TNV - Đà Nẵng',
+                                    type: 'unstyled',
+                                    depth: 0,
+                                    inlineStyleRanges: [],
+                                    entityRanges: [],
+                                    data: {},
+                                },
+                            ],
+                            entityMap: {},
+                        },
+                    },
+                ],
+            },
         },
     },
     reducers: {
@@ -18,7 +147,13 @@ export const cvSlice = createSlice({
             );
             state.theme = themeCorrect.data;
         },
+        addIconicContainerItem(state) {
+            state.data.overview.container.push({
+                id: uuidv4(),
+                ...newIconicContainerItem,
+            });
+        },
     },
 });
 
-export const { changeTheme } = cvSlice.reducer;
+export const { changeTheme, addIconicContainerItem } = cvSlice.reducer;

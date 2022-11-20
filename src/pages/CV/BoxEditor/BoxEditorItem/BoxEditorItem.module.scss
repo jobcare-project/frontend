@@ -2,6 +2,9 @@
     display: flex;
     align-items: center;
     position: relative;
+    .editor-block {
+        display: flex;
+    }
     &:hover {
         .controls {
             display: flex;
@@ -96,7 +99,7 @@
 
 .timeline-block {
     width: 176px;
-    float: left;
+    // float: left;
     margin-right: 20px;
 }
 

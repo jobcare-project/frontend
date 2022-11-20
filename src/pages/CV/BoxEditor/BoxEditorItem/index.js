@@ -1,12 +1,12 @@
 import classNames from 'classnames/bind';
+import Tippy from '@tippyjs/react';
 
 import styles from './BoxEditorItem.module.scss';
 import InputEditor from '~/components/Editor/InputEditor';
-import Tippy from '@tippyjs/react';
 
 const cx = classNames.bind(styles);
 
-function BoxEditorItem({ title, editorValue = '', timeline }) {
+function BoxEditorItem({ title, editorValue = '', timeline, onAddNewEditor }) {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('controls-left', 'controls')}>
@@ -45,7 +45,10 @@ function BoxEditorItem({ title, editorValue = '', timeline }) {
                         placement="right"
                         content="Thêm mục ở dưới"
                     >
-                        <span className={cx('controls-icon')}>
+                        <span
+                            onClick={onAddNewEditor}
+                            className={cx('controls-icon')}
+                        >
                             <ion-icon name="add-circle-sharp"></ion-icon>
                         </span>
                     </Tippy>

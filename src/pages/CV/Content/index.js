@@ -30,6 +30,7 @@ function Content() {
     return (
         <ThemeProvider theme={theme}>
             <div className={cx('wrapper')}>
+                <Overview />
                 {/* <div className={cx('page')}>
                     <div className={cx('overview')}>
                         <Overview />
@@ -40,13 +41,13 @@ function Content() {
                         </div>
                     </div>
                 </div> */}
-                {data.map((item, index) => {
+                {/* {data.map((item, index) => {
                     return (
                         <div key={index} className={cx('page')}>
                             <div className={cx('page-item')}>{item}</div>
                         </div>
                     );
-                })}
+                })} */}
             </div>
         </ThemeProvider>
     );
