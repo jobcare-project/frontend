@@ -24,7 +24,7 @@ import Input from '~/components/Input/Input/Input';
 import DropDown from '~/components/Input/DropDown/DropDown';
 import { useMemo } from 'react';
 import { fetchPostJobDesc } from '~/pages/Home/homeSlice';
-import ModalDeleted from '~/pages/Profile/Modal/ModalPost/ModalDeleted';
+// import ModalDeleted from '~/pages/Profile/Modal/ModalPost/ModalDeleted';
 const cx = classNames.bind(styles);
 const mucluongData = [
     {
@@ -266,6 +266,7 @@ const optionVipData = [
         name: 'Tin VIP theo tháng',
     },
 ];
+const TYPE_SALARY_DEFAULT = 'Thoả thuận';
 function RecruiterPost() {
     // Modal
     const [modalDeleted, setModalDeleted] = useState(false);
@@ -277,7 +278,7 @@ function RecruiterPost() {
         experience: '',
         city: '',
         district: '',
-        typeWork: '',
+        workFrom: '',
     });
     const [checked, setChecked] = useState('');
     const [typeChecked, setTypeChecked] = useState('');
@@ -305,24 +306,31 @@ function RecruiterPost() {
     const totalQuantityVipDays = useMemo(() => {
         return +quantityVipDay.quantiyDay * +quantityVipDay.typeVipDay;
     }, [quantityVipDay]);
-
     // formik data
     const formikRef = useRef(null);
     const dispatch = useDispatch();
     // Lấy dữ liệu Quận
+    const [typeSalary, setTypeSalary] = useState('Mức lương');
+    const salaryRef = useRef();
     const handleChangeSelect = (value, name, nameSelect) => {
-        if (nameSelect === 'city') {
-            setDictricID(value);
+        switch (nameSelect) {
+            case 'salary':
+                setTypeSalary(name);
+
+                break;
+            case 'city':
+                setDictricID(value);
+                break;
+            default:
+                break;
         }
+        console.log(nameSelect, name);
         setSelectForm((prev) => {
             return { ...prev, [nameSelect]: name };
         });
-        console.log(name);
+        // console.log(name);
     };
     // Get values của Quận
-    const handleCheckBox = (e) => {
-        // console.log(e.target.value);
-    };
 
     // check box rule
     const handleChangeCheckboxRule = () => {
@@ -333,7 +341,6 @@ function RecruiterPost() {
             };
         });
     };
-    // const { setFieldValue } = useFormikContext();
     // check type vip
     const handleChangeTypeChecked = (name) => {
         setTypeChecked(name);
@@ -344,51 +351,19 @@ function RecruiterPost() {
         setState(e.target.value);
     };
 
-    const typeCheckedOverLayClassNames = (name) => {
-        console.log({ name });
-        return cx('wrapper', {
-            overlay: typeChecked !== name,
-        });
-    };
-
-    // handle submit form
-    // const handleSubmit = (values) => {
-    //     const { position, amount } = formikRef.current.values;
-    //     console.log(formikRef.current.values);
-    //     // if (position && amount) {
-    //     //     const data = { position, amount };
-    //     //     // dispatch(fetchLogin(data));
-    //     //     console.log(data);
-    //     // }
-
-    //     // dispatch(
-    //     //     fetchPostJobDesc(Formik),
-    //     // );
-    // };
-
-    // const fetchData = () => {
-    //     dispatch(
-    //         fetchPostJobDesc({
-    //             title: 'Thầy thuần',
-    //             content: 'Công việc vui vẻ',
-    //             salary: 'Thương lượng',
-    //         }),
-    //     );
-    // };
     const handleSubmit = () => {
-        const { position, amount, location } = formikRef.current.values;
         console.log(formikRef.current.values);
-        // const data = {
-        //     ...formikRef.current.values,
-        //     description: description,
-        // };
-        // console.log('data', data);
-        // if (email && password) {
-        //     const data = { email, password };
-        //     dispatch(fetchLogin(data));
-        // }
-    };
+        const formikValues = formikRef.current.values;
 
+        const salary =
+            selectForm.salary === TYPE_SALARY_DEFAULT
+                ? TYPE_SALARY_DEFAULT
+                : formikValues.salary;
+        const selectValues = { ...selectForm, salary };
+        const data = { ...formikValues, ...selectValues };
+        console.log('Data', data);
+        dispatch(fetchPostJobDesc(data));
+    };
     return (
         <div className={cx('wrapper')}>
             <Container>
@@ -397,19 +372,20 @@ function RecruiterPost() {
                     initialValues={{
                         position: '',
                         amount: '',
-                        department: '',
+                        salary: '',
+                        level: '',
                         location: '',
-                        description: '',
-                        requireCandidate: '',
+                        jobDescription: '',
+                        jobRequire: '',
                         benefit: '',
                     }}
                     onSubmit={() => {
                         handleSubmit();
                     }}
                     validationSchema={Yup.object({
-                        position: Yup.string()
+                        title: Yup.string()
                             .required('Vui lòng nhập ô này')
-                            .min(20, 'Tiêu đề phải lớn hơn 20 ký tự')
+                            .min(10, 'Tiêu đề phải lớn hơn 10 ký tự')
                             .max(70, 'Tiêu đề không được vượt quá 80 ký tự'),
                         salary: Yup.number()
                             .required('Vui lòng nhập ô này')
@@ -419,17 +395,15 @@ function RecruiterPost() {
                             .required('Vui lòng nhập ô này')
                             .typeError('Vui lòng nhập số')
                             .min(1, 'Tối thiểu 1 người'),
-                        department: Yup.string().required(
-                            'Vui lòng nhập ô này',
-                        ),
+                        level: Yup.string().required('Vui lòng nhập ô này'),
                         location: Yup.string()
                             .required('Vui lòng nhập ô này')
                             .min(10, 'Vui lòng nhập đầy đủ địa chỉ làm việc'),
-                        description: Yup.string()
+                        jobDescription: Yup.string()
                             .required('Vui lòng nhập ô này')
                             .min(20, 'Tiêu đề phải lớn hơn 20 ký tự')
                             .max(70, 'Tiêu đề không được vượt quá 80 ký tự'),
-                        requireCandidate: Yup.string()
+                        jobRequire: Yup.string()
                             .required('Vui lòng nhập ô này')
                             .min(20, 'Tiêu đề phải lớn hơn 20 ký tự')
                             .max(70, 'Tiêu đề không được vượt quá 80 ký tự'),
@@ -454,13 +428,13 @@ function RecruiterPost() {
                                             </div>
                                             <Field
                                                 className={cx('input-text')}
-                                                name="position"
-                                                type="position"
+                                                name="title"
+                                                type="title"
                                                 placeholder="Nhập vị trí bạn muốn tuyển"
                                             />
                                         </div>
                                         <p className={cx('message')}>
-                                            <ErrorMessage name="position" />
+                                            <ErrorMessage name="title" />
                                         </p>
                                     </Col>
 
@@ -475,11 +449,17 @@ function RecruiterPost() {
                                                 <Field
                                                     className={cx(
                                                         'input-salary',
+                                                        typeSalary ==
+                                                            TYPE_SALARY_DEFAULT
+                                                            ? 'disable'
+                                                            : '',
                                                     )}
+                                                    innerRef={salaryRef}
                                                     name="salary"
                                                     type="text"
                                                     placeholder="Nhập mức lương"
                                                 />
+
                                                 <div
                                                     className={cx(
                                                         'content-salary',
@@ -535,7 +515,7 @@ function RecruiterPost() {
                                                     handleChangeSelect(
                                                         value,
                                                         name,
-                                                        'typeWork',
+                                                        'workFrom',
                                                     )
                                                 }
                                                 data={hinhthucData}
@@ -574,13 +554,13 @@ function RecruiterPost() {
                                             </div>
                                             <Field
                                                 className={cx('input-text')}
-                                                name="department"
+                                                name="level"
                                                 type="text"
                                                 placeholder="Nhập vị trí muốn tuyển dụng"
                                             />
                                         </div>
                                         <p className={cx('message')}>
-                                            <ErrorMessage name="department" />
+                                            <ErrorMessage name="level" />
                                         </p>
                                     </Col>
                                     <Col md={6} className={'mb-5'}>
@@ -676,19 +656,19 @@ function RecruiterPost() {
                                             <Field
                                                 as="textarea"
                                                 className={cx('input-text')}
-                                                name="description"
+                                                name="jobDescription"
                                                 value={description}
                                                 onChange={(e) =>
                                                     handleTextChange(
                                                         e,
-                                                        'description',
+                                                        'jobDescription',
                                                         setDescription,
                                                     )
                                                 }
                                             ></Field>
                                         </div>
                                         <p className={cx('message')}>
-                                            <ErrorMessage name="description" />
+                                            <ErrorMessage name="jobDescription" />
                                         </p>
                                     </Col>
                                 </Row>
@@ -701,20 +681,20 @@ function RecruiterPost() {
                                             <Field
                                                 as="textarea"
                                                 className={cx('input-text')}
-                                                name="requireCandidate"
+                                                name="jobRequire"
                                                 type="text"
                                                 value={requireCandidate}
                                                 onChange={(e) =>
                                                     handleTextChange(
                                                         e,
-                                                        'requireCandidate',
+                                                        'jobRequire',
                                                         setRequireCandidate,
                                                     )
                                                 }
                                             />
                                         </div>
                                         <p className={cx('message')}>
-                                            <ErrorMessage name="requireCandidate" />
+                                            <ErrorMessage name="jobRequire" />
                                         </p>
                                     </Col>
                                 </Row>

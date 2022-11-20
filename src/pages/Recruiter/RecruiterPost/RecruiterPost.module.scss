@@ -81,6 +81,7 @@
                 .salary-detail {
                     display: flex;
                 }
+
                 .overlay {
                     background-color: #ccc;
                     // width: 100%;
@@ -123,6 +124,9 @@
         border-radius: 10px;
         padding: 10px;
         height: 47px;
+    }
+    .input-salary.disable {
+        pointer-events: none;
     }
     .content-rule {
         margin: 20px 0 20px 0;
