@@ -105,5 +105,9 @@
                 color: var(--primary-color);
             }
         }
+        .active {
+            // background-color: var(--gray-light-color-2);
+            background-color: red;
+        }
     }
 }

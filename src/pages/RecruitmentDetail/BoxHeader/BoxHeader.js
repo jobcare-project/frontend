@@ -4,7 +4,7 @@ import styles from './BoxHeader.module.scss';
 import DescriptDetail from '~/pages/RecruitmentDetail/RecruitDetail/DescriptDetail';
 import images from '~/assets/images';
 import Button from '~/components/Button';
-import Modal from '~/pages/Profile/Modal/Modal';
+import Modal from '~/components/Modal/ModalCv/ModalCv';
 
 import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';

@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row';
 // import { FormInput } fro../RecruiterPost/Input/Input';
 import { Container } from 'react-bootstrap';
 import Col from 'react-bootstrap/Col';
-import Modal from './Modal/Modal';
+import Modal from '../../components/Modal/ModalCv/ModalCv';
 
 const cx = classNames.bind(styles);
 

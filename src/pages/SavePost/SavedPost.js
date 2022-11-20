@@ -4,6 +4,8 @@ import classNames from 'classnames/bind';
 import { Col, Container, Row } from 'react-bootstrap';
 import DropDownPage from './DropDownPage/DropDownPage';
 import Card from '~/components/Card/Card';
+import { fetchDeletedJobDesc } from '../Home/homeSlice';
+import { useDispatch } from 'react-redux';
 
 const cx = classNames.bind(styles);
 const recruitmentList = [
@@ -90,7 +92,12 @@ const recruitmentList = [
         createAt: '4 ngày trước',
     },
 ];
+
 function SavePost() {
+    const dispatch = useDispatch();
+    const handleDeletedPost = () => {
+        dispatch(fetchDeletedJobDesc('0a07e576-9e4a-4208-8009-47d53845d3da'));
+    };
     return (
         <Container>
             <div className={cx('wrapper')}>
@@ -117,6 +124,7 @@ function SavePost() {
                             </Col>
                         );
                     })}
+                    {/* <button onClick={handleDeletedPost}>Xoas em di</button> */}
                 </Row>
             </div>
         </Container>

@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import styles from './Modal.module.scss';
+import styles from './ModalCv.module.scss';
 import { Link } from 'react-router-dom';
 import Button from '~/components/Button';
 const cx = classNames.bind(styles);

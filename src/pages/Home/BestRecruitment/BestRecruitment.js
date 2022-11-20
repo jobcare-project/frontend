@@ -20,7 +20,7 @@ export default function BestRecruitment() {
         dispatch(fetchListJob());
     }, []);
 
-    console.log('jobListData', jobListData);
+    // console.log('jobListData', jobListData);
     return (
         <Container>
             {jobListData.length ? (
@@ -35,7 +35,13 @@ export default function BestRecruitment() {
                                         md={4}
                                         sm={6}
                                     >
-                                        <Card data={recruitment}></Card>
+                                        <Card
+                                            data={recruitment}
+                                            repair={
+                                                <ion-icon name="heart-outline"></ion-icon>
+                                            }
+                                            titlRepair="Lưu tin"
+                                        ></Card>
                                     </Col>
                                 );
                             })}

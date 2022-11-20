@@ -4,7 +4,14 @@ import styles from './RecruiterPost.module.scss';
 import Button from '~/components/Button';
 import { useState } from 'react';
 import { getAllProvinces, getAllDistricts } from '~/helper/geomap';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import {
+    Formik,
+    Form,
+    Field,
+    ErrorMessage,
+    useFormik,
+    useFormikContext,
+} from 'formik';
 import * as Yup from 'yup';
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -16,6 +23,8 @@ import Container from 'react-bootstrap/Container';
 import Input from '~/components/Input/Input/Input';
 import DropDown from '~/components/Input/DropDown/DropDown';
 import { useMemo } from 'react';
+import { fetchPostJobDesc } from '~/pages/Home/homeSlice';
+import ModalDeleted from '~/pages/Profile/Modal/ModalPost/ModalDeleted';
 const cx = classNames.bind(styles);
 const mucluongData = [
     {
@@ -258,8 +267,10 @@ const optionVipData = [
     },
 ];
 function RecruiterPost() {
+    // Modal
+    const [modalDeleted, setModalDeleted] = useState(false);
+    // get values dropdown
     const [districtID, setDictricID] = useState('');
-    const [textArea, setTextArea] = useState('');
     const [selectForm, setSelectForm] = useState({
         salary: '',
         gender: '',
@@ -270,6 +281,11 @@ function RecruiterPost() {
     });
     const [checked, setChecked] = useState('');
     const [typeChecked, setTypeChecked] = useState('');
+    // set value texarea
+    const [description, setDescription] = useState('');
+    const [requireCandidate, setRequireCandidate] = useState('');
+    const [benefit, setbenefit] = useState('');
+    // check form
     const [checkboxForm, setCheckboxRule] = useState({
         vip: 'false',
     });
@@ -277,7 +293,7 @@ function RecruiterPost() {
         typeVipDay: '',
         quantiyDay: '',
     });
-
+    // handle select VIP
     const handleChangeVipValues = (value, name, nameSelect) => {
         setQuantityVipDay((prev) => {
             return {
@@ -307,9 +323,7 @@ function RecruiterPost() {
     const handleCheckBox = (e) => {
         // console.log(e.target.value);
     };
-    const handleSubmit = () => {
-        console.log(Formik);
-    };
+
     // check box rule
     const handleChangeCheckboxRule = () => {
         setCheckboxRule((prev) => {
@@ -319,13 +333,15 @@ function RecruiterPost() {
             };
         });
     };
+    // const { setFieldValue } = useFormikContext();
     // check type vip
     const handleChangeTypeChecked = (name) => {
         setTypeChecked(name);
     };
     // console.log({ checkboxRule });
-    const handleTextChange = (e) => {
-        setTextArea(e.target.value);
+    const handleTextChange = (e, field, setState) => {
+        formikRef.current.setFieldValue(field, e.target.value);
+        setState(e.target.value);
     };
 
     const typeCheckedOverLayClassNames = (name) => {
@@ -335,29 +351,63 @@ function RecruiterPost() {
         });
     };
 
+    // handle submit form
+    // const handleSubmit = (values) => {
+    //     const { position, amount } = formikRef.current.values;
+    //     console.log(formikRef.current.values);
+    //     // if (position && amount) {
+    //     //     const data = { position, amount };
+    //     //     // dispatch(fetchLogin(data));
+    //     //     console.log(data);
+    //     // }
+
+    //     // dispatch(
+    //     //     fetchPostJobDesc(Formik),
+    //     // );
+    // };
+
+    // const fetchData = () => {
+    //     dispatch(
+    //         fetchPostJobDesc({
+    //             title: 'Thầy thuần',
+    //             content: 'Công việc vui vẻ',
+    //             salary: 'Thương lượng',
+    //         }),
+    //     );
+    // };
+    const handleSubmit = () => {
+        const { position, amount, location } = formikRef.current.values;
+        console.log(formikRef.current.values);
+        // const data = {
+        //     ...formikRef.current.values,
+        //     description: description,
+        // };
+        // console.log('data', data);
+        // if (email && password) {
+        //     const data = { email, password };
+        //     dispatch(fetchLogin(data));
+        // }
+    };
+
     return (
         <div className={cx('wrapper')}>
             <Container>
                 <Formik
+                    innerRef={formikRef}
                     initialValues={{
                         position: '',
-                        name: '',
                         amount: '',
                         department: '',
                         location: '',
                         description: '',
-                        // require: '',
-                        // benefit: '',
+                        requireCandidate: '',
+                        benefit: '',
                     }}
                     onSubmit={() => {
                         handleSubmit();
                     }}
                     validationSchema={Yup.object({
                         position: Yup.string()
-                            .required('Vui lòng nhập ô này')
-                            .min(20, 'Tiêu đề phải lớn hơn 20 ký tự')
-                            .max(70, 'Tiêu đề không được vượt quá 80 ký tự'),
-                        name: Yup.string()
                             .required('Vui lòng nhập ô này')
                             .min(20, 'Tiêu đề phải lớn hơn 20 ký tự')
                             .max(70, 'Tiêu đề không được vượt quá 80 ký tự'),
@@ -375,11 +425,18 @@ function RecruiterPost() {
                         location: Yup.string()
                             .required('Vui lòng nhập ô này')
                             .min(10, 'Vui lòng nhập đầy đủ địa chỉ làm việc'),
-                        description: Yup.string().required(
-                            'Vui lòng nhập ô này nè',
-                        ),
-                        // require: Yup.string().required('Vui lòng nhập ô này'),
-                        // benefit: Yup.string().required('Vui lòng nhập ô này'),
+                        description: Yup.string()
+                            .required('Vui lòng nhập ô này')
+                            .min(20, 'Tiêu đề phải lớn hơn 20 ký tự')
+                            .max(70, 'Tiêu đề không được vượt quá 80 ký tự'),
+                        requireCandidate: Yup.string()
+                            .required('Vui lòng nhập ô này')
+                            .min(20, 'Tiêu đề phải lớn hơn 20 ký tự')
+                            .max(70, 'Tiêu đề không được vượt quá 80 ký tự'),
+                        benefit: Yup.string()
+                            .required('Vui lòng nhập ô này')
+                            .min(20, 'Tiêu đề phải lớn hơn 20 ký tự')
+                            .max(70, 'Tiêu đề không được vượt quá 80 ký tự'),
                     })}
                 >
                     <Form>
@@ -398,7 +455,7 @@ function RecruiterPost() {
                                             <Field
                                                 className={cx('input-text')}
                                                 name="position"
-                                                type="text"
+                                                type="position"
                                                 placeholder="Nhập vị trí bạn muốn tuyển"
                                             />
                                         </div>
@@ -406,22 +463,7 @@ function RecruiterPost() {
                                             <ErrorMessage name="position" />
                                         </p>
                                     </Col>
-                                    <Col sm={12} md={12} className={'mb-5'}>
-                                        <div className={cx('content-input')}>
-                                            <div className={cx('detail-name')}>
-                                                Tên công ty
-                                            </div>
-                                            <Field
-                                                className={cx('input-text')}
-                                                name="name"
-                                                type="text"
-                                                placeholder="Nhập tên công ty của bạn"
-                                            />
-                                        </div>
-                                        <p className={cx('message')}>
-                                            <ErrorMessage name="name" />
-                                        </p>
-                                    </Col>
+
                                     <Col md={6} className={'mb-5'}>
                                         <div className={cx('content-input')}>
                                             <div className={cx('detail-name')}>
@@ -631,12 +673,20 @@ function RecruiterPost() {
                                             <div className={cx('detail-name')}>
                                                 Nhập mô tả công việc
                                             </div>
-                                            <textarea
+                                            <Field
+                                                as="textarea"
+                                                className={cx('input-text')}
                                                 name="description"
-                                                onChange={handleTextChange}
-                                            ></textarea>
+                                                value={description}
+                                                onChange={(e) =>
+                                                    handleTextChange(
+                                                        e,
+                                                        'description',
+                                                        setDescription,
+                                                    )
+                                                }
+                                            ></Field>
                                         </div>
-
                                         <p className={cx('message')}>
                                             <ErrorMessage name="description" />
                                         </p>
@@ -648,13 +698,23 @@ function RecruiterPost() {
                                             <div className={cx('detail-name')}>
                                                 Yêu cầu ứng viên
                                             </div>
-                                            <textarea
-                                                name="description"
-                                                onChange={handleTextChange}
-                                            ></textarea>
+                                            <Field
+                                                as="textarea"
+                                                className={cx('input-text')}
+                                                name="requireCandidate"
+                                                type="text"
+                                                value={requireCandidate}
+                                                onChange={(e) =>
+                                                    handleTextChange(
+                                                        e,
+                                                        'requireCandidate',
+                                                        setRequireCandidate,
+                                                    )
+                                                }
+                                            />
                                         </div>
                                         <p className={cx('message')}>
-                                            <ErrorMessage name="description" />
+                                            <ErrorMessage name="requireCandidate" />
                                         </p>
                                     </Col>
                                 </Row>
@@ -665,17 +725,26 @@ function RecruiterPost() {
                                             <div className={cx('detail-name')}>
                                                 Quyền lợi
                                             </div>
-                                            <textarea
-                                                name="description"
-                                                onChange={handleTextChange}
-                                            ></textarea>
+                                            <Field
+                                                as="textarea"
+                                                className={cx('input-text')}
+                                                name="benefit"
+                                                type="text"
+                                                value={benefit}
+                                                onChange={(e) =>
+                                                    handleTextChange(
+                                                        e,
+                                                        'benefit',
+                                                        setbenefit,
+                                                    )
+                                                }
+                                            />
                                         </div>
                                         <p className={cx('message')}>
-                                            <ErrorMessage name="description" />
+                                            <ErrorMessage name="benefit" />
                                         </p>
                                     </Col>
                                 </Row>
-                                {/* Type of p */}
                                 <div className={cx('content-input')}>
                                     <div className={cx('detail-name')}>
                                         Hình thức đăng tin
@@ -844,7 +913,6 @@ function RecruiterPost() {
                             </div>
                             <div className={cx('content-rule')}>
                                 <div className={cx('checkbox-rule')}>
-                                    {/* <Input type="checkbox" checkbox /> */}
                                     <input
                                         type="checkbox"
                                         checked={checkboxForm.rule}
@@ -858,8 +926,10 @@ function RecruiterPost() {
                             </div>
                             <div className={cx('submit-btn')}>
                                 <div className={cx('btn-right')}>
-                                    <Button saveInput>Lưu nháp</Button>
+                                    {/* <Button saveInput>Lưu nháp</Button> */}
+                                    {/* <ModalDeleted></ModalDeleted> */}
                                     <Button
+                                        type="submit"
                                         primary
                                         onClick={() => {
                                             handleSubmit();

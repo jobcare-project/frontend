@@ -109,6 +109,8 @@
                     width: 100%;
                     border: 1px solid black;
                     height: 150px;
+                    display: block;
+                    border-radius: 50%;
                 }
             }
         }
@@ -135,8 +137,10 @@
         }
     }
     .submit-btn {
-        display: flex;
-        justify-content: flex-end;
+        .btn-right {
+            display: flex;
+            justify-content: flex-end;
+        }
     }
 }
 

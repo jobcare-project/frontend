@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import images from '~/assets/images';
 
@@ -70,14 +71,28 @@ export default function Card({
                     </div>
                 </div>
             </Link>
+            {/* convert to button  */}
+
             <div className={cx('subdesc-control')}>
-                <div className={cx('subdesc-text')}>
+                <div
+                    className={({ isActive }) =>
+                        isActive
+                            ? cx('subdesc-text', 'active')
+                            : cx('subdesc-text')
+                    }
+                >
                     {deleted && (
                         <span className={cx('subdesc-text')}>{deleted}</span>
                     )}
                     <span>{titleDeleted}</span>
                 </div>
-                <div className={cx('subdesc-text')}>
+                <div
+                    className={({ isActive }) =>
+                        isActive
+                            ? cx('subdesc-text', 'active')
+                            : cx('subdesc-text')
+                    }
+                >
                     {repair && (
                         <span className={cx('subdesc-text')}>{repair}</span>
                     )}

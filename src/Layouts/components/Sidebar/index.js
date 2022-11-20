@@ -34,13 +34,13 @@ const sidebarMenu = [
     {
         title: 'Blog',
         to: '/dashboard/blog',
-        role: ['admin', 'recruiter'],
+        role: ['admin'],
         icon: <ion-icon name="book-sharp"></ion-icon>,
     },
     {
         title: 'Quizz',
         to: '/dashboard/quiz',
-        role: ['admin', 'recruiter'],
+        role: ['admin'],
         icon: <ion-icon name="create-sharp"></ion-icon>,
     },
 ];
