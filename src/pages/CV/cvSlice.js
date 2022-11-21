@@ -147,8 +147,16 @@ export const cvSlice = createSlice({
             );
             state.theme = themeCorrect.data;
         },
-        addIconicContainerItem(state) {
-            state.data.overview.container.push({
+        addIconicContainerItem(state, action) {
+            const { index } = action.payload;
+            state.data.overview.container.splice(index + 1, 0, {
+                id: uuidv4(),
+                ...newIconicContainerItem,
+            });
+        },
+        addIconicContainerItemBefore(state, action) {
+            const { index } = action.payload;
+            state.data.overview.container.splice(index, 0, {
                 id: uuidv4(),
                 ...newIconicContainerItem,
             });
@@ -156,4 +164,8 @@ export const cvSlice = createSlice({
     },
 });
 
-export const { changeTheme, addIconicContainerItem } = cvSlice.reducer;
+export const {
+    changeTheme,
+    addIconicContainerItem,
+    addIconicContainerItemBefore,
+} = cvSlice.reducer;

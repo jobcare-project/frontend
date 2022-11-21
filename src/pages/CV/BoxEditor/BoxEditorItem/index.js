@@ -3,10 +3,22 @@ import Tippy from '@tippyjs/react';
 
 import styles from './BoxEditorItem.module.scss';
 import InputEditor from '~/components/Editor/InputEditor';
+import { useDispatch } from 'react-redux';
+import { cvSlice } from '../../cvSlice';
 
 const cx = classNames.bind(styles);
 
-function BoxEditorItem({ title, editorValue = '', timeline, onAddNewEditor }) {
+function BoxEditorItem({ title, editorValue = '', timeline, index }) {
+    const dispatch = useDispatch();
+
+    const handleAddNewEditor = () => {
+        dispatch(cvSlice.actions.addIconicContainerItem({ index }));
+    };
+
+    const handleAddNewEditorBefore = () => {
+        dispatch(cvSlice.actions.addIconicContainerItemBefore({ index }));
+    };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('controls-left', 'controls')}>
@@ -16,7 +28,12 @@ function BoxEditorItem({ title, editorValue = '', timeline, onAddNewEditor }) {
                         placement="right"
                         content="Thêm mục ở trên"
                     >
-                        <span className={cx('controls-icon')}>
+                        <span
+                            onClick={() => {
+                                handleAddNewEditorBefore();
+                            }}
+                            className={cx('controls-icon')}
+                        >
                             <ion-icon name="add-circle-sharp"></ion-icon>
                         </span>
                     </Tippy>
@@ -46,7 +63,9 @@ function BoxEditorItem({ title, editorValue = '', timeline, onAddNewEditor }) {
                         content="Thêm mục ở dưới"
                     >
                         <span
-                            onClick={onAddNewEditor}
+                            onClick={() => {
+                                handleAddNewEditor();
+                            }}
                             className={cx('controls-icon')}
                         >
                             <ion-icon name="add-circle-sharp"></ion-icon>

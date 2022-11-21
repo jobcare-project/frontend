@@ -10,9 +10,6 @@ export default function Card({ data, to }) {
     return (
         <div className={cx('wrapper')}>
             <Link className={cx('link')} to={to}>
-                    
-                
-
                 <div className={cx('image-block')}>
                     {data?.thumbnail ? (
                         <img
