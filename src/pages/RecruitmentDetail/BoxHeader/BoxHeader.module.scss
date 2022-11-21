@@ -1,7 +1,6 @@
 .wrapper {
     margin-right: auto;
     margin-left: auto;
-    width: 1200px;
     .box {
         display: flex;
         justify-content: space-between;
@@ -26,6 +25,13 @@
                 }
             }
         }
+        .box-logo {
+            img {
+                width: 150px;
+                height: 150px;
+                padding: 10px;
+            }
+        }
     }
     .content-detail {
         display: flex;
@@ -36,7 +42,7 @@
                 width: 97%;
                 margin-top: var(--margin-top-0);
                 padding: 10px;
-                height: 230px;
+                min-height: 230px;
                 box-shadow: var(--box-shadown-0);
                 span {
                     padding-left: 4px;

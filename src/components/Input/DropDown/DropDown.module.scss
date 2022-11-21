@@ -2,10 +2,12 @@
     background-color: var(--white-color);
     border-radius: 8px;
     padding: 6px 4px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
+    border: 1px solid #ccc;
 }
 
 .content {
@@ -13,6 +15,7 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
+    height: 32px;
     .category {
         border: none;
         outline: none;

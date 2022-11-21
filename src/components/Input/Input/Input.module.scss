@@ -28,3 +28,16 @@
     background-color: transparent;
     width: 100%;
 }
+
+.primary {
+    width: 100%;
+    height: 41x;
+    border: 1px solid #ccc;
+    &:focus {
+        border: 1px solid #000;
+    }
+}
+.checkbox {
+    height: 27px;
+    width: 80%;
+}
