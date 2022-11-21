@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import styles from './ContentBlog.module.scss';
+import styles from './BlogContent.module.scss';
 import classNames from 'classnames/bind';
 import Card from '~/components/Card/Card';
 import CardBlog from '~/components/CardBlog/CardBlog';
@@ -43,7 +43,7 @@ function ContentBlog({ data, to }) {
                                     .slice(0, 8)
                                     .map((blogList, index) => {
                                         return (
-                                            <Col >
+                                            <Col>
                                                 <CardBlog
                                                     data={blogList}
                                                 ></CardBlog>

@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import styles from './BlogPost.module.scss';
+import styles from './PostBlog.module.scss';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import Button from '~/components/Button';

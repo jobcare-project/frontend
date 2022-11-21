@@ -6,7 +6,7 @@ const routes = {
     profile: '/profile',
     settings: '/settings',
     accounts: '/accounts',
-    blog: '/blog/post',
+    blog: '/blog/blogpost',
     cv: '/cv',
     recruitment: '/recruitmentpage',
     testuser: '/testuser',
@@ -23,6 +23,8 @@ const routes = {
     usersManagement: '/admin/usermanagement',
     editPost: '/recruiter/recruiterpostjob/:id',
     blogpost: '/blog/postblog',
+    blogcontent: '/blog/postblog/blogcontent',
+    blogdetail: '/blog/postblog/blogdetail', // /:id
 };
 
 export default routes;
