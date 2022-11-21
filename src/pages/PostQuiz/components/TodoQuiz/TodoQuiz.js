@@ -3,7 +3,7 @@ import styles from './TodoQuiz.module.scss';
 
 import { db, storage } from '../../firebase';
 import { useState, useEffect } from 'react';
-import { collection, onSnapshot, addDoc } from 'firebase/firestore';
+import { collection, addDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 
 import { Col, Row } from 'react-bootstrap';
@@ -15,16 +15,13 @@ import DropDown from '~/components/Input/DropDown/DropDown';
 const cx = classNames.bind(styles);
 
 function TodoQuiz() {
-    const [, setQuiz] = useState([]);
     const [file, setFile] = useState(null);
     const [, setProgress] = useState(null);
     const [form, setForm] = useState({
         title: '',
         desc: '',
         category: '',
-        question: '',
-        options: [],
-        answer: '',
+        questions: [{ question: '', options: [], answer: '' }],
     });
 
     const categoryOption = [
@@ -47,20 +44,6 @@ function TodoQuiz() {
     ];
 
     const quizCollectionRef = collection(db, 'quiz');
-
-    useEffect(() => {
-        onSnapshot(quizCollectionRef, (snapshot) => {
-            setQuiz(
-                snapshot.docs.map((doc) => {
-                    return {
-                        id: doc.id,
-                        viewing: false,
-                        ...doc.data(),
-                    };
-                }),
-            );
-        });
-    }, [quizCollectionRef, form]);
 
     useEffect(() => {
         const uploadFile = () => {
@@ -112,6 +95,24 @@ function TodoQuiz() {
         addDoc(quizCollectionRef, form);
     };
 
+    const handleQuestion = (e, i) => {
+        const QuestionClone = [...form.questions];
+
+        QuestionClone[i] = e.target.value;
+
+        setForm({
+            ...form,
+            questions: QuestionClone,
+        });
+    };
+
+    const handleQuestionCount = () => {
+        setForm({
+            ...form,
+            questions: [...form.questions, ''],
+        });
+    };
+
     const handleOption = (e, i) => {
         const OptionClone = [...form.options];
 
@@ -140,7 +141,7 @@ function TodoQuiz() {
                                     value={form.category}
                                     onChange={onCategoryChange}
                                 >
-                                    <div className={cx('title-category')} >
+                                    <div className={cx('title-category')}>
                                         Bạn hãy chọn lĩnh vực về bài Quiz của
                                         bạn
                                     </div>
@@ -199,21 +200,28 @@ function TodoQuiz() {
                                     onChange={(e) => setFile(e.target.files[0])}
                                 />
                             </div>
+
                             <div className="form-group">
-                                <div className={cx('question')}></div>
-                                <Input
-                                    className={cx('question-input')}
-                                    type="text"
-                                    value={form.question}
-                                    onChange={(e) =>
-                                        setForm({
-                                            ...form,
-                                            question: e.target.value,
-                                        })
-                                    }
-                                    placeholder="Nhập câu hỏi tại đây"
-                                />
+                                {form.questions.map((ques, i) => (
+                                    <div
+                                        type="text"
+                                        key={i}
+                                        value={ques}
+                                        onChange={(e) => handleQuestion(e, i)}
+                                    >
+                                        
+                                    </div>
+                                ))}
+                                <Button
+                                    outline
+                                    type="button"
+                                    onClick={handleQuestionCount}
+                                    className={cx('add-option-btn')}
+                                >
+                                    Thêm câu hoi
+                                </Button>
                             </div>
+                            {/* 
 
                             <div className="form-group">
                                 <div className={cx('option')}>Câu trả lời</div>
@@ -250,10 +258,10 @@ function TodoQuiz() {
                                     }
                                     placeholder="Nhập đáp án tại đây"
                                 />
-                            </div>
+                            </div> */}
                             <div className={cx('save-option-btn')}>
                                 <Button primary type="submit">
-                                    Lưu câu trả lời
+                                    Submit
                                 </Button>
                             </div>
                         </form>
