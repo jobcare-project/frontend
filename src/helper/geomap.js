@@ -53,3 +53,18 @@ export const getIDWardByName = (name) => {
         DATA_COUNTRY.commune.find((item) => item.name === name)?.idCommune || ''
     );
 };
+
+
+export function fillMultipleStepInfo(stepInfo, initialValues, setValues) {
+    let _values = { ...initialValues }
+    Object.keys(stepInfo).forEach((prop) => {
+      if (stepInfo[prop] === undefined || stepInfo[prop] === null || stepInfo[prop] === '') {
+        _values[prop] = initialValues[prop]
+      } else {
+        _values[prop] = stepInfo[prop]
+      }
+    })
+    setValues(_values)
+    return _values
+  }
+  

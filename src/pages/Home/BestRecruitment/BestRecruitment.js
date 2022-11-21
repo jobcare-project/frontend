@@ -1,11 +1,11 @@
 import classNames from 'classnames/bind';
+import styles from './BestRecruitment.module.scss';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Container } from 'react-bootstrap';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import styles from './BestRecruitment.module.scss';
 import Card from '~/components/Card/Card';
 import { fetchListJob } from '../homeSlice';
 import { jobListSelector } from '~/redux/Selectors/jobSelector';

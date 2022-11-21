@@ -4,7 +4,7 @@ import styles from './RecruitmentPage.module.scss';
 import { Container } from 'react-bootstrap';
 import MainJob from './MainJob/MainJob';
 import RuleBottom from '../Home/RuleBottom/RuleBottom';
-import Search from './Search/Search';
+import Search from './Search/SearchJob/Search';
 import Carousel from '../Home/Slider/Slider';
 const cx = classNames.bind(styles);
 const recruitmentList = [

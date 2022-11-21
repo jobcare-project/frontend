@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './BoxHeader.module.scss';
-import DescriptDetail from '~/pages/RecruitmentDetail/RecruitDetail/DescriptDetail';
 import images from '~/assets/images';
 import Button from '~/components/Button';
 import Modal from '~/components/Modal/ModalCv/ModalCv';
@@ -30,7 +29,7 @@ export default function BoxHeader({ data, to }) {
                     <div className={cx('box-left')}>
                         <div className={cx('title')}>
                             <h2 className={cx('title-header')}>
-                                Tuyển thực tập sinh lập trình website (FrontEnd)
+                                {data?.title}
                                 <span>
                                     <ion-icon
                                         name="checkmark-circle-outline"
@@ -49,7 +48,7 @@ export default function BoxHeader({ data, to }) {
                                     className={cx('time-icon')}
                                 ></ion-icon>
                             </span>
-                            <span>Hạn nộp hồ sơ: {data?.time}</span>
+                            <span>Hạn nộp hồ sơ: {data?.createAt}</span>
                         </div>
                     </div>
                     <div className={cx('box-logo')}>
@@ -72,7 +71,7 @@ export default function BoxHeader({ data, to }) {
                                             <span>Mức lương</span>
                                         </div>
                                         <span className={cx('type-detail')}>
-                                            Từ 15-20 triệu
+                                            {data?.salary}
                                         </span>
                                     </Col>
                                     <Col md={6} className={'mb-5'}>
@@ -83,7 +82,7 @@ export default function BoxHeader({ data, to }) {
                                             <span>Số lượng người</span>
                                         </div>
                                         <span className={cx('type-detail')}>
-                                            2
+                                            {data?.amount}
                                         </span>
                                     </Col>
                                     <Col md={6} className={'mb-5'}>
@@ -94,7 +93,7 @@ export default function BoxHeader({ data, to }) {
                                             <span>Hình thức làm việc</span>
                                         </div>
                                         <span className={cx('type-detail')}>
-                                            Toàn thời gian
+                                            {data?.typeWork}
                                         </span>
                                     </Col>
                                     <Col md={6} className={'mb-5'}>
@@ -105,7 +104,7 @@ export default function BoxHeader({ data, to }) {
                                             <span>Giới tính</span>
                                         </div>
                                         <span className={cx('type-detail')}>
-                                            Không yêu cầu
+                                            {data?.gender}
                                         </span>
                                     </Col>
                                     <Col md={6} className={'mb-5'}>
@@ -116,7 +115,7 @@ export default function BoxHeader({ data, to }) {
                                             <span>Cấp bậc</span>
                                         </div>
                                         <span className={cx('type-detail')}>
-                                            Fresher
+                                            {data?.level}
                                         </span>
                                     </Col>
                                     <Col md={6} className={'mb-5'}>
@@ -127,7 +126,7 @@ export default function BoxHeader({ data, to }) {
                                             <span>Kinh nghiệm</span>
                                         </div>
                                         <span className={cx('type-detail')}>
-                                            Không yêu cầu
+                                            {data?.experience}
                                         </span>
                                     </Col>
                                 </Row>
@@ -136,11 +135,28 @@ export default function BoxHeader({ data, to }) {
                         <div className={cx('location')}>
                             <h2 className={cx('adress')}>Địa điểm làm việc</h2>
                             <span className={cx('address-detail')}>
-                                - Đà Nẵng, 47 Bạch Đằng - Hải Châu
+                                - {data?.location}
                             </span>
                         </div>
                         <div className={cx('content-post')}>
-                            <DescriptDetail />
+                            <div className={cx('descript-job')}>
+                                <h1>Mô tả công việc</h1>
+                                <div className={cx('content-tab')}>
+                                    <p>{data?.jobDescription}wwwwwwwwwwwwww</p>
+                                </div>
+                            </div>
+                            <div className={cx('descript-require')}>
+                                <h1>Yều cầu ứng viên</h1>
+                                <div className={cx('content-tab')}>
+                                    <p>{data?.jobRequire}</p>
+                                </div>
+                            </div>
+                            <div className={cx('descript-benefit')}>
+                                <h1>Quyền lợi</h1>
+                                <div className={cx('content-tab')}>
+                                    <p>{data?.welFare}</p>
+                                </div>
+                            </div>
                             <div className={cx('mothod-title')}>
                                 <h2>Cách thức ứng tuyển</h2>
                             </div>
@@ -167,7 +183,7 @@ export default function BoxHeader({ data, to }) {
                                 <span>
                                     <ion-icon name="time-outline"></ion-icon>
                                 </span>
-                                <span>Hạn nộp hồ sơ: {data?.time}</span>
+                                <span>Hạn nộp hồ sơ: {data?.endDay}</span>
                             </div>
                         </div>
                     </div>

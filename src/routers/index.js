@@ -19,6 +19,8 @@ import Admin from '~/pages/Admin';
 import UsersManage from '~/pages/Admin/UsersManage';
 import Recruiter from '~/pages/Recruiter/Recruiter';
 import RecruiterSaved from '~/pages/Recruiter/RecruiterSaved/RecruiterSaved';
+import RecruiterPostEdit from '~/pages/Recruiter/RecruiterPostEdit/RecruiterPostEdit';
+import BlogPost from '~/pages/Blogs/BlogPost/BlogPost';
 
 export const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -43,6 +45,8 @@ export const privateRoutes = [
     { path: config.routes.settings, component: Settings },
     { path: config.routes.savepost, component: SavePost },
     { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
+    { path: config.routes.editPost, component: RecruiterPostEdit },
+    { path: config.routes.blogpost, component: BlogPost },
 ];
 
 export const userPrivateRoutes = [];

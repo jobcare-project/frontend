@@ -4,99 +4,23 @@ import classNames from 'classnames/bind';
 import { Col, Container, Row } from 'react-bootstrap';
 import DropDownPage from './DropDownPage/DropDownPage';
 import Card from '~/components/Card/Card';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { jobListSelector } from '~/redux/Selectors/jobSelector';
+import { fetchListJob } from '~/pages/Home/homeSlice';
 import { fetchDeletedJobDesc } from '../Home/homeSlice';
-import { useDispatch } from 'react-redux';
 
 const cx = classNames.bind(styles);
-const recruitmentList = [
-    {
-        thumbnail:
-            'https://luatvietphong.vn/wp-content/uploads/2021/08/anh-20102715083672561-1.jpg',
-        title: 'Nhà tuyển dụng ABC',
-        description:
-            'Day la nha tuyen dung hang dau Day la nha tuyen dung hang dau Day la nha tuyen dung hang dau',
-        salary: 'Lên đến 30tr',
-        location: 'Hai Chau - Da Nang',
-        createAt: '4 ngày trước',
-    },
-    {
-        thumbnail:
-            'https://luatvietphong.vn/wp-content/uploads/2021/08/anh-20102715083672561-1.jpg',
-        title: 'Nhà tuyển dụng ABC',
-        description: 'Day la nha tuyen dung hang dau',
-        salary: 'Lên đến 30tr',
-        location: 'Hai Chau - Da Nang',
-        createAt: '4 ngày trước',
-    },
-    {
-        thumbnail:
-            'https://luatvietphong.vn/wp-content/uploads/2021/08/anh-20102715083672561-1.jpg',
-        title: 'Nhà tuyển dụng ABC',
-        description: 'Day la nha tuyen dung hang dau',
-        salary: 'Lên đến 30tr',
-        location: 'Hai Chau - Da Nang',
-        createAt: '4 ngày trước',
-    },
-    {
-        thumbnail:
-            'https://luatvietphong.vn/wp-content/uploads/2021/08/anh-20102715083672561-1.jpg',
-        title: 'Nhà tuyển dụng ABC',
-        description: 'Day la nha tuyen dung hang dau',
-        salary: 'Lên đến 30tr',
-        location: 'Hai Chau - Da Nang',
-        createAt: '4 ngày trước',
-    },
-    {
-        thumbnail:
-            'https://luatvietphong.vn/wp-content/uploads/2021/08/anh-20102715083672561-1.jpg',
-        title: 'Nhà tuyển dụng ABC',
-        description: 'Day la nha tuyen dung hang dau',
-        salary: 'Lên đến 30tr',
-        location: 'Hai Chau - Da Nang',
-        createAt: '4 ngày trước',
-    },
-    {
-        thumbnail:
-            'https://luatvietphong.vn/wp-content/uploads/2021/08/anh-20102715083672561-1.jpg',
-        title: 'Nhà tuyển dụng ABC',
-        description: 'Day la nha tuyen dung hang dau',
-        salary: 'Lên đến 30tr',
-        location: 'Hai Chau - Da Nang',
-        createAt: '4 ngày trước',
-    },
-    {
-        thumbnail:
-            'https://luatvietphong.vn/wp-content/uploads/2021/08/anh-20102715083672561-1.jpg',
-        title: 'Nhà tuyển dụng ABC',
-        description: 'Day la nha tuyen dung hang dau',
-        salary: 'Lên đến 30tr',
-        location: 'Hai Chau - Da Nang',
-        createAt: '4 ngày trước',
-    },
-    {
-        thumbnail:
-            'https://luatvietphong.vn/wp-content/uploads/2021/08/anh-20102715083672561-1.jpg',
-        title: 'Nhà tuyển dụng ABC',
-        description: 'Day la nha tuyen dung hang dau',
-        salary: 'Lên đến 30tr',
-        location: 'Hai Chau - Da Nang',
-        createAt: '4 ngày trước',
-    },
-    {
-        thumbnail:
-            'https://luatvietphong.vn/wp-content/uploads/2021/08/anh-20102715083672561-1.jpg',
-        title: 'Nhà tuyển dụng ABC',
-        description: 'Day la nha tuyen dung hang dau',
-        salary: 'Lên đến 30tr',
-        location: 'Hai Chau - Da Nang',
-        createAt: '4 ngày trước',
-    },
-];
-
 function SavePost() {
     const dispatch = useDispatch();
-    const handleDeletedPost = () => {
-        dispatch(fetchDeletedJobDesc('0a07e576-9e4a-4208-8009-47d53845d3da'));
+    const jobListData = useSelector(jobListSelector);
+
+    useEffect(() => {
+        dispatch(fetchListJob());
+    }, []);
+
+    const handleDeletedPost = (id) => {
+        dispatch(fetchDeletedJobDesc(id));
     };
     return (
         <Container>
@@ -106,26 +30,45 @@ function SavePost() {
                     <DropDownPage></DropDownPage>
                 </div>
 
-                <Row>
-                    {recruitmentList.slice(0, 8).map((recruitment, index) => {
-                        return (
-                            <Col key={index} lg={3} md={4} sm={6}>
-                                <Card
-                                    data={recruitment}
-                                    deleted={
-                                        <ion-icon name="trash-outline"></ion-icon>
-                                    }
-                                    titleDeleted="Xoá tin"
-                                    repair={
-                                        <ion-icon name="pencil-outline"></ion-icon>
-                                    }
-                                    titlRepair="Sửa tin"
-                                ></Card>
-                            </Col>
-                        );
-                    })}
-                    {/* <button onClick={handleDeletedPost}>Xoas em di</button> */}
-                </Row>
+                {jobListData.length ? (
+                    <div className={cx('wrapper')}>
+                        <Row>
+                            {jobListData &&
+                                jobListData.slice(0, 16).map((recruitment) => {
+                                    return (
+                                        <Col
+                                            key={recruitment.id}
+                                            lg={3}
+                                            md={4}
+                                            sm={6}
+                                        >
+                                            <Card
+                                                data={recruitment}
+                                                onDelete={() =>
+                                                    handleDeletedPost(
+                                                        recruitment.id,
+                                                    )
+                                                }
+                                                deleted={
+                                                    <ion-icon name="trash-outline"></ion-icon>
+                                                }
+                                                titleDeleted="Xoá tin"
+                                                repair={
+                                                    <ion-icon name="pencil-outline"></ion-icon>
+                                                }
+                                                titlRepair="Sửa tin"
+                                            ></Card>
+                                        </Col>
+                                    );
+                                })}
+                        </Row>
+                    </div>
+                ) : (
+                    ''
+                )}
+                {/* <button onClick={() => handleDeletedPost(recruitment.id)}>
+                    Xoas em di
+                </button> */}
             </div>
         </Container>
     );

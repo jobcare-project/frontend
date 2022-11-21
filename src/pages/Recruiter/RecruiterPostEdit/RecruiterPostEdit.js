@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from './RecruiterPost.module.scss';
 import Button from '~/components/Button';
 import { useState } from 'react';
-import { getAllProvinces, getAllDistricts } from '~/helper/geomap';
+import {
+    getAllProvinces,
+    getAllDistricts,
+    fillMultipleStepInfo,
+} from '~/helper/geomap';
 import {
     Formik,
     Form,
@@ -19,11 +23,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-// import { FormInput } from '../RecruiterPost/Input/Input';
+// import { FormInput } from '../RecruiterPostEdit/Input/Input';
 import Input from '~/components/Input/Input/Input';
 import DropDown from '~/components/Input/DropDown/DropDown';
 import { useMemo } from 'react';
-import { fetchPostJobDesc } from '~/pages/Home/homeSlice';
+import { fetchEditJobDesc, fetchPostJobDesc } from '~/pages/Home/homeSlice';
+import { useParams } from 'react-router-dom';
+import { getDetailPost } from '~/services/jobService';
 // import ModalDeleted from '~/pages/Profile/Modal/ModalPost/ModalDeleted';
 const cx = classNames.bind(styles);
 const mucluongData = [
@@ -267,9 +273,11 @@ const optionVipData = [
     },
 ];
 const TYPE_SALARY_DEFAULT = 'Thoả thuận';
-function RecruiterPost() {
+function RecruiterPostEdit() {
     // Modal
     const [modalDeleted, setModalDeleted] = useState(false);
+    const params = useParams();
+    console.log(params.id);
     // get values dropdown
     const [districtID, setDictricID] = useState('');
     const [selectForm, setSelectForm] = useState({
@@ -285,7 +293,7 @@ function RecruiterPost() {
     // set value texarea
     const [description, setDescription] = useState('');
     const [requireCandidate, setRequireCandidate] = useState('');
-    const [benefit, setbenefit] = useState('');
+    const [benefit, setBenefit] = useState('');
     // check form
     const [checkboxForm, setCheckboxRule] = useState({
         vip: 'false',
@@ -352,7 +360,7 @@ function RecruiterPost() {
     };
 
     const handleSubmit = () => {
-        console.log(formikRef.current.values);
+        // console.log(formikRef.current.values);
         const formikValues = formikRef.current.values;
 
         const salary =
@@ -361,9 +369,62 @@ function RecruiterPost() {
                 : formikValues.salary;
         const selectValues = { ...selectForm, salary };
         const data = { ...formikValues, ...selectValues };
+        console.log('formik value', formikValues);
         console.log('Data', data);
-        // dispatch(fetchPostJobDesc(data));
+        // dispatch(fetchEditJobDesc(params.id, data));
     };
+    const objFillValues = [
+        'title',
+        'salary',
+        'amount',
+        'workFrom',
+        'gender',
+        'level',
+        'experience',
+        'city',
+        'district',
+        'location',
+        'jobDescription',
+        'jobRequire',
+        'weiface',
+    ];
+    useEffect(() => {
+        const getPost = async () => {
+            const res = await getDetailPost(params.id);
+            console.log(res.data);
+            objFillValues.map((_elt) => {
+                // console.log(res.data[_elt]);
+                formikRef.current.setFieldValue(_elt, res.data[_elt]);
+                setDescription(res.data['jobDescription']);
+                setRequireCandidate(res.data['jobRequire']);
+                setBenefit(res.data['weiface']);
+                // const data = {
+                //     salary: res.data['salary'],
+                //     gender: res.data['gender'],
+                //     experience: res.data['experience'],
+                //     city: res.data['city'],
+                //     district: res.data['district'],
+                //     workFrom: res.data['workFrom'],
+                // };
+                // console.log(res.data['city']);
+                // setSelectForm({
+                //     salary: res.data['salary'],
+                //     gender: res.data['gender'],
+                //     experience: res.data['experience'],
+                //     city: '01',
+                //     district: res.data['district'],
+                //     workFrom: res.data['workFrom'],
+                // });
+            });
+            // fillMultipleStepInfo(
+            //     res.data,
+            //     formikRef.current.values,
+            //     formikRef.current.setFieldValue,
+            // );
+        };
+        getPost();
+    }, []);
+
     return (
         <div className={cx('wrapper')}>
             <Container>
@@ -377,7 +438,8 @@ function RecruiterPost() {
                         location: '',
                         jobDescription: '',
                         jobRequire: '',
-                        welfare: '',
+                        benefit: '',
+                        title: '',
                     }}
                     onSubmit={() => {
                         handleSubmit();
@@ -407,7 +469,7 @@ function RecruiterPost() {
                             .required('Vui lòng nhập ô này')
                             .min(20, 'Tiêu đề phải lớn hơn 20 ký tự')
                             .max(70, 'Tiêu đề không được vượt quá 80 ký tự'),
-                        welfare: Yup.string()
+                        benefit: Yup.string()
                             .required('Vui lòng nhập ô này')
                             .min(20, 'Tiêu đề phải lớn hơn 20 ký tự')
                             .max(70, 'Tiêu đề không được vượt quá 80 ký tự'),
@@ -708,20 +770,20 @@ function RecruiterPost() {
                                             <Field
                                                 as="textarea"
                                                 className={cx('input-text')}
-                                                name="welfare"
+                                                name="benefit"
                                                 type="text"
                                                 value={benefit}
                                                 onChange={(e) =>
                                                     handleTextChange(
                                                         e,
-                                                        'welfare',
-                                                        setbenefit,
+                                                        'benefit',
+                                                        setBenefit,
                                                     )
                                                 }
                                             />
                                         </div>
                                         <p className={cx('message')}>
-                                            <ErrorMessage name="welfare" />
+                                            <ErrorMessage name="benefit" />
                                         </p>
                                     </Col>
                                 </Row>
@@ -927,4 +989,4 @@ function RecruiterPost() {
     );
 }
 
-export default RecruiterPost;
+export default RecruiterPostEdit;

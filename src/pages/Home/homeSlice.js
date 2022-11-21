@@ -5,6 +5,7 @@ import {
 } from '@reduxjs/toolkit';
 import {
     deletedJobDesc,
+    editJobDesc,
     getListJobApi,
     postJobDesc,
 } from '~/services/jobService';
@@ -83,6 +84,21 @@ export const fetchDeletedJobDesc = createAsyncThunk(
             const res = await deletedJobDesc(id);
 
             return res.data;
+        } catch (error) {
+            console.log(error);
+            return isRejectedWithValue(error.response);
+        }
+    },
+);
+
+// edit job
+export const fetchEditJobDesc = createAsyncThunk(
+    'home/fetchPostJobDesc',
+    async (id, data) => {
+        console.log('data fetch', data);
+        try {
+            // const res = await editJobDesc(id, data);
+            // return res.data;
         } catch (error) {
             console.log(error);
             return isRejectedWithValue(error.response);

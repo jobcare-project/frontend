@@ -6,7 +6,7 @@ const routes = {
     profile: '/profile',
     settings: '/settings',
     accounts: '/accounts',
-    blog: '/blog',
+    blog: '/blog/post',
     cv: '/cv',
     recruitment: '/recruitmentpage',
     testuser: '/testuser',
@@ -19,8 +19,10 @@ const routes = {
     recruitmentdetail: '/recruitmentdetail',
     recruitmentpage: '/recruitmentpage/user',
     displayquizz: 'testuser/displayquizz',
-    savepost: '/savedPost',
+    savepost: '/blog/savedPost',
     usersManagement: '/admin/usermanagement',
+    editPost: '/recruiter/recruiterpostjob/:id',
+    blogpost: '/blog/postblog',
 };
 
 export default routes;

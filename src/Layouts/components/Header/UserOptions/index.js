@@ -60,7 +60,7 @@ function UserOptions({ user }) {
                 <ul className={cx('option-list')}>
                     <Link
                         className={cx('option-item-link')}
-                        to={config.routes.blog}
+                        to={config.routes.blogpost}
                     >
                         <li className={cx('option-item')}>Viết blog</li>
                     </Link>

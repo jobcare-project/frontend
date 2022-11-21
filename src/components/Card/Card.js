@@ -16,6 +16,7 @@ export default function Card({
     titleDeleted = '',
     titlRepair = '',
     titleSaved = '',
+    onDelete,
 }) {
     return (
         <div className={cx('wrapper')}>
@@ -75,6 +76,7 @@ export default function Card({
 
             <div className={cx('subdesc-control')}>
                 <div
+                    onClick={() => onDelete()}
                     className={({ isActive }) =>
                         isActive
                             ? cx('subdesc-text', 'active')

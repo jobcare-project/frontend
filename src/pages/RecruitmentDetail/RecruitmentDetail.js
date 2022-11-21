@@ -5,7 +5,7 @@ import BoxHeader from '~/pages/RecruitmentDetail/BoxHeader/BoxHeader';
 import RelatedJob from './RelatedJob/RelatedJob';
 import classNames from 'classnames/bind';
 import styles from './RecruitmentDetail.module.scss';
-import Search from '../RecruitmentPage/Search/Search';
+import Search from '../RecruitmentPage/Search/SearchJob/Search';
 
 const cx = classNames.bind(styles);
 function RecruitmentDetail() {
