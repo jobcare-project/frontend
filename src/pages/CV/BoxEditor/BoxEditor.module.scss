@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     position: relative;
+    margin-top: 24px;
     &:hover {
         .controls {
             display: flex;
@@ -23,7 +24,8 @@
         align-items: center;
         text-align: left;
         width: 100%;
-        margin-top: 24px;
+        border-bottom: 1px solid var(--gray-light-color);
+        padding-bottom: 6px;
     }
     .content {
         width: 100%;

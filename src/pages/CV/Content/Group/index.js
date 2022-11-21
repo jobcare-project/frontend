@@ -9,20 +9,12 @@ function EditorGroup({ editorData }) {
                 heading={editorData.heading}
                 icon={<ion-icon name="contract-outline"></ion-icon>}
             >
-                {/* <BoxEditorItem
-                    timeline
-                    title="main"
-                    editorValue="Giới thiệu bản thân mình đi"
-                />
-                <BoxEditorItem editorValue="Giới thiệu bản thân mình đi" />
-                <BoxEditorItem editorValue="Giới thiệu bản thân mình đi" />
-                <BoxEditorItem editorValue="Giới thiệu bản thân mình đi" />
-                <BoxEditorItem editorValue="Giới thiệu bản thân mình đi" />
-                <BoxEditorItem editorValue="Giới thiệu bản thân mình đi" /> */}
                 {editorData.data.map((editor) => {
                     return (
                         <BoxEditorItem
                             key={editor.id}
+                            timeline={editor?.timeline}
+                            title={editor?.title}
                             editorValue={editor.value}
                         />
                     );

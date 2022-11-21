@@ -9,21 +9,6 @@ import Overview from './Overview';
 
 const cx = classNames.bind(styles);
 
-const data = [
-    <Overview />,
-    <EditorGroup />,
-    <EditorGroup />,
-    <EditorGroup />,
-    <EditorGroup />,
-    <EditorGroup />,
-    <EditorGroup />,
-    <EditorGroup />,
-    <EditorGroup />,
-    <EditorGroup />,
-    <EditorGroup />,
-    <EditorGroup />,
-];
-
 function Content() {
     const theme = useSelector(themeSelector);
     const contentData = useSelector(contentCvSelector);

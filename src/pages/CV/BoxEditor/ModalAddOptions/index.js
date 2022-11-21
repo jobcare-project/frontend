@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 const modalOptions = [
     {
         icon: <ion-icon name="person-outline"></ion-icon>,
-        desc: 'Thông tin cá nhân',
+        desc: 'Thông tin liên hệ',
         isDisable: true,
     },
     {

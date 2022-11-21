@@ -1,12 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
 
-const educationInitial = {
+const skillsInitial = {
     heading: {
         id: uuidv4(),
         blocks: [
             {
                 key: uuidv4(),
-                text: 'Học vấn',
+                text: 'Kỹ năng',
                 type: 'unstyled',
                 depth: 0,
                 inlineStyleRanges: [],
@@ -24,7 +24,7 @@ const educationInitial = {
                 blocks: [
                     {
                         key: uuidv4(),
-                        text: '08/2022 - 11/2022',
+                        text: '',
                         type: 'unstyled',
                         depth: 0,
                         inlineStyleRanges: [],
@@ -38,13 +38,13 @@ const educationInitial = {
                 blocks: [
                     {
                         key: uuidv4(),
-                        text: 'Đại học Duy Tân ',
+                        text: 'Tin học văn phòng',
                         type: 'unstyled',
                         depth: 0,
                         inlineStyleRanges: [
                             {
                                 offset: 0,
-                                length: 16,
+                                length: 17,
                                 style: 'BOLD',
                             },
                         ],
@@ -53,16 +53,7 @@ const educationInitial = {
                     },
                     {
                         key: uuidv4(),
-                        text: 'Công nghệ phần mềm chuẩn CMU',
-                        type: 'unstyled',
-                        depth: 0,
-                        inlineStyleRanges: [],
-                        entityRanges: [],
-                        data: {},
-                    },
-                    {
-                        key: uuidv4(),
-                        text: 'Tốt nghiệp loại giỏi',
+                        text: 'Sử dụng thành thạo các công cụ Word, Excel, Power Point',
                         type: 'unordered-list-item',
                         depth: 0,
                         inlineStyleRanges: [],
@@ -71,7 +62,31 @@ const educationInitial = {
                     },
                     {
                         key: uuidv4(),
-                        text: 'Điểm trung bình 8.0',
+                        text: 'Ngoại ngữ',
+                        type: 'unstyled',
+                        depth: 0,
+                        inlineStyleRanges: [
+                            {
+                                offset: 0,
+                                length: 9,
+                                style: 'BOLD',
+                            },
+                        ],
+                        entityRanges: [],
+                        data: {},
+                    },
+                    {
+                        key: uuidv4(),
+                        text: 'Khả năng giao tiếp tiếng Anh trôi chảy',
+                        type: 'unordered-list-item',
+                        depth: 0,
+                        inlineStyleRanges: [],
+                        entityRanges: [],
+                        data: {},
+                    },
+                    {
+                        key: uuidv4(),
+                        text: 'Chứng chỉ tiếng Nhật N2',
                         type: 'unordered-list-item',
                         depth: 0,
                         inlineStyleRanges: [],
@@ -85,4 +100,4 @@ const educationInitial = {
     ],
 };
 
-export default educationInitial;
+export default skillsInitial;

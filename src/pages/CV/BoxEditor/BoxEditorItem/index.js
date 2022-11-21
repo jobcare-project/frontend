@@ -85,7 +85,7 @@ function BoxEditorItem({ title, editorValue = '', timeline, index }) {
             {timeline && (
                 <div className={cx('timeline-block')}>
                     <span className={cx('title-content')}>
-                        <InputEditor defaultValue="20/10/2022 - 20/11/2022" />
+                        <InputEditor defaultValue={timeline} />
                     </span>
                 </div>
             )}
