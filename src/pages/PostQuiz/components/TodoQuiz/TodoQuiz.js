@@ -203,13 +203,8 @@ function TodoQuiz() {
 
                             <div className="form-group">
                                 {form.questions.map((ques, i) => (
-                                    <div
-                                        type="text"
-                                        key={i}
-                                        value={ques}
-                                        onChange={(e) => handleQuestion(e, i)}
-                                    >
-                                        
+                                    <div key={i}>
+                                        hello
                                     </div>
                                 ))}
                                 <Button
