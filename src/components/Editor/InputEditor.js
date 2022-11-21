@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Editor } from 'react-draft-wysiwyg';
 import {
     ContentState,
@@ -35,10 +36,10 @@ function InputEditor({ defaultValue }) {
         //     'onEditorStateChange:::',
         //     editorState.getCurrentContent().getPlainText(''),
         // );
-        // console.log(
-        //     'editorState:::: ',
-        //     convertToRaw(editorState.getCurrentContent()),
-        // );
+        console.log(
+            'editorState:::: ',
+            convertToRaw(editorState.getCurrentContent()),
+        );
     };
 
     return (
