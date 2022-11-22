@@ -13,17 +13,28 @@ function BoxEditorItem({
     editorValue = '',
     timeline,
     index,
+    boxId,
     typeBlock,
 }) {
     const dispatch = useDispatch();
 
     const handleAddNewEditor = () => {
-        dispatch(cvSlice.actions.addIconicContainerItem({ index, typeBlock }));
+        dispatch(
+            cvSlice.actions.addIconicContainerItem({
+                index,
+                typeBlock,
+                boxId,
+            }),
+        );
     };
 
     const handleAddNewEditorBefore = () => {
         dispatch(
-            cvSlice.actions.addIconicContainerItemBefore({ index, typeBlock }),
+            cvSlice.actions.addIconicContainerItemBefore({
+                index,
+                typeBlock,
+                boxId,
+            }),
         );
     };
 

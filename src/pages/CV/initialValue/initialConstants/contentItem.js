@@ -1,7 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-const newOverviewItem = {
-    id: uuidv4(),
+const newContentBoxItem = {
     timeline: {
         id: uuidv4(),
         blocks: [
@@ -65,3 +64,5 @@ const newOverviewItem = {
         entityMap: {},
     },
 };
+
+export default newContentBoxItem;

@@ -1,7 +1,7 @@
 import BoxEditor from '../../BoxEditor';
 import BoxEditorItem from '../../BoxEditor/BoxEditorItem';
 
-function EditorGroup({ editorData }) {
+function EditorGroup({ editorData, boxId }) {
     return (
         <section>
             {/* Truyền các editor value dưới dạng mảng để dễ quản lý */}
@@ -14,6 +14,7 @@ function EditorGroup({ editorData }) {
                         <BoxEditorItem
                             key={editor.id}
                             typeBlock="content"
+                            boxId={boxId}
                             timeline={editor?.timeline}
                             title={editor?.title}
                             editorValue={editor.value}

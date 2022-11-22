@@ -28,9 +28,10 @@ function Content(props, ref) {
                 <Overview />
 
                 {/* Content CV */}
-                {contentData.map((contentItem, index) => (
+                {contentData.map((contentItem) => (
                     <EditorGroup
                         key={contentItem.id}
+                        boxId={contentItem.id}
                         editorData={contentItem}
                     />
                 ))}
