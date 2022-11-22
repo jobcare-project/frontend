@@ -4,12 +4,12 @@ import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDZKGL1m2V4Lb5FUovZpsGw77nOdmIechs",
-  authDomain: "quiz-jobcare-app-df1c3.firebaseapp.com",
-  projectId: "quiz-jobcare-app-df1c3",
-  storageBucket: "quiz-jobcare-app-df1c3.appspot.com",
-  messagingSenderId: "761571634601",
-  appId: "1:761571634601:web:76327384c848afa2fda8b8"
+  apiKey: "AIzaSyCeMHAjxhFDcIlc-KXxhTYIsVYluGu-E_4",
+  authDomain: "jobcare-blog.firebaseapp.com",
+  projectId: "jobcare-blog",
+  storageBucket: "jobcare-blog.appspot.com",
+  messagingSenderId: "1059889126630",
+  appId: "1:1059889126630:web:970a1925c6210eea25ef27"
 };
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
