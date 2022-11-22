@@ -4,6 +4,7 @@ import styles from './CardBlog.module.scss';
 import { Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import images from '~/assets/images';
+import config from '~/config';
 const cx = classNames.bind(styles);
 function CardBlog({
     data,
@@ -17,7 +18,7 @@ function CardBlog({
 }) {
     return (
         <div className={cx('wrapper')}>
-            <Link className={cx('link')} to={to}>
+            <Link className={cx('link')} to={config.routes.blogdetail}>
                 <div className={cx('heading')}>
                     <div className={cx('image-block')}>
                         {data?.avatar ? (

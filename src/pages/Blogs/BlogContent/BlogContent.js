@@ -49,6 +49,7 @@ function ContentBlog({ data, to }) {
                                                 <Col>
                                                     <CardBlog
                                                         data={blogList}
+                                                        key={index}
                                                     ></CardBlog>
                                                 </Col>
                                             );
