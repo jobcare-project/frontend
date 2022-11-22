@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind';
+import { forwardRef } from 'react';
 import { useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 
@@ -9,7 +10,7 @@ import Overview from './Overview';
 
 const cx = classNames.bind(styles);
 
-function Content() {
+function Content(props, ref) {
     const theme = useSelector(themeSelector);
     const contentData = useSelector(contentCvSelector);
 
@@ -17,7 +18,7 @@ function Content() {
 
     return (
         <ThemeProvider theme={theme}>
-            <div className={cx('wrapper')}>
+            <div ref={ref} className={cx('wrapper')}>
                 <Overview />
                 {/* <div className={cx('page')}>
                     <div className={cx('overview')}>
@@ -47,4 +48,4 @@ function Content() {
     );
 }
 
-export default Content;
+export default forwardRef(Content);
