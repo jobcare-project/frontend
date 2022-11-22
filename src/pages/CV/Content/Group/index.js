@@ -13,6 +13,7 @@ function EditorGroup({ editorData }) {
                     return (
                         <BoxEditorItem
                             key={editor.id}
+                            typeBlock="content"
                             timeline={editor?.timeline}
                             title={editor?.title}
                             editorValue={editor.value}

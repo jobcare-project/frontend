@@ -33,6 +33,7 @@ function Overview() {
                             return (
                                 <Col key={overviewItem.id} md={6}>
                                     <BoxEditorItem
+                                        typeBlock="overview"
                                         index={index}
                                         title={overviewItem.title}
                                         editorValue={overviewItem.value}

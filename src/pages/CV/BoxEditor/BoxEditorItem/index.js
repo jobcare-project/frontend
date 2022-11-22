@@ -8,15 +8,23 @@ import { cvSlice } from '../../cvSlice';
 
 const cx = classNames.bind(styles);
 
-function BoxEditorItem({ title, editorValue = '', timeline, index }) {
+function BoxEditorItem({
+    title,
+    editorValue = '',
+    timeline,
+    index,
+    typeBlock,
+}) {
     const dispatch = useDispatch();
 
     const handleAddNewEditor = () => {
-        dispatch(cvSlice.actions.addIconicContainerItem({ index }));
+        dispatch(cvSlice.actions.addIconicContainerItem({ index, typeBlock }));
     };
 
     const handleAddNewEditorBefore = () => {
-        dispatch(cvSlice.actions.addIconicContainerItemBefore({ index }));
+        dispatch(
+            cvSlice.actions.addIconicContainerItemBefore({ index, typeBlock }),
+        );
     };
 
     return (
