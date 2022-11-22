@@ -101,13 +101,12 @@
                 -webkit-box-orient: vertical;
                 overflow: hidden;
             }
-            &:hover {
-                color: var(--primary-color);
-            }
+            // &:hover {
+            //     color: var(--primary-color);
+            // }
         }
         .active {
-            // background-color: var(--gray-light-color-2);
-            background-color: red;
+            color: red;
         }
     }
 }

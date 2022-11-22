@@ -12,18 +12,6 @@ function Recruiter() {
             <Container>
                 <Row>
                     <Col md={6} className={'mb-5'}>
-                        <Link>
-                            <div className={cx('control-block')}>
-                                <span className={cx('icon')}>
-                                    <ion-icon name="reader-outline"></ion-icon>
-                                </span>
-                                <h3 className={cx('heading')}>
-                                    Đăng bài Quizz
-                                </h3>
-                            </div>
-                        </Link>
-                    </Col>
-                    <Col md={6} className={'mb-5'}>
                         <Link to={config.routes.recruiterpost}>
                             <div className={cx('control-block')}>
                                 <span className={cx('icon')}>
@@ -39,14 +27,24 @@ function Recruiter() {
                         <Link>
                             <div className={cx('control-block')}>
                                 <span className={cx('icon')}>
-                                    <ion-icon
-                                        name="create-sharp"
-                                        role="img"
-                                        class="md hydrated"
-                                        aria-label="create sharp"
-                                    ></ion-icon>
+                                    <ion-icon name="reader-outline"></ion-icon>
                                 </span>
-                                <h3 className={cx('heading')}>Đăng bài Blog</h3>
+                                <h3 className={cx('heading')}>
+                                    Đăng bài Quizz
+                                </h3>
+                            </div>
+                        </Link>
+                    </Col>
+
+                    <Col md={6} className={'mb-5'}>
+                        <Link to={config.routes.recruitersaved}>
+                            <div className={cx('control-block')}>
+                                <span className={cx('icon')}>
+                                    <ion-icon name="save-outline"></ion-icon>
+                                </span>
+                                <h3 className={cx('heading')}>
+                                    Tin tuyển dụng của bạn
+                                </h3>
                             </div>
                         </Link>
                     </Col>
@@ -54,10 +52,10 @@ function Recruiter() {
                         <Link to={config.routes.recruitersaved}>
                             <div className={cx('control-block')}>
                                 <span className={cx('icon')}>
-                                    <ion-icon name="bookmark-outline"></ion-icon>
+                                    <ion-icon name="save-outline"></ion-icon>
                                 </span>
                                 <h3 className={cx('heading')}>
-                                    Bài đăng của bạn
+                                    Bài Quizz của bạn
                                 </h3>
                             </div>
                         </Link>

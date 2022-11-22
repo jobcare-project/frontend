@@ -1,4 +1,5 @@
 import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 import classNames from 'classnames/bind';
 import styles from './RecruiterPost.module.scss';
 import Button from '~/components/Button';
@@ -15,7 +16,6 @@ import {
 import * as Yup from 'yup';
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -23,7 +23,16 @@ import Container from 'react-bootstrap/Container';
 import Input from '~/components/Input/Input/Input';
 import DropDown from '~/components/Input/DropDown/DropDown';
 import { useMemo } from 'react';
-import { fetchPostJobDesc } from '~/pages/Home/homeSlice';
+// import { fetchPostJobDesc, homeSlice } from '~/pages/Home/homeSlice';
+import { fetchPostJobDesc, recruiterSlice } from '../recruiterSlice';
+import {
+    jobListSelector,
+    jobSelector,
+    messageSelector,
+} from '~/redux/Selectors/jobSelector';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import config from '~/config';
 // import ModalDeleted from '~/pages/Profile/Modal/ModalPost/ModalDeleted';
 const cx = classNames.bind(styles);
 const mucluongData = [
@@ -118,124 +127,124 @@ const kinhnghiemData = [
         name: 'Trên 10 năm',
     },
 ];
-const vipDateData = [
-    {
-        value: '10000',
-        name: 'VIP 3 / 10.000đ / ngày',
-    },
-    {
-        value: '20000',
-        name: 'VIP 2 / 20.000đ / ngày',
-    },
-    {
-        value: '30000',
-        name: 'VIP 1 / 30.000đ / ngày',
-    },
-];
-const dateData = [
-    {
-        value: '0',
-        name: 'Số ngày',
-    },
-    {
-        value: '1',
-        name: '1',
-    },
-    {
-        value: '2',
-        name: '2',
-    },
-    {
-        value: '3',
-        name: '3',
-    },
-    {
-        value: '4',
-        name: '4',
-    },
-    {
-        value: '5',
-        name: '5',
-    },
-    {
-        value: '6',
-        name: '6',
-    },
-    {
-        value: '7',
-        name: '7',
-    },
-    {
-        value: '8',
-        name: '8',
-    },
-    {
-        value: '9',
-        name: '9',
-    },
-    {
-        value: '10',
-        name: '10',
-    },
-    {
-        value: '11',
-        name: '11',
-    },
-    {
-        value: '12',
-        name: '12',
-    },
-    {
-        value: '13',
-        name: '13',
-    },
-    {
-        value: '14',
-        name: '14',
-    },
-    {
-        value: '15',
-        name: '15',
-    },
-    {
-        value: '16',
-        name: '16',
-    },
-    {
-        value: '17',
-        name: '17',
-    },
-    {
-        value: '18',
-        name: '18',
-    },
-    {
-        value: '19',
-        name: '19',
-    },
-    {
-        value: '20',
-        name: '20',
-    },
-];
-const vipMonthData = [
-    {
-        value: '700',
-        name: 'Loại VIP',
-    },
-    {
-        value: '701',
-        name: 'VIP 3 / 250.000đ / tháng',
-    },
-    {
-        value: '702',
-        name: 'VIP 2 / 5500.000đ / tháng',
-    },
-    {
-        value: '703',
-        name: 'VIP 1 / 800.000đ / tháng',
-    },
-];
+// const vipDateData = [
+//     {
+//         value: '10000',
+//         name: 'VIP 3 / 10.000đ / ngày',
+//     },
+//     {
+//         value: '20000',
+//         name: 'VIP 2 / 20.000đ / ngày',
+//     },
+//     {
+//         value: '30000',
+//         name: 'VIP 1 / 30.000đ / ngày',
+//     },
+// ];
+// const dateData = [
+//     {
+//         value: '0',
+//         name: 'Số ngày',
+//     },
+//     {
+//         value: '1',
+//         name: '1',
+//     },
+//     {
+//         value: '2',
+//         name: '2',
+//     },
+//     {
+//         value: '3',
+//         name: '3',
+//     },
+//     {
+//         value: '4',
+//         name: '4',
+//     },
+//     {
+//         value: '5',
+//         name: '5',
+//     },
+//     {
+//         value: '6',
+//         name: '6',
+//     },
+//     {
+//         value: '7',
+//         name: '7',
+//     },
+//     {
+//         value: '8',
+//         name: '8',
+//     },
+//     {
+//         value: '9',
+//         name: '9',
+//     },
+//     {
+//         value: '10',
+//         name: '10',
+//     },
+//     {
+//         value: '11',
+//         name: '11',
+//     },
+//     {
+//         value: '12',
+//         name: '12',
+//     },
+//     {
+//         value: '13',
+//         name: '13',
+//     },
+//     {
+//         value: '14',
+//         name: '14',
+//     },
+//     {
+//         value: '15',
+//         name: '15',
+//     },
+//     {
+//         value: '16',
+//         name: '16',
+//     },
+//     {
+//         value: '17',
+//         name: '17',
+//     },
+//     {
+//         value: '18',
+//         name: '18',
+//     },
+//     {
+//         value: '19',
+//         name: '19',
+//     },
+//     {
+//         value: '20',
+//         name: '20',
+//     },
+// ];
+// const vipMonthData = [
+//     {
+//         value: '700',
+//         name: 'Loại VIP',
+//     },
+//     {
+//         value: '701',
+//         name: 'VIP 3 / 250.000đ / tháng',
+//     },
+//     {
+//         value: '702',
+//         name: 'VIP 2 / 5500.000đ / tháng',
+//     },
+//     {
+//         value: '703',
+//         name: 'VIP 1 / 800.000đ / tháng',
+//     },
+// ];
 
 const checkboxData = [
     {
@@ -280,8 +289,8 @@ function RecruiterPost() {
         district: '',
         workFrom: '',
     });
-    const [checked, setChecked] = useState('');
-    const [typeChecked, setTypeChecked] = useState('');
+    // const [checked, setChecked] = useState('');
+    // const [typeChecked, setTypeChecked] = useState('');
     // set value texarea
     const [description, setDescription] = useState('');
     const [requireCandidate, setRequireCandidate] = useState('');
@@ -290,22 +299,33 @@ function RecruiterPost() {
     const [checkboxForm, setCheckboxRule] = useState({
         vip: 'false',
     });
-    const [quantityVipDay, setQuantityVipDay] = useState({
-        typeVipDay: '',
-        quantiyDay: '',
-    });
-    // handle select VIP
-    const handleChangeVipValues = (value, name, nameSelect) => {
-        setQuantityVipDay((prev) => {
-            return {
-                ...prev,
-                [nameSelect]: value,
-            };
-        });
+    // const [quantityVipDay, setQuantityVipDay] = useState({
+    //     typeVipDay: '',
+    //     quantiyDay: '',
+    // });
+    const toastifyOptions = {
+        position: 'top-right',
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
     };
-    const totalQuantityVipDays = useMemo(() => {
-        return +quantityVipDay.quantiyDay * +quantityVipDay.typeVipDay;
-    }, [quantityVipDay]);
+
+    // handle select VIP
+    // const handleChangeVipValues = (value, name, nameSelect) => {
+    //     setQuantityVipDay((prev) => {
+    //         return {
+    //             ...prev,
+    //             [nameSelect]: value,
+    //         };
+    //     });
+    // };
+    // const totalQuantityVipDays = useMemo(() => {
+    //     return +quantityVipDay.quantiyDay * +quantityVipDay.typeVipDay;
+    // }, [quantityVipDay]);
     // formik data
     const formikRef = useRef(null);
     const dispatch = useDispatch();
@@ -342,19 +362,33 @@ function RecruiterPost() {
         });
     };
     // check type vip
-    const handleChangeTypeChecked = (name) => {
-        setTypeChecked(name);
-    };
+    // const handleChangeTypeChecked = (name) => {
+    //     setTypeChecked(name);
+    // };
     // console.log({ checkboxRule });
     const handleTextChange = (e, field, setState) => {
         formikRef.current.setFieldValue(field, e.target.value);
         setState(e.target.value);
     };
+    const job = useSelector(jobSelector);
+    const message = useSelector(messageSelector);
+    console.log({ message });
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (message) {
+            toast.success('Post success', toastifyOptions);
+            // toast.error('🦄 Wow so easy!', toastifyOptions);
+            dispatch(recruiterSlice.actions.restMessage(false));
+            navigate(config.routes.recruitersaved);
+        }
+    }, [job, message]);
 
     const handleSubmit = () => {
         console.log(formikRef.current.values);
         const formikValues = formikRef.current.values;
-
+        // search timf lỗi formik
         const salary =
             selectForm.salary === TYPE_SALARY_DEFAULT
                 ? TYPE_SALARY_DEFAULT
@@ -362,8 +396,9 @@ function RecruiterPost() {
         const selectValues = { ...selectForm, salary };
         const data = { ...formikValues, ...selectValues };
         console.log('Data', data);
-        // dispatch(fetchPostJobDesc(data));
+        dispatch(fetchPostJobDesc(data));
     };
+
     return (
         <div className={cx('wrapper')}>
             <Container>
@@ -379,9 +414,9 @@ function RecruiterPost() {
                         jobRequire: '',
                         welfare: '',
                     }}
-                    onSubmit={() => {
-                        handleSubmit();
-                    }}
+                    // onSubmit={() => {
+                    //     handleSubmit();
+                    // }}
                     validationSchema={Yup.object({
                         title: Yup.string()
                             .required('Vui lòng nhập ô này')
@@ -449,7 +484,7 @@ function RecruiterPost() {
                                                 <Field
                                                     className={cx(
                                                         'input-salary',
-                                                        typeSalary ==
+                                                        typeSalary ===
                                                             TYPE_SALARY_DEFAULT
                                                             ? 'disable'
                                                             : '',
@@ -725,7 +760,8 @@ function RecruiterPost() {
                                         </p>
                                     </Col>
                                 </Row>
-                                <div className={cx('content-input')}>
+                                {/* Chọn gói đăng tin */}
+                                {/* <div className={cx('content-input')}>
                                     <div className={cx('detail-name')}>
                                         Hình thức đăng tin
                                     </div>
@@ -771,9 +807,9 @@ function RecruiterPost() {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
 
-                                <div className={cx('content-input')}>
+                                {/* <div className={cx('content-input')}>
                                     <div className={cx('detail-name')}></div>
                                     <div className={cx('form-choice')}>
                                         <div className={cx('type-name')}>
@@ -848,8 +884,8 @@ function RecruiterPost() {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div className={cx('content-input')}>
+                                </div> */}
+                                {/* <div className={cx('content-input')}>
                                     <div className={cx('detail-name')}></div>
                                     <div className={cx('form-choice')}>
                                         <div className={cx('type-name')}>
@@ -889,7 +925,7 @@ function RecruiterPost() {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                             <div className={cx('content-rule')}>
                                 <div className={cx('checkbox-rule')}>
@@ -906,7 +942,7 @@ function RecruiterPost() {
                             </div>
                             <div className={cx('submit-btn')}>
                                 <div className={cx('btn-right')}>
-                                    {/* <Button saveInput>Lưu nháp</Button> */}
+                                    <Button saveInput>Lưu nháp</Button>
                                     {/* <ModalDeleted></ModalDeleted> */}
                                     <Button
                                         type="submit"

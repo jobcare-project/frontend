@@ -1,0 +1,43 @@
+.wrapper {
+    width: 1280px;
+    margin: 0 auto;
+    padding: 15px;
+    border: 1px solid #ccc;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    .container {
+        display: flex;
+        .user {
+            width: 13%;
+            margin-right: 200px;
+            position: sticky;
+            .username {
+                color: #292929;
+                font-size: 1.6rem;
+                font-weight: 600;
+                margin-bottom: 0;
+                padding: 0 0 10px 10px;
+                border-bottom: 1px solid #000;
+            }
+            .icon {
+                padding: 15px;
+                display: flex;
+                justify-content: space-between;
+                color: #757575;
+                font-size: 1.6rem;
+            }
+        }
+        .content {
+            width: 668px;
+            .content-header {
+                color: #222;
+                font-size: 40px;
+                font-weight: 700;
+            }
+            .content-detail {
+                font-size: 18px;
+                line-height: 2;
+            }
+        }
+    }
+}
