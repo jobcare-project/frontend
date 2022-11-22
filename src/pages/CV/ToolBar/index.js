@@ -9,27 +9,33 @@ import FontsControl from './Menu/FontsControl';
 import ImageControl from './Menu/ImageControl';
 import TemplateControl from './Menu/TemplateControl';
 import styles from './ToolBar.module.scss';
-import { useEffect } from 'react';
 
 const cx = classNames.bind(styles);
 
 function ToolBar({ cvRef }) {
-    useEffect(() => {
-        console.log('contentRef', cvRef.current.offsetHeight);
-    }, []);
     const generatePDF = () => {
+        const pageWidth = 210;
+        const pageHeight = 297;
+
         html2canvas(cvRef.current).then((canvas) => {
             const imgData = canvas.toDataURL('/image/png', 1.0);
-            const doc = new jsPDF('p', 'mm', 'a4');
-            // const imgProps = doc.getImageProperties(imgData);
-            // const doc = new jsPDF();
-            doc.addImage(imgData, 'PNG', 0, 0, 210, cvRef.current.offsetHeight);
+            const imgHeight = (canvas.height * pageWidth) / canvas.width;
+            let heightLeft = imgHeight;
+
+            const doc = new jsPDF('p', 'mm');
+
+            let position = 0;
+            doc.addImage(imgData, 'PNG', 0, position, pageWidth, imgHeight);
+            heightLeft -= pageHeight;
+
+            while (heightLeft >= 0) {
+                position = heightLeft - imgHeight;
+                doc.addPage();
+                doc.addImage(imgData, 'PNG', 0, position, pageWidth, imgHeight);
+                heightLeft -= pageHeight;
+            }
+
             doc.save('jobcare.pdf');
-            // doc.html(cvRef.current, {
-            //     callback: (pdf) => {
-            //         pdf.save('jobcare-cv.pdf');
-            //     },
-            // });
         });
     };
 
