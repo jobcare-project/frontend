@@ -10,7 +10,7 @@ import {
     postJobDesc,
 } from '~/services/jobService';
 
-export const homeSlice = createSlice({
+export const recruiterSlice = createSlice({
     name: 'home',
     initialState: {
         idLoading: false,
@@ -25,13 +25,6 @@ export const homeSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(fetchListJob.pending, (state) => {
-                state.idLoading = true;
-            })
-            .addCase(fetchListJob.fulfilled, (state, action) => {
-                state.idLoading = false;
-                state.jobList = action.payload;
-            })
             // post job
             .addCase(fetchPostJobDesc.pending, (state) => {
                 state.idLoading = true;
@@ -54,16 +47,6 @@ export const homeSlice = createSlice({
                 state.messsage = message;
             });
     },
-});
-
-export const fetchListJob = createAsyncThunk('home/fetchListJob', async () => {
-    try {
-        const res = await getListJobApi();
-        return res.data;
-    } catch (error) {
-        console.log(error);
-        return isRejectedWithValue(error.response);
-    }
 });
 
 // dispatch(fetchPostJobDesc(data));

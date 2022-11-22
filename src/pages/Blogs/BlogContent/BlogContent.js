@@ -28,35 +28,41 @@ function ContentBlog({ data, to }) {
     return (
         <div className={cx('wrapper')}>
             <Container>
-                <div className={cx('container-left')}>
-                    <div className={cx('heading')}>
-                        <h2 className={cx('header-title')}>Bài viết nổi bật</h2>
-                        <p className={cx('sub-heading')}>
-                            Tổng hợp các bài viết chia sẻ về kinh nghiệm học
-                            tập, ôn tập, phỏng vấn liên quan về nghề nghiệp
-                        </p>
-                    </div>
-                    <div className={cx('content-topic')}>
-                        <div className={cx('content-blog')}>
-                            <Row>
-                                {blogLists
-                                    .slice(0, 8)
-                                    .map((blogList, index) => {
-                                        return (
-                                            <Col>
-                                                <CardBlog
-                                                    data={blogList}
-                                                ></CardBlog>
-                                            </Col>
-                                        );
-                                    })}
-                            </Row>
+                {blogLists.length ? (
+                    <div className={cx('container-left')}>
+                        <div className={cx('heading')}>
+                            <h2 className={cx('header-title')}>
+                                Bài viết nổi bật
+                            </h2>
+                            <p className={cx('sub-heading')}>
+                                Tổng hợp các bài viết chia sẻ về kinh nghiệm học
+                                tập, ôn tập, phỏng vấn liên quan về nghề nghiệp
+                            </p>
                         </div>
-                        <div className={cx('title-related')}>
-                            <h3>Các chủ đề được đề xuất</h3>
+                        <div className={cx('content-topic')}>
+                            <div className={cx('content-blog')}>
+                                <Row>
+                                    {blogLists
+                                        .slice(0, 8)
+                                        .map((blogList, index) => {
+                                            return (
+                                                <Col>
+                                                    <CardBlog
+                                                        data={blogList}
+                                                    ></CardBlog>
+                                                </Col>
+                                            );
+                                        })}
+                                </Row>
+                            </div>
+                            <div className={cx('title-related')}>
+                                <h3>Các chủ đề được đề xuất</h3>
+                            </div>
                         </div>
                     </div>
-                </div>
+                ) : (
+                    ''
+                )}
             </Container>
         </div>
     );

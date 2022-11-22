@@ -1,0 +1,16 @@
+.wrapper {
+    border: 1px solid #000;
+    width: 720px;
+    position: absolute;
+    height: 100%;
+    top: 70px;
+
+    padding: 40px;
+    .content {
+        display: flex;
+        .avatar {
+            border-radius: 50%;
+            width: 36px;
+        }
+    }
+}
