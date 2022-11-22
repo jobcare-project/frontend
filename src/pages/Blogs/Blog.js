@@ -9,7 +9,6 @@ const cx = classNames.bind(styles);
 export default function Blog() {
     return (
         <div className={cx('wrapper')}>
-            <SearchAdvance />
             <ContentBlog />
         </div>
     );
