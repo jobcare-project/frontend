@@ -10,7 +10,7 @@ import { Container } from 'react-bootstrap';
 const cx = classNames.bind(styles);
 
 const handleChange = () => {};
-function BlogPost() {
+function PostBlog() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('heading')}>
@@ -40,4 +40,4 @@ function BlogPost() {
     );
 }
 
-export default BlogPost;
+export default PostBlog;

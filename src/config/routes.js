@@ -22,7 +22,7 @@ const routes = {
     savepost: '/blog/savedPost',
     usersManagement: '/admin/usermanagement',
     editPost: '/recruiter/recruiterpostjob/:id',
-    blogpost: '/blog/postblog',
+    postblog: '/blog/postblog',
     blogcontent: '/blog/postblog/blogcontent',
     blogdetail: '/blog/postblog/blogdetail', // /:id
 };

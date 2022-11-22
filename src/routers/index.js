@@ -20,9 +20,9 @@ import UsersManage from '~/pages/Admin/UsersManage';
 import Recruiter from '~/pages/Recruiter/Recruiter';
 import RecruiterSaved from '~/pages/Recruiter/RecruiterSaved/RecruiterSaved';
 import RecruiterPostEdit from '~/pages/Recruiter/RecruiterPostEdit/RecruiterPostEdit';
-import BlogPost from '~/pages/Blogs/PostBlog/PostBlog';
 import ContentBlog from '~/pages/Blogs/BlogContent/BlogContent';
 import BlogDetail from '~/pages/Blogs/BlogDetail/BlogDetail';
+import PostBlog from '~/pages/Blogs/PostBlog/PostBlog';
 
 export const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -48,7 +48,7 @@ export const privateRoutes = [
     { path: config.routes.savepost, component: SavePost },
     { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
     { path: config.routes.editPost, component: RecruiterPostEdit },
-    { path: config.routes.blogpost, component: BlogPost },
+    { path: config.routes.postblog, component: PostBlog },
     { path: config.routes.blogcontent, component: ContentBlog },
     { path: config.routes.blogdetail, component: BlogDetail },
 ];
