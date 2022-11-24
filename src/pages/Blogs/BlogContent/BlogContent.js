@@ -5,30 +5,33 @@ import classNames from 'classnames/bind';
 import Card from '~/components/Card/Card';
 import CardBlog from '~/components/CardBlog/CardBlog';
 import Input from '~/components/Input/Input/Input';
+
+import { db } from '../firebase';
+import { useState, useEffect, useRef } from 'react';
+
+import { collection, onSnapshot } from 'firebase/firestore';
 const cx = classNames.bind(styles);
-const blogLists = [
-    {
-        avatar: 'https://luatvietphong.vn/wp-content/uploads/2021/08/anh-20102715083672561-1.jpg',
-        username: 'Đông Phạm',
-        title: 'Day la nha tuyen dung hang dau Day la nha tuyen dung hang dau Day la nha tuyen dung hang dau',
-        content:
-            'Day la nha tuyen dung hang dau Day la nha tuyen dung hang dau Day la nha tuyen dung hang dau',
-        createAt: '4 ngày trước',
-    },
-    {
-        avatar: 'https://luatvietphong.vn/wp-content/uploads/2021/08/anh-20102715083672561-1.jpg',
-        username: 'Đông Phạm',
-        title: 'Day la nha tuyen dung hang dau Day la nha tuyen dung hang dau Day la nha tuyen dung hang dau',
-        content:
-            'Day la nha tuyen dung hang dau Day la nha tuyen dung hang dau Day la nha tuyen dung hang dau',
-        createAt: '4 ngày trước',
-    },
-];
 function ContentBlog({ data, to }) {
+    const [blog, setBlog] = useState([]);
+    const blogCollectionRef = collection(db, 'blog');
+
+    useEffect(() => {
+        onSnapshot(blogCollectionRef, (snapshot) => {
+            setBlog(
+                snapshot.docs.map((doc) => {
+                    return {
+                        id: doc.id,
+                        viewing: false,
+                        ...doc.data(),
+                    };
+                }),
+            );
+        });
+    }, [blog, blogCollectionRef]);
     return (
         <div className={cx('wrapper')}>
             <Container>
-                {blogLists.length ? (
+                {blog.length ? (
                     <div className={cx('container-left')}>
                         <div className={cx('heading')}>
                             <h2 className={cx('header-title')}>
@@ -42,18 +45,15 @@ function ContentBlog({ data, to }) {
                         <div className={cx('content-topic')}>
                             <div className={cx('content-blog')}>
                                 <Row>
-                                    {blogLists
-                                        .slice(0, 8)
-                                        .map((blogList, index) => {
-                                            return (
-                                                <Col>
-                                                    <CardBlog
-                                                        data={blogList}
-                                                        key={index}
-                                                    ></CardBlog>
-                                                </Col>
-                                            );
-                                        })}
+                                    {blog.slice(0, 8).map((blog, index) => {
+                                        return (
+                                            <Col>
+                                                <CardBlog
+                                                    data={blog}
+                                                ></CardBlog>
+                                            </Col>
+                                        );
+                                    })}
                                 </Row>
                             </div>
                             <div className={cx('title-related')}>
