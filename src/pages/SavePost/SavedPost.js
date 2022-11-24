@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { jobListSelector } from '~/redux/Selectors/jobSelector';
 import { fetchListJob } from '~/pages/Home/homeSlice';
 import { fetchDeletedJobDesc } from '../Home/homeSlice';
+import SavedPostItem from './SavedPostItem';
 
 const cx = classNames.bind(styles);
 function SavePost() {
@@ -35,31 +36,7 @@ function SavePost() {
                         <Row>
                             {jobListData &&
                                 jobListData.slice(0, 16).map((recruitment) => {
-                                    return (
-                                        <Col
-                                            key={recruitment.id}
-                                            lg={3}
-                                            md={4}
-                                            sm={6}
-                                        >
-                                            <Card
-                                                data={recruitment}
-                                                onDelete={() =>
-                                                    handleDeletedPost(
-                                                        recruitment.id,
-                                                    )
-                                                }
-                                                deleted={
-                                                    <ion-icon name="trash-outline"></ion-icon>
-                                                }
-                                                titleDeleted="Xoá tin"
-                                                repair={
-                                                    <ion-icon name="pencil-outline"></ion-icon>
-                                                }
-                                                titlRepair="Sửa tin"
-                                            ></Card>
-                                        </Col>
-                                    );
+                                    return <SavedPostItem data={recruitment} />;
                                 })}
                         </Row>
                     </div>

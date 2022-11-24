@@ -378,7 +378,7 @@ function RecruiterPost() {
 
     useEffect(() => {
         if (message) {
-            toast.success('Post success', toastifyOptions);
+            toast.success('Đăng bài thành công', toastifyOptions);
             // toast.error('🦄 Wow so easy!', toastifyOptions);
             dispatch(recruiterSlice.actions.restMessage(false));
             navigate(config.routes.recruitersaved);

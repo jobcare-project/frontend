@@ -11,7 +11,11 @@ function CommentModal() {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('content')}>
-                {/* {user.image ? (
+                <span className={cx('close-btn')}>
+                    <ion-icon name="close-outline"></ion-icon>
+                </span>
+                <div className={cx('user-comment')}>
+                    {/* {user.image ? (
                         <img
                             className={cx('avatar-img', 'avatar')}
                             src={`data:${
@@ -22,18 +26,19 @@ function CommentModal() {
                             alt={user.image.name}
                         />
                     ) : ( */}
-                <img
-                    className={cx('avatar')}
-                    src={images.avatarDefault}
-                    alt="Avatar"
-                />
-                <div className={cx('comment-input')}>
-                    <Input secondary placeholder="Viết bình luận của bạn" />
+                    <img
+                        className={cx('avatar')}
+                        src={images.avatarDefault}
+                        alt="Avatar"
+                    />
+                    <div className={cx('comment-input')}>
+                        <Input secondary placeholder="Viết bình luận của bạn" />
+                    </div>
                 </div>
-            </div>
-            <div className={cx('comment-editor')}></div>
-            <div className={cx('comment-btn')}>
-                <Button primary>Bình Luận</Button>
+                <div className={cx('comment-editor')}></div>
+                <div className={cx('comment-btn')}>
+                    <Button primary>Bình Luận</Button>
+                </div>
             </div>
         </div>
     );

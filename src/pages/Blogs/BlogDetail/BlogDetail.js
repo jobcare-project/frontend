@@ -52,7 +52,7 @@ function BlogDetail({ data }) {
                                         {blogDetail.content}
                                     </div>
                                     <div className={cx('comment')}>
-                                        {/* <CommentModal /> */}
+                                        <CommentModal />
                                     </div>
                                 </div>
                             );

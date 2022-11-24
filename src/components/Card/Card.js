@@ -1,7 +1,11 @@
 import classNames from 'classnames/bind';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import images from '~/assets/images';
+import config from '~/config';
+import { fetchDeletedJobDesc } from '~/pages/Recruiter/recruiterSlice';
+import ModalPost from '../Modal/ModalDeleted/ModalDeleted';
 
 import styles from './Card.module.scss';
 
@@ -18,9 +22,19 @@ export default function Card({
     titleSaved = '',
     onDelete,
 }) {
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const dispatch = useDispatch();
+
+    const handleDeletedPost = (id) => {
+        dispatch(fetchDeletedJobDesc(data.id));
+    };
     return (
         <div className={cx('wrapper')}>
-            <Link className={cx('link')} to={to}>
+            {/* /id */}
+            <Link className={cx('link')} to={config.routes.recruitmentdetail}>
                 <div className={cx('image-block')}>
                     {data?.thumbnail ? (
                         <img
@@ -73,10 +87,14 @@ export default function Card({
                 </div>
             </Link>
             {/* convert to button  */}
-
+            <ModalPost
+                handleClose={handleClose}
+                show={show}
+                onActionRequest={handleDeletedPost}
+            />
             <div className={cx('subdesc-control')}>
                 <div
-                    onClick={() => onDelete()}
+                    onClick={handleShow}
                     className={({ isActive }) =>
                         isActive
                             ? cx('subdesc-text', 'active')

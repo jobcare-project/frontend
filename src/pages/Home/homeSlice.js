@@ -56,15 +56,32 @@ export const homeSlice = createSlice({
     },
 });
 
-export const fetchListJob = createAsyncThunk('home/fetchListJob', async () => {
-    try {
-        const res = await getListJobApi();
-        return res.data;
-    } catch (error) {
-        console.log(error);
-        return isRejectedWithValue(error.response);
-    }
-});
+export const fetchListJob = createAsyncThunk(
+    'home/fetchListJob',
+    async  (dispatch) => {
+        try {
+            const res = await getListJobApi();
+            // dispatch(fetchListJobPagination(res.data))
+            // fetchListJobPagination(res.data);
+            return res.data;
+        } catch (error) {
+            console.log(error);
+            return isRejectedWithValue(error.response);
+        }
+    },
+);
+
+export const fetchListJobPagination = createAsyncThunk(
+    'home/fetchListJob',
+    async (jobs) => {
+        try {
+            // console.log('jobs', jobs);
+        } catch (error) {
+            console.log(error);
+            return isRejectedWithValue(error.response);
+        }
+    },
+);
 
 // dispatch(fetchPostJobDesc(data));
 // post a job

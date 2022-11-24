@@ -1,22 +1,10 @@
 import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from '~/components/Button';
-// import classNames from 'classnames/bind';
-// import styles from './ModalDeleted.module.scss';
 
-// const cx = classNames.bind(styles);
-function ModalPost() {
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
+function ModalPost({ handleClose, show, onActionRequest }) {
     return (
         <div>
-            <Button saveInput onClick={handleShow}>
-                Xoá
-            </Button>
-
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>THÔNG BÁO !!</Modal.Title>
@@ -26,10 +14,16 @@ function ModalPost() {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button saveInput onClick={handleClose}>
-                        Close
+                        Huỷ bỏ
                     </Button>
-                    <Button primary onClick={handleClose}>
-                        Save Changes
+                    <Button
+                        primary
+                        onClick={() => {
+                            onActionRequest();
+                            handleClose();
+                        }}
+                    >
+                        Đồng ý
                     </Button>
                 </Modal.Footer>
             </Modal>

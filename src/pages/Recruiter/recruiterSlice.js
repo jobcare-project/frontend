@@ -11,12 +11,13 @@ import {
 } from '~/services/jobService';
 
 export const recruiterSlice = createSlice({
-    name: 'home',
+    name: 'recruiter',
     initialState: {
         idLoading: false,
         jobList: [],
         messsage: false,
         job: {},
+        jobDisplayPagination: [],
     },
     reducers: {
         restMessage: (state, action) => {
@@ -40,6 +41,9 @@ export const recruiterSlice = createSlice({
             .addCase(fetchDeletedJobDesc.pending, (state) => {
                 state.idLoading = true;
             })
+            .addCase(fetchJobsPagination.pending, (state, action) => {
+                state.jobDisplayPagination = action.payload;
+            })
             .addCase(fetchDeletedJobDesc.fulfilled, (state, action) => {
                 state.idLoading = false;
                 const { data, message } = action.payload;
@@ -52,7 +56,7 @@ export const recruiterSlice = createSlice({
 // dispatch(fetchPostJobDesc(data));
 // post a job
 export const fetchPostJobDesc = createAsyncThunk(
-    'home/fetchPostJobDesc',
+    'recruiter/fetchPostJobDesc',
     async (data) => {
         try {
             const res = await postJobDesc(data);
@@ -65,7 +69,7 @@ export const fetchPostJobDesc = createAsyncThunk(
 );
 // deleted job
 export const fetchDeletedJobDesc = createAsyncThunk(
-    'home/fetchDeletedJobDesc',
+    'recruiter/fetchDeletedJobDesc',
     async (id) => {
         try {
             const res = await deletedJobDesc(id);
@@ -79,12 +83,26 @@ export const fetchDeletedJobDesc = createAsyncThunk(
 
 // edit job
 export const fetchEditJobDesc = createAsyncThunk(
-    'home/fetchPostJobDesc',
+    'recruiter/fetchPostJobDesc',
     async (id, data) => {
         console.log('data fetch', data);
         try {
             // const res = await editJobDesc(id, data);
             // return res.data;
+        } catch (error) {
+            console.log(error);
+            return isRejectedWithValue(error.response);
+        }
+    },
+);
+
+export const fetchJobsPagination = createAsyncThunk(
+    'recruiter/fetchPostJobDesc',
+    async (data) => {
+        console.log('data fetch');
+        try {
+            // const res = await editJobDesc(id, data);
+            return data;
         } catch (error) {
             console.log(error);
             return isRejectedWithValue(error.response);
