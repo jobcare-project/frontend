@@ -1,0 +1,18 @@
+.quiz-title{
+    font-size: 30px;
+}
+.quiz{
+    background-color: var(--gray-light-color-3);
+    border-radius: 10px;
+}
+.submit{
+    display: flex;
+    justify-content: center;
+    margin: 100px 0 100px 0;
+    
+    .submit-btn{
+        width: 200px;
+        height: 60px;
+        font-size: 30px;
+    }
+}

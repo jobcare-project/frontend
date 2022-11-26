@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './PostQuiz.module.scss';
-import TodoQuiz from './components/TodoQuiz';
+import FormBuilder from './FormBuilder';
 
 
 const cx = classNames.bind(styles);
@@ -12,7 +12,7 @@ function PostQuiz() {
             <div className={cx('wrapper-add-question')}>
                 <div className={cx('add-question-title')}>Xây dựng quiz</div>
                 <div className={cx('add-question')}>
-                    <TodoQuiz/>
+                   <FormBuilder/>
                 </div>
             </div>
         </div>
