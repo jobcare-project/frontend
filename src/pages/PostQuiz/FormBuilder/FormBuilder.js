@@ -16,13 +16,16 @@ import { collection, addDoc } from 'firebase/firestore';
 
 const cx = classNames.bind(styles);
 
-const FormBuilder = () => {
+function FormBuilder() {
     const initVal = formEl[0]?.value;
 
-    //State
+    //State title
     const [title, setTitle] = useState('');
+    //state desc
     const [description, setDescription] = useState('');
+    //state data (question , option , answer)
     const [data, setData] = useState([]);
+    //state form of data
     const [formData, setFormData] = useState('');
 
     const items = data;
@@ -31,7 +34,8 @@ const FormBuilder = () => {
     const addElement = () => {
         const data = {
             id: uuid(),
-            value: null,
+            question: '',
+            answer: '',
             type: formData,
             required: false,
         };
@@ -58,7 +62,8 @@ const FormBuilder = () => {
         let elIdx = data.findIndex((el) => el.id === elId);
         let newEl = {
             id: uuid(),
-            value: null,
+            question: '',
+            answer: '',
             type: elType,
             required: false,
         };
@@ -71,11 +76,28 @@ const FormBuilder = () => {
         setData(items);
     };
 
-    //Function to Handle Input Values
-    const handleValue = (id, e) => {
+    //Function to Handle Input Question Values
+    const handleValueQuestion = (id, e) => {
         let newArr = data.map((el) => {
-            if (el.id == id) {
-                return { ...el, value: e.target.value };
+            if (el.id === id) {
+                return {
+                    ...el,
+                    question: e.target.value,
+                };
+            } else {
+                return el;
+            }
+        });
+        setData(newArr);
+    };
+    //Function to Handle Input Answer Values
+    const handleValueAnswer = (id, e) => {
+        let newArr = data.map((el) => {
+            if (el.id === id) {
+                return {
+                    ...el,
+                    answer: e.target.value,
+                };
             } else {
                 return el;
             }
@@ -86,7 +108,7 @@ const FormBuilder = () => {
     //Function to Handle Required
     const handleRequired = (id) => {
         let newArr = data.map((el) => {
-            if (el.id == id) {
+            if (el.id === id) {
                 return { ...el, required: !el.required };
             } else {
                 return el;
@@ -98,7 +120,7 @@ const FormBuilder = () => {
     //Function to Handle Element Type
     const handleElType = (id, type) => {
         let newArr = data.map((el) => {
-            if (el.id == id) {
+            if (el.id === id) {
                 return { ...el, type: type };
             } else {
                 return el;
@@ -110,7 +132,7 @@ const FormBuilder = () => {
     //Function to Handle Options
     const addOption = (id, newOption) => {
         let newArr = data.map((el) => {
-            if (el.id == id) {
+            if (el.id === id) {
                 const objVal = 'options' in el ? el?.options : [];
                 return { ...el, options: [...objVal, newOption] };
             } else {
@@ -123,10 +145,10 @@ const FormBuilder = () => {
     //Function to Change Option Values
     const handleOptionValues = (elId, optionId, optionVal) => {
         let newArr = data.map((el) => {
-            if (el.id == elId) {
+            if (el.id === elId) {
                 el?.options &&
                     el?.options.map((opt) => {
-                        if (opt.id == optionId) {
+                        if (opt.id === optionId) {
                             opt.value = optionVal;
                         }
                     });
@@ -141,10 +163,10 @@ const FormBuilder = () => {
     //Function to Delete Optin
     const deleteOption = (elId, optionId) => {
         let newArr = data.map((el) => {
-            if (el.id == elId) {
+            if (el.id === elId) {
                 let newOptions =
                     el?.options &&
-                    el?.options.filter((opt) => opt.id != optionId);
+                    el?.options.filter((opt) => opt.id !== optionId);
                 return { ...el, options: newOptions };
             } else {
                 return el;
@@ -160,7 +182,8 @@ const FormBuilder = () => {
                 return (
                     <RadioInput
                         item={item}
-                        handleValue={handleValue}
+                        handleValueQuestion={handleValueQuestion}
+                        handleValueAnswer={handleValueAnswer}
                         deleteEl={deleteEl}
                         handleRequired={handleRequired}
                         handleElType={handleElType}
@@ -178,7 +201,7 @@ const FormBuilder = () => {
     //Submit to firebase
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (title !== '') {
+        if ((title !== '' && description !== ''&& data !== [] && formData !== '')) {
             await addDoc(collection(db, 'quiz'), {
                 title,
                 description,
@@ -194,7 +217,7 @@ const FormBuilder = () => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div >
+            <div>
                 <Header
                     title={title}
                     setTitle={setTitle}
@@ -211,13 +234,16 @@ const FormBuilder = () => {
             </div>
             <div>
                 <Button outline onClick={addElement}>
-                    thêm câu hỏi
+                    Thêm câu hỏi
                 </Button>
             </div>
-            <div className={cx('submit')} >
-                <Button primary className={cx('submit-btn')} >Đăng bài</Button>
+            <div className={cx('submit')}>
+                <Button primary className={cx('submit-btn')}>
+                    Đăng bài
+                </Button>
             </div>
         </form>
     );
-};
+}
+
 export default FormBuilder;

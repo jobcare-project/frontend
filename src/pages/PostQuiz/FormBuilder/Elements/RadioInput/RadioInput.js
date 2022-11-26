@@ -9,7 +9,8 @@ const cx = classNames.bind(styles);
 
 const RadioInput = ({
     item,
-    handleValue,
+    handleValueQuestion,
+    handleValueAnswer,
     deleteEl,
     addOption,
     handleOptionValues,
@@ -20,7 +21,8 @@ const RadioInput = ({
         console.log(id, typeof id, 'this is id');
         const data = {
             id: uuid(),
-            value: '',
+            question: '',
+            answer: '',
         };
         addOption(id, data);
     };
@@ -31,9 +33,8 @@ const RadioInput = ({
                 <div className={cx('input')}>
                     <input
                         className={cx('input-question')}
-                        defaultValue={item.value}
-                        onChange={(e) => handleValue(item.id, e)}
-                        required={item.required}
+                        defaultValue={item.question}
+                        onChange={(e) => handleValueQuestion(item.id, e)}
                         name={'question'}
                         placeholder="Nhập câu hỏi"
                     />
@@ -65,11 +66,19 @@ const RadioInput = ({
                                 </Button>
                             </div>
                         ))}
+
                     <div>
                         <Button text onClick={() => createNewOption(item.id)}>
                             Thêm câu trả lời
                         </Button>
                     </div>
+                    <input
+                        className={cx('input-answer')}
+                        defaultValue={item.answer}
+                        onChange={(e) => handleValueAnswer(item.id, e)}
+                        name={'answer'}
+                        placeholder="Nhập đáp án"
+                    />
                 </div>
             </div>
             <div>
