@@ -16,7 +16,7 @@ import Header from './Header';
 import Button from '~/components/Button/index.js';
 import DropDown from '~/components/Input/DropDown/DropDown';
 //firebase
-import { db, storage } from '../firebase.js';
+import { db , storage } from '~/components/Firebase/firebase';
 
 const cx = classNames.bind(styles);
 
@@ -301,7 +301,7 @@ function FormBuilder() {
         <form onSubmit={handleSubmit}>
             <div>
                 <div className={cx('category')}>
-                    <div value={category.category} onChange={onCategoryChange}>
+                    <div value={category} onChange={onCategoryChange}>
                         <div className={cx('title-category')}>
                             Bạn hãy chọn lĩnh vực về bài Quiz của bạn
                         </div>

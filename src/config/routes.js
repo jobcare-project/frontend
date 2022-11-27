@@ -14,12 +14,11 @@ const routes = {
     businessadministration: '/testuser/businessadministration',
     linguistics: '/testuser/linguistics',
     postquiz: '/postquiz',
-    displayquizz: 'testuser/displayquizz',
+    displayquizz: '/testuser/displayquizz/:id',
     managequiz: '/managequiz',
     recruiterpost: '/recruiterpost/post',
     recruitmentdetail: '/recruitmentdetail',
     recruitmentpage: '/recruitmentpage/user',
-    displayquizz: 'testuser/displayquizz',
     usersManagement: '/admin/usermanagement',
 };
 
