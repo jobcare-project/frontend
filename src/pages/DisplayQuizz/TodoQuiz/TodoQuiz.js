@@ -3,14 +3,13 @@ import styles from './TodoQuiz.module.scss';
 
 import { db } from '~/pages/PostQuiz/firebase';
 import { useState, useEffect, useRef } from 'react';
+
 import { collection, onSnapshot } from 'firebase/firestore';
 
 import { useNavigate } from 'react-router-dom';
 import Button from '~/components/Button';
 import Modal from 'react-bootstrap/Modal';
 import Accordion from 'react-bootstrap/Accordion';
-
-import Information from '../Information';
 
 const cx = classNames.bind(styles);
 
@@ -155,13 +154,12 @@ function TodoQuiz() {
                     </h5>
                     <h5 className={cx('time')}>{timer}</h5>
                 </div>
-                <Information />
                 <div className={cx('inner')}>
                     <div className={cx('container')}>
                         {
                             <>
                                 <form onSubmit={handleSubmit}>
-                                    {quiz.map((x , index) => {
+                                    {quiz.map((x, index) => {
                                         return (
                                             <div
                                                 key={x.id}
@@ -270,7 +268,7 @@ function TodoQuiz() {
                                                     </p>
                                                 </Accordion.Header>
                                                 <Accordion.Body>
-                                                    {quiz.map((x , index) => {
+                                                    {quiz.map((x, index) => {
                                                         return (
                                                             <div
                                                                 key={x.id}
@@ -279,7 +277,8 @@ function TodoQuiz() {
                                                                 )}
                                                             >
                                                                 <h3>
-                                                                    {index + 1} .{' '}
+                                                                    {index + 1}{' '}
+                                                                    .{' '}
                                                                     {x.question}{' '}
                                                                 </h3>
                                                                 <div>

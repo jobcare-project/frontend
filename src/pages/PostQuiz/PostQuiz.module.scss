@@ -1,29 +1,12 @@
-.wrapper {
-    height: 100%;
-    padding-bottom: 30px;
-    margin-top: 30px;
-}
-
-.section {
-    margin: auto;
-    width: 80%;
-    font-size: 30px;
-}
-
-.wrapper-add-question {
-    margin: auto;
-    margin-top: 50px;
-    width: 80%;
-}
-
-.information-add-question {
-    font-size: 50px;
-    margin: 0 0 40px 50px;
+.wrapper{
+    margin: 0 auto;
 }
 
 .add-question-title {
-    margin: 20px 0 20px 50px;
+    display: flex;
+    justify-content: center;
     font-size: 50px;
+    margin: 50px 0 100px 0 ;
 }
 
 .add-question {

@@ -1,25 +1,22 @@
 import classNames from 'classnames/bind';
 import styles from './PostQuiz.module.scss';
+import FormBuilder from './FormBuilder';
+import { Container } from 'react-bootstrap';
 
-import FormPost from './FormPost';
-
-import AddInformation from './components/AddInformation';
 
 const cx = classNames.bind(styles);
 
 function PostQuiz() {
     return (
         <div className={cx('wrapper')}>
-            <br></br>
-            <div className={cx('section')}>
-               <AddInformation/>
-            </div>
+            <Container>
             <div className={cx('wrapper-add-question')}>
-                <div className={cx('add-question-title')}>Xây dựng quiz</div>
+                <div className={cx('add-question-title')}>Tạo bài quiz mới</div>
                 <div className={cx('add-question')}>
-                    <FormPost />
+                   <FormBuilder/>
                 </div>
             </div>
+            </Container>
         </div>
     );
 }

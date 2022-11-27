@@ -1,8 +1,11 @@
+import Information from './Information';
+
 function ManageQuiz() {
-    return ( <div>
-        hello
-        aaaaaaa
-    </div> );
+    return (
+        <div>
+            <Information />
+        </div>
+    );
 }
 
 export default ManageQuiz;

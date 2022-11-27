@@ -31,6 +31,7 @@ export default function Card({
     const handleDeletedPost = (id) => {
         dispatch(fetchDeletedJobDesc(data.id));
     };
+
     return (
         <div className={cx('wrapper')}>
             {/* /id */}
@@ -95,11 +96,11 @@ export default function Card({
             <div className={cx('subdesc-control')}>
                 <div
                     onClick={handleShow}
-                    className={({ isActive }) =>
-                        isActive
-                            ? cx('subdesc-text', 'active')
-                            : cx('subdesc-text')
-                    }
+                    // className={({ isActive }) =>
+                    //     isActive
+                    //         ? cx('subdesc-text', 'active')
+                    //         : cx('subdesc-text')
+                    // }
                 >
                     {deleted && (
                         <span className={cx('subdesc-text')}>{deleted}</span>
@@ -107,11 +108,11 @@ export default function Card({
                     <span>{titleDeleted}</span>
                 </div>
                 <div
-                    className={({ isActive }) =>
-                        isActive
-                            ? cx('subdesc-text', 'active')
-                            : cx('subdesc-text')
-                    }
+                // className={({ isActive }) =>
+                //     isActive
+                //         ? cx('subdesc-text', 'active')
+                //         : cx('subdesc-text')
+                // }
                 >
                     {repair && (
                         <span className={cx('subdesc-text')}>{repair}</span>
