@@ -9,11 +9,12 @@ function EditorGroup({ editorData, boxId }) {
                 heading={editorData.heading}
                 icon={<ion-icon name="contract-outline"></ion-icon>}
             >
-                {editorData.data.map((editor) => {
+                {editorData.data.map((editor, index) => {
                     return (
                         <BoxEditorItem
                             key={editor.id}
                             typeBlock="content"
+                            index={index}
                             boxId={boxId}
                             timeline={editor?.timeline}
                             title={editor?.title}

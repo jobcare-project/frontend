@@ -35,6 +35,7 @@ function Overview() {
                                     <BoxEditorItem
                                         typeBlock="overview"
                                         index={index}
+                                        boxId={overviewItem.id}
                                         title={overviewItem.title}
                                         editorValue={overviewItem.value}
                                     />

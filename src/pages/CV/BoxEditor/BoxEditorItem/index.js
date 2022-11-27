@@ -38,6 +38,10 @@ function BoxEditorItem({
         );
     };
 
+    const handleDeleteBoxItem = () => {
+        dispatch(cvSlice.actions.deleteBoxItem({ index, typeBlock, boxId }));
+    };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('controls-left', 'controls')}>
@@ -94,7 +98,12 @@ function BoxEditorItem({
             </div>
             <div className={cx('controls-right', 'controls')}>
                 <Tippy theme="material" placement="right" content="Gỡ bỏ">
-                    <span className={cx('controls-icon', 'trash-icon')}>
+                    <span
+                        onClick={() => {
+                            handleDeleteBoxItem();
+                        }}
+                        className={cx('controls-icon', 'trash-icon')}
+                    >
                         <ion-icon name="trash-sharp"></ion-icon>
                     </span>
                 </Tippy>
