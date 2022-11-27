@@ -37,7 +37,16 @@
         border: 1px solid #000;
     }
 }
+.secondary {
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    ::placeholder {
+        font-size: 30px;
+        color: #808080;
+        font-weight: bold;
+    }
+}
 .checkbox {
     height: 27px;
-    width: 80%;
+    width: 70%;
 }

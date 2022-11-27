@@ -8,18 +8,19 @@ const FunC = () => {};
 
 export default function DropDown({
     data = [],
-    onChangeDictrictID = FunC,
+    onChangeSelect = FunC,
     title = '',
-    onSelectedValue = FunC,
 }) {
     const [visible, setVisible] = useState(false);
     const [value, setValue] = useState('');
-    const [name, setName] = useState('');
 
     const handleChangeSelect = (e) => {
         setValue(e.target.value);
-        onChangeDictrictID(e.target.value);
-        setName(e.target.name);
+        let index = e.nativeEvent.target.selectedIndex - 1;
+
+        let nameValue = data[index].name;
+
+        onChangeSelect(e.target.value, nameValue);
     };
 
     const renderDropDownData = () => {

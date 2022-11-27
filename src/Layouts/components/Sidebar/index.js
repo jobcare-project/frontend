@@ -37,6 +37,12 @@ const sidebarMenu = [
         role: ['admin'],
         icon: <ion-icon name="create-sharp"></ion-icon>,
     },
+    {
+        title: 'CV',
+        to: '/dashboard/quiz',
+        role: ['recruiter'],
+        icon: <ion-icon name="newspaper-outline"></ion-icon>,
+    },
 ];
 
 function Sidebar({ role }) {

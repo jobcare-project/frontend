@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -25,6 +26,8 @@ import {
 import DefaultLayout from './Layouts/DefaultLayout';
 import Loading from './components/Loading/Loading';
 
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
     const dispatch = useDispatch();
     const isAuth = useSelector(isAuthSelector);
@@ -32,7 +35,6 @@ function App() {
 
     useEffect(() => {
         dispatch(fetchUser());
-    
     }, []);
 
     if (typeof isAuth === 'undefined') {
@@ -42,6 +44,18 @@ function App() {
     return (
         <Router>
             <div className="App">
+                <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                />
                 <Routes>
                     {/* PUBLIC ROUTES */}
                     {renderRoutes(publicRoutes)}

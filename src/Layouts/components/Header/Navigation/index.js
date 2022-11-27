@@ -11,7 +11,7 @@ const cx = classNames.bind(styles);
 const navigationMenu = [
     {
         title: 'Tuyển dụng',
-        to: '/recruitmentpage/user',
+        to: config.routes.recruitmentpage,
         role: ['user'],
     },
     {
@@ -33,7 +33,7 @@ const navigationMenu = [
     {
         title: 'Test Manage',
         to: '/test-manage',
-        role: ['recruiter', 'admin'],
+        role: ['admin'],
     },
     {
         title: 'Blog',
@@ -44,6 +44,11 @@ const navigationMenu = [
         title: 'Manage',
         to: config.routes.admin,
         role: ['admin'],
+    },
+    {
+        title: 'Đăng bài',
+        to: config.routes.recruiter,
+        role: ['recruiter'],
     },
 ];
 

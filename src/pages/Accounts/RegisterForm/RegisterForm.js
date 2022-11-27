@@ -1,10 +1,10 @@
 import classNames from 'classnames/bind';
+import styles from '../FormAccounts.module.scss';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import styles from '../FormAccounts.module.scss';
 import { fetchRegister } from '../accountsSlice';
 import { accountsMessageSelector } from '~/redux/Selectors/authSelector';
 import Button from '~/components/Button';

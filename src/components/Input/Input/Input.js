@@ -8,6 +8,7 @@ function Input({
     rightIcon,
     className,
     primary,
+    secondary,
     selected,
     checkbox,
     rounded,
@@ -26,6 +27,7 @@ function Input({
         border,
         checkbox,
         primary,
+        secondary,
         name,
         selected,
     });

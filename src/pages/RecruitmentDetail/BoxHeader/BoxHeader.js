@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './BoxHeader.module.scss';
-import DescriptDetail from '~/pages/RecruitmentDetail/RecruitDetail/DescriptDetail';
 import images from '~/assets/images';
 import Button from '~/components/Button';
-// import Modal from '~/pages/Profile/Modal/Modal';
+import Modal from '~/components/Modal/ModalCv/ModalCv';
 
 import { Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-window.scroll = function () {
-    console.log(document.body.scroll);
-};
+// window.scroll = function () {
+//     console.log(document.body.scroll);
+// };
+
+// window.scroll = function () {
+//     console.log(document.body.scroll);
+// };
 
 const cx = classNames.bind(styles);
 
@@ -25,16 +28,27 @@ export default function BoxHeader({ data, to }) {
                     {/* <div className={cx('title')}>{data?.title}</div> */}
                     <div className={cx('box-left')}>
                         <div className={cx('title')}>
-                            <h2>
-                                Tuyển thực tập sinh lập trình website (FrontEnd)
+                            <h2 className={cx('title-header')}>
+                                {data?.title}
+                                <span>
+                                    <ion-icon
+                                        name="checkmark-circle-outline"
+                                        className={cx('check-icon')}
+                                    ></ion-icon>
+                                </span>
                             </h2>
                         </div>
-                        <div className={cx('company')}>
-                            <h3>Công ty công nghệ BAP</h3>
-                        </div>
+                        <h3 className={cx('company-name')}>
+                            Công ty công nghệ BAP
+                        </h3>
                         <div className={cx('time')}>
-                            <ion-icon name="time-outline"></ion-icon>
-                            <span>Hạn nộp hồ sơ: {data?.time}</span>
+                            <span>
+                                <ion-icon
+                                    name="time-outline"
+                                    className={cx('time-icon')}
+                                ></ion-icon>
+                            </span>
+                            <span>Hạn nộp hồ sơ: {data?.createAt}</span>
                         </div>
                     </div>
                     <div className={cx('box-logo')}>
@@ -43,78 +57,106 @@ export default function BoxHeader({ data, to }) {
                 </div>
                 <div className={cx('content-detail')}>
                     <div className={cx('recruitment-detail')}>
-                        <h1>Chi tiết tuyển dụng</h1>
                         <div className={cx('detail')}>
                             <div className={cx('detail-require')}>
+                                <h2 className={cx('adress')}>
+                                    Chi tiết tuyển dụng
+                                </h2>
                                 <Row>
                                     <Col md={6} className={'mb-5'}>
                                         <div className={cx('type-work')}>
-                                            <ion-icon name="cash-outline"></ion-icon>
+                                            <span>
+                                                <ion-icon name="cash-outline"></ion-icon>
+                                            </span>
                                             <span>Mức lương</span>
                                         </div>
                                         <span className={cx('type-detail')}>
-                                            Từ 15-20 triệu
+                                            {data?.salary}
                                         </span>
                                     </Col>
                                     <Col md={6} className={'mb-5'}>
                                         <div className={cx('type-work')}>
-                                            <ion-icon name="people-outline"></ion-icon>
+                                            <span>
+                                                <ion-icon name="people-outline"></ion-icon>
+                                            </span>
                                             <span>Số lượng người</span>
                                         </div>
                                         <span className={cx('type-detail')}>
-                                            2
+                                            {data?.amount}
                                         </span>
                                     </Col>
                                     <Col md={6} className={'mb-5'}>
                                         <div className={cx('type-work')}>
-                                            <ion-icon name="time-outline"></ion-icon>
+                                            <span>
+                                                <ion-icon name="time-outline"></ion-icon>
+                                            </span>
                                             <span>Hình thức làm việc</span>
                                         </div>
                                         <span className={cx('type-detail')}>
-                                            Toàn thời gian
+                                            {data?.typeWork}
                                         </span>
                                     </Col>
                                     <Col md={6} className={'mb-5'}>
                                         <div className={cx('type-work')}>
-                                            <ion-icon name="female-outline"></ion-icon>
+                                            <span>
+                                                <ion-icon name="female-outline"></ion-icon>
+                                            </span>
                                             <span>Giới tính</span>
                                         </div>
                                         <span className={cx('type-detail')}>
-                                            Không yêu cầu
+                                            {data?.gender}
                                         </span>
                                     </Col>
                                     <Col md={6} className={'mb-5'}>
                                         <div className={cx('type-work')}>
-                                            <ion-icon name="podium-outline"></ion-icon>
+                                            <span>
+                                                <ion-icon name="podium-outline"></ion-icon>
+                                            </span>
                                             <span>Cấp bậc</span>
                                         </div>
                                         <span className={cx('type-detail')}>
-                                            Fresher
+                                            {data?.level}
                                         </span>
                                     </Col>
                                     <Col md={6} className={'mb-5'}>
                                         <div className={cx('type-work')}>
-                                            <ion-icon name="accessibility-outline"></ion-icon>
+                                            <span>
+                                                <ion-icon name="accessibility-outline"></ion-icon>
+                                            </span>
                                             <span>Kinh nghiệm</span>
                                         </div>
                                         <span className={cx('type-detail')}>
-                                            Không yêu cầu
+                                            {data?.experience}
                                         </span>
                                     </Col>
                                 </Row>
                             </div>
                         </div>
                         <div className={cx('location')}>
-                            <h2 className={cx('adress')}>
-                                <ion-icon name="location-outline"></ion-icon>
-                                Địa điểm làm việc
-                            </h2>
+                            <h2 className={cx('adress')}>Địa điểm làm việc</h2>
                             <span className={cx('address-detail')}>
-                                Đà Nẵng, 47 Bạch Đằng - Hải Châu
+                                - {data?.location}
                             </span>
                         </div>
                         <div className={cx('content-post')}>
-                            <DescriptDetail />
+                            <div className={cx('descript-job')}>
+                                <h1>Mô tả công việc</h1>
+                                <div className={cx('content-tab')}>
+                                    <p>{data?.jobDescription}wwwwwwwwwwwwww</p>
+                                </div>
+                            </div>
+                            <div className={cx('descript-require')}>
+                                <h1>Yều cầu ứng viên</h1>
+                                <div className={cx('content-tab')}>
+                                    <p>{data?.jobRequire}</p>
+                                </div>
+                            </div>
+                            <div className={cx('descript-benefit')}>
+                                <h1>Quyền lợi</h1>
+                                <div className={cx('content-tab')}>
+                                    <p>{data?.welFare}</p>
+                                </div>
+                            </div>
                             <div className={cx('mothod-title')}>
                                 <h2>Cách thức ứng tuyển</h2>
                             </div>
@@ -138,8 +180,10 @@ export default function BoxHeader({ data, to }) {
                                 </div>
                             </div>
                             <div className={cx('time')}>
-                                <ion-icon name="time-outline"></ion-icon>
-                                <span>Hạn nộp hồ sơ: {data?.time}</span>
+                                <span>
+                                    <ion-icon name="time-outline"></ion-icon>
+                                </span>
+                                <span>Hạn nộp hồ sơ: {data?.endDay}</span>
                             </div>
                         </div>
                     </div>

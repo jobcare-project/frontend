@@ -7,10 +7,12 @@ import { Container } from 'react-bootstrap';
 const cx = classNames.bind(styles);
 export default function RuleBottom({ data }) {
     return (
-        <Container>
-            <div className={cx('wrapper')}>
-                <h1>Tại sao nên sử dụng JobCare</h1>
+        <div className={cx('wrapper')}>
+            <Container>
                 <div className={cx('content')}>
+                    <h2 className={cx('content-header')}>
+                        Tại sao nên sử dụng JobCare
+                    </h2>
                     <div className={cx('content-rule')}>
                         <h3>
                             Cơ hội ứng tuyển việc làm với đãi ngộ hấp dẫn tại
@@ -66,7 +68,7 @@ export default function RuleBottom({ data }) {
                         </Col>
                     </Row>
                 </div>
-            </div>
-        </Container>
+            </Container>
+        </div>
     );
 }

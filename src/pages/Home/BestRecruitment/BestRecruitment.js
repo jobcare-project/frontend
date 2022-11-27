@@ -1,18 +1,21 @@
 import classNames from 'classnames/bind';
+import styles from './BestRecruitment.module.scss';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Container } from 'react-bootstrap';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import styles from './BestRecruitment.module.scss';
 import Card from '~/components/Card/Card';
 import { fetchListJob } from '../homeSlice';
 import { jobListSelector } from '~/redux/Selectors/jobSelector';
+import PaginatedItems from './pagination';
+import PaginationCOM from './pagination';
 
 const cx = classNames.bind(styles);
 
 export default function BestRecruitment() {
+    const [jobsItem, setjobsItem] = useState([]);
     const dispatch = useDispatch();
     const jobListData = useSelector(jobListSelector);
 
@@ -27,8 +30,8 @@ export default function BestRecruitment() {
                 <div className={cx('wrapper')}>
                     <h2 className={cx('heading')}>Việc làm tiêu biểu</h2>
                     <Row>
-                        {jobListData &&
-                            jobListData.slice(0, 16).map((recruitment) => {
+                        {jobsItem &&
+                            jobsItem.map((recruitment) => {
                                 return (
                                     <Col
                                         key={recruitment.id}
@@ -36,7 +39,13 @@ export default function BestRecruitment() {
                                         md={4}
                                         sm={6}
                                     >
-                                        <Card data={recruitment}></Card>
+                                        <Card
+                                            data={recruitment}
+                                            repair={
+                                                <ion-icon name="heart-outline"></ion-icon>
+                                            }
+                                            titlRepair="Lưu tin"
+                                        ></Card>
                                     </Col>
                                 );
                             })}
@@ -45,6 +54,7 @@ export default function BestRecruitment() {
             ) : (
                 ''
             )}
+            <PaginationCOM items={jobListData} setjobsItem={setjobsItem} />
         </Container>
     );
 }

@@ -99,7 +99,13 @@ function MainJob() {
                     {recruitmentList.slice(0, 8).map((recruitment, index) => {
                         return (
                             <Col key={index} lg={3} md={4} sm={6}>
-                                <Card data={recruitment}></Card>
+                                <Card
+                                    data={recruitment}
+                                    repair={
+                                        <ion-icon name="heart-outline"></ion-icon>
+                                    }
+                                    titlRepair="Lưu tin"
+                                ></Card>
                             </Col>
                         );
                     })}

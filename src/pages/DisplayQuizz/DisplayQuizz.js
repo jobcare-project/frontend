@@ -1,4 +1,4 @@
-import TodoQuiz from "./components/TodoQuiz";
+import TodoQuiz from './components/TodoQuiz';
 
 function DisplayQuiz() {
     return (

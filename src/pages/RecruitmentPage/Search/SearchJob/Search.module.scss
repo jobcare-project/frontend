@@ -1,9 +1,9 @@
 .wrapper {
-    margin: 20px 0 20px 0;
-    background: hsla(0deg, 0%, 100%, 0.3);
-    border-radius: 10px;
+    background-color: #d0eef9;
     .bounded {
         display: flex;
+        padding: 0 15px 0 15px;
+        margin: 25px 0 20px 0;
     }
     .search-input {
         margin-right: 20px;
@@ -24,6 +24,11 @@
         width: 13%;
         .btn {
             width: 100%;
+        }
+        ion-icon {
+            margin-top: 5px;
+            font-weight: bold;
+            -webkit-text-stroke: 2px white;
         }
     }
 }
