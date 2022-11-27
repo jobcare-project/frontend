@@ -1,22 +1,16 @@
-import React from 'react';
-import styles from './CommentModal.module.scss';
+import React, { useState } from 'react';
+import styles from './Comment.module.scss';
 import classNames from 'classnames/bind';
-import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { Container } from 'react-bootstrap';
+import Button from '~/components/Button';
 import images from '~/assets/images';
 import Input from '~/components/Input/Input/Input';
-import Button from '~/components/Button';
+
 const cx = classNames.bind(styles);
-function CommentModal({ closeCommentModal, data }) {
+function Comment({ data }) {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('content')}>
-                <span
-                    className={cx('close-btn')}
-                    onClick={() => closeCommentModal(false)}
-                >
-                    <ion-icon name="close-outline"></ion-icon>
-                </span>
                 <div className={cx('comment-amount')}>
                     <h4 className={cx('comment-heading')}>
                         {data?.amount}1 bình luận
@@ -28,16 +22,16 @@ function CommentModal({ closeCommentModal, data }) {
                 </div>
                 <div className={cx('user-comment')}>
                     {/* {user.image ? (
-                        <img
-                            className={cx('avatar-img', 'avatar')}
-                            src={`data:${
-                                user.image.data.type
-                            };base64,${Buffer.from(
-                                user.image.data.data,
-                            ).toString('base64')} `}
-                            alt={user.image.name}
-                        />
-                    ) : ( */}
+                <img
+                    className={cx('avatar-img', 'avatar')}
+                    src={`data:${
+                        user.image.data.type
+                    };base64,${Buffer.from(
+                        user.image.data.data,
+                    ).toString('base64')} `}
+                    alt={user.image.name}
+                />
+            ) : ( */}
                     <img
                         className={cx('avatar')}
                         src={images.avatarDefault}
@@ -55,4 +49,5 @@ function CommentModal({ closeCommentModal, data }) {
         </div>
     );
 }
-export default CommentModal;
+
+export default Comment;

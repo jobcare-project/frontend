@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './BlogDetail.module.scss';
 import classNames from 'classnames/bind';
 import { Container } from 'react-bootstrap';
 import CommentModal from '~/components/Modal/CommentModal/CommentModal';
+import CardAds from '~/components/CardAds/CardAds';
+import Comment from '../Comment/Comment';
 
 const cx = classNames.bind(styles);
 const blogDetails = [
@@ -16,29 +18,42 @@ const blogDetails = [
     },
 ];
 function BlogDetail({ data }) {
+    const [openCommentModal, setOpenCommentModal] = useState(false);
     return (
         <Container>
+            {/* {openCommentModal && (
+                <CommentModal closeCommentModal={setOpenCommentModal} />
+            )} */}
             {blogDetails.length ? (
                 <div className={cx('wrapper')}>
                     <div className={cx('container')}>
                         <div className={cx('user')}>
-                            <div className={cx('username')}>Đông Phạm</div>
-                            <div className={cx('icon')}>
-                                <div className={cx('icon-heart')}>
-                                    <span>
-                                        <ion-icon name="heart-outline"></ion-icon>
-                                    </span>
-                                    <span className={cx('heart-reaction')}>
-                                        12
-                                    </span>
-                                </div>
-                                <div className={cx('icon-comment')}>
-                                    <span>
-                                        <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
-                                    </span>
-                                    <span className={cx('comment-reaction')}>
-                                        12
-                                    </span>
+                            <div className={cx('user-infor')}>
+                                <div className={cx('username')}>Đông Phạm</div>
+                                <div className={cx('icon')}>
+                                    <div className={cx('icon-heart')}>
+                                        <span>
+                                            <ion-icon name="heart-outline"></ion-icon>
+                                        </span>
+                                        <span className={cx('heart-reaction')}>
+                                            12
+                                        </span>
+                                    </div>
+                                    <div
+                                        className={cx('icon-comment')}
+                                        onClick={() => {
+                                            setOpenCommentModal(true);
+                                        }}
+                                    >
+                                        <span>
+                                            <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+                                        </span>
+                                        <span
+                                            className={cx('comment-reaction')}
+                                        >
+                                            12
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -51,13 +66,13 @@ function BlogDetail({ data }) {
                                     <div className={cx('content-detail')}>
                                         {blogDetail.content}
                                     </div>
-                                    <div className={cx('comment')}>
-                                        <CommentModal />
-                                    </div>
+                                    <div className={cx('comment')}></div>
                                 </div>
                             );
                         })}
                     </div>
+                    {/* <CardAds></CardAds> */}
+                    <Comment></Comment>
                 </div>
             ) : (
                 ''

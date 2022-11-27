@@ -7,6 +7,7 @@ export const getListJobApi = async () => {
 
 // post a job
 export const postJobDesc = async (data) => {
+    console.log('data 2:', data);
     return await axiosClient.post(config.jobsApiUrl.postJobDesc, data);
 };
 export const editJobDesc = async (id, data) => {

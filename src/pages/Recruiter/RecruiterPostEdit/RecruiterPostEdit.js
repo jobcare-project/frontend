@@ -30,7 +30,6 @@ import { useMemo } from 'react';
 import { fetchEditJobDesc, fetchPostJobDesc } from '~/pages/Home/homeSlice';
 import { useParams } from 'react-router-dom';
 import { getDetailPost } from '~/services/jobService';
-// import ModalDeleted from '~/pages/Profile/Modal/ModalPost/ModalDeleted';
 const cx = classNames.bind(styles);
 const mucluongData = [
     {
@@ -362,7 +361,7 @@ function RecruiterPostEdit() {
     const handleSubmit = () => {
         // console.log(formikRef.current.values);
         const formikValues = formikRef.current.values;
-
+        console.log('formikValues', formikValues);
         const salary =
             selectForm.salary === TYPE_SALARY_DEFAULT
                 ? TYPE_SALARY_DEFAULT
@@ -371,7 +370,7 @@ function RecruiterPostEdit() {
         const data = { ...formikValues, ...selectValues };
         console.log('formik value', formikValues);
         console.log('Data', data);
-        // dispatch(fetchEditJobDesc(params.id, data));
+        dispatch(fetchEditJobDesc(params.id, data));
     };
     const objFillValues = [
         'title',
@@ -393,7 +392,7 @@ function RecruiterPostEdit() {
             const res = await getDetailPost(params.id);
             console.log(res.data);
             objFillValues.map((_elt) => {
-                // console.log(res.data[_elt]);
+                console.log(res.data[_elt]);
                 formikRef.current.setFieldValue(_elt, res.data[_elt]);
                 setDescription(res.data['jobDescription']);
                 setRequireCandidate(res.data['jobRequire']);

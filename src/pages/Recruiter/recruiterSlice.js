@@ -14,7 +14,6 @@ export const recruiterSlice = createSlice({
     name: 'recruiter',
     initialState: {
         idLoading: false,
-        jobList: [],
         messsage: false,
         job: {},
         jobDisplayPagination: [],
@@ -33,16 +32,17 @@ export const recruiterSlice = createSlice({
             .addCase(fetchPostJobDesc.fulfilled, (state, action) => {
                 state.idLoading = false;
                 const { data, message, success } = action.payload;
-                console.log(action.payload);
+                console.log('payload', action.payload);
                 state.job = data;
                 state.messsage = success;
             })
             // deleted job
-            .addCase(fetchDeletedJobDesc.pending, (state) => {
-                state.idLoading = true;
-            })
+
             .addCase(fetchJobsPagination.pending, (state, action) => {
                 state.jobDisplayPagination = action.payload;
+            })
+            .addCase(fetchDeletedJobDesc.pending, (state) => {
+                state.idLoading = true;
             })
             .addCase(fetchDeletedJobDesc.fulfilled, (state, action) => {
                 state.idLoading = false;
@@ -59,7 +59,9 @@ export const fetchPostJobDesc = createAsyncThunk(
     'recruiter/fetchPostJobDesc',
     async (data) => {
         try {
+            console.log('Data 1:', data);
             const res = await postJobDesc(data);
+            console.log(res);
             return res;
         } catch (error) {
             console.log(error);
@@ -97,7 +99,7 @@ export const fetchEditJobDesc = createAsyncThunk(
 );
 
 export const fetchJobsPagination = createAsyncThunk(
-    'recruiter/fetchPostJobDesc',
+    'recruiter/fetchJobsPagination',
     async (data) => {
         console.log('data fetch');
         try {

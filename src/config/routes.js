@@ -16,7 +16,7 @@ const routes = {
     linguistics: '/testuser/linguistics',
     postquiz: '/postquiz',
     recruiterpost: '/recruiter/recruiterpostjob',
-    recruitmentdetail: '/recruitmentdetail',
+    recruitmentdetail: '/recruitmentdetail/:recruitmentId',
     recruitmentpage: '/recruitmentpage/user',
     displayquizz: 'testuser/displayquizz',
     savepost: '/blog/savedPost',

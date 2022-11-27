@@ -11,6 +11,7 @@ function Input({
     secondary,
     selected,
     checkbox,
+    comment,
     rounded,
     border,
     disabled,
@@ -28,6 +29,7 @@ function Input({
         checkbox,
         primary,
         secondary,
+        comment,
         name,
         selected,
     });

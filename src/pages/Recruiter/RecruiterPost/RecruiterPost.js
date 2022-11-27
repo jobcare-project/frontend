@@ -33,6 +33,7 @@ import {
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import config from '~/config';
+import { messageRecruiterSelector } from '~/redux/Selectors/recruiterSelector';
 // import ModalDeleted from '~/pages/Profile/Modal/ModalPost/ModalDeleted';
 const cx = classNames.bind(styles);
 const mucluongData = [
@@ -371,7 +372,7 @@ function RecruiterPost() {
         setState(e.target.value);
     };
     const job = useSelector(jobSelector);
-    const message = useSelector(messageSelector);
+    const message = useSelector(messageRecruiterSelector);
     console.log({ message });
 
     const navigate = useNavigate();

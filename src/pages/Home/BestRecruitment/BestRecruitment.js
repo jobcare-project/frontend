@@ -11,6 +11,7 @@ import { fetchListJob } from '../homeSlice';
 import { jobListSelector } from '~/redux/Selectors/jobSelector';
 import PaginatedItems from './pagination';
 import PaginationCOM from './pagination';
+import { _LIMIT_PAGE } from '~/config/apis';
 
 const cx = classNames.bind(styles);
 
@@ -23,7 +24,12 @@ export default function BestRecruitment() {
         dispatch(fetchListJob());
         // const jobs = jobListData.slice(0, 5);
         // setjobsItem(jobs);
-    }, []);
+        console.log(jobListData);
+        if (jobListData.length > 0) {
+            const jobs = jobListData.slice(0, _LIMIT_PAGE);
+            setjobsItem(jobs);
+        }
+    }, [JSON.stringify(jobListData)]);
 
     // console.log('jobListData', jobListData);
     return (

@@ -21,6 +21,7 @@ export default function Card({
     titlRepair = '',
     titleSaved = '',
     onDelete,
+    id,
 }) {
     const [show, setShow] = useState(false);
 
@@ -34,7 +35,7 @@ export default function Card({
     return (
         <div className={cx('wrapper')}>
             {/* /id */}
-            <Link className={cx('link')} to={config.routes.recruitmentdetail}>
+            <Link className={cx('link')} to={`recruitmentdetail/${data.id}`}>
                 <div className={cx('image-block')}>
                     {data?.thumbnail ? (
                         <img
@@ -93,31 +94,20 @@ export default function Card({
                 onActionRequest={handleDeletedPost}
             />
             <div className={cx('subdesc-control')}>
-                <div
-                    onClick={handleShow}
-                    className={({ isActive }) =>
-                        isActive
-                            ? cx('subdesc-text', 'active')
-                            : cx('subdesc-text')
-                    }
-                >
+                <div onClick={handleShow} className={cx('subdesc-text')}>
                     {deleted && (
                         <span className={cx('subdesc-text')}>{deleted}</span>
                     )}
                     <span>{titleDeleted}</span>
                 </div>
-                <div
-                    className={({ isActive }) =>
-                        isActive
-                            ? cx('subdesc-text', 'active')
-                            : cx('subdesc-text')
-                    }
-                >
-                    {repair && (
-                        <span className={cx('subdesc-text')}>{repair}</span>
-                    )}
-                    <span>{titlRepair}</span>
-                </div>
+                <Link to={`/recruiter/recruiterpostjob/${id}`}>
+                    <div className={cx('subdesc-text')}>
+                        {repair && (
+                            <span className={cx('subdesc-text')}>{repair}</span>
+                        )}
+                        <span>{titlRepair}</span>
+                    </div>
+                </Link>
             </div>
         </div>
     );

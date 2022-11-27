@@ -18,35 +18,33 @@ function CardBlog({
 }) {
     return (
         <div className={cx('wrapper')}>
-            <Link className={cx('link')} to={config.routes.blogdetail}>
-                <div className={cx('heading')}>
-                    <div className={cx('image-block')}>
-                        {data?.avatar ? (
-                            <img
-                                className={cx('image')}
-                                src={data?.avatar}
-                                alt="anh nha tuyen dung"
-                            />
-                        ) : (
-                            <img
-                                className={cx('image')}
-                                src={images.recruitmentCard}
-                                alt="anh nha tuyen dung"
-                            />
-                        )}
-                        <span className={cx('user-name')}>
-                            {data?.username}
-                        </span>
-                    </div>
-                    <div className={cx('icon-option')}>
-                        <span className={cx('save')}>
-                            <ion-icon name="bookmark-outline"></ion-icon>
-                        </span>
-                        <span className={cx('share')}>
-                            <ion-icon name="apps-outline"></ion-icon>
-                        </span>
-                    </div>
+            <div className={cx('heading')}>
+                <div className={cx('image-block')}>
+                    {data?.avatar ? (
+                        <img
+                            className={cx('image')}
+                            src={data?.avatar}
+                            alt="anh nha tuyen dung"
+                        />
+                    ) : (
+                        <img
+                            className={cx('image')}
+                            src={images.recruitmentCard}
+                            alt="anh nha tuyen dung"
+                        />
+                    )}
+                    <span className={cx('user-name')}>{data?.username}</span>
                 </div>
+                <div className={cx('icon-option')}>
+                    <span className={cx('save')}>
+                        <ion-icon name="bookmark-outline"></ion-icon>
+                    </span>
+                    <span className={cx('share')}>
+                        <ion-icon name="apps-outline"></ion-icon>
+                    </span>
+                </div>
+            </div>
+            <Link className={cx('link')} to={config.routes.blogdetail}>
                 <div className={cx('blog-item')}>
                     <div className={cx('title')}>{data?.title}</div>
                     <div className={cx('content')}>{data?.content}</div>
