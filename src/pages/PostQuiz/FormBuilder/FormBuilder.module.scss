@@ -1,16 +1,27 @@
-.quiz-title{
+.category {
+    margin: 30px 0 30px 0px;
+}
+.title-category {
     font-size: 30px;
 }
-.quiz{
+.dropdown {
+    border: 1px solid #9c9a9a;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+.quiz-title {
+    font-size: 30px;
+}
+.quiz {
     background-color: var(--gray-light-color-3);
     border-radius: 10px;
 }
-.submit{
+.submit {
     display: flex;
     justify-content: center;
     margin: 100px 0 100px 0;
-    
-    .submit-btn{
+
+    .submit-btn {
         width: 200px;
         height: 60px;
         font-size: 30px;

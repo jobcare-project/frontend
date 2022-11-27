@@ -1,29 +1,18 @@
 import classNames from 'classnames/bind';
 import styles from './ShowQuiz.module.scss';
-
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { Container } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import { collection, onSnapshot } from 'firebase/firestore';
+
+import { db } from '~/pages/PostQuiz/firebase';
+
 import config from '~/config';
 import Menu, { MenuItem } from '../Menu';
 import CardShowQuiz from '~/components/CardShowQuiz/CardShowQuiz';
-import { Container } from 'react-bootstrap';
 
 const cx = classNames.bind(styles);
-
-//Quizz Công nghệ thông tin
-
-const itList = [
-    {
-        thumbnail:
-            'https://bizflyportal.mediacdn.vn/bizflyportal/375/470/2020/04/28/21/33/115880627863553.jpg',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-];
-
-// Quizz Marketing
 
 const marketingList = [
     {
@@ -134,7 +123,23 @@ const linguisticsList = [
     },
 ];
 
-export default function ShowQuiz() {
+function ShowQuiz() {
+    const [quiz, setQuiz] = useState([]);
+    const quizCollectionRef = collection(db, 'quiz');
+
+    useEffect(() => {
+        onSnapshot(quizCollectionRef, (snapshot) => {
+            setQuiz(
+                snapshot.docs.map((doc) => {
+                    return {
+                        id: doc.id,
+                        viewing: false,
+                        ...doc.data(),
+                    };
+                }),
+            );
+        });
+    }, [quiz, quizCollectionRef]);
     return (
         <div className={cx('wrapper')}>
             <Container className={cx('container')}>
@@ -146,11 +151,13 @@ export default function ShowQuiz() {
                 </h2>
 
                 <Row>
-                    {itList.slice(0, 8).map((itList, index) => {
+                    {quiz.slice(0, 8).map((quiz, index) => {
                         return (
                             <Col key={index} lg={3} md={4} sm={6}>
                                 <CardShowQuiz
-                                    quiz={itList}
+                                    title={quiz}
+                                    desc={quiz}
+                                    img={quiz}
                                     to={'displayquizz'}
                                 ></CardShowQuiz>
                             </Col>
@@ -231,3 +238,5 @@ export default function ShowQuiz() {
         </div>
     );
 }
+
+export default ShowQuiz;

@@ -1,7 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import uuid from 'react-uuid';
 import Nestable from 'react-nestable';
 import classNames from 'classnames/bind';
+import { collection, addDoc } from 'firebase/firestore';
+import { Col, Row } from 'react-bootstrap';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+
 import styles from './FormBuilder.module.scss';
 
 //Form Elements
@@ -10,9 +14,9 @@ import { formEl } from './Constants.js';
 //Components
 import Header from './Header';
 import Button from '~/components/Button/index.js';
+import DropDown from '~/components/Input/DropDown/DropDown';
 //firebase
-import { db } from '../firebase.js';
-import { collection, addDoc } from 'firebase/firestore';
+import { db, storage } from '../firebase.js';
 
 const cx = classNames.bind(styles);
 
@@ -27,6 +31,75 @@ function FormBuilder() {
     const [data, setData] = useState([]);
     //state form of data
     const [formData, setFormData] = useState('');
+    //state category
+    const [category, SetCategory] = useState('');
+    //state upload image
+    const [file, setFile] = useState(null);
+    const [, setProgress] = useState(null);
+    const [form, setForm] = useState('');
+
+    //upload file
+    useEffect(() => {
+        const uploadFile = () => {
+            const storageRef = ref(storage, file.name);
+            const uploadTask = uploadBytesResumable(storageRef, file);
+            uploadTask.on(
+                'state_changed',
+                (snapshot) => {
+                    const progress =
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                    setProgress(progress);
+                    switch (snapshot.state) {
+                        case 'paused':
+                            console.log('Upload is paused');
+                            break;
+                        case 'running':
+                            console.log('Upload is running');
+                            break;
+                        default:
+                            break;
+                    }
+                },
+                (error) => {
+                    console.log(error);
+                },
+                () => {
+                    getDownloadURL(uploadTask.snapshot.ref).then(
+                        (downloadUrl) => {
+                            setForm(() => downloadUrl);
+                        },
+                    );
+                },
+            );
+        };
+
+        file && uploadFile();
+    }, [file]);
+    //Category of quiz
+    const categoryOption = [
+        {
+            value: '',
+            name: 'Công nghệ thông tin',
+        },
+        {
+            value: '1',
+            name: 'Marketing',
+        },
+        {
+            value: '2',
+            name: 'Quản trị kinh doanh',
+        },
+        {
+            value: '3',
+            name: 'Ngôn ngữ học',
+        },
+    ];
+
+    // Function add category
+    const onCategoryChange = (e) => {
+        SetCategory({ ...category, category: e.target.value });
+    };
 
     const items = data;
 
@@ -201,23 +274,46 @@ function FormBuilder() {
     //Submit to firebase
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if ((title !== '' && description !== ''&& data !== [] && formData !== '')) {
+        if (
+            title !== '' &&
+            description !== '' &&
+            data !== [] &&
+            formData !== ''
+        ) {
             await addDoc(collection(db, 'quiz'), {
                 title,
                 description,
                 data,
                 formData,
+                category,
+                form,
             });
             setTitle('');
             setDescription('');
             setData({});
             setFormData('');
+            SetCategory('');
+            setForm('');
         }
     };
 
     return (
         <form onSubmit={handleSubmit}>
             <div>
+                <div className={cx('category')}>
+                    <div value={category.category} onChange={onCategoryChange}>
+                        <div className={cx('title-category')}>
+                            Bạn hãy chọn lĩnh vực về bài Quiz của bạn
+                        </div>
+                        <Row lg={4}>
+                            <Col>
+                                <div className={cx('dropdown')}>
+                                    <DropDown data={categoryOption} />
+                                </div>
+                            </Col>
+                        </Row>
+                    </div>
+                </div>
                 <Header
                     title={title}
                     setTitle={setTitle}
@@ -230,6 +326,14 @@ function FormBuilder() {
                     renderItem={renderElements}
                     maxDepth={1}
                     onChange={handleOnChangeSort}
+                />
+            </div>
+            <div>
+                <div className={cx('title-image')}>Chọn ảnh đại diện</div>
+                <input
+                    type="file"
+                    className={cx('image')}
+                    onChange={(e) => setFile(e.target.files[0])}
                 />
             </div>
             <div>
