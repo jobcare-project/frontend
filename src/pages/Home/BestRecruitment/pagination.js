@@ -7,9 +7,11 @@ import { _LIMIT_PAGE } from '~/config/apis';
 const PaginationStyled = styled.div`
     ul.pagination {
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
+        margin-top: 20px;
         li {
             text-align: center;
+            align-items: center;
             border-radius: 10px;
             width: 30px;
             height: 30px;
@@ -28,7 +30,7 @@ const PaginationStyled = styled.div`
         } */
         }
         .active {
-            background-color: #000;
+            background-color: var(--secondary-color);
             a {
                 color: #fff;
             }

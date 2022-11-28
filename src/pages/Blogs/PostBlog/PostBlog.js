@@ -54,14 +54,15 @@ function PostBlog() {
                         />
                     </div>
                     <div className={cx('content-blog')}>
-                    <input
+                        {/* <input
                             placeholder="Nội dung ..."
                             type="text"
                             value={form.content}
                             onChange={(e) =>
                                 setForm({ ...form, content: e.target.value })
                             }
-                        />
+                        /> */}
+                        <EditorContent />
                     </div>
                 </div>
                 <div className={cx('btn')}>

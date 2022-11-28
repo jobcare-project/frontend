@@ -37,26 +37,5 @@
         .comment-btn {
             margin-left: 85%;
         }
-        .close-btn {
-            right: 0;
-            color: #333;
-            cursor: pointer;
-            top: 10px;
-            right: 30px;
-            position: absolute;
-            font-size: 31px;
-        }
-    }
-}
-
-@keyframes slide {
-    from {
-        left: 1570px;
-        width: 0%;
-        background-color: rgba(0, 0, 0, 0.2);
-    }
-    to {
-        width: 100%;
-        left: 0;
     }
 }

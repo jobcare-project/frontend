@@ -22,9 +22,6 @@ export default function BestRecruitment() {
 
     useEffect(() => {
         dispatch(fetchListJob());
-        // const jobs = jobListData.slice(0, 5);
-        // setjobsItem(jobs);
-        console.log(jobListData);
         if (jobListData.length > 0) {
             const jobs = jobListData.slice(0, _LIMIT_PAGE);
             setjobsItem(jobs);

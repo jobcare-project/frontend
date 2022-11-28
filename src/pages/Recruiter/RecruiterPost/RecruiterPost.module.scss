@@ -127,6 +127,8 @@
     }
     .input-salary.disable {
         pointer-events: none;
+        background-color: #ccc;
+        color: #ccc;
     }
     .content-rule {
         margin: 20px 0 20px 0;

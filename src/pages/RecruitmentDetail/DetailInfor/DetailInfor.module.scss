@@ -78,6 +78,9 @@
                 span {
                     padding-left: 4px;
                 }
+                .type-detail {
+                    padding-left: 40px;
+                }
             }
             .type-work {
                 font-weight: 800;
@@ -87,11 +90,6 @@
                     -webkit-box-orient: vertical;
                     overflow: hidden;
                 }
-                ion-icon {
-                }
-            }
-            .type-detail {
-                padding-left: 4px;
             }
         }
         .location,
@@ -110,8 +108,11 @@
             .btn-post {
                 display: flex;
                 margin-bottom: 20px;
-                .btn-apply {
-                    margin-left: 20px;
+                .btn-submit {
+                    margin-right: 20px;
+                }
+                .btn-saved {
+                    border: 1px solid #ccc;
                 }
             }
         }

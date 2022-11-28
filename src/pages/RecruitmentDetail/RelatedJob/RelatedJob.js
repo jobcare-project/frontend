@@ -25,9 +25,7 @@ export default function RelatedJob() {
         <Container>
             <div className={cx('wrapper')}>
                 <div className={cx('related-job')}>
-                    <div className={cx('related-title')}>
-                        Việc làm liên quan
-                    </div>
+                    <div className={cx('related-title')}>Việc làm mới nhất</div>
                     <div className={cx('related-more')}>
                         <Link to={config.routes.recruitmentpage}>
                             <span>Hiển thị thêm</span>
@@ -48,10 +46,10 @@ export default function RelatedJob() {
                                         >
                                             <Card
                                                 data={recruitment}
-                                                repair={
+                                                saved={
                                                     <ion-icon name="heart-outline"></ion-icon>
                                                 }
-                                                titlRepair="Lưu tin"
+                                                titleSaved="Lưu tin"
                                             ></Card>
                                         </Col>
                                     );

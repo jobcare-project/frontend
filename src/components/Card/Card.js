@@ -93,6 +93,7 @@ export default function Card({
                 show={show}
                 onActionRequest={handleDeletedPost}
             />
+
             <div className={cx('subdesc-control')}>
                 <div onClick={handleShow} className={cx('subdesc-text')}>
                     {deleted && (
@@ -101,13 +102,19 @@ export default function Card({
                     <span>{titleDeleted}</span>
                 </div>
                 <Link to={`/recruiter/recruiterpostjob/${id}`}>
-                    <div className={cx('subdesc-text')}>
+                    <div className={cx('subdesc-text-repair')}>
                         {repair && (
                             <span className={cx('subdesc-text')}>{repair}</span>
                         )}
                         <span>{titlRepair}</span>
                     </div>
                 </Link>
+                <div className={cx('subdesc-text-save')}>
+                    {saved && (
+                        <span className={cx('subdesc-text')}>{saved}</span>
+                    )}
+                    <span>{titleSaved}</span>
+                </div>
             </div>
         </div>
     );

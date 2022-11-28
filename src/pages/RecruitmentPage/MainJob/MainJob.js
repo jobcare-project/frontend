@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './MainJob.module.scss';
 
@@ -7,99 +7,22 @@ import Card from '~/components/Card/Card';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchListJob } from '~/pages/Home/homeSlice';
 import { jobListSelector } from '~/redux/Selectors/jobSelector';
+import PaginationCOM from '~/pages/Home/BestRecruitment/pagination';
+import { _LIMIT_PAGE } from '~/config/apis';
 
 const cx = classNames.bind(styles);
-const recruitmentList = [
-    {
-        thumbnail:
-            'https://luatvietphong.vn/wp-content/uploads/2021/08/anh-20102715083672561-1.jpg',
-        title: 'Nhà tuyển dụng ABC',
-        description:
-            'Day la nha tuyen dung hang dau Day la nha tuyen dung hang dau Day la nha tuyen dung hang dau',
-        salary: 'Lên đến 30tr',
-        location: 'Hai Chau - Da Nang',
-        createAt: '4 ngày trước',
-    },
-    {
-        thumbnail:
-            'https://luatvietphong.vn/wp-content/uploads/2021/08/anh-20102715083672561-1.jpg',
-        title: 'Nhà tuyển dụng ABC',
-        description: 'Day la nha tuyen dung hang dau',
-        salary: 'Lên đến 30tr',
-        location: 'Hai Chau - Da Nang',
-        createAt: '4 ngày trước',
-    },
-    {
-        thumbnail:
-            'https://luatvietphong.vn/wp-content/uploads/2021/08/anh-20102715083672561-1.jpg',
-        title: 'Nhà tuyển dụng ABC',
-        description: 'Day la nha tuyen dung hang dau',
-        salary: 'Lên đến 30tr',
-        location: 'Hai Chau - Da Nang',
-        createAt: '4 ngày trước',
-    },
-    {
-        thumbnail:
-            'https://luatvietphong.vn/wp-content/uploads/2021/08/anh-20102715083672561-1.jpg',
-        title: 'Nhà tuyển dụng ABC',
-        description: 'Day la nha tuyen dung hang dau',
-        salary: 'Lên đến 30tr',
-        location: 'Hai Chau - Da Nang',
-        createAt: '4 ngày trước',
-    },
-    {
-        thumbnail:
-            'https://luatvietphong.vn/wp-content/uploads/2021/08/anh-20102715083672561-1.jpg',
-        title: 'Nhà tuyển dụng ABC',
-        description: 'Day la nha tuyen dung hang dau',
-        salary: 'Lên đến 30tr',
-        location: 'Hai Chau - Da Nang',
-        createAt: '4 ngày trước',
-    },
-    {
-        thumbnail:
-            'https://luatvietphong.vn/wp-content/uploads/2021/08/anh-20102715083672561-1.jpg',
-        title: 'Nhà tuyển dụng ABC',
-        description: 'Day la nha tuyen dung hang dau',
-        salary: 'Lên đến 30tr',
-        location: 'Hai Chau - Da Nang',
-        createAt: '4 ngày trước',
-    },
-    {
-        thumbnail:
-            'https://luatvietphong.vn/wp-content/uploads/2021/08/anh-20102715083672561-1.jpg',
-        title: 'Nhà tuyển dụng ABC',
-        description: 'Day la nha tuyen dung hang dau',
-        salary: 'Lên đến 30tr',
-        location: 'Hai Chau - Da Nang',
-        createAt: '4 ngày trước',
-    },
-    {
-        thumbnail:
-            'https://luatvietphong.vn/wp-content/uploads/2021/08/anh-20102715083672561-1.jpg',
-        title: 'Nhà tuyển dụng ABC',
-        description: 'Day la nha tuyen dung hang dau',
-        salary: 'Lên đến 30tr',
-        location: 'Hai Chau - Da Nang',
-        createAt: '4 ngày trước',
-    },
-    {
-        thumbnail:
-            'https://luatvietphong.vn/wp-content/uploads/2021/08/anh-20102715083672561-1.jpg',
-        title: 'Nhà tuyển dụng ABC',
-        description: 'Day la nha tuyen dung hang dau',
-        salary: 'Lên đến 30tr',
-        location: 'Hai Chau - Da Nang',
-        createAt: '4 ngày trước',
-    },
-];
 function MainJob() {
+    const [jobsItem, setjobsItem] = useState([]);
     const dispatch = useDispatch();
     const jobListData = useSelector(jobListSelector);
 
     useEffect(() => {
         dispatch(fetchListJob());
-    }, []);
+        if (jobListData.length > 0) {
+            const jobs = jobListData.slice(0, _LIMIT_PAGE);
+            setjobsItem(jobs);
+        }
+    }, [JSON.stringify(jobListData)]);
     return (
         <Container>
             <div className={cx('wrapper')}>
@@ -107,8 +30,8 @@ function MainJob() {
                 {jobListData.length ? (
                     <div className={cx('wrapper')}>
                         <Row>
-                            {jobListData &&
-                                jobListData.slice(0, 16).map((recruitment) => {
+                            {jobsItem &&
+                                jobsItem.map((recruitment) => {
                                     return (
                                         <Col
                                             key={recruitment.id}
@@ -118,10 +41,10 @@ function MainJob() {
                                         >
                                             <Card
                                                 data={recruitment}
-                                                repair={
+                                                saved={
                                                     <ion-icon name="heart-outline"></ion-icon>
                                                 }
-                                                titlRepair="Lưu tin"
+                                                titleSaved="Lưu tin"
                                             ></Card>
                                         </Col>
                                     );
@@ -131,6 +54,7 @@ function MainJob() {
                 ) : (
                     ''
                 )}
+                <PaginationCOM items={jobListData} setjobsItem={setjobsItem} />
             </div>
         </Container>
     );

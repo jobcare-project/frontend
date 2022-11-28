@@ -30,7 +30,6 @@ export const publicRoutes = [
     { path: config.routes.blog, component: Blog },
     { path: config.routes.testuser, component: TestUser },
     { path: config.routes.displayquizz, component: DisplayQuizz },
-    { path: config.routes.recruitmentpage, component: RecruitmentPage },
 
     {
         path: config.routes.informationtechnology,
@@ -42,10 +41,12 @@ export const publicRoutes = [
 ];
 
 export const privateRoutes = [
+    { path: config.routes.recruitmentpage, component: RecruitmentPage },
+    { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
     { path: config.routes.profile, component: Profile },
     { path: config.routes.settings, component: Settings },
     { path: config.routes.savepost, component: SavePost },
-    { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
+
     { path: config.routes.editPost, component: RecruiterPostEdit },
     { path: config.routes.postblog, component: PostBlog },
     { path: config.routes.blogcontent, component: ContentBlog },

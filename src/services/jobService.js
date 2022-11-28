@@ -22,6 +22,7 @@ export const deletedJobDesc = async (id) => {
         `${config.jobsApiUrl.deletedJobDesc}/${id}`,
     );
 };
+
 // get detail job
 export const getDetailPost = (id) => {
     return axiosClient.get(`${config.jobsApiUrl.getList}/${id}`);

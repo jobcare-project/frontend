@@ -179,30 +179,29 @@ export default function DetailInfor({ data, to }) {
                             <div className={cx('descript-benefit')}>
                                 <h1>Quyền lợi</h1>
                                 <div className={cx('content-tab')}>
-                                    <p>{jobDetailData?.welFare}</p>
+                                    <p>{jobDetailData?.welfare}</p>
                                 </div>
                             </div>
                             <div className={cx('mothod-title')}>
                                 <h2>Cách thức ứng tuyển</h2>
                             </div>
                             <div className={cx('btn-post')}>
-                                <div className={cx('btn-save')}>
-                                    <Button rounded>Lưu tin</Button>
-                                </div>
-                                <div className={cx('btn-apply')}>
-                                    <Button
-                                        primary
-                                        className={cx('btn-submit')}
-                                        onClick={() => {
-                                            setModalOpen(true);
-                                        }}
-                                    >
-                                        Ứng tuyển ngay
-                                    </Button>
-                                    {modalOpen && (
-                                        <Modal setOpenModal={setModalOpen} />
-                                    )}
-                                </div>
+                                <Button
+                                    primary
+                                    className={cx('btn-submit')}
+                                    onClick={() => {
+                                        setModalOpen(true);
+                                    }}
+                                >
+                                    Ứng tuyển ngay
+                                </Button>
+                                <Button secondary className={cx('btn-saved')}>
+                                    Lưu tin
+                                </Button>
+
+                                {modalOpen && (
+                                    <Modal setOpenModal={setModalOpen} />
+                                )}
                             </div>
                             <div className={cx('time')}>
                                 <span className={cx('type-work-icon')}>

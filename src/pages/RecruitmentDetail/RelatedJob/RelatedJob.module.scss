@@ -1,12 +1,11 @@
 .wrapper {
-    margin-top: var(--margin-0);
     background-color: var(--white-color);
     padding: 5px 10px;
 }
 .related-job {
-    margin-top: var(--margin-top-0);
     display: flex;
     justify-content: space-between;
+    color: var(--primary-color);
     .related-title {
         font-size: 2.8rem;
         margin-bottom: 10px;
@@ -15,16 +14,13 @@
     .related-more {
         cursor: pointer;
         border-radius: var(--radius-1);
-
         span {
-            color: var(--primary-color);
+            color: var(--black-color);
             font-weight: 700;
-            font-size: 15px;
-            // &:hover {
-            //     color: var(--white-color);
-            //     background-color: var(--secondary-color);
-            //     padding: 10px;
-            // }
+            font-size: 20px;
+            &:hover {
+                color: var(--primary-color);
+            }
         }
     }
 }
