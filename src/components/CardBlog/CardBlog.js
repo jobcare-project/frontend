@@ -44,7 +44,10 @@ function CardBlog({
                     </span>
                 </div>
             </div>
-            <Link className={cx('link')} to={config.routes.blogdetail}>
+            <Link
+                className={cx('link')}
+                to={{ pathname:`blogdetail/${data.id}`}}
+            >
                 <div className={cx('blog-item')}>
                     <div className={cx('title')}>{data?.title}</div>
                     <div className={cx('content')}>{data?.content}</div>
