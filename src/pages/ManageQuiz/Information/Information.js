@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './Information.module.scss';
 
-import { db } from '~/components/Firebase/firebase';
+import { db } from '~/config/Firebase/firebase';
 import { useState, useEffect } from 'react';
 import { collection, onSnapshot } from 'firebase/firestore';
 

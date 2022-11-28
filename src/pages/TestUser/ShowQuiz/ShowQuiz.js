@@ -6,7 +6,7 @@ import { Container } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import { collection, onSnapshot } from 'firebase/firestore';
 
-import { db } from '~/components/Firebase/firebase';
+import { db } from '~/config/Firebase/firebase';
 
 import config from '~/config';
 import Menu, { MenuItem } from '../Menu';

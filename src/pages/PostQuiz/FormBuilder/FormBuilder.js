@@ -16,7 +16,7 @@ import Header from './Header';
 import Button from '~/components/Button/index.js';
 import DropDown from '~/components/Input/DropDown/DropDown';
 //firebase
-import { db , storage } from '~/components/Firebase/firebase';
+import { db , storage } from '~/config/Firebase/firebase';
 
 const cx = classNames.bind(styles);
 

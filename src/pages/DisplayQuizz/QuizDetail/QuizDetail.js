@@ -1,5 +1,5 @@
 import { collection, doc, getDoc, getDocs, query } from 'firebase/firestore';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 // import classNames from 'classnames/bind';
 // import { useNavigate } from 'react-router-dom';
@@ -7,9 +7,9 @@ import { useParams } from 'react-router-dom';
 // import Modal from 'react-bootstrap/Modal';
 // import Accordion from 'react-bootstrap/Accordion';
 // import styles from './TodoQuiz.module.scss';
-import { db } from '~/components/Firebase/firebase';
+import { db } from '~/config/Firebase/firebase';
 
-function TodoQyuz() {
+function QuizDetail() {
     const { id } = useParams();
     const [quiz, setQuiz] = useState(null);
     const [relatedQuizs, setRelatedQuizs] = useState([]);
@@ -47,4 +47,4 @@ function TodoQyuz() {
     );
 }
 
-export default TodoQyuz;
+export default QuizDetail;
