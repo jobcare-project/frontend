@@ -21,8 +21,6 @@ const RadioInput = ({
         console.log(id, typeof id, 'this is id');
         const data = {
             id: uuid(),
-            question: '',
-            answer: '',
         };
         addOption(id, data);
     };

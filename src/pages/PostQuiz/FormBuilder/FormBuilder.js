@@ -16,7 +16,7 @@ import Header from './Header';
 import Button from '~/components/Button/index.js';
 import DropDown from '~/components/Input/DropDown/DropDown';
 //firebase
-import { db , storage } from '~/config/Firebase/firebase';
+import { db, storage } from '~/config/Firebase/firebase';
 
 const cx = classNames.bind(styles);
 
@@ -250,23 +250,20 @@ function FormBuilder() {
 
     //Render items
     const renderElements = ({ item }) => {
-        switch (item.type) {
-            case 'radio':
-                return (
-                    <RadioInput
-                        item={item}
-                        handleValueQuestion={handleValueQuestion}
-                        handleValueAnswer={handleValueAnswer}
-                        deleteEl={deleteEl}
-                        handleRequired={handleRequired}
-                        handleElType={handleElType}
-                        addOption={addOption}
-                        handleOptionValues={handleOptionValues}
-                        deleteOption={deleteOption}
-                        duplicateElement={duplicateElement}
-                    />
-                );
-        }
+        return (
+            <RadioInput
+                item={item}
+                handleValueQuestion={handleValueQuestion}
+                handleValueAnswer={handleValueAnswer}
+                deleteEl={deleteEl}
+                handleRequired={handleRequired}
+                handleElType={handleElType}
+                addOption={addOption}
+                handleOptionValues={handleOptionValues}
+                deleteOption={deleteOption}
+                duplicateElement={duplicateElement}
+            />
+        );
     };
 
     console.log(data);
@@ -320,7 +317,14 @@ function FormBuilder() {
                     description={description}
                     setDescription={setDescription}
                 />
-                <div className={cx('quiz-title')}>Xây dựng Quiz</div>
+                <div>
+                    <div className={cx('title-image')}>Chọn ảnh đại diện</div>
+                    <input
+                        type="file"
+                        className={cx('image')}
+                        onChange={(e) => setFile(e.target.files[0])}
+                    />
+                </div>
                 <Nestable
                     items={items}
                     renderItem={renderElements}
@@ -328,14 +332,7 @@ function FormBuilder() {
                     onChange={handleOnChangeSort}
                 />
             </div>
-            <div>
-                <div className={cx('title-image')}>Chọn ảnh đại diện</div>
-                <input
-                    type="file"
-                    className={cx('image')}
-                    onChange={(e) => setFile(e.target.files[0])}
-                />
-            </div>
+
             <div>
                 <Button outline onClick={addElement}>
                     Thêm câu hỏi
