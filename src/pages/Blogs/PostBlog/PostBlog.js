@@ -16,6 +16,7 @@ import {
     addDoc,
     deleteDoc,
 } from 'firebase/firestore';
+import TextEditor from '../EditorContent/EditorContent';
 
 const cx = classNames.bind(styles);
 
@@ -32,7 +33,9 @@ function PostBlog() {
 
         addDoc(blogCollectionRef, form);
     };
-
+    const setContent = (value) => {
+        setForm({ ...form, content: value });
+    };
     return (
         <div className={cx('wrapper')} onSubmit={handleSubmit}>
             <form>
@@ -43,16 +46,15 @@ function PostBlog() {
                     </h3>
                 </div>
                 <div className={cx('content')}>
-                    <div className={cx('title')}>
-                        <input
-                            placeholder="Tiêu đề"
-                            type="text"
-                            value={form.title}
-                            onChange={(e) =>
-                                setForm({ ...form, title: e.target.value })
-                            }
-                        />
-                    </div>
+                    <input
+                        className={cx('input-title')}
+                        placeholder="Tiêu đề"
+                        type="text"
+                        value={form.title}
+                        onChange={(e) =>
+                            setForm({ ...form, title: e.target.value })
+                        }
+                    />
                     <div className={cx('content-blog')}>
                         {/* <input
                             placeholder="Nội dung ..."
@@ -62,7 +64,11 @@ function PostBlog() {
                                 setForm({ ...form, content: e.target.value })
                             }
                         /> */}
-                        <EditorContent />
+                        <TextEditor
+                            setContentBlog={setContent}
+                            sHidderTools={false}
+                            set
+                        />
                     </div>
                 </div>
                 <div className={cx('btn')}>

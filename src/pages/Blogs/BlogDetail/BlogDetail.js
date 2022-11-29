@@ -80,7 +80,11 @@ function BlogDetail() {
                             {blog?.title}
                         </div>
                         <div className={cx('content-detail')}>
-                            {blog?.content}
+                            <span
+                                dangerouslySetInnerHTML={{
+                                    __html: blog?.content,
+                                }}
+                            ></span>
                         </div>
                         <div className={cx('comment')}></div>
                     </div>

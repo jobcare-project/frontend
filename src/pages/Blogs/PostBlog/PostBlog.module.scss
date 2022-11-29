@@ -17,9 +17,15 @@
         padding: 20px 10px;
         border: 1px solid #ccc;
 
-        .title {
-            padding: 10 16px;
+        .input-title {
+            width: 100%;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
             margin-bottom: 20px;
+            &::placeholder {
+                font-size: 35px;
+                color: #b3b3b1;
+            }
         }
         .content-blog {
             height: 500px;

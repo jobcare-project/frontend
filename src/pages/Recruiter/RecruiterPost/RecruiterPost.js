@@ -34,6 +34,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import config from '~/config';
 import { messageRecruiterSelector } from '~/redux/Selectors/recruiterSelector';
+import TextEditor from '~/pages/Blogs/EditorContent/EditorContent';
 // import ModalDeleted from '~/pages/Profile/Modal/ModalPost/ModalDeleted';
 const cx = classNames.bind(styles);
 const mucluongData = [
@@ -688,19 +689,14 @@ function RecruiterPost() {
                                             <div className={cx('detail-name')}>
                                                 Nhập mô tả công việc
                                             </div>
-                                            <Field
-                                                as="textarea"
-                                                className={cx('input-text')}
-                                                name="jobDescription"
-                                                value={description}
-                                                onChange={(e) =>
-                                                    handleTextChange(
-                                                        e,
-                                                        'jobDescription',
-                                                        setDescription,
-                                                    )
+                                            <TextEditor
+                                                setValue={
+                                                    formikRef?.current
+                                                        ?.setFieldValue
                                                 }
-                                            ></Field>
+                                                fieldName={'jobDescription'}
+                                                isHidderTools={true}
+                                            />
                                         </div>
                                         <p className={cx('message')}>
                                             <ErrorMessage name="jobDescription" />
@@ -713,19 +709,14 @@ function RecruiterPost() {
                                             <div className={cx('detail-name')}>
                                                 Yêu cầu ứng viên
                                             </div>
-                                            <Field
-                                                as="textarea"
-                                                className={cx('input-text')}
-                                                name="jobRequire"
-                                                type="text"
-                                                value={requireCandidate}
-                                                onChange={(e) =>
-                                                    handleTextChange(
-                                                        e,
-                                                        'jobRequire',
-                                                        setRequireCandidate,
-                                                    )
+
+                                            <TextEditor
+                                                setValue={
+                                                    formikRef?.current
+                                                        ?.setFieldValue
                                                 }
+                                                fieldName={'jobRequire'}
+                                                isHidderTools={true}
                                             />
                                         </div>
                                         <p className={cx('message')}>
@@ -740,19 +731,14 @@ function RecruiterPost() {
                                             <div className={cx('detail-name')}>
                                                 Quyền lợi
                                             </div>
-                                            <Field
-                                                as="textarea"
-                                                className={cx('input-text')}
-                                                name="welfare"
-                                                type="text"
-                                                value={benefit}
-                                                onChange={(e) =>
-                                                    handleTextChange(
-                                                        e,
-                                                        'welfare',
-                                                        setbenefit,
-                                                    )
+                                            <TextEditor
+                                                setValue={
+                                                    formikRef?.current
+                                                        ?.setFieldValue
                                                 }
+                                                fieldName={'welfare'}
+                                                isHidderTools={true}
+                                                className={cx('text-field')}
                                             />
                                         </div>
                                         <p className={cx('message')}>

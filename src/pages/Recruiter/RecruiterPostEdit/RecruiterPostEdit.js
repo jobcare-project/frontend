@@ -30,6 +30,7 @@ import { useMemo } from 'react';
 import { fetchEditJobDesc, fetchPostJobDesc } from '~/pages/Home/homeSlice';
 import { useParams } from 'react-router-dom';
 import { getDetailPost } from '~/services/jobService';
+import TextEditor from '~/pages/Blogs/EditorContent/EditorContent';
 const cx = classNames.bind(styles);
 const mucluongData = [
     {
@@ -714,19 +715,15 @@ function RecruiterPostEdit() {
                                             <div className={cx('detail-name')}>
                                                 Nhập mô tả công việc
                                             </div>
-                                            <Field
-                                                as="textarea"
-                                                className={cx('input-text')}
-                                                name="jobDescription"
-                                                value={description}
-                                                onChange={(e) =>
-                                                    handleTextChange(
-                                                        e,
-                                                        'jobDescription',
-                                                        setDescription,
-                                                    )
+                                            <TextEditor
+                                                setValue={
+                                                    formikRef?.current
+                                                        ?.setFieldValue
                                                 }
-                                            ></Field>
+                                                fieldName={'jobDescription'}
+                                                isHidderTools={true}
+                                                defaultValueProps={description}
+                                            />
                                         </div>
                                         <p className={cx('message')}>
                                             <ErrorMessage name="jobDescription" />
@@ -739,19 +736,14 @@ function RecruiterPostEdit() {
                                             <div className={cx('detail-name')}>
                                                 Yêu cầu ứng viên
                                             </div>
-                                            <Field
-                                                as="textarea"
-                                                className={cx('input-text')}
-                                                name="jobRequire"
-                                                type="text"
-                                                value={requireCandidate}
-                                                onChange={(e) =>
-                                                    handleTextChange(
-                                                        e,
-                                                        'jobRequire',
-                                                        setRequireCandidate,
-                                                    )
+                                            <TextEditor
+                                                setValue={
+                                                    formikRef?.current
+                                                        ?.setFieldValue
                                                 }
+                                                fieldName={'jobRequire'}
+                                                isHidderTools={true}
+                                                defaultValueProps={description}
                                             />
                                         </div>
                                         <p className={cx('message')}>
@@ -766,27 +758,22 @@ function RecruiterPostEdit() {
                                             <div className={cx('detail-name')}>
                                                 Quyền lợi
                                             </div>
-                                            <Field
-                                                as="textarea"
-                                                className={cx('input-text')}
-                                                name="benefit"
-                                                type="text"
-                                                value={benefit}
-                                                onChange={(e) =>
-                                                    handleTextChange(
-                                                        e,
-                                                        'benefit',
-                                                        setBenefit,
-                                                    )
+                                            <TextEditor
+                                                setValue={
+                                                    formikRef?.current
+                                                        ?.setFieldValue
                                                 }
+                                                fieldName={'welfare'}
+                                                isHidderTools={true}
+                                                defaultValueProps={description}
                                             />
                                         </div>
                                         <p className={cx('message')}>
-                                            <ErrorMessage name="benefit" />
+                                            <ErrorMessage name="welfare" />
                                         </p>
                                     </Col>
                                 </Row>
-                                <div className={cx('content-input')}>
+                                {/* <div className={cx('content-input')}>
                                     <div className={cx('detail-name')}>
                                         Hình thức đăng tin
                                     </div>
@@ -950,7 +937,7 @@ function RecruiterPostEdit() {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                             <div className={cx('content-rule')}>
                                 <div className={cx('checkbox-rule')}>
