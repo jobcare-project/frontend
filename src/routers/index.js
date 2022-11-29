@@ -23,6 +23,9 @@ import RecruiterPostEdit from '~/pages/Recruiter/RecruiterPostEdit/RecruiterPost
 import ContentBlog from '~/pages/Blogs/BlogContent/BlogContent';
 import BlogDetail from '~/pages/Blogs/BlogDetail/BlogDetail';
 import PostBlog from '~/pages/Blogs/PostBlog/PostBlog';
+import SavedRecruitment from '~/pages/SavePost/SavedRecruitment/SavedRecruitment';
+import SavedBlog from '~/pages/SavePost/SavedBlog/SavedBlog';
+import SavedQuizz from '~/pages/SavePost/SavedQuizz/SavedQuizz';
 
 export const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -45,12 +48,31 @@ export const privateRoutes = [
     { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
     { path: config.routes.profile, component: Profile },
     { path: config.routes.settings, component: Settings },
-    { path: config.routes.savepost, component: SavePost },
+    {
+        path: config.routes.savepost,
+        component: SavePost,
+        layout: SidebarLayout,
+    },
 
     { path: config.routes.editPost, component: RecruiterPostEdit },
     { path: config.routes.postblog, component: PostBlog },
     { path: config.routes.blogcontent, component: ContentBlog },
     { path: config.routes.blogdetail, component: BlogDetail },
+    {
+        path: config.routes.savedrecruitment,
+        component: SavedRecruitment,
+        layout: SidebarLayout,
+    },
+    {
+        path: config.routes.savedblog,
+        component: SavedBlog,
+        layout: SidebarLayout,
+    },
+    {
+        path: config.routes.savedquizz,
+        component: SavedQuizz,
+        layout: SidebarLayout,
+    },
 ];
 
 export const userPrivateRoutes = [];

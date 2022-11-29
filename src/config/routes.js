@@ -19,12 +19,17 @@ const routes = {
     recruitmentdetail: 'recruitmentpage/recruitmentdetail/:recruitmentId',
     recruitmentpage: '/recruitmentpage',
     displayquizz: 'testuser/displayquizz',
-    savepost: '/blog/savedPost',
+    savepost: '/savedPost/recruitmentSaved',
     usersManagement: '/admin/usermanagement',
     editPost: '/recruiter/recruiterpostjob/:id',
     postblog: '/blog/postblog',
     blogcontent: '/blog/postblog/blogcontent',
     blogdetail: '/blog/postblog/blogdetail', // /:id
+
+    // saved post
+    savedrecruitment: '/savedPost/SavedRecruitment',
+    savedblog: '/savedPost/SavedBlog',
+    savedquizz: '/savedPost/SavedQuizz',
 };
 
 export default routes;
