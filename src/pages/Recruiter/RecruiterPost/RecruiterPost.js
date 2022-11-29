@@ -346,7 +346,7 @@ function RecruiterPost() {
             default:
                 break;
         }
-        console.log(nameSelect, name);
+        // console.log(nameSelect, name);
         setSelectForm((prev) => {
             return { ...prev, [nameSelect]: name };
         });
@@ -374,7 +374,7 @@ function RecruiterPost() {
     };
     const job = useSelector(jobSelector);
     const message = useSelector(messageRecruiterSelector);
-    console.log({ message });
+    // console.log({ message });
 
     const navigate = useNavigate();
 
@@ -388,7 +388,7 @@ function RecruiterPost() {
     }, [job, message]);
 
     const handleSubmit = () => {
-        console.log(formikRef.current.values);
+        // console.log(formikRef.current.values);
         const formikValues = formikRef.current.values;
         // search timf lỗi formik
         const salary =
@@ -397,7 +397,7 @@ function RecruiterPost() {
                 : formikValues.salary;
         const selectValues = { ...selectForm, salary };
         const data = { ...formikValues, ...selectValues };
-        console.log('Data', data);
+        // console.log('Data', data);
         dispatch(fetchPostJobDesc(data));
     };
     return (
