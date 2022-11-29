@@ -31,7 +31,7 @@ function Content(props, ref) {
                 {contentData.map((contentItem) => (
                     <EditorGroup
                         key={contentItem.id}
-                        boxId={contentItem.id}
+                        groupId={contentItem.id}
                         editorData={contentItem}
                     />
                 ))}

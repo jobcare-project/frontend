@@ -1,10 +1,9 @@
 import BoxEditor from '../../BoxEditor';
 import BoxEditorItem from '../../BoxEditor/BoxEditorItem';
 
-function EditorGroup({ editorData, boxId }) {
+function EditorGroup({ editorData, groupId }) {
     return (
         <section>
-            {/* Truyền các editor value dưới dạng mảng để dễ quản lý */}
             <BoxEditor
                 heading={editorData.heading}
                 icon={<ion-icon name="contract-outline"></ion-icon>}
@@ -14,8 +13,9 @@ function EditorGroup({ editorData, boxId }) {
                         <BoxEditorItem
                             key={editor.id}
                             typeBlock="content"
+                            groupId={groupId}
                             index={index}
-                            boxId={boxId}
+                            boxId={editor.id}
                             timeline={editor?.timeline}
                             title={editor?.title}
                             editorValue={editor.value}

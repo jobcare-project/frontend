@@ -13,17 +13,20 @@ function BoxEditorItem({
     editorValue = '',
     timeline,
     index,
-    boxId,
+    groupId,
     typeBlock,
+    boxId,
 }) {
     const dispatch = useDispatch();
 
     const handleAddNewEditor = () => {
+        console.log('Box-ID::', boxId);
         dispatch(
             cvSlice.actions.addIconicContainerItem({
                 index,
                 typeBlock,
                 boxId,
+                groupId,
             }),
         );
     };
@@ -34,12 +37,15 @@ function BoxEditorItem({
                 index,
                 typeBlock,
                 boxId,
+                groupId,
             }),
         );
     };
 
     const handleDeleteBoxItem = () => {
-        dispatch(cvSlice.actions.deleteBoxItem({ index, typeBlock, boxId }));
+        dispatch(
+            cvSlice.actions.deleteBoxItem({ index, typeBlock, boxId, groupId }),
+        );
     };
 
     return (

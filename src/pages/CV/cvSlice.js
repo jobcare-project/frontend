@@ -26,7 +26,7 @@ export const cvSlice = createSlice({
             state.theme = themeCorrect.data;
         },
         addIconicContainerItem(state, action) {
-            const { index, typeBlock, boxId } = action.payload;
+            const { index, typeBlock, groupId } = action.payload;
 
             if (typeBlock === 'overview') {
                 state.data.overview.container.splice(index + 1, 0, {
@@ -34,48 +34,51 @@ export const cvSlice = createSlice({
                     ...newIconicContainerItem,
                 });
             } else {
-                state.data.content.map((box) => {
-                    if (box.id === boxId) {
-                        box.data.splice(index, 0, {
+                state.data.content.forEach((group) => {
+                    if (group.id === groupId) {
+                        group.data.splice(index + 1, 0, {
                             id: uuidv4(),
                             ...newContentBoxItem,
                         });
                     }
-                    return box;
                 });
             }
         },
         addIconicContainerItemBefore(state, action) {
-            const { index, typeBlock, boxId } = action.payload;
+            const { index, typeBlock, groupId } = action.payload;
             if (typeBlock === 'overview') {
-                state.data.overview.container.splice(index + 1, 0, {
+                state.data.overview.container.splice(index, 0, {
                     id: uuidv4(),
                     ...newIconicContainerItem,
                 });
             } else {
-                state.data.content.map((box) => {
-                    if (box.id === boxId) {
-                        box.data.splice(index, 0, {
+                state.data.content.forEach((group) => {
+                    if (group.id === groupId) {
+                        group.data.splice(index, 0, {
                             id: uuidv4(),
                             ...newContentBoxItem,
                         });
                     }
-                    return box;
                 });
             }
         },
         deleteBoxItem(state, action) {
-            console.log('handleDeleteBoxItem-action:', action.payload);
-            const { index, typeBlock, boxId } = action.payload;
+            console.log('deleteBoxItem:::::', action.payload);
+            const { typeBlock, boxId, groupId } = action.payload;
 
             if (typeBlock === 'overview') {
-                state.data.overview.container.filter((box) => box.id !== boxId);
+                state.data.overview.container =
+                    state.data.overview.container.filter(
+                        (box) => box.id !== boxId,
+                    );
             } else {
-                state.data.content.map((box) => {
-                    return box.data.filter((boxItem) => boxItem.id !== boxId);
-                    // if(box.id === boxId) {
-                    // }
-                    // return box
+                state.data.content = state.data.content.map((group) => {
+                    if (group.id === groupId) {
+                        return group.data.filter(
+                            (boxItem) => boxItem.id !== boxId,
+                        );
+                    }
+                    return group;
                 });
             }
         },
