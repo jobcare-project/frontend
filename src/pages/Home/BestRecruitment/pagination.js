@@ -1,6 +1,6 @@
 import React, { Component, useState } from 'react';
 // import ReactDOM from "react-dom";
-import Pagination from 'react-js-pagination';
+import Pagination from '~/components/Pagination/Pagination';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components';
 import { _LIMIT_PAGE } from '~/config/apis';

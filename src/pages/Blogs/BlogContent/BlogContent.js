@@ -6,7 +6,7 @@ import Card from '~/components/Card/Card';
 import CardBlog from '~/components/CardBlog/CardBlog';
 import Input from '~/components/Input/Input/Input';
 
-import { db } from '../firebase';
+import { db } from '~/config/Firebase/firebase';
 import { useState, useEffect, useRef } from 'react';
 
 import { collection, onSnapshot } from 'firebase/firestore';

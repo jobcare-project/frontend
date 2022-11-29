@@ -7,7 +7,7 @@ import Input from '~/components/Input/Input/Input';
 import EditorContent from '../EditorContent/EditorContent';
 import { Container } from 'react-bootstrap';
 
-import { db } from '../firebase';
+import { db } from '~/config/Firebase/firebase';
 import { useState, useEffect } from 'react';
 import {
     collection,
