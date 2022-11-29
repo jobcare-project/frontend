@@ -26,7 +26,6 @@ export const publicRoutes = [
     { path: config.routes.accounts, component: Accounts, layout: null },
     { path: config.routes.blog, component: Blog },
     { path: config.routes.testuser, component: TestUser },
-    { path: config.routes.displayquizz, component: DisplayQuizz},
     { path: config.routes.itech, component: IT },
     { path: config.routes.managequiz, component: ManageQuiz },
     {
@@ -43,6 +42,8 @@ export const publicRoutes = [
 export const privateRoutes = [
     { path: config.routes.profile, component: Profile },
     { path: config.routes.settings, component: Settings },
+    { path: config.routes.displayquizz, component: DisplayQuizz},
+    
 ];
 
 export const userPrivateRoutes = [];
