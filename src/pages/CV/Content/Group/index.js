@@ -5,6 +5,7 @@ function EditorGroup({ editorData, groupId }) {
     return (
         <section>
             <BoxEditor
+                groupId={groupId}
                 heading={editorData.heading}
                 icon={<ion-icon name="contract-outline"></ion-icon>}
             >

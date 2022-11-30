@@ -1,5 +1,7 @@
 import Tippy from '@tippyjs/react';
 import classNames from 'classnames/bind';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import InputEditor from '~/components/Editor/InputEditor';
 import { BoxIconStyled } from '../styledComponents/BoxIcon';
@@ -7,16 +9,17 @@ import { Title } from '../styledComponents/Title';
 
 import 'tippy.js/dist/tippy.css';
 import styles from './BoxEditor.module.scss';
-import { useState } from 'react';
 import ModalAddOptions from './ModalAddOptions';
+import { cvSlice } from '../cvSlice';
 
 const cx = classNames.bind(styles);
 
-function BoxEditor({ icon, heading, children }) {
+function BoxEditor({ icon, heading, groupId, children }) {
+    const dispatch = useDispatch();
     const [showModal, setShowModal] = useState(false);
 
     const handleDelete = () => {
-        console.log('handleDelete');
+        dispatch(cvSlice.actions.deleteGroup({ groupId }));
     };
 
     const handleAdd = () => {

@@ -63,7 +63,6 @@ export const cvSlice = createSlice({
             }
         },
         deleteBoxItem(state, action) {
-            console.log('deleteBoxItem:::::', action.payload);
             const { typeBlock, boxId, groupId } = action.payload;
 
             if (typeBlock === 'overview') {
@@ -74,13 +73,21 @@ export const cvSlice = createSlice({
             } else {
                 state.data.content = state.data.content.map((group) => {
                     if (group.id === groupId) {
-                        return group.data.filter(
+                        const newGroup = group.data.filter(
                             (boxItem) => boxItem.id !== boxId,
                         );
+                        return { ...group, data: newGroup };
                     }
                     return group;
                 });
             }
+        },
+        deleteGroup(state, action) {
+            const { groupId } = action.payload;
+
+            state.data.content = state.data.content.filter(
+                (group) => group.id !== groupId,
+            );
         },
     },
 });
@@ -90,4 +97,5 @@ export const {
     addIconicContainerItem,
     addIconicContainerItemBefore,
     deleteBoxItem,
+    deleteGroup,
 } = cvSlice.reducer;
