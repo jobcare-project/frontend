@@ -48,6 +48,9 @@
         &:hover {
             opacity: 0.7;
         }
+        &.disable {
+            opacity: 0.5;
+        }
     }
     .trash-icon {
         &:hover {

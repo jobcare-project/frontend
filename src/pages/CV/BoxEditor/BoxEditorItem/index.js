@@ -16,6 +16,7 @@ function BoxEditorItem({
     groupId,
     typeBlock,
     boxId,
+    length,
 }) {
     const dispatch = useDispatch();
 
@@ -47,6 +48,14 @@ function BoxEditorItem({
         );
     };
 
+    const moveBottom = () => {
+        dispatch(cvSlice.actions.moveEditor({ boxId, direction: 1 }));
+    };
+
+    const moveTop = () => {
+        dispatch(cvSlice.actions.moveEditor({ boxId, direction: -1 }));
+    };
+
     return (
         <div className={cx('wrapper')}>
             <div className={cx('controls-left', 'controls')}>
@@ -66,24 +75,47 @@ function BoxEditorItem({
                         </span>
                     </Tippy>
                     <div>
-                        <Tippy
-                            theme="material"
-                            placement="right"
-                            content="Di chuyển lên trên"
-                        >
-                            <span className={cx('controls-icon')}>
+                        {index === 0 ? (
+                            <span className={cx('controls-icon', 'disable')}>
                                 <ion-icon name="chevron-up-circle-sharp"></ion-icon>
                             </span>
-                        </Tippy>
-                        <Tippy
-                            theme="material"
-                            placement="right"
-                            content="Di chuyển xuống dưới"
-                        >
-                            <span className={cx('controls-icon')}>
+                        ) : (
+                            <Tippy
+                                theme="material"
+                                placement="right"
+                                content="Di chuyển lên trên"
+                            >
+                                <span
+                                    onClick={() => {
+                                        moveTop();
+                                    }}
+                                    className={cx('controls-icon')}
+                                >
+                                    <ion-icon name="chevron-up-circle-sharp"></ion-icon>
+                                </span>
+                            </Tippy>
+                        )}
+
+                        {length === index ? (
+                            <span className={cx('controls-icon', 'disable')}>
                                 <ion-icon name="chevron-down-circle-sharp"></ion-icon>
                             </span>
-                        </Tippy>
+                        ) : (
+                            <Tippy
+                                theme="material"
+                                placement="right"
+                                content="Di chuyển xuống dưới"
+                            >
+                                <span
+                                    onClick={() => {
+                                        moveBottom();
+                                    }}
+                                    className={cx('controls-icon')}
+                                >
+                                    <ion-icon name="chevron-down-circle-sharp"></ion-icon>
+                                </span>
+                            </Tippy>
+                        )}
                     </div>
                     <Tippy
                         theme="material"

@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
+import { arrayMove } from '~/utils/cv.utils';
 
 import contentInitialValues from './initialValue';
 import newContentBoxItem from './initialValue/initialConstants/contentItem';
@@ -89,6 +90,11 @@ export const cvSlice = createSlice({
                 (group) => group.id !== groupId,
             );
         },
+        moveEditor(state, action) {
+            const { boxId, direction } = action.payload;
+
+            arrayMove(state.data.overview.container, boxId, direction);
+        },
     },
 });
 
@@ -98,4 +104,5 @@ export const {
     addIconicContainerItemBefore,
     deleteBoxItem,
     deleteGroup,
+    moveEditor,
 } = cvSlice.reducer;

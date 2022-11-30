@@ -32,10 +32,12 @@ function Overview() {
                     </div>
                     <Row>
                         {overviewData.container.map((overviewItem, index) => {
+                            const length = overviewData.container.length - 1;
                             return (
                                 <Col key={overviewItem.id} md={6}>
                                     <BoxEditorItem
                                         typeBlock="overview"
+                                        length={length}
                                         index={index}
                                         boxId={overviewItem.id}
                                         title={overviewItem.title}
