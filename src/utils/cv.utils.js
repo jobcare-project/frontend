@@ -4,4 +4,5 @@ export const arrayMove = (array, elementId, direction) => {
 
     array.splice(elementIndex, 1);
     array.splice(elementIndex + direction, 0, element);
+    return array;
 };

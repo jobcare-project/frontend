@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
-import { arrayMove } from '~/utils/cv.utils';
 
 import contentInitialValues from './initialValue';
 import newContentBoxItem from './initialValue/initialConstants/contentItem';
@@ -8,6 +7,7 @@ import { newIconicContainerItem } from './initialValue/initialConstants/overview
 import overviewInitialValues from './initialValue/overview';
 import { arrThemes } from './themes';
 import { DefaultTheme } from './themes/themeList';
+import { arrayMove } from '~/utils/cv.utils';
 
 export const cvSlice = createSlice({
     name: 'cv',
@@ -91,9 +91,23 @@ export const cvSlice = createSlice({
             );
         },
         moveEditor(state, action) {
-            const { boxId, direction } = action.payload;
+            const { typeBlock, boxId, direction, groupId } = action.payload;
 
-            arrayMove(state.data.overview.container, boxId, direction);
+            if (typeBlock === 'overview') {
+                arrayMove(state.data.overview.container, boxId, direction);
+            } else {
+                state.data.content = state.data.content.map((group) => {
+                    if (group.id === groupId) {
+                        const newGroup = arrayMove(
+                            group.data,
+                            boxId,
+                            direction,
+                        );
+                        return { ...group, data: newGroup };
+                    }
+                    return group;
+                });
+            }
         },
     },
 });

@@ -10,6 +10,7 @@ function EditorGroup({ editorData, groupId }) {
                 icon={<ion-icon name="contract-outline"></ion-icon>}
             >
                 {editorData.data.map((editor, index) => {
+                    const length = editorData.data.length - 1;
                     return (
                         <BoxEditorItem
                             key={editor.id}
@@ -20,6 +21,7 @@ function EditorGroup({ editorData, groupId }) {
                             timeline={editor?.timeline}
                             title={editor?.title}
                             editorValue={editor.value}
+                            length={length}
                         />
                     );
                 })}

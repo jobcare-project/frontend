@@ -49,11 +49,25 @@ function BoxEditorItem({
     };
 
     const moveBottom = () => {
-        dispatch(cvSlice.actions.moveEditor({ boxId, direction: 1 }));
+        dispatch(
+            cvSlice.actions.moveEditor({
+                typeBlock,
+                boxId,
+                groupId,
+                direction: 1,
+            }),
+        );
     };
 
     const moveTop = () => {
-        dispatch(cvSlice.actions.moveEditor({ boxId, direction: -1 }));
+        dispatch(
+            cvSlice.actions.moveEditor({
+                typeBlock,
+                boxId,
+                groupId,
+                direction: -1,
+            }),
+        );
     };
 
     return (
