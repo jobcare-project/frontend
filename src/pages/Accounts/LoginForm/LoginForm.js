@@ -19,7 +19,6 @@ function LoginForm() {
 
     const handleSubmit = () => {
         const { email, password } = formikRef.current.values;
-
         if (email && password) {
             const data = { email, password };
             dispatch(fetchLogin(data));

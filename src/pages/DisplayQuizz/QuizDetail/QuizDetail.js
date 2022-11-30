@@ -7,11 +7,13 @@ import Modal from 'react-bootstrap/Modal';
 import Accordion from 'react-bootstrap/Accordion';
 import styles from './QuizDetail.module.scss';
 import Button from '~/components/Button';
+import Loading from '~/components/Loading/Loading';
 
 import { db } from '~/config/Firebase/firebase';
 
 const cx = classNames.bind(styles);
 
+//get quiz scores
 const getResults = (questions, answers) => {
     let complete = true;
     let score = 0;
@@ -31,34 +33,44 @@ const getResults = (questions, answers) => {
 };
 
 function QuizDetail() {
+    //get id from firebase from useParams 
     const { id } = useParams();
+    //State quiz from firebase
     const [quiz, setQuiz] = useState(null);
-    console.log(quiz);
-
+    //State answer of quiz
     const [answer, setAnswer] = useState({});
+    //state Scoring of the quiz
     const [score, setScore] = useState(0);
+    //get ref from react
     const Ref = useRef(null);
+    // State create reverse night time
     const [timer, setTimer] = useState('00:00');
+    //State quiz time out
     const [pause, setPause] = useState(false);
+    //State show form when complete quiz
     const [show, setShow] = useState(false);
+    //State when get API from firebase
+    const [loading, setLoading] = useState(true);
 
-    //UseState detail displayquiz from Firebase
+    // Detail quiz
     useEffect(() => {
         id && getQuizDetail();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
 
+    //Function detail quiz
     const getQuizDetail = async () => {
         const docRef = doc(db, 'quiz', id);
         const quizDetail = await getDoc(docRef);
 
         setQuiz(quizDetail.data());
+        setLoading(false);
     };
 
-    //UseState back to previous page
+    //Function leve page
     const history = useNavigate();
 
-    //UseState Submit Quiz
+    //Function Submit Quiz and scoring
     const handleSubmit = (evt) => {
         evt.preventDefault();
 
@@ -70,7 +82,7 @@ function QuizDetail() {
             setScore(score);
         }
     };
-    //time remaining
+    //Function time remaining
 
     const getTimeRemaining = (e) => {
         const total = Date.parse(e) - Date.parse(new Date());
@@ -84,6 +96,7 @@ function QuizDetail() {
         };
     };
 
+    //Function start quiz time
     const startTimer = (e) => {
         let { total, minutes, seconds } = getTimeRemaining(e);
         if (total >= 0) {
@@ -101,6 +114,7 @@ function QuizDetail() {
         }
     };
 
+    //Function unit 1 second
     const clearTimer = (e) => {
         setTimer('60:00');
         if (Ref.current) clearInterval(Ref.current);
@@ -110,18 +124,21 @@ function QuizDetail() {
         Ref.current = id;
     };
 
+    //Function total quiz time
     const getDeadTime = () => {
         let deadline = new Date();
         deadline.setSeconds(deadline.getSeconds() + 3600);
         return deadline;
     };
 
+    //Function quiz time out
     const notime = () => {
         let deadline = new Date();
         deadline.setSeconds();
         return deadline;
     };
 
+    //Function stop time when completing quiz
     const pausetime = () => {
         if (!pause) {
             clearInterval(Ref.current);
@@ -130,15 +147,16 @@ function QuizDetail() {
         }
         setPause((prev) => !prev);
     };
-
+    //time remaining
     useEffect(() => {
         // do some
         clearTimer(getDeadTime());
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    //time remaining
-    return (
+    return loading ? (
+        <Loading />
+    ) : (
         <div className={cx('wrapper')}>
             <div className={cx('time-quiz')}>
                 <div className={cx('notification-bar')}>
@@ -168,7 +186,10 @@ function QuizDetail() {
                         <form onSubmit={handleSubmit}>
                             {quiz?.data.map((x, index) => {
                                 return (
-                                    <div key={x.id} className={cx('quiz-item')}>
+                                    <div
+                                        key={x?.id}
+                                        className={cx('quiz-item')}
+                                    >
                                         <h3>
                                             {index + 1} . {x?.question}{' '}
                                         </h3>
@@ -183,11 +204,15 @@ function QuizDetail() {
                                                     >
                                                         <input
                                                             type="radio"
-                                                            value={options}
-                                                            name={x.id}
+                                                            value={
+                                                                options.value
+                                                            }
+                                                            name={x?.id}
                                                             checked={
-                                                                answer[x.id] ===
-                                                                options
+                                                                answer[
+                                                                    x?.id
+                                                                ] ===
+                                                                options.value
                                                             }
                                                             onChange={() =>
                                                                 setAnswer(
@@ -195,8 +220,8 @@ function QuizDetail() {
                                                                         answer,
                                                                     ) => ({
                                                                         ...answer,
-                                                                        [x.id]:
-                                                                            options,
+                                                                        [x?.id]:
+                                                                            options.value,
                                                                     }),
                                                                 )
                                                             }

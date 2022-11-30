@@ -295,7 +295,7 @@ function FormBuilder() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <>
             <div>
                 <div className={cx('category')}>
                     <div value={category} onChange={onCategoryChange}>
@@ -339,11 +339,15 @@ function FormBuilder() {
                 </Button>
             </div>
             <div className={cx('submit')}>
-                <Button primary className={cx('submit-btn')}>
+                <Button
+                    primary
+                    className={cx('submit-btn')}
+                    onClick={handleSubmit}
+                >
                     Đăng bài
                 </Button>
             </div>
-        </form>
+        </>
     );
 }
 

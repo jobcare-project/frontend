@@ -40,8 +40,18 @@ function Carousel() {
     };
 
     return (
-        <Container>
-            <div className={cx('wrapper')}>
+        <div className={cx('wrapper')}>
+            <Container>
+                <div className={cx('heading')}>
+                    <h2 className={cx('carousel-job')}>
+                        Tìm việc làm nhanh 24h, việc làm mới nhất mỗi ngày được
+                        cập nhât trên JobCare
+                    </h2>
+                    <p className={cx('carousel-find')}>
+                        Tiếp cận 30,000+ tin tuyển dụng việc làm mới mỗi ngày từ
+                        hàng nghìn doanh nghiệp uy tín tại Việt Nam
+                    </p>
+                </div>
                 <Slider {...settings} className={cx('slider')}>
                     {dataSlider.map((sliderItem, index) => {
                         return (
@@ -53,8 +63,8 @@ function Carousel() {
                         );
                     })}
                 </Slider>
-            </div>
-        </Container>
+            </Container>
+        </div>
     );
 }
 

@@ -20,6 +20,12 @@ const sidebarMenu = [
         icon: <ion-icon name="people-sharp"></ion-icon>,
     },
     {
+        title: 'Đăng tin ',
+        to: config.routes.recruiter,
+        role: ['recruiter'],
+        icon: <ion-icon name="id-card-sharp"></ion-icon>,
+    },
+    {
         title: 'Recruitment',
         to: '/dashboard/recruitment',
         role: ['admin'],
@@ -36,6 +42,30 @@ const sidebarMenu = [
         to: '/dashboard/quiz',
         role: ['admin'],
         icon: <ion-icon name="create-sharp"></ion-icon>,
+    },
+    {
+        title: 'CV',
+        to: '/dashboard/quiz',
+        role: ['recruiter'],
+        icon: <ion-icon name="newspaper-outline"></ion-icon>,
+    },
+    {
+        title: 'Tuyển dụng',
+        to: '/savedPost/recruitmentSaved',
+        role: ['user'],
+        icon: <ion-icon name="id-card-sharp"></ion-icon>,
+    },
+    {
+        title: 'Quizz',
+        to: '/savedPost/SavedQuizz',
+        role: ['user'],
+        icon: <ion-icon name="create-sharp"></ion-icon>,
+    },
+    {
+        title: 'Blog',
+        to: '/savedPost/SavedBlog',
+        role: ['user'],
+        icon: <ion-icon name="newspaper-outline"></ion-icon>,
     },
 ];
 

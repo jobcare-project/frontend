@@ -1,7 +1,25 @@
 .wrapper {
     --height: 210px;
-    padding-top: 50px;
     margin: 0 -14px;
+    background-color: #d0eef9;
+    background-image: linear-gradient(
+        180deg,
+        #d0eef9 0%,
+        #f8e6ec 60%,
+        #ffffff 100%
+    );
+
+    .heading {
+        font-size: 20px;
+        margin-left: 20px;
+        margin-bottom: 5px;
+        .carousel-find {
+            font-weight: 400;
+            color: #4a4a4a;
+            font-size: 15px;
+            margin-top: 4px;
+        }
+    }
 }
 
 .slider {

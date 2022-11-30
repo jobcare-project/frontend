@@ -11,13 +11,18 @@ import { db } from '~/config/Firebase/firebase';
 import config from '~/config';
 import Menu, { MenuItem } from '../Menu';
 import CardShowQuiz from '~/components/CardShowQuiz/CardShowQuiz';
+import Loading from '~/components/Loading/Loading';
 
 const cx = classNames.bind(styles);
 
 function ShowQuiz() {
+    ////State quiz from firebase
     const [quiz, setQuiz] = useState([]);
+    //State when get API from firebase
+    const [loading, setLoading] = useState(true);
+    //State when get API from firebase
     const quizCollectionRef = collection(db, 'quiz');
-
+    //Firebase snapShot
     useEffect(() => {
         onSnapshot(quizCollectionRef, (snapshot) => {
             setQuiz(
@@ -29,10 +34,13 @@ function ShowQuiz() {
                     };
                 }),
             );
+            setLoading(false);
         });
     }, []);
-    console.log(quiz)
-    return (
+    console.log(quiz);
+    return loading ? (
+        <Loading />
+    ) : (
         <div className={cx('wrapper')}>
             <Container className={cx('container')}>
                 <h2 className={cx('heading')}>
@@ -48,13 +56,19 @@ function ShowQuiz() {
                             <Col key={index} lg={3} md={4} sm={6}>
                                 <CardShowQuiz
                                     quiz={quiz}
+                                    deleted={
+                                        <ion-icon name="close-circle-outline"></ion-icon>
+                                    }
+                                    titleDeleted="Xóa bài quiz"
+                                    repair={
+                                        <ion-icon name="construct-outline"></ion-icon>
+                                    }
+                                    titlRepair="Sửa bài quiz"
                                 ></CardShowQuiz>
                             </Col>
                         );
                     })}
                 </Row>
-
-                
             </Container>
         </div>
     );

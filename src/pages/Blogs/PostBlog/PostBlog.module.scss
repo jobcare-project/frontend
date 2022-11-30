@@ -1,0 +1,35 @@
+.wrapper {
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    .heading {
+        margin-bottom: 50px;
+        text-align: center;
+        .heading-name {
+            font-size: 30px;
+            .heading-text {
+                color: var(--primary-color);
+            }
+        }
+    }
+    .content {
+        padding: 20px 10px;
+        border: 1px solid #ccc;
+
+        .title {
+            padding: 10 16px;
+            margin-bottom: 20px;
+        }
+        .content-blog {
+            height: 500px;
+            padding: 0 16px;
+            overflow-y: auto;
+        }
+    }
+    .btn {
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-end;
+    }
+}

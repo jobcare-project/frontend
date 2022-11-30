@@ -47,10 +47,10 @@
             overflow: hidden;
         }
         .description {
-            height: 50px;
+            height: 25px;
             margin-bottom: 6px;
             display: -webkit-box;
-            -webkit-line-clamp: 2;
+            -webkit-line-clamp: 1;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
@@ -81,8 +81,51 @@
                 display: flex;
             }
         }
-        .subdesc-bottom {
+    }
+    .subdesc-control {
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid #ccc;
+        margin-top: 10px;
+
+        .subdesc-text {
+            margin-top: 5px;
+            cursor: pointer;
             display: flex;
+            align-items: center;
+            margin: 0;
+            span {
+                padding-left: 4px;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+            &:hover {
+                color: var(--primary-color);
+            }
+        }
+        .subdesc-text-repair {
+            margin-top: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            position: relative;
+            top: 10px;
+            left: 30px;
+            &:hover {
+                color: var(--primary-color);
+            }
+        }
+    }
+    .subdesc-text-save {
+        display: flex;
+        position: relative;
+        top: 10;
+        cursor: pointer;
+        &:hover {
+            color: var(--primary-color);
         }
     }
 }
