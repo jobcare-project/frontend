@@ -95,7 +95,7 @@ export const cvSlice = createSlice({
 
             if (typeBlock === 'overview') {
                 arrayMove(state.data.overview.container, boxId, direction);
-            } else {
+            } else if (typeBlock === 'content') {
                 state.data.content = state.data.content.map((group) => {
                     if (group.id === groupId) {
                         const newGroup = arrayMove(
@@ -107,6 +107,12 @@ export const cvSlice = createSlice({
                     }
                     return group;
                 });
+            } else {
+                state.data.content = arrayMove(
+                    state.data.content,
+                    groupId,
+                    direction,
+                );
             }
         },
     },

@@ -1,10 +1,12 @@
 import BoxEditor from '../../BoxEditor';
 import BoxEditorItem from '../../BoxEditor/BoxEditorItem';
 
-function EditorGroup({ editorData, groupId }) {
+function EditorGroup({ editorData, groupId, index, length }) {
     return (
         <section>
             <BoxEditor
+                index={index}
+                length={length}
                 groupId={groupId}
                 heading={editorData.heading}
                 icon={<ion-icon name="contract-outline"></ion-icon>}

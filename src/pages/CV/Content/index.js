@@ -22,13 +22,18 @@ function Content(props, ref) {
                 <Overview />
 
                 {/* Content CV */}
-                {contentData?.map((contentItem) => (
-                    <EditorGroup
-                        key={contentItem.id}
-                        groupId={contentItem.id}
-                        editorData={contentItem}
-                    />
-                ))}
+                {contentData?.map((contentItem, index) => {
+                    const length = contentData.length - 1;
+                    return (
+                        <EditorGroup
+                            index={index}
+                            length={length}
+                            key={contentItem.id}
+                            groupId={contentItem.id}
+                            editorData={contentItem}
+                        />
+                    );
+                })}
             </div>
         </ThemeProvider>
     );
