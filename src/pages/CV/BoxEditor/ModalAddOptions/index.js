@@ -2,9 +2,11 @@ import classNames from 'classnames/bind';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { Col, Modal, Row } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
 import { CV_GROUP_TYPE } from '~/constants/constants';
 import { typeUsedContentSelector } from '~/redux/Selectors/cvSelector';
+import { cvSlice } from '../../cvSlice';
 
 import styles from './ModalAddOptions.module.scss';
 
@@ -23,6 +25,7 @@ const modalOptions = [
         isDisable: true,
     },
     {
+        type: CV_GROUP_TYPE.goals,
         icon: <ion-icon name="locate-outline"></ion-icon>,
         desc: 'Mục tiêu nghề nghiệp',
         isDisable: false,
@@ -70,11 +73,13 @@ const modalOptions = [
         isDisable: false,
     },
     {
+        type: CV_GROUP_TYPE.activity,
         icon: <ion-icon name="cellular-outline"></ion-icon>,
         desc: 'Hoạt động',
         isDisable: false,
     },
     {
+        type: CV_GROUP_TYPE.custome,
         icon: <ion-icon name="options-outline"></ion-icon>,
         desc: 'Tùy chỉnh',
         isDisable: false,
@@ -82,6 +87,7 @@ const modalOptions = [
 ];
 
 function ModalAddOptions({ show, onClose }) {
+    const dispatch = useDispatch();
     const typeUsedList = useSelector(typeUsedContentSelector);
     const [options, setOptions] = useState([]);
 
@@ -96,6 +102,10 @@ function ModalAddOptions({ show, onClose }) {
         setOptions(newOptions);
     }, [typeUsedList]);
 
+    const handleAddGroup = (type) => {
+        dispatch(cvSlice.actions.addGroup({ type }));
+    };
+
     return (
         <Modal show={show} onHide={onClose} className={cx('wrapper')}>
             <Modal.Header className={cx('header')} closeButton>
@@ -108,26 +118,57 @@ function ModalAddOptions({ show, onClose }) {
                     {options.map((option, index) => {
                         return (
                             <Col key={index} md={3}>
-                                <div
-                                    className={
-                                        option.isDisable
-                                            ? cx('options-item', 'disable')
-                                            : cx('options-item')
-                                    }
-                                >
-                                    <div className={cx('options-item-content')}>
-                                        <span
+                                {option.isDisable ? (
+                                    <div
+                                        className={cx(
+                                            'options-item',
+                                            'disable',
+                                        )}
+                                    >
+                                        <div
                                             className={cx(
-                                                'options-content-icon',
+                                                'options-item-content',
                                             )}
                                         >
-                                            {option.icon}
-                                        </span>
+                                            <span
+                                                className={cx(
+                                                    'options-content-icon',
+                                                )}
+                                            >
+                                                {option.icon}
+                                            </span>
+                                        </div>
+                                        <div
+                                            className={cx('options-item-desc')}
+                                        >
+                                            {option.desc}
+                                        </div>
                                     </div>
-                                    <div className={cx('options-item-desc')}>
-                                        {option.desc}
+                                ) : (
+                                    <div className={cx('options-item')}>
+                                        <div
+                                            onClick={() => {
+                                                handleAddGroup(option.type);
+                                            }}
+                                            className={cx(
+                                                'options-item-content',
+                                            )}
+                                        >
+                                            <span
+                                                className={cx(
+                                                    'options-content-icon',
+                                                )}
+                                            >
+                                                {option.icon}
+                                            </span>
+                                        </div>
+                                        <div
+                                            className={cx('options-item-desc')}
+                                        >
+                                            {option.desc}
+                                        </div>
                                     </div>
-                                </div>
+                                )}
                             </Col>
                         );
                     })}

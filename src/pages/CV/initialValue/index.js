@@ -24,4 +24,11 @@ const contentInitialValues = [
     },
 ];
 
+export const contentGroupList = [
+    { ...introduceInitial },
+    { ...educationInitial },
+    { ...skillsInitial },
+    { ...experienceInitial },
+];
+
 export default contentInitialValues;

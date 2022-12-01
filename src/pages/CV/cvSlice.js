@@ -7,7 +7,7 @@ import { newIconicContainerItem } from './initialValue/initialConstants/overview
 import overviewInitialValues from './initialValue/overview';
 import { arrThemes } from './themes';
 import { DefaultTheme } from './themes/themeList';
-import { arrayMove } from '~/utils/cv.utils';
+import { arrayMove, findGroupByType } from '~/utils/cv.utils';
 
 export const cvSlice = createSlice({
     name: 'cv',
@@ -115,6 +115,13 @@ export const cvSlice = createSlice({
                 );
             }
         },
+        addGroup(state, action) {
+            const { type } = action.payload;
+
+            const newGroup = findGroupByType(type);
+
+            state.data.content.push({ ...newGroup, id: uuidv4() });
+        },
     },
 });
 
@@ -125,4 +132,5 @@ export const {
     deleteBoxItem,
     deleteGroup,
     moveEditor,
+    addGroup,
 } = cvSlice.reducer;

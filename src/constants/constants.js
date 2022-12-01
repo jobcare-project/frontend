@@ -13,4 +13,6 @@ export const CV_GROUP_TYPE = {
     lang: 'lang',
     certificate: 'certificate',
     prize: 'prize',
+    activity: 'activity',
+    custome: 'custome',
 };
