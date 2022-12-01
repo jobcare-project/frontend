@@ -1,6 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
+import { CV_GROUP_TYPE } from '~/constants/constants';
 
 const overviewInitialValues = {
+    type: CV_GROUP_TYPE.overview,
     iconic: {
         name: {
             blocks: [

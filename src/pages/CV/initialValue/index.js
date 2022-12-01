@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
+
 import educationInitial from './education';
 import experienceInitial from './experience';
 import introduceInitial from './introduce';

@@ -1,5 +1,10 @@
 import classNames from 'classnames/bind';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import { Col, Modal, Row } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { CV_GROUP_TYPE } from '~/constants/constants';
+import { typeUsedContentSelector } from '~/redux/Selectors/cvSelector';
 
 import styles from './ModalAddOptions.module.scss';
 
@@ -12,9 +17,10 @@ const modalOptions = [
         isDisable: true,
     },
     {
+        type: CV_GROUP_TYPE.overview,
         icon: <ion-icon name="accessibility-outline"></ion-icon>,
-        desc: 'Tóm tắt bản thân',
-        isDisable: false,
+        desc: 'Giới thiệu bản thân',
+        isDisable: true,
     },
     {
         icon: <ion-icon name="locate-outline"></ion-icon>,
@@ -22,36 +28,43 @@ const modalOptions = [
         isDisable: false,
     },
     {
+        type: CV_GROUP_TYPE.skills,
         icon: <ion-icon name="dice-outline"></ion-icon>,
         desc: 'Kiến thức và Kỹ năng',
-        isDisable: true,
+        isDisable: false,
     },
     {
+        type: CV_GROUP_TYPE.experience,
         icon: <ion-icon name="extension-puzzle-outline"></ion-icon>,
         desc: 'Kinh nghiệm làm việc',
-        isDisable: true,
+        isDisable: false,
     },
     {
+        type: CV_GROUP_TYPE.education,
         icon: <ion-icon name="school-outline"></ion-icon>,
         desc: 'Trình độ học vấn',
-        isDisable: true,
+        isDisable: false,
     },
     {
+        type: CV_GROUP_TYPE.lang,
         icon: <ion-icon name="language-outline"></ion-icon>,
         desc: 'Ngôn ngữ',
         isDisable: false,
     },
     {
+        type: CV_GROUP_TYPE.projects,
         icon: <ion-icon name="business-outline"></ion-icon>,
         desc: 'Dự án đã làm',
         isDisable: false,
     },
     {
+        type: CV_GROUP_TYPE.certificate,
         icon: <ion-icon name="ribbon-outline"></ion-icon>,
         desc: 'Chứng chỉ',
         isDisable: false,
     },
     {
+        type: CV_GROUP_TYPE.prize,
         icon: <ion-icon name="trophy-outline"></ion-icon>,
         desc: 'Giải thưởng',
         isDisable: false,
@@ -69,6 +82,20 @@ const modalOptions = [
 ];
 
 function ModalAddOptions({ show, onClose }) {
+    const typeUsedList = useSelector(typeUsedContentSelector);
+    const [options, setOptions] = useState([]);
+
+    useEffect(() => {
+        const newOptions = modalOptions.map((option) => {
+            const isUsed = typeUsedList.find((type) => type === option.type);
+            if (isUsed) {
+                return { ...option, isDisable: true };
+            }
+            return option;
+        });
+        setOptions(newOptions);
+    }, [typeUsedList]);
+
     return (
         <Modal show={show} onHide={onClose} className={cx('wrapper')}>
             <Modal.Header className={cx('header')} closeButton>
@@ -78,7 +105,7 @@ function ModalAddOptions({ show, onClose }) {
             </Modal.Header>
             <Modal.Body className={cx('body')}>
                 <Row className={cx('options')}>
-                    {modalOptions.map((option, index) => {
+                    {options.map((option, index) => {
                         return (
                             <Col key={index} md={3}>
                                 <div

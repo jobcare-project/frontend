@@ -1,6 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
+import { CV_GROUP_TYPE } from '~/constants/constants';
 
 const skillsInitial = {
+    type: CV_GROUP_TYPE.skills,
     heading: {
         id: uuidv4(),
         blocks: [

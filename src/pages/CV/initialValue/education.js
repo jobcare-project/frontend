@@ -1,6 +1,8 @@
 import { v4 as uuidv4 } from 'uuid';
+import { CV_GROUP_TYPE } from '~/constants/constants';
 
 const educationInitial = {
+    type: CV_GROUP_TYPE.education,
     heading: {
         id: uuidv4(),
         blocks: [
