@@ -33,7 +33,7 @@ const getResults = (questions, answers) => {
 };
 
 function QuizDetail() {
-    //get id from firebase from useParams 
+    //get id from firebase from useParams
     const { id } = useParams();
     //State quiz from firebase
     const [quiz, setQuiz] = useState(null);
@@ -166,7 +166,6 @@ function QuizDetail() {
                     <h5 className={cx('total-question')}>
                         {quiz?.data.length} câu
                     </h5>
-
                     <h5 className={cx('time-icon')}>
                         <ion-icon name="time-outline"></ion-icon>
                     </h5>
@@ -314,7 +313,6 @@ function QuizDetail() {
                                 <Button
                                     primary
                                     className={cx('back-after')}
-                                    variant="outline-secondary"
                                     onClick={() => history(-1)}
                                 >
                                     <div className={cx('back-after-text')}>
@@ -325,7 +323,6 @@ function QuizDetail() {
                                 <Button
                                     primary
                                     className={cx('reload')}
-                                    variant="outline-secondary"
                                     onClick={() => history(0)}
                                 >
                                     <div className={cx('reload-text')}>

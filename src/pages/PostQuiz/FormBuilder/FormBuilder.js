@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import uuid from 'react-uuid';
 import Nestable from 'react-nestable';
 import classNames from 'classnames/bind';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { Col, Row } from 'react-bootstrap';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
 
 import styles from './FormBuilder.module.scss';
 
@@ -17,6 +19,7 @@ import Button from '~/components/Button/index.js';
 import DropDown from '~/components/Input/DropDown/DropDown';
 //firebase
 import { db, storage } from '~/config/Firebase/firebase';
+//Loading
 
 const cx = classNames.bind(styles);
 
@@ -35,8 +38,15 @@ function FormBuilder() {
     const [category, SetCategory] = useState('');
     //state upload image
     const [file, setFile] = useState(null);
+    //state choose image from PC
     const [, setProgress] = useState(null);
-    const [form, setForm] = useState('');
+    //state form image
+    const [image, setImage] = useState('');
+    //state serverTimestamp from firebase
+    const [timeStamp, setTimestamp] = useState('');
+
+    //Function leve page
+    const history = useNavigate();
 
     //upload file
     useEffect(() => {
@@ -67,7 +77,7 @@ function FormBuilder() {
                 () => {
                     getDownloadURL(uploadTask.snapshot.ref).then(
                         (downloadUrl) => {
-                            setForm(() => downloadUrl);
+                            setImage(() => downloadUrl);
                         },
                     );
                 },
@@ -275,6 +285,8 @@ function FormBuilder() {
             title !== '' &&
             description !== '' &&
             data !== [] &&
+            category !== [] &&
+            image !== [] &&
             formData !== ''
         ) {
             await addDoc(collection(db, 'quiz'), {
@@ -283,15 +295,20 @@ function FormBuilder() {
                 data,
                 formData,
                 category,
-                form,
+                image,
+                timestamp: serverTimestamp(),
             });
             setTitle('');
             setDescription('');
             setData({});
             setFormData('');
             SetCategory('');
-            setForm('');
+            setImage('');
+            setTimestamp('');
+        } else {
+            return toast.error('Hãy điền đầy đủ các trươngf');
         }
+        history(-1);
     };
 
     return (

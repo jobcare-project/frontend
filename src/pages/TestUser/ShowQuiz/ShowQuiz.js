@@ -4,7 +4,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Container } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
-import { collection, onSnapshot } from 'firebase/firestore';
+import { collection, onSnapshot, doc, deleteDoc } from 'firebase/firestore';
+import { toast } from "react-toastify";
 
 import { db } from '~/config/Firebase/firebase';
 
@@ -38,15 +39,30 @@ function ShowQuiz() {
         });
     }, []);
     console.log(quiz);
+    const handleDelete = async (id) => {
+        if (window.confirm('Are you sure wanted to delete that blog ?')) {
+            try {
+                setLoading(true);
+                await deleteDoc(doc(db, 'quiz', id));
+                toast.success('Blog deleted successfully');
+                setLoading(false);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+    };
     return loading ? (
         <Loading />
     ) : (
         <div className={cx('wrapper')}>
             <Container className={cx('container')}>
                 <h2 className={cx('heading')}>
-                    {quiz.category}
+                    {quiz?.formData}
                     <Menu>
-                        <MenuItem title="Xem thêm" to={config.routes.itech} />
+                        <MenuItem
+                            title="Xem thêm"
+                            to={config.routes.informationtechnology}
+                        />
                     </Menu>
                 </h2>
 
@@ -56,14 +72,10 @@ function ShowQuiz() {
                             <Col key={index} lg={3} md={4} sm={6}>
                                 <CardShowQuiz
                                     quiz={quiz}
-                                    deleted={
-                                        <ion-icon name="close-circle-outline"></ion-icon>
-                                    }
-                                    titleDeleted="Xóa bài quiz"
-                                    repair={
-                                        <ion-icon name="construct-outline"></ion-icon>
-                                    }
-                                    titlRepair="Sửa bài quiz"
+                                    handleDelete={handleDelete}
+                                    titleDeleted="Xóa"
+                                    // repair={}
+                                    titlRepair="Sửa"
                                 ></CardShowQuiz>
                             </Col>
                         );

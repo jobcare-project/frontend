@@ -1,10 +1,5 @@
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import ModalPost from '../Modal/ModalDeleted/ModalDeleted';
-import { fetchDeletedJobDesc } from '~/pages/Recruiter/recruiterSlice';
-import images from '~/assets/images';
 
 import styles from './CardShowQuiz.module.scss';
 
@@ -13,23 +8,12 @@ const cx = classNames.bind(styles);
 export default function CardShowQuiz({
     to,
     quiz,
-    deleted,
     repair,
     saved,
-    titleDeleted = '',
     titlRepair = '',
     titleSaved = '',
-    onDelete,
-    id,
+    handleDelete,
 }) {
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-    const dispatch = useDispatch();
-    const handleDeletedPost = (id) => {
-        dispatch(fetchDeletedJobDesc(quiz.id));
-    };
     console.log(quiz);
     return (
         <>
@@ -39,19 +23,11 @@ export default function CardShowQuiz({
                     to={{ pathname: `displayquizz/${quiz.id}` }}
                 >
                     <div className={cx('image-block')}>
-                        {quiz?.form ? (
-                            <img
-                                className={cx('image')}
-                                src={quiz?.form}
-                                alt="anh quiz"
-                            />
-                        ) : (
-                            <img
-                                className={cx('image')}
-                                src={images.recruitmentCard}
-                                alt="anh nha tuyen dung"
-                            />
-                        )}
+                        <img
+                            className={cx('image')}
+                            src={quiz?.image}
+                            alt="anh quiz"
+                        />
                     </div>
                     <div className={cx('information')}>
                         <div className={cx('title')}>{quiz?.title}</div>
@@ -72,29 +48,25 @@ export default function CardShowQuiz({
                                 >
                                     <div className={cx('subdesc-text')}>
                                         <ion-icon name="timer-outline"></ion-icon>
-                                        <span>{quiz?.createAt}</span>
+                                        <span>
+                                            {quiz.timestamp.toDate().toDateString()}
+                                        </span>
+                                    </div>
+                                    <div className={cx('subdesc-text')}>
+                                        <ion-icon name="book-outline"></ion-icon>
+                                        <span>{quiz?.data.length} câu</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </Link>
-                <ModalPost
-                    handleClose={handleClose}
-                    show={show}
-                    onActionRequest={handleDeletedPost}
-                />
                 <div className={cx('subdesc-control')}>
-                    <div onClick={handleShow} className={cx('subdesc-text')}>
-                        {deleted && (
-                            <span className={cx('subdesc-text')}>
-                                {deleted}
-                            </span>
-                        )}
-                        <span>{titleDeleted}</span>
+                    <div className={cx('subdesc-text')}>
+                        <span onClick={() => handleDelete(quiz.id)}>Xóa</span>
                     </div>
 
-                    <Link>
+                    <Link to={`/update/${quiz.id}`} >
                         <div className={cx('subdesc-text-repair')}>
                             {repair && (
                                 <span className={cx('subdesc-text')}>
