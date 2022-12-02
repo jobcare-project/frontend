@@ -1,13 +1,24 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 import BoxHeader from '~/pages/RecruitmentDetail/BoxHeader/BoxHeader';
-import FormSubmitCV from '../RecruitmentPage/FormSubmitCV/FormSubmitCV';
+
+import RelatedJob from './RelatedJob/RelatedJob';
+import classNames from 'classnames/bind';
+import styles from './RecruitmentDetail.module.scss';
+import Search from '../RecruitmentPage/Search/SearchJob/Search';
+
+const cx = classNames.bind(styles);
 function RecruitmentDetail() {
     return (
-        <Container>
-            <BoxHeader></BoxHeader>
-            <FormSubmitCV></FormSubmitCV>
-        </Container>
+        // <Container>
+        <div className={cx('wrapper')}>
+            <Search leftIcon></Search>
+            <div className={cx('container')}>
+                <BoxHeader></BoxHeader>
+                <RelatedJob></RelatedJob>
+            </div>
+        </div>
+        // </Container>
     );
 }
 export default RecruitmentDetail;

@@ -1,5 +1,4 @@
 import classNames from 'classnames/bind';
-import { useMemo } from 'react';
 import { NavLink } from 'react-router-dom';
 import config from '~/config';
 
@@ -37,6 +36,12 @@ const sidebarMenu = [
         to: '/dashboard/quiz',
         role: ['admin'],
         icon: <ion-icon name="create-sharp"></ion-icon>,
+    },
+    {
+        title: 'CV',
+        to: '/dashboard/quiz',
+        role: ['recruiter'],
+        icon: <ion-icon name="newspaper-outline"></ion-icon>,
     },
 ];
 

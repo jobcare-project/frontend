@@ -1,20 +1,32 @@
 import BoxEditor from '../../BoxEditor';
 import BoxEditorItem from '../../BoxEditor/BoxEditorItem';
 
-function EditorGroup() {
+function EditorGroup({ editorData, groupId, index, length }) {
     return (
         <section>
-            {/* Truyền các editor value dưới dạng mảng để dễ quản lý */}
             <BoxEditor
-                heading="Giới thiệu bản thân"
+                index={index}
+                length={length}
+                groupId={groupId}
+                heading={editorData.heading}
                 icon={<ion-icon name="contract-outline"></ion-icon>}
             >
-                <BoxEditorItem editorValue="Giới thiệu bản thân mình đi" />
-                <BoxEditorItem editorValue="Giới thiệu bản thân mình đi" />
-                <BoxEditorItem editorValue="Giới thiệu bản thân mình đi" />
-                <BoxEditorItem editorValue="Giới thiệu bản thân mình đi" />
-                <BoxEditorItem editorValue="Giới thiệu bản thân mình đi" />
-                <BoxEditorItem editorValue="Giới thiệu bản thân mình đi" />
+                {editorData.data.map((editor, index) => {
+                    const length = editorData.data.length - 1;
+                    return (
+                        <BoxEditorItem
+                            key={editor.id}
+                            typeBlock="content"
+                            groupId={groupId}
+                            index={index}
+                            boxId={editor.id}
+                            timeline={editor?.timeline}
+                            title={editor?.title}
+                            editorValue={editor.value}
+                            length={length}
+                        />
+                    );
+                })}
             </BoxEditor>
         </section>
     );

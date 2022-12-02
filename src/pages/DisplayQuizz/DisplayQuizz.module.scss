@@ -10,29 +10,11 @@
     border-radius: 50px;
 }
 
-.container-sidebar {
-    width: 250px;
-    min-height: 300px;
-    border-left: 1px solid rgba(22, 24, 35, 0.2);
-}
-
-.title {
-    margin: auto;
-    width: 100%;
-    padding: 50px;
-    text-align: center;
-    font-size: 40px;
-    margin-bottom: 20px;
-}
-
 .notification-bar {
-    display: flex;
-    width: 80%;
     margin: 0 0 100px 9.8%;
+    display: flex;
     align-items: center;
-    background-color: rgba(22, 24, 35, 0.06);
     border-radius: 20px;
-    border: 10px solid transparent;
     position: fixed;
     padding: 0 var(--default-layout-horizontal-spacer);
     height: var(--default-layout-header-height);
@@ -40,26 +22,26 @@
     border-bottom: 1px solid #e8ebed;
     box-shadow: 0 -2px 20px rgb(0 0 0 / 10%);
     z-index: 100;
+    background-color: #fffaf0;
+}
+
+.total-question {
+    margin-left: 10px;
+    font-size: 15px;
+}
+.time {
+    margin-left: 10px;
+    font-size: 15px;
 }
 
 .total-question-icon {
     color: var(--primary-color);
     font-size: 20px;
 }
-
-.total-question {
-    font-size: 15px;
-    margin-left: 10px;
-}
-
 .time-icon {
     color: var(--primary-color);
     margin-left: 449px;
     font-size: 20px;
-}
-.time {
-    margin-left: 10px;
-    font-size: 15px;
 }
 
 // question
@@ -68,6 +50,7 @@
     max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 150px;
 }
 
 .quiz-heading {
@@ -82,54 +65,18 @@
 .quiz-list {
     margin: 0;
     padding: 25px;
-    list-style-type: none;
-    box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
-    background-color: #fef3e2;
-    border-radius: 20px;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    -ms-border-radius: 20px;
-    -o-border-radius: 20px;
-    width: 800px;
-    margin-bottom: 300px;
 }
 
 .quiz-item {
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
+    margin-bottom: 70px;
     font-size: 20px;
 }
 
-#quiz-button {
-    text-align: left;
-    font-size: 16px;
-    border-radius: 15px;
-    margin-top: 15px;
-    padding: 5px 15px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    -webkit-transition: background-color 0.3s ease;
-    -moz-transition: background-color 0.3s ease;
-    -ms-transition: background-color 0.3s ease;
-    -o-transition: background-color 0.3s ease;
-}
-#quiz-button-after {
-    text-align: left;
-    font-size: 16px;
-    border-radius: 15px;
-    margin-top: 15px;
-    padding: 5px 15px;
-    color: #2f922f;
-    background-color: white;
-    transition: background-color 0.3s ease;
-    -webkit-transition: background-color 0.3s ease;
-    -moz-transition: background-color 0.3s ease;
-    -ms-transition: background-color 0.3s ease;
-    -o-transition: background-color 0.3s ease;
-}
-
-#quiz-button + #quiz-button {
+.quiz-options {
+    display: flex;
+    flex-direction: row;
     margin-top: 20px;
 }
 
@@ -160,68 +107,21 @@
     font-size: 25px;
 }
 
-#quiz-button.correct,
-#quiz-button.correct:hover:disabled {
-    color: green;
+.warning-title {
+    color: #f29c1f;
 }
 
-#quiz-button.incorrect,
-#quiz-button.incorrect:hover:disabled {
-    color: red;
-}
-
-#quiz-button:focus {
-    outline: none;
-}
-
-#quiz-button:disabled {
-    opacity: 0.7;
-}
-
-.score-section {
-    background-color: #f08080;
+.quiz-item-after {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
     font-size: 20px;
-    color: white;
-    border-radius: 20px;
-    z-index: 1;
-    margin-top: 20px;
-    margin-bottom: 30px;
-    padding: 20px;
-    box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
 }
 
-.see-answer {
-    margin-top: 20px;
-    background-color: #f08080;
-    color: white;
-    border-radius: 10px;
-    width: 750px;
-}
-
-.score-text::after,
-.score-text::before {
-    content: '';
-    position: absolute;
-    top: 18px;
-    border-left: 33px solid transparent;
-    border-right: 33px solid transparent;
-    box-shadow: 10px 10px 42px 0px rgba(0, 0, 0, 0.75);
-}
-
-.score-text::after {
-    right: -19px;
-    transform: rotate(-90deg);
-}
-
-.score-text::before {
-    left: -19px;
-    transform: rotate(90deg);
-}
-
-.score-text {
+.accordion-header,
+.show-score {
+    font-size: 20px;
     text-align: center;
-    font-size: 40px;
-    margin-bottom: 20px;
 }
 
 .sort {

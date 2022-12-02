@@ -1,1 +1,1 @@
-export { default } from './DisplayQuizz'
+export { default } from './DisplayQuizz';

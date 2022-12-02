@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 import styles from './DisplayIT.module.scss';
-import CardTestUser from '~/components/CardTestUser/CardTestUser';
+import CardShowQuiz from '~/components/CardShowQuiz/CardShowQuiz';
 import { Container } from 'react-bootstrap';
 
 const cx = classNames.bind(styles);
@@ -141,10 +141,10 @@ export default function DisplayIT() {
                     {ListIT.slice(0, 12).map((IT, index) => {
                         return (
                             <Col key={index} lg={3} md={4} sm={6}>
-                                <CardTestUser
+                                <CardShowQuiz
                                     quiz={IT}
                                     to={'displayquizz'}
-                                ></CardTestUser>
+                                ></CardShowQuiz>
                             </Col>
                         );
                     })}

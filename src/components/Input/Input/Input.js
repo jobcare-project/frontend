@@ -7,10 +7,17 @@ function Input({
     leftIcon,
     rightIcon,
     className,
+    primary,
+    secondary,
+    selected,
+    checkbox,
     rounded,
     border,
     disabled,
     children,
+    value,
+    name,
+    onChange,
     ...passprops
 }) {
     const classes = cx('wrapper', {
@@ -18,6 +25,11 @@ function Input({
         disabled,
         rounded,
         border,
+        checkbox,
+        primary,
+        secondary,
+        name,
+        selected,
     });
 
     return (
