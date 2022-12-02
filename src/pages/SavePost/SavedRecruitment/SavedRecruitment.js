@@ -33,7 +33,15 @@ function SavedRecruitment() {
                         <Row>
                             {jobListData &&
                                 jobListData.slice(0, 16).map((recruitment) => {
-                                    return <SavedPostItem data={recruitment} />;
+                                    return (
+                                        <SavedPostItem
+                                            saved={
+                                                <ion-icon name="heart-outline"></ion-icon>
+                                            }
+                                            titleSaved="Lưu tin"
+                                            data={recruitment}
+                                        />
+                                    );
                                 })}
                         </Row>
                     </div>

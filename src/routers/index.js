@@ -41,11 +41,11 @@ export const publicRoutes = [
     { path: config.routes.postquiz, component: PostQuiz },
     { path: config.routes.recruitmentpage, component: RecruitmentPage },
     { path: config.routes.cv, component: CV, layout: NonFooterLayout },
+    { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
 ];
 
 export const privateRoutes = [
     { path: config.routes.recruitmentpage, component: RecruitmentPage },
-    { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
     { path: config.routes.profile, component: Profile },
     { path: config.routes.settings, component: Settings },
     {

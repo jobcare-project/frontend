@@ -58,10 +58,6 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            // .subdesc-left {
-            //     // flex: 1;
-            //     // max-width: 50%;
-            // }
             .subdesc-right {
                 margin-top: 50px;
             }
@@ -113,19 +109,19 @@
             margin: 0;
             position: relative;
             top: 10px;
-            left: 30px;
+            left: 40px;
             &:hover {
                 color: var(--primary-color);
             }
         }
-    }
-    .subdesc-text-save {
-        display: flex;
-        position: relative;
-        top: 10;
-        cursor: pointer;
-        &:hover {
-            color: var(--primary-color);
+        .subdesc-text-save {
+            display: flex;
+            position: relative;
+            right: 0;
+            cursor: pointer;
+            &:hover {
+                color: var(--primary-color);
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ export default function DropDown({
     data = [],
     onChangeSelect = FunC,
     title = '',
+    defaultValueProps = '',
 }) {
     const [visible, setVisible] = useState(false);
     const [value, setValue] = useState('');
@@ -35,7 +36,6 @@ export default function DropDown({
             })
         );
     };
-
     return (
         <div
             onClick={() => {
@@ -50,9 +50,10 @@ export default function DropDown({
                     id="category"
                     tabIndex="-1"
                     aria-hidden="true"
+                    defaultValue={defaultValueProps}
                 >
                     <option value="" selected disabled hidden>
-                        {title}
+                        {defaultValueProps || title}
                     </option>
                     {renderDropDownData()}
                 </select>

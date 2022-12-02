@@ -17,7 +17,7 @@ function SavePost() {
     return (
         <Container>
             <SavedRecruitment />
-            <SavedQuizz />
+            {/* <SavedQuizz /> */}
         </Container>
     );
 }

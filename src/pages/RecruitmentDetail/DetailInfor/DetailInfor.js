@@ -32,8 +32,10 @@ export default function DetailInfor({ data, to }) {
         dispatch(fetchDetailJobDesc(recruitmentId));
         // const jobs = jobListData.slice(0, 5);
         // setjobsItem(jobs);
-    }, []);
-
+    }, [dispatch, recruitmentId]);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [recruitmentId]);
     return (
         <Container>
             <div className={cx('wrapper')}>
