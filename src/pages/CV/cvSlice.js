@@ -117,7 +117,6 @@ export const cvSlice = createSlice({
         },
         addGroup(state, action) {
             const { type } = action.payload;
-
             const newGroup = findGroupByType(type);
 
             state.data.content.push({ ...newGroup, id: uuidv4() });

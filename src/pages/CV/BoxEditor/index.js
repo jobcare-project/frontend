@@ -100,7 +100,12 @@ function BoxEditor({ icon, heading, groupId, children, index, length }) {
                             )}
                         </div>
                         <Tippy theme="material" content="Thêm mục ở dưới">
-                            <span className={cx('controls-icon')}>
+                            <span
+                                onClick={() => {
+                                    handleAdd();
+                                }}
+                                className={cx('controls-icon')}
+                            >
                                 <ion-icon name="add-circle-sharp"></ion-icon>
                             </span>
                         </Tippy>
