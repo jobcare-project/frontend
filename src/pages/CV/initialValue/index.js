@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import educationInitial from './education';
 import experienceInitial from './experience';
 import introduceInitial from './introduce';
+import projectsInitial from './projects';
 import skillsInitial from './skills';
 
 const contentInitialValues = [
@@ -29,6 +30,7 @@ export const contentGroupList = [
     { ...educationInitial },
     { ...skillsInitial },
     { ...experienceInitial },
+    { ...projectsInitial },
 ];
 
 export default contentInitialValues;

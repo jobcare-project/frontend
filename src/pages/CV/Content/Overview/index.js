@@ -14,8 +14,6 @@ const cx = classNames.bind(styles);
 function Overview() {
     const overviewData = useSelector(overviewSelector);
 
-    console.log('overviewData', overviewData);
-
     return (
         <div className={cx('wrapper')}>
             <Row>

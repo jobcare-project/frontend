@@ -14,8 +14,6 @@ function Content(props, ref) {
     const theme = useSelector(themeSelector);
     const contentData = useSelector(contentCvSelector);
 
-    console.log('content-data:::', contentData);
-
     return (
         <ThemeProvider theme={theme}>
             <div ref={ref} className={cx('wrapper')}>
