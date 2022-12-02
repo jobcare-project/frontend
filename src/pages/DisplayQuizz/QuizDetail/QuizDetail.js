@@ -116,7 +116,6 @@ function QuizDetail() {
 
     //Function unit 1 second
     const clearTimer = (e) => {
-        setTimer('60:00');
         if (Ref.current) clearInterval(Ref.current);
         const id = setInterval(() => {
             startTimer(e);

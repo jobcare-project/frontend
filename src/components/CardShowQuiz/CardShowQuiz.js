@@ -48,13 +48,23 @@ export default function CardShowQuiz({
                                 >
                                     <div className={cx('subdesc-text')}>
                                         <ion-icon name="timer-outline"></ion-icon>
+                                        Được đăng vào
                                         <span>
-                                            {quiz.timestamp.toDate().toDateString()}
+                                            {quiz.timestamp
+                                                .toDate()
+                                                .toDateString()}
                                         </span>
                                     </div>
                                     <div className={cx('subdesc-text')}>
                                         <ion-icon name="book-outline"></ion-icon>
-                                        <span>{quiz?.data.length} câu</span>
+                                        <span>Tổng câu hỏi {quiz?.data.length} câu</span>
+                                    </div>
+                                    <div className={cx('subdesc-text')}>
+                                        <ion-icon name="hourglass-outline"></ion-icon>
+                                        <span>
+                                            Thời gian làm bài {' '}
+                                            phút
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -66,7 +76,7 @@ export default function CardShowQuiz({
                         <span onClick={() => handleDelete(quiz.id)}>Xóa</span>
                     </div>
 
-                    <Link to={`/update/${quiz.id}`} >
+                    <Link to={`/update/${quiz.id}`}>
                         <div className={cx('subdesc-text-repair')}>
                             {repair && (
                                 <span className={cx('subdesc-text')}>

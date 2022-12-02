@@ -40,11 +40,11 @@ function ShowQuiz() {
     }, []);
     console.log(quiz);
     const handleDelete = async (id) => {
-        if (window.confirm('Are you sure wanted to delete that blog ?')) {
+        if (window.confirm('Bạn có muốn xóa bài quiz ?')) {
             try {
                 setLoading(true);
                 await deleteDoc(doc(db, 'quiz', id));
-                toast.success('Blog deleted successfully');
+                toast.success('Bài quiz đã được xóa thành công');
                 setLoading(false);
             } catch (err) {
                 console.log(err);
@@ -73,7 +73,6 @@ function ShowQuiz() {
                                 <CardShowQuiz
                                     quiz={quiz}
                                     handleDelete={handleDelete}
-                                    titleDeleted="Xóa"
                                     // repair={}
                                     titlRepair="Sửa"
                                 ></CardShowQuiz>

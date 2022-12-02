@@ -288,6 +288,7 @@ function FormBuilder() {
             category !== [] &&
             image !== [] &&
             formData !== ''
+            
         ) {
             await addDoc(collection(db, 'quiz'), {
                 title,
