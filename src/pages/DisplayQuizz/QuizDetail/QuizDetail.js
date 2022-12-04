@@ -5,9 +5,11 @@ import classNames from 'classnames/bind';
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import Accordion from 'react-bootstrap/Accordion';
+import { Container} from 'react-bootstrap';
 import styles from './QuizDetail.module.scss';
 import Button from '~/components/Button';
 import Loading from '~/components/Loading/Loading';
+
 
 import { db } from '~/config/Firebase/firebase';
 
@@ -156,7 +158,8 @@ function QuizDetail() {
     return loading ? (
         <Loading />
     ) : (
-        <div className={cx('wrapper')}>
+        <Container>
+            <div className={cx('wrapper')}>
             <div className={cx('time-quiz')}>
                 <div className={cx('notification-bar')}>
                     <h5 className={cx('total-question-icon')}>
@@ -335,6 +338,7 @@ function QuizDetail() {
                 }
             </div>
         </div>
+        </Container>
     );
 }
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
-
 import Card from '~/components/Card/Card';
 export default function SavedPostItem({ data }) {
     return (

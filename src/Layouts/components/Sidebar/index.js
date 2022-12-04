@@ -8,25 +8,19 @@ const cx = classNames.bind(styles);
 
 const sidebarMenu = [
     {
-        title: 'Chart',
+        title: 'Thống kê',
         to: config.routes.admin,
         role: ['admin'],
         icon: <ion-icon name="stats-chart-sharp"></ion-icon>,
     },
     {
-        title: 'Users',
+        title: 'Người dùng',
         to: config.routes.usersManagement,
         role: ['admin'],
         icon: <ion-icon name="people-sharp"></ion-icon>,
     },
     {
-        title: 'Đăng tin ',
-        to: config.routes.recruiter,
-        role: ['recruiter'],
-        icon: <ion-icon name="id-card-sharp"></ion-icon>,
-    },
-    {
-        title: 'Recruitment',
+        title: 'Tuyển dụng',
         to: '/dashboard/recruitment',
         role: ['admin'],
         icon: <ion-icon name="id-card-sharp"></ion-icon>,
@@ -38,7 +32,7 @@ const sidebarMenu = [
         icon: <ion-icon name="book-sharp"></ion-icon>,
     },
     {
-        title: 'Quizz',
+        title: 'Bài kiểm tra',
         to: '/dashboard/quiz',
         role: ['admin'],
         icon: <ion-icon name="create-sharp"></ion-icon>,
@@ -47,24 +41,6 @@ const sidebarMenu = [
         title: 'CV',
         to: '/dashboard/quiz',
         role: ['recruiter'],
-        icon: <ion-icon name="newspaper-outline"></ion-icon>,
-    },
-    {
-        title: 'Tuyển dụng',
-        to: '/savedPost/recruitmentSaved',
-        role: ['user'],
-        icon: <ion-icon name="id-card-sharp"></ion-icon>,
-    },
-    {
-        title: 'Quizz',
-        to: '/savedPost/SavedQuizz',
-        role: ['user'],
-        icon: <ion-icon name="create-sharp"></ion-icon>,
-    },
-    {
-        title: 'Blog',
-        to: '/savedPost/SavedBlog',
-        role: ['user'],
         icon: <ion-icon name="newspaper-outline"></ion-icon>,
     },
 ];

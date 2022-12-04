@@ -32,10 +32,11 @@ export default function Card({
     const handleDeletedPost = (id) => {
         dispatch(fetchDeletedJobDesc(data.id));
     };
+
     return (
         <div className={cx('wrapper')}>
             {/* /id */}
-            <Link className={cx('link')} to={`recruitmentdetail/${data.id}`}>
+            <Link className={cx('link')} to={config.routes.recruitmentdetail}>
                 <div className={cx('image-block')}>
                     {data?.thumbnail ? (
                         <img
@@ -95,23 +96,28 @@ export default function Card({
             />
 
             <div className={cx('subdesc-control')}>
-                <div onClick={handleShow} className={cx('subdesc-text')}>
+                <div
+                    onClick={handleShow}
+                    // className={({ isActive }) =>
+                    //     isActive
+                    //         ? cx('subdesc-text', 'active')
+                    //         : cx('subdesc-text')
+                    // }
+                >
                     {deleted && (
                         <span className={cx('subdesc-text')}>{deleted}</span>
                     )}
                     <span>{titleDeleted}</span>
                 </div>
-                <Link to={`/recruiter/recruiterpostjob/${id}`}>
-                    <div className={cx('subdesc-text-repair')}>
-                        {repair && (
-                            <span className={cx('subdesc-text')}>{repair}</span>
-                        )}
-                        <span>{titlRepair}</span>
-                    </div>
-                </Link>
-                <div className={cx('subdesc-text-save')}>
-                    {saved && (
-                        <span className={cx('subdesc-text')}>{saved}</span>
+                <div
+                // className={({ isActive }) =>
+                //     isActive
+                //         ? cx('subdesc-text', 'active')
+                //         : cx('subdesc-text')
+                // }
+                >
+                    {repair && (
+                        <span className={cx('subdesc-text')}>{repair}</span>
                     )}
                     <span>{titleSaved}</span>
                 </div>

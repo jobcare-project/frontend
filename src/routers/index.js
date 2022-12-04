@@ -7,7 +7,6 @@ import DisplayQuizz from '~/pages/DisplayQuizz';
 import RecruiterPost from '~/pages/Recruiter/RecruiterPost/RecruiterPost';
 import RecruitmentDetail from '~/pages/RecruitmentDetail/RecruitmentDetail';
 import RecruitmentPage from '~/pages/RecruitmentPage/RecruitmentPage';
-import InformationTechnology from '~/pages/InformationTechnology/InformationTechnology';
 import PostQuiz from '~/pages/PostQuiz';
 import Settings from '~/pages/settings/Settings';
 import SavePost from '~/pages/SavePost/SavedPost';
@@ -16,6 +15,9 @@ import CV from '~/pages/CV';
 import NonFooterLayout from '~/Layouts/NonFooterLayout';
 import Profile from '~/pages/Profile';
 import Admin from '~/pages/Admin';
+import ManageQuiz from '~/pages/ManageQuiz';
+import IT from '~/pages/IT';
+import InformationTechnology from '~/pages/InformationTechnology/InformationTechnology';
 import UsersManage from '~/pages/Admin/UsersManage';
 import Recruiter from '~/pages/Recruiter/Recruiter';
 import RecruiterSaved from '~/pages/Recruiter/RecruiterSaved/RecruiterSaved';
@@ -32,8 +34,13 @@ export const publicRoutes = [
     { path: config.routes.accounts, component: Accounts, layout: null },
     { path: config.routes.blog, component: Blog },
     { path: config.routes.testuser, component: TestUser },
-    
-
+    { path: config.routes.displayquizz, component: DisplayQuizz },
+    { path: config.routes.recruitmentpage, component: RecruitmentPage },
+    { path: config.routes.recruiterpost, component: RecruiterPost },
+    { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
+    { path: config.routes.cv, component: CV, layout: NonFooterLayout },
+    { path: config.routes.itech, component: IT },
+    { path: config.routes.managequiz, component: ManageQuiz },
     {
         path: config.routes.informationtechnology,
         component: InformationTechnology,
@@ -48,12 +55,8 @@ export const privateRoutes = [
     { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
     { path: config.routes.profile, component: Profile },
     { path: config.routes.settings, component: Settings },
-    {
-        path: config.routes.savepost,
-        component: SavePost,
-        layout: SidebarLayout,
-    },
-
+    { path: config.routes.savepost, component: SavePost },
+    { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
     { path: config.routes.editPost, component: RecruiterPostEdit },
     { path: config.routes.postblog, component: PostBlog },
     { path: config.routes.blogcontent, component: ContentBlog },

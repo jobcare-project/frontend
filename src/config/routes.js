@@ -10,26 +10,23 @@ const routes = {
     cv: '/cv',
     recruitment: '/recruitmentpage',
     testuser: '/testuser',
+    itech: '/testuser/IT',
     informationtechnology: '/testuser/informationtechnology',
     marketing: '/testuser/marketing',
     businessadministration: '/testuser/businessadministration',
     linguistics: '/testuser/linguistics',
     postquiz: '/recruiter/recruiterpost/postquiz',
-    recruiterpost: '/recruiter/recruiterpostjob',
-    recruitmentdetail: 'recruitmentpage/recruitmentdetail/:recruitmentId',
-    recruitmentpage: '/recruitmentpage',
-    displayquizz: 'testuser/displayquizz/:id',
-    savepost: '/savedPost/recruitmentSaved',
+    managequiz: '/managequiz',
     usersManagement: '/admin/usermanagement',
+    recruiterpost: '/recruiter/recruiterpostjob',
+    recruitmentdetail: '/recruitmentdetail',
+    recruitmentpage: '/recruitmentpage/user',
+    displayquizz: 'testuser/displayquizz/:id',
+    savepost: '/blog/savedPost',
     editPost: '/recruiter/recruiterpostjob/:id',
     postblog: '/blog/postblog',
     blogcontent: '/blog/postblog/blogcontent',
-    blogdetail: '/blog/blogpost/blogdetail/:id', // /:id
-
-    // saved post
-    savedrecruitment: '/savedPost/SavedRecruitment',
-    savedblog: '/savedPost/SavedBlog',
-    savedquizz: '/savedPost/SavedQuizz',
+    blogdetail: '/blog/postblog/blogdetail', // /:id
 };
 
 export default routes;

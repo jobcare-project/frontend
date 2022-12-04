@@ -2,7 +2,8 @@
     display: flex;
     align-items: center;
     position: relative;
-    &:focus-within {
+    margin-top: 24px;
+    &:hover {
         .controls {
             display: flex;
         }
@@ -13,7 +14,7 @@
     &:has(.header) {
         flex-direction: column;
         justify-content: center;
-        margin: 0 -8px;
+        // margin: 0 -8px;
         .editor {
             width: 100%;
         }
@@ -23,7 +24,11 @@
         align-items: center;
         text-align: left;
         width: 100%;
-        margin-top: 24px;
+        border-bottom: 1px solid var(--gray-light-color);
+        padding-bottom: 6px;
+    }
+    .content {
+        width: 100%;
     }
 }
 
@@ -38,12 +43,34 @@
     height: calc(100% + 150px);
     border-radius: 8px;
     z-index: 100;
+    bottom: calc(100% + 20px);
+    right: -8px;
+    width: 200px;
+    height: 40px;
+    border-bottom-right-radius: 0;
+    display: none;
+    .controls-left-list {
+        width: 220px;
+        display: flex;
+        div {
+            display: flex;
+        }
+    }
     .controls-icon {
         cursor: pointer;
         display: flex;
         margin: auto;
         &:hover {
             opacity: 0.7;
+        }
+        &.disable {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+    .trash-icon {
+        &:hover {
+            color: var(--invalid-color);
         }
     }
 }
@@ -52,7 +79,6 @@
 .controls-mark {
     content: '';
     position: absolute;
-    display: none;
     background: hsla(0deg, 0%, 95%, 0.7);
 }
 
@@ -61,18 +87,7 @@
     border-bottom-left-radius: 8px;
     height: calc(100% + 40px);
     width: 100%;
-}
-
-.controls-left {
-    right: 100%;
-}
-
-.controls-right {
-    left: 100%;
-    height: calc(100% + 40px);
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    z-index: 100;
+    display: none;
 }
 
 .title {

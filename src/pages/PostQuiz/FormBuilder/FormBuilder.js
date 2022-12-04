@@ -19,7 +19,6 @@ import Button from '~/components/Button/index.js';
 import DropDown from '~/components/Input/DropDown/DropDown';
 //firebase
 import { db, storage } from '~/config/Firebase/firebase';
-//Loading
 
 const cx = classNames.bind(styles);
 
@@ -42,8 +41,7 @@ function FormBuilder() {
     const [, setProgress] = useState(null);
     //state form image
     const [image, setImage] = useState('');
-    //state serverTimestamp from firebase
-    const [timeStamp, setTimestamp] = useState('');
+    //state Loading
 
     //Function leve page
     const history = useNavigate();
@@ -299,15 +297,9 @@ function FormBuilder() {
                 image,
                 timestamp: serverTimestamp(),
             });
-            setTitle('');
-            setDescription('');
-            setData({});
-            setFormData('');
-            SetCategory('');
-            setImage('');
-            setTimestamp('');
+            window.confirm('Bạn có muốn đăng bài quiz ?')
         } else {
-            return toast.error('Hãy điền đầy đủ các trươngf');
+            return toast.error('Hãy điền đầy đủ các trường');
         }
         history(-1);
     };

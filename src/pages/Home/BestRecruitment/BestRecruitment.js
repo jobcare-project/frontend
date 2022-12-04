@@ -3,39 +3,32 @@ import styles from './BestRecruitment.module.scss';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Container } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Card from '~/components/Card/Card';
 import { fetchListJob } from '../homeSlice';
 import { jobListSelector } from '~/redux/Selectors/jobSelector';
-import PaginatedItems from './pagination';
-import PaginationCOM from './pagination';
-import { _LIMIT_PAGE } from '~/config/apis';
 
 const cx = classNames.bind(styles);
 
 export default function BestRecruitment() {
-    const [jobsItem, setjobsItem] = useState([]);
     const dispatch = useDispatch();
     const jobListData = useSelector(jobListSelector);
 
     useEffect(() => {
         dispatch(fetchListJob());
-        if (jobListData.length > 0) {
-            const jobs = jobListData.slice(0, _LIMIT_PAGE);
-            setjobsItem(jobs);
-        }
-    }, [JSON.stringify(jobListData)]);
+        /* eslint-disable react-hooks/exhaustive-deps */
+    }, []);
 
-    // console.log('jobListData', jobListData);
     return (
         <Container>
             {jobListData.length ? (
                 <div className={cx('wrapper')}>
+                    <h2 className={cx('heading')}>Việc làm tiêu biểu</h2>
                     <Row>
-                        {jobsItem &&
-                            jobsItem.map((recruitment) => {
+                        {jobListData &&
+                            jobListData.map((recruitment) => {
                                 return (
                                     <Col
                                         key={recruitment.id}
@@ -58,7 +51,6 @@ export default function BestRecruitment() {
             ) : (
                 ''
             )}
-            <PaginationCOM items={jobListData} setjobsItem={setjobsItem} />
         </Container>
     );
 }

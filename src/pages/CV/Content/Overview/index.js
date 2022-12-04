@@ -1,31 +1,18 @@
 import classNames from 'classnames/bind';
-import { useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+
 import InputEditor from '~/components/Editor/InputEditor';
-import BoxEditor from '../../BoxEditor';
+import { overviewSelector } from '~/redux/Selectors/cvSelector';
+import BoxEditorItem from '../../BoxEditor/BoxEditorItem';
 import { TitleLarge } from '../../styledComponents/Title';
 import AvatarOverview from './Avatar';
 import styles from './Overview.module.scss';
 
 const cx = classNames.bind(styles);
 
-const initialOverviewValue = [
-    {
-        title: 'Họ tên',
-        value: 'Nguyễn Văn A',
-    },
-    {
-        title: 'Ngày sinh',
-        value: '20/04/2000',
-    },
-    {
-        title: 'Địa chỉ',
-        value: '03 TNV - Đà Nẵng',
-    },
-];
-
 function Overview() {
-    const [overviewArr, setOverviewArr] = useState(initialOverviewValue);
+    const overviewData = useSelector(overviewSelector);
 
     return (
         <div className={cx('wrapper')}>
@@ -33,17 +20,26 @@ function Overview() {
                 <Col md={9}>
                     <div className={cx('header')}>
                         <TitleLarge>
-                            <InputEditor defaultValue="Nguyễn Văn A" />
+                            <InputEditor
+                                defaultValue={overviewData.iconic.name}
+                            />
                         </TitleLarge>
-                        <InputEditor defaultValue="Fullstack Developer" />
+                        <InputEditor
+                            defaultValue={overviewData.iconic.position}
+                        />
                     </div>
                     <Row>
-                        {overviewArr.map((editor, index) => {
+                        {overviewData.container.map((overviewItem, index) => {
+                            const length = overviewData.container.length - 1;
                             return (
-                                <Col key={index} md={6}>
-                                    <BoxEditor
-                                        title={editor.title}
-                                        editorValue={editor.value}
+                                <Col key={overviewItem.id} md={6}>
+                                    <BoxEditorItem
+                                        typeBlock="overview"
+                                        length={length}
+                                        index={index}
+                                        boxId={overviewItem.id}
+                                        title={overviewItem.title}
+                                        editorValue={overviewItem.value}
                                     />
                                 </Col>
                             );

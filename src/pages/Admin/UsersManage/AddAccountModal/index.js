@@ -13,7 +13,7 @@ function AddAccountModal({ show, onClose }) {
                 <Modal show={show} onHide={onClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>
-                            ĐĂNG KÝ KHOẢN CHO DOANH NGHIỆP
+                            ĐĂNG KÝ TÀI KHOẢN CHO DOANH NGHIỆP
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>

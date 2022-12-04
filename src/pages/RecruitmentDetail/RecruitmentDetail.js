@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import BoxHeader from '~/pages/RecruitmentDetail/DetailInfor/DetailInfor';
+import BoxHeader from '~/pages/RecruitmentDetail/BoxHeader/BoxHeader';
 
 import RelatedJob from './RelatedJob/RelatedJob';
 import classNames from 'classnames/bind';

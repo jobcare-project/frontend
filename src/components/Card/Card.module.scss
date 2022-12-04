@@ -105,27 +105,8 @@
                 color: var(--primary-color);
             }
         }
-        .subdesc-text-repair {
-            margin-top: 5px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            margin: 0;
-            position: relative;
-            top: 10px;
-            left: 30px;
-            &:hover {
-                color: var(--primary-color);
-            }
-        }
-    }
-    .subdesc-text-save {
-        display: flex;
-        position: relative;
-        top: 10;
-        cursor: pointer;
-        &:hover {
-            color: var(--primary-color);
+        .active {
+            color: red;
         }
     }
 }

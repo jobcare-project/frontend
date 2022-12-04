@@ -1,8 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './Information.module.scss';
-
-import { db } from '~/config/Firebase/firebase';
 import { useState, useEffect } from 'react';
+import { db } from '~/config/Firebase/firebase';
 import { collection, onSnapshot } from 'firebase/firestore';
 
 const cx = classNames.bind(styles);
@@ -26,13 +25,13 @@ function Information() {
         });
     }, [quiz, quizCollectionRef]);
     return (
-        <div className={cx('wrapper')}>        
-                {quiz.map((post, i) => (
-                    <div className={cx('quiz-heading')} key={post.id}>
-                        <div className={cx('title')} >{post.title}</div>
-                        <div className={cx('desc')} >{post.desc}</div>
-                    </div>
-                ))}
+        <div className={cx('wrapper')}>
+            {quiz.map((post, i) => (
+                <div className={cx('quiz-heading')} key={post.id}>
+                    <div className={cx('title')}>{post.title}</div>
+                    <div className={cx('desc')}>{post.desc}</div>
+                </div>
+            ))}
         </div>
     );
 }
