@@ -57,14 +57,13 @@ export default function CardShowQuiz({
                                     </div>
                                     <div className={cx('subdesc-text')}>
                                         <ion-icon name="book-outline"></ion-icon>
-                                        <span>Tổng câu hỏi {quiz?.data.length} câu</span>
+                                        <span>
+                                            Tổng câu hỏi {quiz?.data.length} câu
+                                        </span>
                                     </div>
                                     <div className={cx('subdesc-text')}>
                                         <ion-icon name="hourglass-outline"></ion-icon>
-                                        <span>
-                                            Thời gian làm bài {' '}
-                                            phút
-                                        </span>
+                                        <span>Thời gian làm bài phút</span>
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +72,10 @@ export default function CardShowQuiz({
                 </Link>
                 <div className={cx('subdesc-control')}>
                     <div className={cx('subdesc-text')}>
-                        <span onClick={() => handleDelete(quiz.id)}>Xóa</span>
+                        <span onClick={() => handleDelete(quiz.id)}>
+                            {' '}
+                            <ion-icon name="trash-outline"></ion-icon> Xóa
+                        </span>
                     </div>
 
                     <Link to={`/update/${quiz.id}`}>
@@ -83,7 +85,7 @@ export default function CardShowQuiz({
                                     {repair}
                                 </span>
                             )}
-                            <span>{titlRepair}</span>
+                            <span><ion-icon name="build-outline"></ion-icon> {titlRepair}</span>
                         </div>
                     </Link>
                     <div className={cx('subdesc-text-save')}>

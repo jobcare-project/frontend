@@ -87,19 +87,19 @@ function FormBuilder() {
     //Category of quiz
     const categoryOption = [
         {
-            value: '',
+            value: '1',
             name: 'Công nghệ thông tin',
         },
         {
-            value: '1',
+            value: '2',
             name: 'Marketing',
         },
         {
-            value: '2',
+            value: '3',
             name: 'Quản trị kinh doanh',
         },
         {
-            value: '3',
+            value: '4',
             name: 'Ngôn ngữ học',
         },
     ];
