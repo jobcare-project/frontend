@@ -59,6 +59,7 @@ export const privateRoutes = [
     { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
     { path: config.routes.editPost, component: RecruiterPostEdit },
     { path: config.routes.postblog, component: PostBlog },
+    { path: config.routes.manageBlog, component: PostBlog },
     { path: config.routes.blogcontent, component: ContentBlog },
     { path: config.routes.blogdetail, component: BlogDetail },
     {
@@ -78,6 +79,7 @@ export const privateRoutes = [
     },
     { path: config.routes.displayquizz, component: DisplayQuizz },
     { path: config.routes.postquiz, component: PostQuiz },
+    { path: config.routes.manageQuiz, component: PostQuiz },
 ];
 
 export const userPrivateRoutes = [];

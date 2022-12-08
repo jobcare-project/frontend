@@ -76,7 +76,7 @@ function QuizDetail() {
     const handleSubmit = (evt) => {
         evt.preventDefault();
 
-        const { complete, score } = getResults(quiz?.data, answer);
+        const { complete, score } = getResults(quiz?.questions, answer);
 
         pausetime();
 
@@ -166,7 +166,7 @@ function QuizDetail() {
                         <ion-icon name="reader-outline"></ion-icon>
                     </h5>
                     <h5 className={cx('total-question')}>
-                        {quiz?.data.length} câu
+                        {quiz?.questions.length} câu
                     </h5>
                     <h5 className={cx('time-icon')}>
                         <ion-icon name="time-outline"></ion-icon>
@@ -185,7 +185,7 @@ function QuizDetail() {
                 {
                     <>
                         <form onSubmit={handleSubmit}>
-                            {quiz?.data.map((x, index) => {
+                            {quiz?.questions.map((x, index) => {
                                 return (
                                     <div
                                         key={x?.id}
@@ -278,7 +278,7 @@ function QuizDetail() {
                             <Modal.Body className={cx('modal-body')}>
                                 <p className={cx('show-score')}>
                                     Điểm của bạn là {score} /{' '}
-                                    {quiz?.data.length}
+                                    {quiz?.questions.length}
                                 </p>
                                 <Accordion>
                                     <Accordion.Item eventKey="0">
@@ -293,7 +293,7 @@ function QuizDetail() {
                                             </p>
                                         </Accordion.Header>
                                         <Accordion.Body>
-                                            {quiz?.data.map((x, index) => {
+                                            {quiz?.questions.map((x, index) => {
                                                 return (
                                                     <div
                                                         key={x.id}

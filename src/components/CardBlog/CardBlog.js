@@ -15,6 +15,7 @@ function CardBlog({
     titleDeleted = '',
     titlRepair = '',
     titleSaved = '',
+    handleDelete,
 }) {
     return (
         <div className={cx('wrapper')}>
@@ -46,7 +47,7 @@ function CardBlog({
             </div>
             <Link
                 className={cx('link')}
-                to={{ pathname:`blogdetail/${data.id}`}}
+                to={{ pathname: `blogdetail/${data.id}` }}
             >
                 <div className={cx('blog-item')}>
                     <div className={cx('title')}>{data?.title}</div>
@@ -55,10 +56,33 @@ function CardBlog({
                         <span>
                             <ion-icon name="timer-outline"></ion-icon>
                         </span>
-                        <span>{data?.createAt}</span>
+                        <span>{data.timestamp.toDate().toDateString()}</span>
                     </div>
                 </div>
             </Link>
+            <div className={cx('subdesc-control')}>
+                <div className={cx('subdesc-text')}>
+                    <span onClick={() => handleDelete(data.id)}>
+                        {' '}
+                        <ion-icon name="trash-outline"></ion-icon> Xóa
+                    </span>
+                </div>
+                <Link
+                    to={{
+                        pathname: `/blog/postblog/${data.id}`,
+                    }}
+                >
+                    <div className={cx('subdesc-text-repair')}>
+                        {repair && (
+                            <span className={cx('subdesc-text')}>{repair}</span>
+                        )}
+                        <span>
+                            <ion-icon name="build-outline"></ion-icon>{' '}
+                            {titlRepair}
+                        </span>
+                    </div>
+                </Link>
+            </div>
         </div>
     );
 }

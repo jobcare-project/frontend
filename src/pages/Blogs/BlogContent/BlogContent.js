@@ -5,19 +5,22 @@ import classNames from 'classnames/bind';
 import Card from '~/components/Card/Card';
 import CardBlog from '~/components/CardBlog/CardBlog';
 import Input from '~/components/Input/Input/Input';
+import Loading from '~/components/Loading/Loading';
+import { toast } from 'react-toastify';
 
 import { db } from '~/config/Firebase/firebase';
 import { useState, useEffect, useRef } from 'react';
 
-import { collection, onSnapshot } from 'firebase/firestore';
+import { collection, deleteDoc, doc, onSnapshot } from 'firebase/firestore';
 const cx = classNames.bind(styles);
 function ContentBlog({ data, to }) {
-    const [blog, setBlog] = useState([]);
-    const blogCollectionRef = collection(db, 'blog');
+    const [loading, setLoading] = useState(true);
+    const [blogs, setBlogs] = useState([]);
+    const blogCollectionRef = collection(db, 'blogs');
 
     useEffect(() => {
         onSnapshot(blogCollectionRef, (snapshot) => {
-            setBlog(
+            setBlogs(
                 snapshot.docs.map((doc) => {
                     return {
                         id: doc.id,
@@ -26,12 +29,26 @@ function ContentBlog({ data, to }) {
                     };
                 }),
             );
+            setLoading(false);
         });
-    }, [blog, blogCollectionRef]);
-    return (
+    }, [blogs, blogCollectionRef]);
+
+    const handleDelete = async (id) => {
+        if (window.confirm('Are you sure wanted to delete that blog ?')) {
+            try {
+                await deleteDoc(doc(db, 'blogs', id));
+                toast.success('Blog deleted successfully');
+            } catch (err) {
+                console.log(err);
+            }
+        }
+    };
+    return loading ? (
+        <Loading />
+    ) : (
         <div className={cx('wrapper')}>
             <Container>
-                {blog.length ? (
+                {blogs.length ? (
                     <div className={cx('container-left')}>
                         <div className={cx('heading')}>
                             <h2 className={cx('header-title')}>
@@ -45,11 +62,13 @@ function ContentBlog({ data, to }) {
                         <div className={cx('content-topic')}>
                             <div className={cx('content-blog')}>
                                 <Row>
-                                    {blog.slice(0, 8).map((blog, index) => {
+                                    {blogs.slice(0, 8).map((blogs, index) => {
                                         return (
                                             <Col>
                                                 <CardBlog
-                                                    data={blog}
+                                                    data={blogs}
+                                                    handleDelete={handleDelete}
+                                                    titlRepair="Sửa"
                                                 ></CardBlog>
                                             </Col>
                                         );

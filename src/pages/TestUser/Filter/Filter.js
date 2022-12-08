@@ -8,7 +8,7 @@ function Filter({ setActiveGenre, activeGenre, setFiltered, quiz }) {
             return;
         }
         const filtered = quiz.filter((quiz) =>
-            quiz?.category.category.includes(activeGenre),
+            quiz?.category.includes(activeGenre),
         );
         setFiltered(filtered);
     }, [activeGenre]);

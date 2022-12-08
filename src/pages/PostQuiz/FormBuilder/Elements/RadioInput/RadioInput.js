@@ -39,7 +39,7 @@ const RadioInput = ({
                     {item.options &&
                         item.options.length > 0 &&
                         item.options.map((opt, key) => (
-                            <div>
+                            <div key={key} >
                                 <input
                                     className={cx('input-option')}
                                     placeholder={`Nhập câu trả lời ${key + 1}`}

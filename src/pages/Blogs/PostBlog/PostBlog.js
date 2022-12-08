@@ -10,59 +10,110 @@ import { Container } from 'react-bootstrap';
 import { db } from '~/config/Firebase/firebase';
 import { useState, useEffect } from 'react';
 import {
-    collection,
-    onSnapshot,
-    doc,
     addDoc,
-    deleteDoc,
+    collection,
+    getDoc,
+    serverTimestamp,
+    doc,
+    updateDoc,
 } from 'firebase/firestore';
+import { toast } from 'react-toastify';
+import { useNavigate, useParams } from 'react-router-dom';
+
+const initialState = {
+    title: '',
+    content: '',
+};
 
 const cx = classNames.bind(styles);
 
-const handleChange = () => {};
 function PostBlog() {
-    const [form, setForm] = useState({
-        title: '',
-        content: '',
-    });
-    const blogCollectionRef = collection(db, 'blog');
+    const [form, setForm] = useState(initialState);
 
-    const handleSubmit = (e) => {
+    const { id } = useParams();
+
+    const navigate = useNavigate();
+
+    const { title, content } = form;
+
+    useEffect(() => {
+        id && getBlogDetail();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [id]);
+
+    const getBlogDetail = async () => {
+        const docRef = doc(db, 'blogs', id);
+        const snapshot = await getDoc(docRef);
+        if (snapshot.exists()) {
+            setForm({ ...snapshot.data() });
+        }
+    };
+
+    const handleChange = (e) => {
+        setForm({ ...form, [e.target.name]: e.target.value });
+    };
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        if (title && window.confirm('Bạn có muốn đăng Blog này ?')) {
+            if (!id) {
+                try {
+                    await addDoc(collection(db, 'blogs'), {
+                        ...form,
+                        timestamp: serverTimestamp(),
+                    });
+                    toast.success('Blog đã được tạo thành công');
+                } catch (err) {
+                    console.log(err);
+                }
+            } else {
+                try {
+                    await updateDoc(doc(db, 'blogs', id), {
+                        ...form,
+                        timestamp: serverTimestamp(),
+                    });
+                    toast.success('Blog đã được cập nhật thành công');
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+        } else {
+            return toast.error('Hãy điền đầy đủ các trường');
+        }
 
-        addDoc(blogCollectionRef, form);
+        navigate(-1);
     };
 
     return (
-        <div className={cx('wrapper')} onSubmit={handleSubmit}>
-            <form>
-                <div className={cx('heading')}>
-                    <h3 className={cx('heading-name')}>
-                        <span className={cx('heading-text')}>BLOG !!</span> Nơi
-                        chia sẻ và giúp đỡ nhau phát triển
-                    </h3>
-                </div>
+        <div className={cx('wrapper')}>
+            <div className={cx('heading')}>
+                <h3 className={cx('heading-name')}>
+                    <span className={cx('heading-text')}>
+                        {id ? 'Update Blog' : 'Create Blog'}
+                    </span>{' '}
+                    Nơi chia sẻ và giúp đỡ nhau phát triển
+                </h3>
+            </div>
+            <form onSubmit={handleSubmit}>
                 <div className={cx('content')}>
                     <div className={cx('title')}>
                         <input
-                            placeholder="Tiêu đề"
+                            secondary
+                            className={cx('title-input')}
                             type="text"
-                            value={form.title}
-                            onChange={(e) =>
-                                setForm({ ...form, title: e.target.value })
-                            }
+                            placeholder="Nhập tên blog tại đây"
+                            name="title"
+                            value={title}
+                            onChange={handleChange}
                         />
                     </div>
                     <div className={cx('content-blog')}>
-                        {/* <input
-                            placeholder="Nội dung ..."
-                            type="text"
-                            value={form.content}
-                            onChange={(e) =>
-                                setForm({ ...form, content: e.target.value })
-                            }
-                        /> */}
-                        <EditorContent />
+                        <input
+                            placeholder="Nhập nội dung blog tại đây"
+                            className={cx('content-blog-input')}
+                            value={content}
+                            name="content"
+                            onChange={handleChange}
+                        />
                     </div>
                 </div>
                 <div className={cx('btn')}>

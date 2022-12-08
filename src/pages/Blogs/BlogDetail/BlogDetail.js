@@ -8,7 +8,8 @@ import { db } from '~/config/Firebase/firebase';
 import CommentModal from '~/components/Modal/CommentModal/CommentModal';
 import CardAds from '~/components/CardAds/CardAds';
 import Comment from '../Comment/Comment';
-
+import { toast } from "react-toastify"; 
+import Loading from '~/components/Loading/Loading';
 const cx = classNames.bind(styles);
 
 function BlogDetail() {
@@ -16,6 +17,7 @@ function BlogDetail() {
     const { id } = useParams();
     const [blog, setBlog] = useState(null);
     const [relatedBlogs, setRelatedBlogs] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         id && getBlogDetail();
@@ -23,8 +25,8 @@ function BlogDetail() {
     }, [id]);
 
     const getBlogDetail = async () => {
-        const blogRef = collection(db, 'blog');
-        const docRef = doc(db, 'blog', id);
+        const blogRef = collection(db, 'blogs');
+        const docRef = doc(db, 'blogs', id);
         const blogDetail = await getDoc(docRef);
 
         setBlog(blogDetail.data());
@@ -35,10 +37,13 @@ function BlogDetail() {
             relatedBlogs.push({ id: doc.id, ...doc.data() });
         });
         setRelatedBlogs(relatedBlogs);
+        setLoading(false);
     };
 
     // console.log('relatedQuizs', relatedBlogs);
-    return (
+    return loading ? (
+        <Loading />
+    ) : (
         <Container>
             {/* {openCommentModal && (
             <CommentModal closeCommentModal={setOpenCommentModal} />

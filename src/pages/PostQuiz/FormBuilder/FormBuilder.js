@@ -2,11 +2,18 @@ import { useState, useEffect } from 'react';
 import uuid from 'react-uuid';
 import Nestable from 'react-nestable';
 import classNames from 'classnames/bind';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import {
+    addDoc,
+    collection,
+    getDoc,
+    serverTimestamp,
+    doc,
+    updateDoc,
+} from 'firebase/firestore';
 import { Col, Row } from 'react-bootstrap';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import { useNavigate } from 'react-router-dom';
-import { toast } from "react-toastify";
+import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import styles from './FormBuilder.module.scss';
 
@@ -14,7 +21,6 @@ import styles from './FormBuilder.module.scss';
 import RadioInput from './Elements/RadioInput/RadioInput.js';
 import { formEl } from './Constants.js';
 //Components
-import Header from './Header';
 import Button from '~/components/Button/index.js';
 import DropDown from '~/components/Input/DropDown/DropDown';
 //firebase
@@ -22,29 +28,69 @@ import { db, storage } from '~/config/Firebase/firebase';
 
 const cx = classNames.bind(styles);
 
+const initialState = {
+    title: '',
+    description: '',
+    category: '',
+};
+
+//Category of quiz
+const categoryOption = [
+    {
+        value: '1',
+        name: 'Công nghệ thông tin',
+    },
+    {
+        value: '2',
+        name: 'Marketing',
+    },
+    {
+        value: '3',
+        name: 'Quản trị kinh doanh',
+    },
+    {
+        value: '4',
+        name: 'Ngôn ngữ học',
+    },
+];
+
 function FormBuilder() {
     const initVal = formEl[0]?.value;
-
-    //State title
-    const [title, setTitle] = useState('');
-    //state desc
-    const [description, setDescription] = useState('');
-    //state data (question , option , answer)
-    const [data, setData] = useState([]);
+    const [form, setForm] = useState(initialState);
+    //get id from firebase from useParams
+    const { id } = useParams();
+    const [questions, setQuestions] = useState([]);
     //state form of data
     const [formData, setFormData] = useState('');
-    //state category
-    const [category, SetCategory] = useState('');
     //state upload image
     const [file, setFile] = useState(null);
     //state choose image from PC
-    const [, setProgress] = useState(null);
+    const [progress, setProgress] = useState(null);
     //state form image
     const [image, setImage] = useState('');
-    //state Loading
+    
+    const { title,  category, description } = form;
 
     //Function leve page
     const history = useNavigate();
+
+    // Detail update quiz
+    useEffect(() => {
+        id && getPostQuizDetail();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [id]);
+
+    //Function detail quiz
+    const getPostQuizDetail = async () => {
+        const docRef = doc(db, 'quiz', id);
+        const snapshot = await getDoc(docRef);
+        if (snapshot.exists()) {
+            setForm({ ...snapshot.data() });
+        }
+    };
+    const handleChange = (e) => {
+        setForm({ ...form, [e.target.name]: e.target.value });
+    };
 
     //upload file
     useEffect(() => {
@@ -75,6 +121,7 @@ function FormBuilder() {
                 () => {
                     getDownloadURL(uploadTask.snapshot.ref).then(
                         (downloadUrl) => {
+                            toast.info('Image upload to firebase successfully');
                             setImage(() => downloadUrl);
                         },
                     );
@@ -84,49 +131,29 @@ function FormBuilder() {
 
         file && uploadFile();
     }, [file]);
-    //Category of quiz
-    const categoryOption = [
-        {
-            value: '1',
-            name: 'Công nghệ thông tin',
-        },
-        {
-            value: '2',
-            name: 'Marketing',
-        },
-        {
-            value: '3',
-            name: 'Quản trị kinh doanh',
-        },
-        {
-            value: '4',
-            name: 'Ngôn ngữ học',
-        },
-    ];
-
     // Function add category
     const onCategoryChange = (e) => {
-        SetCategory({ ...category, category: e.target.value });
-    };
+    setForm({ ...form, category: e.target.value });
+  };
 
-    const items = data;
+    const items = questions;
 
     //Function to add new element
     const addElement = () => {
-        const data = {
+        const questions = {
             id: uuid(),
             question: '',
             answer: '',
             type: formData,
             required: false,
         };
-        setData((prevState) => [...prevState, data]);
+        setQuestions((prevState) => [...prevState, questions]);
         setFormData(initVal);
     };
 
     //Function to delete element
     const deleteEl = (id) => {
-        setData((prevState) => prevState.filter((val) => val.id !== id));
+        setQuestions((prevState) => prevState.filter((val) => val.id !== id));
     };
 
     //Function to add element at specific pos and return arr
@@ -140,7 +167,7 @@ function FormBuilder() {
 
     //Function to duplicate element
     const duplicateElement = (elId, elType) => {
-        let elIdx = data.findIndex((el) => el.id === elId);
+        let elIdx = questions.findIndex((el) => el.id === elId);
         let newEl = {
             id: uuid(),
             question: '',
@@ -148,18 +175,18 @@ function FormBuilder() {
             type: elType,
             required: false,
         };
-        let newArr = addAfter(data, elIdx, newEl);
-        setData(newArr);
+        let newArr = addAfter(questions, elIdx, newEl);
+        setQuestions(newArr);
     };
 
     //Function to handle sorting of elements
     const handleOnChangeSort = ({ items }) => {
-        setData(items);
+        setQuestions(items);
     };
 
     //Function to Handle Input Question Values
     const handleValueQuestion = (id, e) => {
-        let newArr = data.map((el) => {
+        let newArr = questions.map((el) => {
             if (el.id === id) {
                 return {
                     ...el,
@@ -169,11 +196,11 @@ function FormBuilder() {
                 return el;
             }
         });
-        setData(newArr);
+        setQuestions(newArr);
     };
     //Function to Handle Input Answer Values
     const handleValueAnswer = (id, e) => {
-        let newArr = data.map((el) => {
+        let newArr = questions.map((el) => {
             if (el.id === id) {
                 return {
                     ...el,
@@ -183,36 +210,36 @@ function FormBuilder() {
                 return el;
             }
         });
-        setData(newArr);
+        setQuestions(newArr);
     };
 
     //Function to Handle Required
     const handleRequired = (id) => {
-        let newArr = data.map((el) => {
+        let newArr = questions.map((el) => {
             if (el.id === id) {
                 return { ...el, required: !el.required };
             } else {
                 return el;
             }
         });
-        setData(newArr);
+        setQuestions(newArr);
     };
 
     //Function to Handle Element Type
     const handleElType = (id, type) => {
-        let newArr = data.map((el) => {
+        let newArr = questions.map((el) => {
             if (el.id === id) {
                 return { ...el, type: type };
             } else {
                 return el;
             }
         });
-        setData(newArr);
+        setQuestions(newArr);
     };
 
     //Function to Handle Options
     const addOption = (id, newOption) => {
-        let newArr = data.map((el) => {
+        let newArr = questions.map((el) => {
             if (el.id === id) {
                 const objVal = 'options' in el ? el?.options : [];
                 return { ...el, options: [...objVal, newOption] };
@@ -220,12 +247,12 @@ function FormBuilder() {
                 return el;
             }
         });
-        setData(newArr);
+        setQuestions(newArr);
     };
 
     //Function to Change Option Values
     const handleOptionValues = (elId, optionId, optionVal) => {
-        let newArr = data.map((el) => {
+        let newArr = questions.map((el) => {
             if (el.id === elId) {
                 el?.options &&
                     el?.options.map((opt) => {
@@ -238,12 +265,12 @@ function FormBuilder() {
                 return el;
             }
         });
-        setData(newArr);
+        setQuestions(newArr);
     };
 
     //Function to Delete Optin
     const deleteOption = (elId, optionId) => {
-        let newArr = data.map((el) => {
+        let newArr = questions.map((el) => {
             if (el.id === elId) {
                 let newOptions =
                     el?.options &&
@@ -253,7 +280,7 @@ function FormBuilder() {
                 return el;
             }
         });
-        setData(newArr);
+        setQuestions(newArr);
     };
 
     //Render items
@@ -274,33 +301,52 @@ function FormBuilder() {
         );
     };
 
-    console.log(data);
-
     //Submit to firebase
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (
             title !== '' &&
             description !== '' &&
-            data !== [] &&
-            category !== [] &&
+            questions !== [] &&
+            category !== '' &&
             image !== [] &&
-            formData !== ''
-            
-        ) {
-            await addDoc(collection(db, 'quiz'), {
-                title,
-                description,
-                data,
-                formData,
-                category,
-                image,
-                timestamp: serverTimestamp(),
-            });
+            formData !== '' &&
             window.confirm('Bạn có muốn đăng bài quiz ?')
+        ) {
+            if (!id) {
+                try {
+                    await addDoc(collection(db, 'quiz'), {
+                        ...form,
+                        questions,
+                        formData,
+                        category,
+                        image,
+                        timestamp: serverTimestamp(),
+                    });
+
+                    toast.success('Bài quiz đã được đăng thành công');
+                } catch (err) {
+                    console.log(err);
+                }
+            } else {
+                try {
+                    await updateDoc(doc(db, 'quiz', id), {
+                        ...form,
+                        questions,
+                        formData,
+                        category,
+                        image,
+                        timestamp: serverTimestamp(),
+                    });
+                    toast.success('Bài quiz đã được cập nhật thành công');
+                } catch (err) {
+                    console.log(err);
+                }
+            }
         } else {
             return toast.error('Hãy điền đầy đủ các trường');
         }
+
         history(-1);
     };
 
@@ -308,25 +354,52 @@ function FormBuilder() {
         <>
             <div>
                 <div className={cx('category')}>
-                    <div value={category} onChange={onCategoryChange}>
+                    <div className={cx('add-question-title')}>
+                        {id ? 'Chỉnh sửa bài quiz' : 'Tạo bài quiz mới'}
+                    </div>
+                    <div>
                         <div className={cx('title-category')}>
                             Bạn hãy chọn lĩnh vực về bài Quiz của bạn
                         </div>
                         <Row lg={4}>
                             <Col>
-                                <div className={cx('dropdown')}>
-                                    <DropDown data={categoryOption} />
+                                <div
+                                    className={cx('dropdown')}
+                                    value={category}
+                                    onChange={onCategoryChange}
+                                >
+                                    <DropDown
+                                        title="Chọn ngành nghề"
+                                        data={categoryOption}
+                                    />
                                 </div>
                             </Col>
                         </Row>
                     </div>
                 </div>
-                <Header
-                    title={title}
-                    setTitle={setTitle}
-                    description={description}
-                    setDescription={setDescription}
-                />
+                <div>
+                    <div className={cx('title-quiz')}>Tên bài quiz</div>
+                    <input
+                        secondary
+                        className={cx('input-title')}
+                        type="text"
+                        placeholder="Nhập tên bài Quiz tại đây"
+                        name="title"
+                        value={title}
+                        onChange={handleChange}
+                    />
+                </div>
+
+                <div>
+                    <div className={cx('title-describe')}>Mô tả bài quiz</div>
+                    <input
+                        placeholder="Nhập nội dung Quiz tại đây"
+                        className={cx('input-describe')}
+                        value={description}
+                        name="description"
+                        onChange={handleChange}
+                    />
+                </div>
                 <div>
                     <div className={cx('title-image')}>Chọn ảnh đại diện</div>
                     <input
@@ -337,6 +410,8 @@ function FormBuilder() {
                 </div>
                 <Nestable
                     items={items}
+                    question={questions}
+                    setQuestions={setQuestions}
                     renderItem={renderElements}
                     maxDepth={1}
                     onChange={handleOnChangeSort}
@@ -353,8 +428,9 @@ function FormBuilder() {
                     primary
                     className={cx('submit-btn')}
                     onClick={handleSubmit}
+                    disabled={progress !== null && progress < 100}
                 >
-                    Đăng bài
+                    {id ? 'Chỉnh sửa' : 'Đăng bài'}
                 </Button>
             </div>
         </>

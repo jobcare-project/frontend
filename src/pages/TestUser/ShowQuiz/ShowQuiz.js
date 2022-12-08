@@ -9,8 +9,6 @@ import { toast } from 'react-toastify';
 
 import { db } from '~/config/Firebase/firebase';
 
-import config from '~/config';
-import Menu, { MenuItem } from '../Menu';
 import CardShowQuiz from '~/components/CardShowQuiz/CardShowQuiz';
 import Loading from '~/components/Loading/Loading';
 import Filter from '../Filter';

@@ -16,6 +16,8 @@ const routes = {
     businessadministration: '/testuser/businessadministration',
     linguistics: '/testuser/linguistics',
     postquiz: '/recruiter/recruiterpost/postquiz',
+    manageQuiz: '/recruiter/recruiterpost/postquiz/:id',
+    manageBlog: '/blog/postblog/:id',
     managequiz: '/managequiz',
     usersManagement: '/admin/usermanagement',
     recruiterpost: '/recruiter/recruiterpostjob',
