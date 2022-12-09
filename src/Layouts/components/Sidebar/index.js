@@ -20,12 +20,6 @@ const sidebarMenu = [
         icon: <ion-icon name="people-sharp"></ion-icon>,
     },
     {
-        title: 'Tuyển dụng',
-        to: '/dashboard/recruitment',
-        role: ['admin'],
-        icon: <ion-icon name="id-card-sharp"></ion-icon>,
-    },
-    {
         title: 'Blog',
         to: '/dashboard/blog',
         role: ['admin'],
@@ -36,6 +30,12 @@ const sidebarMenu = [
         to: '/dashboard/quiz',
         role: ['admin'],
         icon: <ion-icon name="create-sharp"></ion-icon>,
+    },
+    {
+        title: 'Hợp tác',
+        to: '/dashboard/quiz',
+        role: ['admin'],
+        icon: <ion-icon name="add-circle"></ion-icon>,
     },
     {
         title: 'CV',
