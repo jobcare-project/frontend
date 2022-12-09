@@ -54,10 +54,12 @@
             }
         }
         .box-logo {
+            height: 150px;
+            width: 150px;
             img {
                 border-radius: 50%;
                 width: 100%;
-                height: 150px;
+                height: 100%;
                 padding: 10px;
             }
         }
@@ -98,7 +100,6 @@
             padding: 10px;
             width: 97%;
             box-shadow: var(--box-shadown-0);
-
             .mothod-title {
                 margin: 20px 0 20px 0;
             }

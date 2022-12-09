@@ -9,3 +9,6 @@ export const jobSelector = (state) => {
 export const messageRecruiterSelector = (state) => {
     return state.recruiter?.messsage;
 };
+
+export const recruiterJobListSelector = (state) =>
+    state.recruiter?.recruiterJobList;

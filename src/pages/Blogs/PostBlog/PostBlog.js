@@ -1,12 +1,4 @@
 import classNames from 'classnames/bind';
-import styles from './PostBlog.module.scss';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-import Button from '~/components/Button';
-import Input from '~/components/Input/Input/Input';
-import EditorContent from '../EditorContent/EditorContent';
-import { Container } from 'react-bootstrap';
-
 import { db } from '~/config/Firebase/firebase';
 import { useState, useEffect } from 'react';
 import {
@@ -19,6 +11,10 @@ import {
 } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { useNavigate, useParams } from 'react-router-dom';
+
+import TextEditor from '../EditorContent/EditorContent';
+import styles from './PostBlog.module.scss';
+import Button from '~/components/Button';
 
 const initialState = {
     title: '',
@@ -34,7 +30,7 @@ function PostBlog() {
 
     const navigate = useNavigate();
 
-    const { title, content } = form;
+    const { title } = form;
 
     useEffect(() => {
         id && getBlogDetail();
@@ -49,9 +45,6 @@ function PostBlog() {
         }
     };
 
-    const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
-    };
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (title && window.confirm('Bạn có muốn đăng Blog này ?')) {
@@ -82,7 +75,9 @@ function PostBlog() {
 
         navigate(-1);
     };
-
+    const setContent = (value) => {
+        setForm({ ...form, content: value });
+    };
     return (
         <div className={cx('wrapper')}>
             <div className={cx('heading')}>
@@ -95,24 +90,20 @@ function PostBlog() {
             </div>
             <form onSubmit={handleSubmit}>
                 <div className={cx('content')}>
-                    <div className={cx('title')}>
-                        <input
-                            secondary
-                            className={cx('title-input')}
-                            type="text"
-                            placeholder="Nhập tên blog tại đây"
-                            name="title"
-                            value={title}
-                            onChange={handleChange}
-                        />
-                    </div>
+                    <input
+                        className={cx('input-title')}
+                        placeholder="Tiêu đề"
+                        type="text"
+                        value={form.title}
+                        onChange={(e) =>
+                            setForm({ ...form, title: e.target.value })
+                        }
+                    />
                     <div className={cx('content-blog')}>
-                        <input
-                            placeholder="Nhập nội dung blog tại đây"
-                            className={cx('content-blog-input')}
-                            value={content}
-                            name="content"
-                            onChange={handleChange}
+                        <TextEditor
+                            setContentBlog={setContent}
+                            sHidderTools={false}
+                            set
                         />
                     </div>
                 </div>
