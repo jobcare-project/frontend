@@ -39,6 +39,10 @@
                 color: rgb(224, 60, 49);
             }
             .content-input {
+                .detail-content {
+                    border: 1px solid #ccc;
+                    // height: 200px;
+                }
                 .input-input {
                     width: 100%;
                     border: 1px solid #ccc;
@@ -127,6 +131,8 @@
     }
     .input-salary.disable {
         pointer-events: none;
+        background-color: #ccc;
+        color: #ccc;
     }
     .content-rule {
         margin: 20px 0 20px 0;

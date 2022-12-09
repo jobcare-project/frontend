@@ -11,7 +11,6 @@ function PostQuiz() {
         <div className={cx('wrapper')}>
             <Container>
             <div className={cx('wrapper-add-question')}>
-                <div className={cx('add-question-title')}>Tạo bài quiz mới</div>
                 <div className={cx('add-question')}>
                    <FormBuilder/>
                 </div>

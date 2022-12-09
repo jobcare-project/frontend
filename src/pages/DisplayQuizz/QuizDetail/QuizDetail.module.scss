@@ -1,8 +1,5 @@
 .wrapper {
-    
-    display: flex;
-    justify-content: center;
-    margin: 40px 200px 0px 0px ;
+    margin: 40px 0px 0px 0px;
     text-align: left;
 }
 
@@ -11,17 +8,22 @@
     border-radius: 50px;
 }
 
+.time-quiz {
+    display: flex;
+    justify-content: center;
+}
 .notification-bar {
     display: flex;
-        align-items: center;
-        border-radius: 20px;
-        position: fixed;
-        padding: 0 var(--default-layout-horizontal-spacer);
-        height: var(--default-layout-header-height);
-        border-bottom: 1px solid #e8ebed;
-        box-shadow: 0 -2px 20px rgb(0 0 0 / 10%);
-        z-index: 100;
-        background-color: #fffaf0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    position: fixed;
+    padding: 0 var(--default-layout-horizontal-spacer);
+    height: var(--default-layout-header-height);
+    border-bottom: 1px solid #e8ebed;
+    box-shadow: 0 -2px 20px rgb(0 0 0 / 10%);
+    z-index: 100;
+    background-color: #fffaf0;
     .time {
         margin-left: 10px;
         font-size: 15px;
@@ -37,6 +39,22 @@
     }
     .total-question-icon {
         color: var(--primary-color);
+        font-size: 20px;
+    }
+}
+
+//information quiz
+
+.information {
+    margin-top: 100px;
+}
+.quiz-heading {
+    text-align: center;
+    margin-bottom: 50px;
+    .title {
+        font-size: 40px;
+    }
+    .desc {
         font-size: 20px;
     }
 }
@@ -71,13 +89,17 @@
 .option {
     margin-left: 10px;
 }
-.submit {
-    width: 160px;
-    height: 50px;
-    margin: 100px 0 200px 250px;
-    .text-submit {
-        font-size: 20px;
-        font-weight: 600;
+.submit-btn {
+    display: flex;
+    justify-content: center;
+    margin: 200px 0 200px 0;
+    .submit {
+        width: 160px;
+        height: 50px;
+        .text-submit {
+            font-size: 20px;
+            font-weight: 600;
+        }
     }
 }
 

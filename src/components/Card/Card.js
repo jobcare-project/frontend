@@ -1,10 +1,14 @@
 import classNames from 'classnames/bind';
+import { useEffect } from 'react';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import images from '~/assets/images';
 import config from '~/config';
 import { fetchDeletedJobDesc } from '~/pages/Recruiter/recruiterSlice';
+import { accountsDataSelector } from '~/redux/Selectors/authSelector';
+import { messageRecruiterSelector } from '~/redux/Selectors/recruiterSelector';
 import ModalPost from '../Modal/ModalDeleted/ModalDeleted';
 
 import styles from './Card.module.scss';
@@ -18,24 +22,54 @@ export default function Card({
     repair,
     saved,
     titleDeleted = '',
-    titlRepair = '',
+    titleRepair = '',
     titleSaved = '',
     onDelete,
+    id,
 }) {
     const [show, setShow] = useState(false);
+    const userData = useSelector(accountsDataSelector);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const dispatch = useDispatch();
 
-    const handleDeletedPost = (id) => {
-        dispatch(fetchDeletedJobDesc(data.id));
+    // dispatch and show message
+    const toastifyOptions = {
+        position: 'top-right',
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
     };
+    const message = useSelector(messageRecruiterSelector);
+    const handleDeletedPost = (id) => {
+        if (message) {
+            toast.success('Xoá bài thành công', toastifyOptions);
+            // toast.error('🦄 Vui lòng kiểm tra lại thông!', toastifyOptions);
+            dispatch(fetchDeletedJobDesc(data.id));
+        }
+    };
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     return (
         <div className={cx('wrapper')}>
             {/* /id */}
-            <Link className={cx('link')} to={config.routes.recruitmentdetail}>
+            <Link
+                className={cx('link')}
+                to={`/recruitmentpage/recruitmentdetail/${data.id}`}
+                // onClick={() => {
+                //     console.log('navigate');
+                //     navigate(`/recruitmentpage/recruitmentdetail/${data.id}`);
+                // }}
+            >
                 <div className={cx('image-block')}>
                     {data?.thumbnail ? (
                         <img
@@ -93,31 +127,38 @@ export default function Card({
                 show={show}
                 onActionRequest={handleDeletedPost}
             />
+
             <div className={cx('subdesc-control')}>
-                <div
-                    onClick={handleShow}
-                    // className={({ isActive }) =>
-                    //     isActive
-                    //         ? cx('subdesc-text', 'active')
-                    //         : cx('subdesc-text')
-                    // }
-                >
-                    {deleted && (
-                        <span className={cx('subdesc-text')}>{deleted}</span>
+                {data.recruiterId === userData.id && (
+                    <>
+                        <div
+                            onClick={handleShow}
+                            className={cx('subdesc-text')}
+                        >
+                            {deleted && (
+                                <span className={cx('subdesc-text')}>
+                                    {deleted}
+                                </span>
+                            )}
+                            <span>{titleDeleted}</span>
+                        </div>
+                        <Link to={`/recruiter/recruiterpostjob/${data.id}`}>
+                            <div className={cx('subdesc-text-repair')}>
+                                {repair && (
+                                    <span className={cx('subdesc-text')}>
+                                        {repair}
+                                    </span>
+                                )}
+                                <span>{titleRepair}</span>
+                            </div>
+                        </Link>
+                    </>
+                )}
+                <div className={cx('subdesc-text-save')}>
+                    {saved && (
+                        <span className={cx('subdesc-text')}>{saved}</span>
                     )}
-                    <span>{titleDeleted}</span>
-                </div>
-                <div
-                // className={({ isActive }) =>
-                //     isActive
-                //         ? cx('subdesc-text', 'active')
-                //         : cx('subdesc-text')
-                // }
-                >
-                    {repair && (
-                        <span className={cx('subdesc-text')}>{repair}</span>
-                    )}
-                    <span>{titlRepair}</span>
+                    <span>{titleSaved}</span>
                 </div>
             </div>
         </div>

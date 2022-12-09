@@ -15,18 +15,20 @@ const routes = {
     marketing: '/testuser/marketing',
     businessadministration: '/testuser/businessadministration',
     linguistics: '/testuser/linguistics',
-    postquiz: '/postquiz',
+    postquiz: '/recruiter/recruiterpost/postquiz',
+    manageQuiz: '/recruiter/recruiterpost/postquiz/:id',
+    manageBlog: '/blog/postblog/:id',
     managequiz: '/managequiz',
     usersManagement: '/admin/usermanagement',
     recruiterpost: '/recruiter/recruiterpostjob',
     recruitmentdetail: '/recruitmentdetail',
     recruitmentpage: '/recruitmentpage/user',
-    displayquizz: 'testuser/displayquizz',
+    displayquizz: 'testuser/displayquizz/:id',
     savepost: '/blog/savedPost',
     editPost: '/recruiter/recruiterpostjob/:id',
     postblog: '/blog/postblog',
     blogcontent: '/blog/postblog/blogcontent',
-    blogdetail: '/blog/postblog/blogdetail', // /:id
+    blogdetail: '/blog/blogpost/blogdetail/:id', 
 };
 
 export default routes;

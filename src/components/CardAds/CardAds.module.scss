@@ -4,14 +4,13 @@
 .box {
     display: flex;
     box-shadow: var(--box-shadown-0);
-    height: 180px;
-    // justify-content: content;
-    // align-items: center;
+    min-height: 210px;
     padding: var(--padding-1);
     cursor: pointer;
     border-radius: var(--radius-1);
     .box-title {
         box-shadow: var(--box-shadow-1);
+        margin-top: 20px;
         p {
             margin: 20px 0 20px 0;
         }
@@ -22,5 +21,8 @@
             color: var(--white-color);
             border-radius: var(--radius-1);
         }
+    }
+    &:hover {
+        color: var(--black-color);
     }
 }

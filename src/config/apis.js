@@ -20,4 +20,6 @@ export const uploadApiUrl = {
 export const usersApiUrl = {
     allUsers: '/api/user/',
     deleteUser: '/api/user/',
+    getDetailRecruiter: '/api/user/',
 };
+export const _LIMIT_PAGE = 8;

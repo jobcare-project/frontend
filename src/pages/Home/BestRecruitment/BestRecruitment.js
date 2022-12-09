@@ -38,10 +38,10 @@ export default function BestRecruitment() {
                                     >
                                         <Card
                                             data={recruitment}
-                                            repair={
+                                            saved={
                                                 <ion-icon name="heart-outline"></ion-icon>
                                             }
-                                            titlRepair="Lưu tin"
+                                            titleSaved="Lưu tin"
                                         ></Card>
                                     </Col>
                                 );

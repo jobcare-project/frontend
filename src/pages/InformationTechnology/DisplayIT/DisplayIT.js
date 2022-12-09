@@ -1,149 +1,72 @@
 import classNames from 'classnames/bind';
+import styles from './DisplayIT.module.scss';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-import styles from './DisplayIT.module.scss';
 import CardShowQuiz from '~/components/CardShowQuiz/CardShowQuiz';
 import { Container } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import { collection, onSnapshot } from 'firebase/firestore';
+
+import { db } from '~/config/Firebase/firebase';
+import Loading from '~/components/Loading/Loading';
 
 const cx = classNames.bind(styles);
 
-const ListIT = [
-    {
-        thumbnail:
-            'https://giaoducnghe.edu.vn/wp-content/uploads/2020/08/h%E1%BB%8Dc-ng%C3%A0nh-c%C3%B4ng-ngh%E1%BB%87-th%C3%B4ng-tin_gi%C3%A1o-d%E1%BB%A5c-ngh%E1%BB%81.png',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-    {
-        thumbnail:
-            'https://giaoducnghe.edu.vn/wp-content/uploads/2020/08/h%E1%BB%8Dc-ng%C3%A0nh-c%C3%B4ng-ngh%E1%BB%87-th%C3%B4ng-tin_gi%C3%A1o-d%E1%BB%A5c-ngh%E1%BB%81.png',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-    {
-        thumbnail:
-            'https://giaoducnghe.edu.vn/wp-content/uploads/2020/08/h%E1%BB%8Dc-ng%C3%A0nh-c%C3%B4ng-ngh%E1%BB%87-th%C3%B4ng-tin_gi%C3%A1o-d%E1%BB%A5c-ngh%E1%BB%81.png',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-    {
-        thumbnail:
-            'https://giaoducnghe.edu.vn/wp-content/uploads/2020/08/h%E1%BB%8Dc-ng%C3%A0nh-c%C3%B4ng-ngh%E1%BB%87-th%C3%B4ng-tin_gi%C3%A1o-d%E1%BB%A5c-ngh%E1%BB%81.png',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-    {
-        thumbnail:
-            'https://giaoducnghe.edu.vn/wp-content/uploads/2020/08/h%E1%BB%8Dc-ng%C3%A0nh-c%C3%B4ng-ngh%E1%BB%87-th%C3%B4ng-tin_gi%C3%A1o-d%E1%BB%A5c-ngh%E1%BB%81.png',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-    {
-        thumbnail:
-            'https://giaoducnghe.edu.vn/wp-content/uploads/2020/08/h%E1%BB%8Dc-ng%C3%A0nh-c%C3%B4ng-ngh%E1%BB%87-th%C3%B4ng-tin_gi%C3%A1o-d%E1%BB%A5c-ngh%E1%BB%81.png',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-    {
-        thumbnail:
-            'https://giaoducnghe.edu.vn/wp-content/uploads/2020/08/h%E1%BB%8Dc-ng%C3%A0nh-c%C3%B4ng-ngh%E1%BB%87-th%C3%B4ng-tin_gi%C3%A1o-d%E1%BB%A5c-ngh%E1%BB%81.png',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-    {
-        thumbnail:
-            'https://giaoducnghe.edu.vn/wp-content/uploads/2020/08/h%E1%BB%8Dc-ng%C3%A0nh-c%C3%B4ng-ngh%E1%BB%87-th%C3%B4ng-tin_gi%C3%A1o-d%E1%BB%A5c-ngh%E1%BB%81.png',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-    {
-        thumbnail:
-            'https://giaoducnghe.edu.vn/wp-content/uploads/2020/08/h%E1%BB%8Dc-ng%C3%A0nh-c%C3%B4ng-ngh%E1%BB%87-th%C3%B4ng-tin_gi%C3%A1o-d%E1%BB%A5c-ngh%E1%BB%81.png',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-    {
-        thumbnail:
-            'https://giaoducnghe.edu.vn/wp-content/uploads/2020/08/h%E1%BB%8Dc-ng%C3%A0nh-c%C3%B4ng-ngh%E1%BB%87-th%C3%B4ng-tin_gi%C3%A1o-d%E1%BB%A5c-ngh%E1%BB%81.png',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-    {
-        thumbnail:
-            'https://giaoducnghe.edu.vn/wp-content/uploads/2020/08/h%E1%BB%8Dc-ng%C3%A0nh-c%C3%B4ng-ngh%E1%BB%87-th%C3%B4ng-tin_gi%C3%A1o-d%E1%BB%A5c-ngh%E1%BB%81.png',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-    {
-        thumbnail:
-            'https://giaoducnghe.edu.vn/wp-content/uploads/2020/08/h%E1%BB%8Dc-ng%C3%A0nh-c%C3%B4ng-ngh%E1%BB%87-th%C3%B4ng-tin_gi%C3%A1o-d%E1%BB%A5c-ngh%E1%BB%81.png',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-    {
-        thumbnail:
-            'https://giaoducnghe.edu.vn/wp-content/uploads/2020/08/h%E1%BB%8Dc-ng%C3%A0nh-c%C3%B4ng-ngh%E1%BB%87-th%C3%B4ng-tin_gi%C3%A1o-d%E1%BB%A5c-ngh%E1%BB%81.png',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-];
-
 export default function DisplayIT() {
-    return (
+    ////State quiz from firebase
+    const [quiz, setQuiz] = useState([]);
+    //State when get API from firebase
+    const [loading, setLoading] = useState(true);
+    //State when get API from firebase
+    const quizCollectionRef = collection(db, 'quiz');
+    //Firebase snapShot
+    useEffect(() => {
+        onSnapshot(quizCollectionRef, (snapshot) => {
+            setQuiz(
+                snapshot.docs.map((doc) => {
+                    return {
+                        id: doc.id,
+                        viewing: false,
+                        ...doc.data(),
+                    };
+                }),
+            );
+            setLoading(false);
+        });
+    }, []);
+    console.log(quiz);
+    return loading ? (
+        <Loading />
+    ) : (
         <div className={cx('wrapper')}>
             <Container>
-                <div className={cx('wrapper-infomationtechnology')}>
-                    <div className={cx('inner')}>
-                        <img
-                            className={cx('avatar-infomationtechnology')}
-                            src="https://www.aeccglobal.com.np/images/easyblog_articles/247/b2ap3_amp_top-information-technology-courses-in-australia.png"
-                            alt="something-img"
-                        />
-                        <div className={cx('describe')}>
-                            <p className={cx('heading-informationtechnology')}>
-                                Công nghệ thông tin
-                            </p>
-                            <p className={cx('title-informationtechnology')}>
-                                Dưới đây là những quizz phổ biến nhất để bạn
-                                luyện tập chuẩn bị cho cuộc phỏng vấn sắp tới !
-                            </p>
-                        </div>
+                <div className={cx('inner')}>
+                    <img
+                        className={cx('avatar-infomationtechnology')}
+                        src="https://www.aeccglobal.com.np/images/easyblog_articles/247/b2ap3_amp_top-information-technology-courses-in-australia.png"
+                        alt="something-img"
+                    />
+                    <div className={cx('describe')}>
+                        <p className={cx('heading-informationtechnology')}>
+                            Công nghệ thông tin
+                        </p>
+                        <p className={cx('title-informationtechnology')}>
+                            Dưới đây là những quizz phổ biến nhất để bạn luyện
+                            tập chuẩn bị cho cuộc phỏng vấn sắp tới !
+                        </p>
                     </div>
                 </div>
                 <Row>
-                    {ListIT.slice(0, 12).map((IT, index) => {
+                    {quiz.slice(0, 8).map((quiz, index) => {
                         return (
                             <Col key={index} lg={3} md={4} sm={6}>
                                 <CardShowQuiz
-                                    quiz={IT}
-                                    to={'displayquizz'}
+                                    quiz={quiz}
+                                    // deleted={}
+                                    titleDeleted="Xóa"
+                                    // repair={}
+                                    titlRepair="Sửa"
                                 ></CardShowQuiz>
                             </Col>
                         );

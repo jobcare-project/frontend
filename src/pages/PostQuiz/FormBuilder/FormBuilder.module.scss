@@ -1,18 +1,52 @@
-.quiz-title{
+.category {
+    margin: 30px 0 30px 0px;
+}
+.title-category {
     font-size: 30px;
 }
-.quiz{
+.quiz-title {
+    font-size: 30px;
+}
+.quiz {
     background-color: var(--gray-light-color-3);
     border-radius: 10px;
 }
-.submit{
+.submit {
     display: flex;
     justify-content: center;
     margin: 100px 0 100px 0;
-    
-    .submit-btn{
+
+    .submit-btn {
         width: 200px;
         height: 60px;
         font-size: 30px;
     }
+}
+.title-image {
+    margin-top: 30px;
+    font-size: 30px;
+}
+.image {
+    margin: 50px 0 50px 0;
+}
+
+.add-question-title {
+    display: flex;
+    justify-content: center;
+    font-size: 50px;
+    margin: 50px 0 100px 0;
+}
+
+.title-describe,
+.title-quiz {
+    font-size: 30px;
+}
+.input-describe,
+.input-title {
+    margin: 30px 0 30px 0px;
+    width: 1000px;
+    border: 1px solid #9c9a9a;
+    border-radius: 10px;
+    font-size: 20px;
+    height: 50px;
 }

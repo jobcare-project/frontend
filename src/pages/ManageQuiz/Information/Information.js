@@ -1,8 +1,7 @@
 import classNames from 'classnames/bind';
-import { useState, useEffect } from 'react';
-
 import styles from './Information.module.scss';
-import { db } from '~/pages/PostQuiz/firebase';
+import { useState, useEffect } from 'react';
+import { db } from '~/config/Firebase/firebase';
 import { collection, onSnapshot } from 'firebase/firestore';
 
 const cx = classNames.bind(styles);

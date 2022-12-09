@@ -1,233 +1,98 @@
 import classNames from 'classnames/bind';
 import styles from './ShowQuiz.module.scss';
-
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import config from '~/config';
-import Menu, { MenuItem } from '../Menu';
-import CardShowQuiz from '~/components/CardShowQuiz/CardShowQuiz';
 import { Container } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import { collection, onSnapshot, doc, deleteDoc } from 'firebase/firestore';
+import { toast } from 'react-toastify';
+
+import { db } from '~/config/Firebase/firebase';
+
+import CardShowQuiz from '~/components/CardShowQuiz/CardShowQuiz';
+import Loading from '~/components/Loading/Loading';
+import Filter from '../Filter';
 
 const cx = classNames.bind(styles);
 
-//Quizz Công nghệ thông tin
-
-const itList = [
-    {
-        thumbnail:
-            'https://bizflyportal.mediacdn.vn/bizflyportal/375/470/2020/04/28/21/33/115880627863553.jpg',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-];
-
-// Quizz Marketing
-
-const marketingList = [
-    {
-        thumbnail:
-            'https://amis.misa.vn/wp-content/uploads/2021/09/marketing-la-gi.png',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-    {
-        thumbnail:
-            'https://amis.misa.vn/wp-content/uploads/2021/09/marketing-la-gi.png',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-    {
-        thumbnail:
-            'https://amis.misa.vn/wp-content/uploads/2021/09/marketing-la-gi.png',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-    {
-        thumbnail:
-            'https://amis.misa.vn/wp-content/uploads/2021/09/marketing-la-gi.png',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-];
-
-// Quizz quản trị kinh doanh
-
-const businessAdministrationList = [
-    {
-        thumbnail:
-            'https://www.study365.co.uk/wp-content/uploads/2016/09/Business-Administration-Skills.jpg',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-    {
-        thumbnail:
-            'https://www.study365.co.uk/wp-content/uploads/2016/09/Business-Administration-Skills.jpg',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-    {
-        thumbnail:
-            'https://www.study365.co.uk/wp-content/uploads/2016/09/Business-Administration-Skills.jpg',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-    {
-        thumbnail:
-            'https://www.study365.co.uk/wp-content/uploads/2016/09/Business-Administration-Skills.jpg',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-];
-
-// Quizz ngôn ngữ học
-
-const linguisticsList = [
-    {
-        thumbnail:
-            'https://www.thoughtco.com/thmb/AJgCBOXOrDV_THLddckAHGy-EBQ=/2042x1149/smart/filters:no_upscale()/Getty_linguistics-175416686-570f1f255f9b581408973018.jpg',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-    {
-        thumbnail:
-            'https://www.thoughtco.com/thmb/AJgCBOXOrDV_THLddckAHGy-EBQ=/2042x1149/smart/filters:no_upscale()/Getty_linguistics-175416686-570f1f255f9b581408973018.jpg',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-    {
-        thumbnail:
-            'https://www.thoughtco.com/thmb/AJgCBOXOrDV_THLddckAHGy-EBQ=/2042x1149/smart/filters:no_upscale()/Getty_linguistics-175416686-570f1f255f9b581408973018.jpg',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-    {
-        thumbnail:
-            'https://www.thoughtco.com/thmb/AJgCBOXOrDV_THLddckAHGy-EBQ=/2042x1149/smart/filters:no_upscale()/Getty_linguistics-175416686-570f1f255f9b581408973018.jpg',
-        title: 'Những câu hỏi ôn tập phỏng vấn Front-End',
-        maxScore: ' Điểm tối đá 10 điểm',
-        timeQuiz: ' Thời gian làm bài 60 phút  ',
-        listQuiz: ' 30 câu hỏi ',
-    },
-];
-
-export default function ShowQuiz() {
-    return (
+function ShowQuiz() {
+    ////State quiz from firebase
+    const [quiz, setQuiz] = useState([]);
+    //State when get API from firebase
+    const [loading, setLoading] = useState(true);
+    //
+    const [filtered, setFiltered] = useState([]);
+    //
+    const [activeGenre, setActiveGenre] = useState(0);
+    //State when get API from firebase
+    const quizCollectionRef = collection(db, 'quiz');
+    //Firebase snapShot
+    useEffect(() => {
+        onSnapshot(quizCollectionRef, (snapshot) => {
+            setQuiz(
+                snapshot.docs.map((doc) => {
+                    return {
+                        id: doc.id,
+                        viewing: false,
+                        ...doc.data(),
+                    };
+                }),
+            );
+            setFiltered(
+                snapshot.docs.map((doc) => {
+                    return {
+                        id: doc.id,
+                        viewing: false,
+                        ...doc.data(),
+                    };
+                }),
+            );
+            setLoading(false);
+        });
+    }, []);
+    console.log(quiz);
+    const handleDelete = async (id) => {
+        if (window.confirm('Bạn có muốn xóa bài quiz ?')) {
+            try {
+                setLoading(true);
+                await deleteDoc(doc(db, 'quiz', id));
+                toast.success('Bài quiz đã được xóa thành công');
+                setLoading(false);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+    };
+    return loading ? (
+        <Loading />
+    ) : (
         <div className={cx('wrapper')}>
             <Container className={cx('container')}>
                 <h2 className={cx('heading')}>
-                    Công nghệ thông tin
-                    <Menu>
-                        <MenuItem title="Xem thêm" to={config.routes.itech} />
-                    </Menu>
+                    <Filter
+                        quiz={quiz}
+                        setFiltered={setFiltered}
+                        activeGenre={activeGenre}
+                        setActiveGenre={setActiveGenre}
+                    />
                 </h2>
-
                 <Row>
-                    {itList.slice(0, 8).map((itList, index) => {
+                    {filtered.slice(0, 8).map((quiz, index) => {
                         return (
                             <Col key={index} lg={3} md={4} sm={6}>
                                 <CardShowQuiz
-                                    quiz={itList}
-                                    to={'displayquizz'}
+                                    quiz={quiz}
+                                    handleDelete={handleDelete}
+                                    // repair={}
+                                    titlRepair="Sửa"
                                 ></CardShowQuiz>
                             </Col>
                         );
                     })}
-                </Row>
-
-                <h2 className={cx('heading')}>
-                    Marketing
-                    <Menu>
-                        <MenuItem
-                            title="Xem thêm"
-                            to={config.routes.marketing}
-                        />
-                    </Menu>
-                </h2>
-
-                <Row>
-                    {marketingList.slice(0, 8).map((marketingList, index) => {
-                        return (
-                            <Col key={index} lg={3} md={4} sm={6}>
-                                <CardShowQuiz
-                                    quiz={marketingList}
-                                ></CardShowQuiz>
-                            </Col>
-                        );
-                    })}
-                </Row>
-
-                <h2 className={cx('heading')}>
-                    Quản trị kinh doanh
-                    <Menu>
-                        <MenuItem
-                            title="Xem thêm"
-                            to={config.routes.businessadministration}
-                        />
-                    </Menu>
-                </h2>
-
-                <Row>
-                    {businessAdministrationList
-                        .slice(0, 8)
-                        .map((businessAdministrationList, index) => {
-                            return (
-                                <Col key={index} lg={3} md={4} sm={6}>
-                                    <CardShowQuiz
-                                        quiz={businessAdministrationList}
-                                    ></CardShowQuiz>
-                                </Col>
-                            );
-                        })}
-                </Row>
-
-                <h2 className={cx('heading')}>
-                    Ngôn ngữ học
-                    <Menu>
-                        <MenuItem
-                            title="Xem thêm"
-                            to={config.routes.linguistics}
-                        />
-                    </Menu>
-                </h2>
-
-                <Row>
-                    {linguisticsList
-                        .slice(0, 8)
-                        .map((linguisticsList, index) => {
-                            return (
-                                <Col key={index} lg={3} md={4} sm={6}>
-                                    <CardShowQuiz
-                                        quiz={linguisticsList}
-                                    ></CardShowQuiz>
-                                </Col>
-                            );
-                        })}
                 </Row>
             </Container>
         </div>
     );
 }
+
+export default ShowQuiz;
