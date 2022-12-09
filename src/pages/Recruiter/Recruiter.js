@@ -24,7 +24,7 @@ function Recruiter() {
                         </Link>
                     </Col>
                     <Col md={6} className={'mb-5'}>
-                        <Link>
+                        <Link to={{ pathname:'postquiz'}} >
                             <div className={cx('control-block')}>
                                 <span className={cx('icon')}>
                                     <ion-icon name="reader-outline"></ion-icon>

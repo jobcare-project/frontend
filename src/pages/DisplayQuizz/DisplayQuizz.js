@@ -1,14 +1,12 @@
 import classNames from 'classnames/bind';
-
-import TodoQuiz from './TodoQuiz';
 import styles from './DisplayQuizz.module.scss';
-
+import QuizDetail from './QuizDetail';
 const cx = classNames.bind(styles);
 
 function DisplayQuiz() {
     return (
-        <div className={cx('wrapper')}>
-            <TodoQuiz />
+        <div className={cx('wrapper')} >
+            <QuizDetail/>
         </div>
     );
 }

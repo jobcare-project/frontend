@@ -101,9 +101,9 @@
                 -webkit-box-orient: vertical;
                 overflow: hidden;
             }
-            // &:hover {
-            //     color: var(--primary-color);
-            // }
+            &:hover {
+                color: var(--primary-color);
+            }
         }
         .active {
             color: red;

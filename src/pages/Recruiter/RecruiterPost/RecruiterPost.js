@@ -33,6 +33,7 @@ import {
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import config from '~/config';
+import { messageRecruiterSelector } from '~/redux/Selectors/recruiterSelector';
 // import ModalDeleted from '~/pages/Profile/Modal/ModalPost/ModalDeleted';
 const cx = classNames.bind(styles);
 const mucluongData = [
@@ -84,43 +85,43 @@ const kinhnghiemData = [
     },
     {
         value: '402',
-        name: 'Hơn 6 tháng',
+        name: 'Trên 6 tháng',
     },
     {
         value: '403',
-        name: 'Hơn 1 năm',
+        name: 'Trên 1 năm',
     },
     {
         value: '404',
-        name: 'Hơn 2 năm',
+        name: 'Trên 2 năm',
     },
     {
         value: '405',
-        name: 'Hơn 3 năm',
+        name: 'Trên 3 năm',
     },
     {
         value: '406',
-        name: 'Hơn 4 năm',
+        name: 'Trên 4 năm',
     },
     {
         value: '407',
-        name: 'Hơn 5 năm',
+        name: 'Trên 5 năm',
     },
     {
         value: '408',
-        name: 'Hơn 6 năm',
+        name: 'Trên 6 năm',
     },
     {
         value: '409',
-        name: 'Hơn 7 năm',
+        name: 'Trên 7 năm',
     },
     {
         value: '410',
-        name: 'Hơn 8 năm',
+        name: 'Trên 8 năm',
     },
     {
         value: '411',
-        name: 'Hơn 9 năm',
+        name: 'Trên 9 năm',
     },
     {
         value: '408',
@@ -371,7 +372,7 @@ function RecruiterPost() {
         setState(e.target.value);
     };
     const job = useSelector(jobSelector);
-    const message = useSelector(messageSelector);
+    const message = useSelector(messageRecruiterSelector);
     console.log({ message });
 
     const navigate = useNavigate();
@@ -398,7 +399,6 @@ function RecruiterPost() {
         console.log('Data', data);
         dispatch(fetchPostJobDesc(data));
     };
-
     return (
         <div className={cx('wrapper')}>
             <Container>

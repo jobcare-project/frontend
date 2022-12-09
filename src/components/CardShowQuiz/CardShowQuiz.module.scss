@@ -22,7 +22,7 @@
         }
     }
     .image-block {
-        --height: 250px;
+        --height: 120px;
         height: var(--height);
         box-shadow: rgba(149, 157, 165, 0.1) 0px 8px 24px;
         border-radius: 18px;
@@ -42,26 +42,28 @@
             font-size: 2rem;
             font-weight: 600;
             display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
         .description {
-            height: 50px;
+            height: 25px;
             margin-bottom: 6px;
             display: -webkit-box;
-            -webkit-line-clamp: 2;
+            -webkit-line-clamp: 1;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
         .subdesc {
-            margin-top: 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            .subdesc-left {
-                flex: 1;
-                max-width: 50%;
-            }
+            // .subdesc-left {
+            //     // flex: 1;
+            //     // max-width: 50%;
+            // }
             .subdesc-right {
-                flex: 1;
+                margin-top: 50px;
             }
         }
         .subdesc-text {
@@ -75,6 +77,55 @@
                 -webkit-box-orient: vertical;
                 overflow: hidden;
             }
+            .subdesc-bottom {
+                display: flex;
+            }
+        }
+    }
+    .subdesc-control {
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid #ccc;
+        margin: 10px 0 0 40px;
+
+        .subdesc-text {
+            cursor: pointer;
+            display: flex;
+            font-size: 15px;
+            align-items: center;
+            margin: 0;
+            span {
+                padding-left: 4px;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+            &:hover {
+                color: var(--primary-color);
+            }
+        }
+        .subdesc-text-repair {
+            margin-top: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            position: relative;
+            top: 10px;
+            left: 30px;
+            &:hover {
+                color: var(--primary-color);
+            }
+        }
+    }
+    .subdesc-text-save {
+        display: flex;
+        position: relative;
+        top: 10;
+        cursor: pointer;
+        &:hover {
+            color: var(--primary-color);
         }
     }
 }

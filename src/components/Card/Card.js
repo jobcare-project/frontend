@@ -21,6 +21,7 @@ export default function Card({
     titlRepair = '',
     titleSaved = '',
     onDelete,
+    id,
 }) {
     const [show, setShow] = useState(false);
 
@@ -93,6 +94,7 @@ export default function Card({
                 show={show}
                 onActionRequest={handleDeletedPost}
             />
+
             <div className={cx('subdesc-control')}>
                 <div
                     onClick={handleShow}
@@ -117,7 +119,7 @@ export default function Card({
                     {repair && (
                         <span className={cx('subdesc-text')}>{repair}</span>
                     )}
-                    <span>{titlRepair}</span>
+                    <span>{titleSaved}</span>
                 </div>
             </div>
         </div>

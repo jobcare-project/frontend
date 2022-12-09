@@ -6,6 +6,7 @@ import RelatedJob from './RelatedJob/RelatedJob';
 import classNames from 'classnames/bind';
 import styles from './RecruitmentDetail.module.scss';
 import Search from '../RecruitmentPage/Search/SearchJob/Search';
+import DetailInfor from '~/pages/RecruitmentDetail/DetailInfor/DetailInfor';
 
 const cx = classNames.bind(styles);
 function RecruitmentDetail() {
@@ -14,7 +15,7 @@ function RecruitmentDetail() {
         <div className={cx('wrapper')}>
             <Search leftIcon></Search>
             <div className={cx('container')}>
-                <BoxHeader></BoxHeader>
+                <DetailInfor></DetailInfor>
                 <RelatedJob></RelatedJob>
             </div>
         </div>

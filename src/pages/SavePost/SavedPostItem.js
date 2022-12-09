@@ -10,6 +10,7 @@ export default function SavedPostItem({ data }) {
                 titleDeleted="Xoá tin"
                 repair={<ion-icon name="pencil-outline"></ion-icon>}
                 titlRepair="Sửa tin"
+                id={data.id}
             ></Card>
         </Col>
     );

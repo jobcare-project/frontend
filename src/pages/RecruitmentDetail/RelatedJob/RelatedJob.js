@@ -11,6 +11,7 @@ import { Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { jobListSelector } from '~/redux/Selectors/jobSelector';
 import { fetchListJob } from '~/pages/Home/homeSlice';
+import config from '~/config';
 const cx = classNames.bind(styles);
 
 export default function RelatedJob() {
@@ -24,11 +25,9 @@ export default function RelatedJob() {
         <Container>
             <div className={cx('wrapper')}>
                 <div className={cx('related-job')}>
-                    <div className={cx('related-title')}>
-                        Việc làm liên quan
-                    </div>
+                    <div className={cx('related-title')}>Việc làm mới nhất</div>
                     <div className={cx('related-more')}>
-                        <Link to="/recruitmentpage/user">
+                        <Link to={config.routes.recruitmentpage}>
                             <span>Hiển thị thêm</span>
                         </Link>
                     </div>
@@ -47,10 +46,10 @@ export default function RelatedJob() {
                                         >
                                             <Card
                                                 data={recruitment}
-                                                repair={
+                                                saved={
                                                     <ion-icon name="heart-outline"></ion-icon>
                                                 }
-                                                titlRepair="Lưu tin"
+                                                titleSaved="Lưu tin"
                                             ></Card>
                                         </Col>
                                     );

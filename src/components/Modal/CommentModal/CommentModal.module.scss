@@ -1,17 +1,43 @@
 .wrapper {
-    background-color: red !important;
+    // background-color: red !important;
     width: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    position: fixed;
+    bottom: 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
+    right: 0;
+    top: 0;
+    will-change: opacity;
+    z-index: 999;
+    animation: slide 1s 1;
     .content {
         width: 720px;
         position: absolute;
         height: 100%;
-        top: 70px;
+        top: 0;
         right: 0;
         padding: 40px;
         background-color: var(--white-color);
-        z-index: 999;
+
+        .comment-amount {
+            margin-top: 30px;
+            .comment-heading {
+                font-size: 1.8rem;
+                font-weight: 600;
+                margin: 0 auto 0 0;
+            }
+            .comment-report {
+                color: #666;
+                font-size: 1.3rem;
+                font-style: italic;
+                line-height: 1.4;
+            }
+        }
         .user-comment {
             display: flex;
+            margin-top: 30px;
             .avatar {
                 border-radius: 50%;
                 width: 40px;
@@ -38,5 +64,17 @@
             position: absolute;
             font-size: 31px;
         }
+    }
+}
+
+@keyframes slide {
+    from {
+        left: 1570px;
+        width: 0%;
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+    to {
+        width: 100%;
+        left: 0;
     }
 }

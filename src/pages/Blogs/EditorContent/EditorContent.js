@@ -19,7 +19,7 @@ export default class EditorContent extends Component {
     };
     render() {
         const { editorState } = this.state;
-        console.log(convertToRaw(editorState.getCurrentContent()));
+        // console.log(convertToRaw(editorState.getCurrentContent()));
         return (
             <div className={cx('content-editor')}>
                 <Editor
