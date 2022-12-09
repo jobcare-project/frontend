@@ -31,17 +31,12 @@ const navigationMenu = [
         role: ['user'],
     },
     {
-        title: 'Test Manage',
-        to: '/test-manage',
-        role: ['admin'],
-    },
-    {
-        title: 'Blog',
+        title: 'Đăng bài',
         to: config.routes.blog,
         role: ['user', 'recruiter', 'admin'],
     },
     {
-        title: 'Manage',
+        title: 'Quản lý',
         to: config.routes.admin,
         role: ['admin'],
     },

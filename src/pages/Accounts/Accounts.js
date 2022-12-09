@@ -7,6 +7,7 @@ import Loading from '~/components/Loading/Loading';
 import {
     accountsStatusSelector,
     isAuthSelector,
+    roleSelector,
 } from '~/redux/Selectors/authSelector';
 import styles from './Accounts.module.scss';
 import Container from './Container/Container';
@@ -17,8 +18,12 @@ const cx = classNames.bind(styles);
 export default function Accounts() {
     const status = useSelector(accountsStatusSelector);
     const isAuth = useSelector(isAuthSelector);
+    const roleUser = useSelector(roleSelector);
 
     if (isAuth) {
+        if (roleUser === 'admin') {
+            return <Navigate to={config.routes.admin} replace />;
+        }
         return <Navigate to={config.routes.home} replace />;
     }
 
