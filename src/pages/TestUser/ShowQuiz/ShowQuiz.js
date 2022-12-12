@@ -83,8 +83,10 @@ function ShowQuiz() {
                                 <CardShowQuiz
                                     quiz={quiz}
                                     handleDelete={handleDelete}
-                                    // repair={}
+                                    iconDelete={quiz}
+                                    iconRepair={quiz}
                                     titlRepair="Sửa"
+                                    titlDelete="Xóa"
                                 ></CardShowQuiz>
                             </Col>
                         );
