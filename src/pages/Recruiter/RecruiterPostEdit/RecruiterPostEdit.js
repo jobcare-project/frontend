@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from './RecruiterPost.module.scss';
-import Button from '~/components/Button';
 import { useState } from 'react';
 import {
     getAllProvinces,
@@ -28,8 +27,13 @@ import Input from '~/components/Input/Input/Input';
 import DropDown from '~/components/Input/DropDown/DropDown';
 import { useMemo } from 'react';
 import { fetchEditJobDesc, fetchPostJobDesc } from '~/pages/Home/homeSlice';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { getDetailPost } from '~/services/jobService';
+import TextEditor from '~/pages/Blogs/EditorContent/EditorContent';
+import Button from '~/components/Button';
+import { messageRecruiterSelector } from '~/redux/Selectors/recruiterSelector';
+import { toast } from 'react-toastify';
+import config from '~/config';
 const cx = classNames.bind(styles);
 const mucluongData = [
     {
@@ -42,7 +46,7 @@ const mucluongData = [
     },
     {
         value: '103',
-        name: 'Từ',
+        name: 'vnđ/ giờ',
     },
 ];
 const gioitinhData = [
@@ -274,9 +278,10 @@ const optionVipData = [
 const TYPE_SALARY_DEFAULT = 'Thoả thuận';
 function RecruiterPostEdit() {
     // Modal
+    const dispatch = useDispatch();
     const [modalDeleted, setModalDeleted] = useState(false);
     const params = useParams();
-    console.log(params.id);
+    // console.log(params.id);
     // get values dropdown
     const [districtID, setDictricID] = useState('');
     const [selectForm, setSelectForm] = useState({
@@ -287,12 +292,14 @@ function RecruiterPostEdit() {
         district: '',
         workFrom: '',
     });
+    const [dataRecruiterEdit, setDataRecruiterEdit] = useState('');
     const [checked, setChecked] = useState('');
     const [typeChecked, setTypeChecked] = useState('');
     // set value texarea
     const [description, setDescription] = useState('');
     const [requireCandidate, setRequireCandidate] = useState('');
     const [benefit, setBenefit] = useState('');
+    const [typeSalary, setTypeSalary] = useState('Mức lương');
     // check form
     const [checkboxForm, setCheckboxRule] = useState({
         vip: 'false',
@@ -315,9 +322,7 @@ function RecruiterPostEdit() {
     }, [quantityVipDay]);
     // formik data
     const formikRef = useRef(null);
-    const dispatch = useDispatch();
     // Lấy dữ liệu Quận
-    const [typeSalary, setTypeSalary] = useState('Mức lương');
     const salaryRef = useRef();
     const handleChangeSelect = (value, name, nameSelect) => {
         switch (nameSelect) {
@@ -331,13 +336,12 @@ function RecruiterPostEdit() {
             default:
                 break;
         }
-        console.log(nameSelect, name);
+        // console.log(nameSelect, name);
         setSelectForm((prev) => {
             return { ...prev, [nameSelect]: name };
         });
         // console.log(name);
     };
-    // Get values của Quận
 
     // check box rule
     const handleChangeCheckboxRule = () => {
@@ -357,21 +361,35 @@ function RecruiterPostEdit() {
         formikRef.current.setFieldValue(field, e.target.value);
         setState(e.target.value);
     };
-
+    const toastifyOptions = {
+        position: 'top-right',
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+    };
+    const message = useSelector(messageRecruiterSelector);
+    const handleDeletedPost = (id) => {};
     const handleSubmit = () => {
         // console.log(formikRef.current.values);
         const formikValues = formikRef.current.values;
-        console.log('formikValues', formikValues);
+        // console.log('formikValues', formikValues);
         const salary =
             selectForm.salary === TYPE_SALARY_DEFAULT
                 ? TYPE_SALARY_DEFAULT
                 : formikValues.salary;
         const selectValues = { ...selectForm, salary };
         const data = { ...formikValues, ...selectValues };
-        console.log('formik value', formikValues);
-        console.log('Data', data);
-        dispatch(fetchEditJobDesc(params.id, data));
+        if (message) {
+            toast.success('Sửa bài thành công', toastifyOptions);
+            dispatch(fetchEditJobDesc({ id: params.id, data }));
+            Navigate(config.routes.recruitersaved);
+        }
     };
+
     const objFillValues = [
         'title',
         'salary',
@@ -387,39 +405,19 @@ function RecruiterPostEdit() {
         'jobRequire',
         'weiface',
     ];
+    // console.log('data:', dataRecruiterEdit);
     useEffect(() => {
         const getPost = async () => {
             const res = await getDetailPost(params.id);
-            console.log(res.data);
+            // console.log(res.data);
+            setDataRecruiterEdit(res.data);
             objFillValues.map((_elt) => {
-                console.log(res.data[_elt]);
+                // console.log(res.data[_elt]);
                 formikRef.current.setFieldValue(_elt, res.data[_elt]);
                 setDescription(res.data['jobDescription']);
                 setRequireCandidate(res.data['jobRequire']);
                 setBenefit(res.data['weiface']);
-                // const data = {
-                //     salary: res.data['salary'],
-                //     gender: res.data['gender'],
-                //     experience: res.data['experience'],
-                //     city: res.data['city'],
-                //     district: res.data['district'],
-                //     workFrom: res.data['workFrom'],
-                // };
-                // console.log(res.data['city']);
-                // setSelectForm({
-                //     salary: res.data['salary'],
-                //     gender: res.data['gender'],
-                //     experience: res.data['experience'],
-                //     city: '01',
-                //     district: res.data['district'],
-                //     workFrom: res.data['workFrom'],
-                // });
             });
-            // fillMultipleStepInfo(
-            //     res.data,
-            //     formikRef.current.values,
-            //     formikRef.current.setFieldValue,
-            // );
         };
         getPost();
     }, []);
@@ -449,9 +447,8 @@ function RecruiterPostEdit() {
                             .min(10, 'Tiêu đề phải lớn hơn 10 ký tự')
                             .max(70, 'Tiêu đề không được vượt quá 80 ký tự'),
                         salary: Yup.number()
-                            .required('Vui lòng nhập ô này')
                             .typeError('Vui lòng nhập số')
-                            .min(1, 'Tối thiểu 1 người'),
+                            .min(1, 'Vui lòng nhập số lớn hơn 0'),
                         amount: Yup.number()
                             .required('Vui lòng nhập ô này')
                             .typeError('Vui lòng nhập số')
@@ -584,6 +581,9 @@ function RecruiterPostEdit() {
                                                     'dropdown-detail',
                                                 )}
                                                 title="Chọn hình thức"
+                                                defaultValueProps={
+                                                    dataRecruiterEdit.workFrom
+                                                }
                                             />
                                         </div>
                                     </Col>
@@ -605,6 +605,9 @@ function RecruiterPostEdit() {
                                                     'dropdown-detail',
                                                 )}
                                                 title="Giới tính"
+                                                defaultValueProps={
+                                                    dataRecruiterEdit.gender
+                                                }
                                             />
                                         </div>
                                     </Col>
@@ -642,6 +645,9 @@ function RecruiterPostEdit() {
                                                     'dropdown-detail',
                                                 )}
                                                 title="Kinh nghiệm"
+                                                defaultValueProps={
+                                                    dataRecruiterEdit.experience
+                                                }
                                             />
                                         </div>
                                     </Col>
@@ -663,6 +669,9 @@ function RecruiterPostEdit() {
                                                 className={cx(
                                                     'dropdown-detail',
                                                 )}
+                                                defaultValueProps={
+                                                    dataRecruiterEdit.city
+                                                }
                                             />
                                         </div>
                                     </Col>
@@ -685,6 +694,9 @@ function RecruiterPostEdit() {
                                                         name,
                                                         'district',
                                                     )
+                                                }
+                                                defaultValueProps={
+                                                    dataRecruiterEdit.district
                                                 }
                                             />
                                         </div>
@@ -714,19 +726,15 @@ function RecruiterPostEdit() {
                                             <div className={cx('detail-name')}>
                                                 Nhập mô tả công việc
                                             </div>
-                                            <Field
-                                                as="textarea"
-                                                className={cx('input-text')}
-                                                name="jobDescription"
-                                                value={description}
-                                                onChange={(e) =>
-                                                    handleTextChange(
-                                                        e,
-                                                        'jobDescription',
-                                                        setDescription,
-                                                    )
+                                            <TextEditor
+                                                setValue={
+                                                    formikRef?.current
+                                                        ?.setFieldValue
                                                 }
-                                            ></Field>
+                                                fieldName={'jobDescription'}
+                                                isHidderTools={true}
+                                                defaultValueProps={description}
+                                            />
                                         </div>
                                         <p className={cx('message')}>
                                             <ErrorMessage name="jobDescription" />
@@ -739,19 +747,14 @@ function RecruiterPostEdit() {
                                             <div className={cx('detail-name')}>
                                                 Yêu cầu ứng viên
                                             </div>
-                                            <Field
-                                                as="textarea"
-                                                className={cx('input-text')}
-                                                name="jobRequire"
-                                                type="text"
-                                                value={requireCandidate}
-                                                onChange={(e) =>
-                                                    handleTextChange(
-                                                        e,
-                                                        'jobRequire',
-                                                        setRequireCandidate,
-                                                    )
+                                            <TextEditor
+                                                setValue={
+                                                    formikRef?.current
+                                                        ?.setFieldValue
                                                 }
+                                                fieldName={'jobRequire'}
+                                                isHidderTools={true}
+                                                defaultValueProps={description}
                                             />
                                         </div>
                                         <p className={cx('message')}>
@@ -766,27 +769,22 @@ function RecruiterPostEdit() {
                                             <div className={cx('detail-name')}>
                                                 Quyền lợi
                                             </div>
-                                            <Field
-                                                as="textarea"
-                                                className={cx('input-text')}
-                                                name="benefit"
-                                                type="text"
-                                                value={benefit}
-                                                onChange={(e) =>
-                                                    handleTextChange(
-                                                        e,
-                                                        'benefit',
-                                                        setBenefit,
-                                                    )
+                                            <TextEditor
+                                                setValue={
+                                                    formikRef?.current
+                                                        ?.setFieldValue
                                                 }
+                                                fieldName={'welfare'}
+                                                isHidderTools={true}
+                                                defaultValueProps={description}
                                             />
                                         </div>
                                         <p className={cx('message')}>
-                                            <ErrorMessage name="benefit" />
+                                            <ErrorMessage name="welfare" />
                                         </p>
                                     </Col>
                                 </Row>
-                                <div className={cx('content-input')}>
+                                {/* <div className={cx('content-input')}>
                                     <div className={cx('detail-name')}>
                                         Hình thức đăng tin
                                     </div>
@@ -950,7 +948,7 @@ function RecruiterPostEdit() {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                             <div className={cx('content-rule')}>
                                 <div className={cx('checkbox-rule')}>

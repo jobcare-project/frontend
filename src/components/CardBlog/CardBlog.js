@@ -51,7 +51,13 @@ function CardBlog({
             >
                 <div className={cx('blog-item')}>
                     <div className={cx('title')}>{data?.title}</div>
-                    <div className={cx('content')}>{data?.content}</div>
+                    <div className={cx('content')}>
+                        <span
+                            dangerouslySetInnerHTML={{
+                                __html: data?.content,
+                            }}
+                        ></span>
+                    </div>
                     <div className={cx('subdesc-text')}>
                         <span>
                             <ion-icon name="timer-outline"></ion-icon>

@@ -13,7 +13,7 @@ function Comment({ data }) {
             <div className={cx('content')}>
                 <div className={cx('comment-amount')}>
                     <h4 className={cx('comment-heading')}>
-                        {data?.amount}1 bình luận
+                        {data?.amount}0 bình luận
                     </h4>
                     <span className={cx('comment-report')}>
                         (Nếu thấy bình luận spam, các bạn bấm report giúp admin

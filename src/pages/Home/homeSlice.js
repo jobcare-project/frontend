@@ -58,7 +58,7 @@ export const homeSlice = createSlice({
 
 export const fetchListJob = createAsyncThunk(
     'home/fetchListJob',
-    async  (dispatch) => {
+    async (dispatch) => {
         try {
             const res = await getListJobApi();
             // dispatch(fetchListJobPagination(res.data))
@@ -113,12 +113,11 @@ export const fetchDeletedJobDesc = createAsyncThunk(
 
 // edit job
 export const fetchEditJobDesc = createAsyncThunk(
-    'home/fetchPostJobDesc',
-    async (id, data) => {
-        console.log('data fetch', data);
+    'home/fetchEditJobDesc',
+    async (body) => {
         try {
-            // const res = await editJobDesc(id, data);
-            // return res.data;
+            const res = await editJobDesc(body);
+            return res.data;
         } catch (error) {
             console.log(error);
             return isRejectedWithValue(error.response);

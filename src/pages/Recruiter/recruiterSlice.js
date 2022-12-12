@@ -1,3 +1,4 @@
+import { async } from '@firebase/util';
 import {
     createAsyncThunk,
     createSlice,
@@ -9,6 +10,7 @@ import {
     getListJobApi,
     postJobDesc,
 } from '~/services/jobService';
+import { getDetailRecuiterByIdApi } from '~/services/userService';
 
 export const recruiterSlice = createSlice({
     name: 'recruiter',
@@ -17,6 +19,7 @@ export const recruiterSlice = createSlice({
         messsage: false,
         job: {},
         jobDisplayPagination: [],
+        recruiterJobList: [],
     },
     reducers: {
         restMessage: (state, action) => {
@@ -49,6 +52,13 @@ export const recruiterSlice = createSlice({
                 const { data, message } = action.payload;
                 state.job = data;
                 state.messsage = message;
+            })
+            .addCase(fetchRecruiterDetail.pending, (state) => {
+                state.idLoading = true;
+            })
+            .addCase(fetchRecruiterDetail.fulfilled, (state, action) => {
+                const recruiterDetailData = action.payload.data;
+                state.recruiterJobList = recruiterDetailData.recruiter_jobs;
             });
     },
 });
@@ -105,6 +115,19 @@ export const fetchJobsPagination = createAsyncThunk(
         try {
             // const res = await editJobDesc(id, data);
             return data;
+        } catch (error) {
+            console.log(error);
+            return isRejectedWithValue(error.response);
+        }
+    },
+);
+
+export const fetchRecruiterDetail = createAsyncThunk(
+    'recruiter/fetchRecruiterDetail',
+    async (recruiterId) => {
+        try {
+            const res = await getDetailRecuiterByIdApi(recruiterId);
+            return res;
         } catch (error) {
             console.log(error);
             return isRejectedWithValue(error.response);

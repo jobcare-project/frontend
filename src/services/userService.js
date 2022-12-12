@@ -41,3 +41,7 @@ export const getAllUsersApi = async () => {
 export const deleteUserApi = async (id) => {
     return await axiosClient.delete(config.usersApiUrl.deleteUser + id);
 };
+
+export const getDetailRecuiterByIdApi = async (id) => {
+    return await axiosClient.get(config.usersApiUrl.getDetailRecruiter + id);
+};

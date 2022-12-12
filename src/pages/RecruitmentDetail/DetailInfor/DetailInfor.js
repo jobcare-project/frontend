@@ -32,8 +32,10 @@ export default function DetailInfor({ data, to }) {
         dispatch(fetchDetailJobDesc(recruitmentId));
         // const jobs = jobListData.slice(0, 5);
         // setjobsItem(jobs);
-    }, []);
-
+    }, [dispatch, recruitmentId]);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [recruitmentId]);
     return (
         <Container>
             <div className={cx('wrapper')}>
@@ -167,19 +169,31 @@ export default function DetailInfor({ data, to }) {
                             <div className={cx('descript-job')}>
                                 <h1>Mô tả công việc</h1>
                                 <div className={cx('content-tab')}>
-                                    <p>{jobDetailData?.jobDescription}</p>
+                                    <span
+                                        dangerouslySetInnerHTML={{
+                                            __html: jobDetailData.jobDescription,
+                                        }}
+                                    ></span>
                                 </div>
                             </div>
                             <div className={cx('descript-require')}>
                                 <h1>Yều cầu ứng viên</h1>
                                 <div className={cx('content-tab')}>
-                                    <p>{jobDetailData?.jobRequire}</p>
+                                    <span
+                                        dangerouslySetInnerHTML={{
+                                            __html: jobDetailData?.jobRequire,
+                                        }}
+                                    ></span>
                                 </div>
                             </div>
                             <div className={cx('descript-benefit')}>
                                 <h1>Quyền lợi</h1>
                                 <div className={cx('content-tab')}>
-                                    <p>{jobDetailData?.welfare}</p>
+                                    <span
+                                        dangerouslySetInnerHTML={{
+                                            __html: jobDetailData?.welfare,
+                                        }}
+                                    ></span>
                                 </div>
                             </div>
                             <div className={cx('mothod-title')}>

@@ -58,10 +58,6 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            // .subdesc-left {
-            //     // flex: 1;
-            //     // max-width: 50%;
-            // }
             .subdesc-right {
                 margin-top: 50px;
             }
@@ -105,8 +101,27 @@
                 color: var(--primary-color);
             }
         }
-        .active {
-            color: red;
+        .subdesc-text-repair {
+            margin-top: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            position: relative;
+            top: 10px;
+            left: 40px;
+            &:hover {
+                color: var(--primary-color);
+            }
+        }
+        .subdesc-text-save {
+            display: flex;
+            position: relative;
+            right: 0;
+            cursor: pointer;
+            &:hover {
+                color: var(--primary-color);
+            }
         }
     }
 }
