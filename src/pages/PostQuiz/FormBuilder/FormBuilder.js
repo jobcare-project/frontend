@@ -68,8 +68,8 @@ function FormBuilder() {
     const [progress, setProgress] = useState(null);
     //state form image
     const [image, setImage] = useState('');
-    
-    const { title,  category, description } = form;
+
+    const { title, category, description } = form;
 
     //Function leve page
     const history = useNavigate();
@@ -133,8 +133,8 @@ function FormBuilder() {
     }, [file]);
     // Function add category
     const onCategoryChange = (e) => {
-    setForm({ ...form, category: e.target.value });
-  };
+        setForm({ ...form, category: e.target.value });
+    };
 
     const items = questions;
 
@@ -144,8 +144,6 @@ function FormBuilder() {
             id: uuid(),
             question: '',
             answer: '',
-            type: formData,
-            required: false,
         };
         setQuestions((prevState) => [...prevState, questions]);
         setFormData(initVal);
@@ -318,7 +316,6 @@ function FormBuilder() {
                     await addDoc(collection(db, 'quiz'), {
                         ...form,
                         questions,
-                        formData,
                         category,
                         image,
                         timestamp: serverTimestamp(),
@@ -333,7 +330,6 @@ function FormBuilder() {
                     await updateDoc(doc(db, 'quiz', id), {
                         ...form,
                         questions,
-                        formData,
                         category,
                         image,
                         timestamp: serverTimestamp(),
