@@ -22,4 +22,10 @@ export const usersApiUrl = {
     deleteUser: '/api/user/',
     getDetailRecruiter: '/api/user/',
 };
+
+export const searchApiUrl = {
+    getCategories: '/api/search/categories',
+    getJobList: '/api/search/jobs',
+};
+
 export const _LIMIT_PAGE = 8;

@@ -4,7 +4,9 @@ import styles from './RuleBottom.module.scss';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Container } from 'react-bootstrap';
+
 const cx = classNames.bind(styles);
+
 export default function RuleBottom({ data }) {
     return (
         <div className={cx('wrapper')}>

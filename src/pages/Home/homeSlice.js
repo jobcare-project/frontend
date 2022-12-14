@@ -58,7 +58,7 @@ export const homeSlice = createSlice({
 
 export const fetchListJob = createAsyncThunk(
     'home/fetchListJob',
-    async (dispatch) => {
+    async () => {
         try {
             const res = await getListJobApi();
             // dispatch(fetchListJobPagination(res.data))

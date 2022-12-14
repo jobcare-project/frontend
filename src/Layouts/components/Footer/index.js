@@ -29,7 +29,7 @@ function Footer() {
                                 Hotline: 076 3030 364
                             </div>
                             <div className={cx('text-item')}>
-                                Email: hotro@viec.co
+                                Email: hotro@jobcare.com
                             </div>
                             <div className={cx('text-item')}>
                                 Trụ sở: 03 Trưng Nữ Vương, Bình Hiên, Hải Châu,
