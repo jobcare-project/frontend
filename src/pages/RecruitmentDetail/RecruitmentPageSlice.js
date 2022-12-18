@@ -3,13 +3,7 @@ import {
     createSlice,
     isRejectedWithValue,
 } from '@reduxjs/toolkit';
-import {
-    deletedJobDesc,
-    editJobDesc,
-    getDetailPost,
-    getListJobApi,
-    postJobDesc,
-} from '~/services/jobService';
+import { getDetailPost } from '~/services/jobService';
 
 export const recruitmentDetailSlice = createSlice({
     name: 'recruitmentDetail',

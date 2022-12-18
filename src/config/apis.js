@@ -28,4 +28,8 @@ export const searchApiUrl = {
     getJobList: '/api/search/jobs',
 };
 
+export const chartApiUrl = {
+    getAdminChart: '/api/chart/admin',
+};
+
 export const _LIMIT_PAGE = 8;

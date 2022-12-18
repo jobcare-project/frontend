@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
 import images from '~/assets/images';
-import config from '~/config';
 import { fetchDeletedJobDesc } from '~/pages/Recruiter/recruiterSlice';
 import { accountsDataSelector } from '~/redux/Selectors/authSelector';
 import { messageRecruiterSelector } from '~/redux/Selectors/recruiterSelector';
