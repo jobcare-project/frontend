@@ -1,7 +1,6 @@
 import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 
-
 import styles from './CardShowQuiz.module.scss';
 
 const cx = classNames.bind(styles);
@@ -12,6 +11,9 @@ export default function CardShowQuiz({
     repair,
     saved,
     titlRepair = '',
+    titlDelete = '',
+    iconRepair,
+    iconDelete,
     titleSaved = '',
     handleDelete,
 }) {
@@ -59,7 +61,8 @@ export default function CardShowQuiz({
                                     <div className={cx('subdesc-text')}>
                                         <ion-icon name="book-outline"></ion-icon>
                                         <span>
-                                            Tổng câu hỏi {quiz?.questions.length} câu
+                                            Tổng câu hỏi{' '}
+                                            {quiz?.questions.length} câu
                                         </span>
                                     </div>
                                     <div className={cx('subdesc-text')}>
@@ -75,21 +78,24 @@ export default function CardShowQuiz({
                     <div className={cx('subdesc-text')}>
                         <span onClick={() => handleDelete(quiz.id)}>
                             {' '}
-                            <ion-icon name="trash-outline"></ion-icon> Xóa
+                            {/* <ion-icon name="trash-outline"></ion-icon>  */}
+                            {iconDelete && (
+                                <ion-icon name="trash-outline"></ion-icon>
+                            )}
+                            {titlDelete}
                         </span>
                     </div>
 
-                    <Link to={{ pathname: `/recruiter/recruiterpost/postquiz/${quiz.id}` }}>
+                    <Link
+                        to={{
+                            pathname: `/recruiter/recruiterpost/postquiz/${quiz.id}`,
+                        }}
+                    >
                         <div className={cx('subdesc-text-repair')}>
-                            {repair && (
-                                <span className={cx('subdesc-text')}>
-                                    {repair}
-                                </span>
+                            {iconRepair && (
+                                <ion-icon name="build-outline"></ion-icon>
                             )}
-                            <span>
-                                <ion-icon name="build-outline"></ion-icon>{' '}
-                                {titlRepair}
-                            </span>
+                            <span>{titlRepair}</span>
                         </div>
                     </Link>
                     <div className={cx('subdesc-text-save')}>
