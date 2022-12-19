@@ -38,10 +38,34 @@ const sidebarMenu = [
         icon: <ion-icon name="add-circle"></ion-icon>,
     },
     {
-        title: 'CV',
+        title: 'Bảng tin',
+        to: config.routes.recruiter,
+        role: ['recruiter'],
+        icon: <ion-icon name="today"></ion-icon>,
+    },
+    {
+        title: 'Đăng bài',
+        to: config.routes.recruiterPostManage,
+        role: ['recruiter'],
+        icon: <ion-icon name="duplicate"></ion-icon>,
+    },
+    {
+        title: 'Quản lý CV',
         to: '/dashboard/quiz',
         role: ['recruiter'],
-        icon: <ion-icon name="newspaper-outline"></ion-icon>,
+        icon: <ion-icon name="layers"></ion-icon>,
+    },
+    {
+        title: 'Quản lý bài đăng',
+        to: '/dashboard/quiz',
+        role: ['recruiter'],
+        icon: <ion-icon name="newspaper"></ion-icon>,
+    },
+    {
+        title: 'Quản lý blog',
+        to: '/dashboard/quiz',
+        role: ['recruiter'],
+        icon: <ion-icon name="library"></ion-icon>,
     },
 ];
 

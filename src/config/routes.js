@@ -1,7 +1,8 @@
 const routes = {
     home: '/',
     admin: '/admin/dashboard',
-    recruiter: '/recruiter/recruiterpost',
+    recruiter: '/recruiter/manager',
+    recruiterPostManage: '/recruiter/manager/post-manager',
     recruitersaved: '/recruiter/savedpost',
     profile: '/profile',
     settings: '/settings',

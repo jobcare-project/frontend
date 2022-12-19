@@ -2,12 +2,12 @@ import classNames from 'classnames/bind';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { Col, Row } from 'react-bootstrap';
+
 import { getChartAdminApi } from '~/services/chartService';
+import StatisticalLinesChart from './StatisticalLinesChart/StatisticalLinesChart';
+import UserDoughnutChart from './UserDoughnutChart/UserDoughnutChart';
 
 import styles from './Dashboard.module.scss';
-import StatisticalLinesChart from './StatisticalLinesChart/StatisticalLinesChart';
-
-import UserDoughnutChart from './UserDoughnutChart/UserDoughnutChart';
 
 const cx = classNames.bind(styles);
 
