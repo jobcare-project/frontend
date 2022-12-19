@@ -28,7 +28,9 @@ const routes = {
     editPost: '/recruiter/recruiterpostjob/:id',
     postblog: '/blog/postblog',
     blogcontent: '/blog/postblog/blogcontent',
-    blogdetail: '/blog/blogpost/blogdetail/:id', 
+    blogdetail: '/blog/blogpost/blogdetail/:id',
+    showquizrecuiter:'/recruiter/showquizrecuiter' ,
+    rank:'/leaderboard'
 };
 
 export default routes;

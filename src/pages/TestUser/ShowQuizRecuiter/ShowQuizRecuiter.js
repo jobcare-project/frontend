@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import styles from './ShowQuiz.module.scss';
+import styles from './ShowQuizRecuiter.module.scss';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Container } from 'react-bootstrap';
@@ -15,7 +15,7 @@ import Filter from '../Filter';
 
 const cx = classNames.bind(styles);
 
-function ShowQuiz() {
+function ShowQuizRecuiter() {
     ////State quiz from firebase
     const [quiz, setQuiz] = useState([]);
     //State when get API from firebase
@@ -82,11 +82,11 @@ function ShowQuiz() {
                             <Col key={index} lg={3} md={4} sm={6}>
                                 <CardShowQuiz
                                     quiz={quiz}
-                                    // handleDelete={handleDelete}
-                                    // iconDelete={quiz}
-                                    // iconRepair={quiz}
-                                    // titlRepair="Sửa"
-                                    // titlDelete="Xóa"
+                                    handleDelete={handleDelete}
+                                    iconDelete={quiz}
+                                    iconRepair={quiz}
+                                    titlRepair="Sửa"
+                                    titlDelete="Xóa"
                                 ></CardShowQuiz>
                             </Col>
                         );
@@ -97,4 +97,4 @@ function ShowQuiz() {
     );
 }
 
-export default ShowQuiz;
+export default ShowQuizRecuiter;

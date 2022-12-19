@@ -28,13 +28,15 @@ import PostBlog from '~/pages/Blogs/PostBlog/PostBlog';
 import SavedRecruitment from '~/pages/SavePost/SavedRecruitment/SavedRecruitment';
 import SavedBlog from '~/pages/SavePost/SavedBlog/SavedBlog';
 import SavedQuizz from '~/pages/SavePost/SavedQuizz/SavedQuizz';
+import ShowQuizRecuiter from '~/pages/TestUser/ShowQuizRecuiter/ShowQuizRecuiter';
+import Rank from '~/pages/DisplayQuizz/Rank';
 
 export const publicRoutes = [
     { path: config.routes.home, component: Home },
     { path: config.routes.accounts, component: Accounts, layout: null },
     { path: config.routes.blog, component: Blog },
     { path: config.routes.testuser, component: TestUser },
-    { path: config.routes.displayquizz, component: DisplayQuizz },
+
     { path: config.routes.recruitmentpage, component: RecruitmentPage },
     { path: config.routes.recruiterpost, component: RecruiterPost },
     { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
@@ -45,7 +47,7 @@ export const publicRoutes = [
         path: config.routes.informationtechnology,
         component: InformationTechnology,
     },
-    
+
     { path: config.routes.recruitmentpage, component: RecruitmentPage },
     { path: config.routes.cv, component: CV, layout: NonFooterLayout },
     { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
@@ -57,6 +59,7 @@ export const privateRoutes = [
     { path: config.routes.settings, component: Settings },
     { path: config.routes.savepost, component: SavePost },
     { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
+    { path: config.routes.rank, component: Rank },
     { path: config.routes.editPost, component: RecruiterPostEdit },
     { path: config.routes.postblog, component: PostBlog },
     { path: config.routes.manageBlog, component: PostBlog },
@@ -98,6 +101,11 @@ export const recruiterPrivateRoutes = [
     {
         path: config.routes.recruitersaved,
         component: RecruiterSaved,
+        layout: SidebarLayout,
+    },
+    {
+        path: config.routes.showquizrecuiter,
+        component: ShowQuizRecuiter,
         layout: SidebarLayout,
     },
     // {

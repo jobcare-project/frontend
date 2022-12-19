@@ -5,7 +5,7 @@ const Header = ({ title, description, setTitle, setDescription }) => {
     return (
         <div>
             <div>
-                <div className={cx('title-quiz')}>Tên bài quiz</div>
+                <div className={cx('title-quiz')}>Tên </div>
                 <input
                     defaultValue={title}
                     onChange={(e) => setTitle(e.target.value)}

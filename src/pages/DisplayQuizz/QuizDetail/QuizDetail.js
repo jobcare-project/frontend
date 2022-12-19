@@ -1,15 +1,22 @@
-import { doc, getDoc } from 'firebase/firestore';
+import {
+    doc,
+    getDoc,
+    updateDoc,
+    serverTimestamp,
+} from 'firebase/firestore';
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import Accordion from 'react-bootstrap/Accordion';
-import { Container} from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { accountsDataSelector } from '~/redux/Selectors/authSelector';
+
 import styles from './QuizDetail.module.scss';
 import Button from '~/components/Button';
 import Loading from '~/components/Loading/Loading';
-
 
 import { db } from '~/config/Firebase/firebase';
 
@@ -54,6 +61,11 @@ function QuizDetail() {
     //State when get API from firebase
     const [loading, setLoading] = useState(true);
 
+    const userData = useSelector(accountsDataSelector);
+
+    console.log(userData);
+    console.log(score);
+
     // Detail quiz
     useEffect(() => {
         id && getQuizDetail();
@@ -82,6 +94,11 @@ function QuizDetail() {
 
         if (complete) {
             setScore(score);
+            updateDoc(doc(db, 'quiz', id), {
+                score,
+                userData,
+                timestamp: serverTimestamp(),
+            });
         }
     };
     //Function time remaining
@@ -160,184 +177,201 @@ function QuizDetail() {
     ) : (
         <Container>
             <div className={cx('wrapper')}>
-            <div className={cx('time-quiz')}>
-                <div className={cx('notification-bar')}>
-                    <h5 className={cx('total-question-icon')}>
-                        <ion-icon name="reader-outline"></ion-icon>
-                    </h5>
-                    <h5 className={cx('total-question')}>
-                        {quiz?.questions.length} câu
-                    </h5>
-                    <h5 className={cx('time-icon')}>
-                        <ion-icon name="time-outline"></ion-icon>
-                    </h5>
-                    <h5 className={cx('time')}>{timer}</h5>
+                <div className={cx('time-quiz')}>
+                    <div className={cx('notification-bar')}>
+                        <h5 className={cx('total-question-icon')}>
+                            <ion-icon name="reader-outline"></ion-icon>
+                        </h5>
+                        <h5 className={cx('total-question')}>
+                            {quiz?.questions.length} câu
+                        </h5>
+                        <h5 className={cx('time-icon')}>
+                            <ion-icon name="time-outline"></ion-icon>
+                        </h5>
+                        <h5 className={cx('time')}>{timer}</h5>
+                    </div>
                 </div>
-            </div>
-            <div className={cx('information')}>
-                <div className={cx('quiz-heading')}>
-                    <div className={cx('title')}>{quiz?.title}</div>
-                    <div className={cx('desc')}>{quiz?.description}</div>
+                <div className={cx('information')}>
+                    <div className={cx('quiz-heading')}>
+                        <div className={cx('title')}>{quiz?.title}</div>
+                        <div className={cx('desc')}>{quiz?.description}</div>
+                    </div>
                 </div>
-            </div>
 
-            <div className={cx('container')}>
-                {
-                    <>
-                        <form onSubmit={handleSubmit}>
-                            {quiz?.questions.map((x, index) => {
-                                return (
-                                    <div
-                                        key={x?.id}
-                                        className={cx('quiz-item')}
-                                    >
-                                        <h3>
-                                            {index + 1} . {x?.question}{' '}
-                                        </h3>
-                                        <div>
-                                            {x.options?.map(
-                                                (options, index) => (
-                                                    <div
-                                                        key={index}
-                                                        className={cx(
-                                                            'quiz-options',
-                                                        )}
-                                                    >
-                                                        <input
-                                                            type="radio"
-                                                            value={
-                                                                options.value
-                                                            }
-                                                            name={x?.id}
-                                                            checked={
-                                                                answer[
-                                                                    x?.id
-                                                                ] ===
-                                                                options.value
-                                                            }
-                                                            onChange={() =>
-                                                                setAnswer(
-                                                                    (
-                                                                        answer,
-                                                                    ) => ({
-                                                                        ...answer,
-                                                                        [x?.id]:
-                                                                            options.value,
-                                                                    }),
-                                                                )
-                                                            }
-                                                        />
-                                                        <label
+                <div className={cx('container')}>
+                    {
+                        <>
+                            <form onSubmit={handleSubmit}>
+                                {quiz?.questions.map((x, index) => {
+                                    return (
+                                        <div
+                                            key={x?.id}
+                                            className={cx('quiz-item')}
+                                        >
+                                            <h3>
+                                                {index + 1} . {x?.question}{' '}
+                                            </h3>
+                                            <div>
+                                                {x.options?.map(
+                                                    (options, index) => (
+                                                        <div
+                                                            key={index}
                                                             className={cx(
-                                                                'option',
+                                                                'quiz-options',
                                                             )}
                                                         >
-                                                            {' '}
-                                                            {options.value}
-                                                        </label>
-                                                    </div>
-                                                ),
-                                            )}
-                                        </div>
-                                    </div>
-                                );
-                            })}
-
-                            <div className={cx('submit-btn')}>
-                                <Button
-                                    primary
-                                    type="submit"
-                                    className={cx('submit')}
-                                    variant="outline-success"
-                                    onClick={() => setShow(true)}
-                                >
-                                    <div className={cx('text-submit')}>
-                                        Submit
-                                        <ion-icon name="paper-plane-outline"></ion-icon>
-                                    </div>
-                                </Button>
-                            </div>
-                        </form>
-                        <Modal
-                            show={show}
-                            onHide={() => setShow(false)}
-                            dialogClassName="modal-90w"
-                            aria-labelledby="example-custom-modal-styling-title"
-                        >
-                            <Modal.Header closeButton>
-                                <Modal.Title id="example-custom-modal-styling-title">
-                                    <div className={cx('modal-title')}>
-                                        Chúc mừng bạn đã hoàn thành bài Quiz
-                                    </div>
-                                    <div className={cx('warning-title')}>
-                                        Lưu ý : Khi hết thời gian làm bài hệ
-                                        thống sẽ không chấm điểm
-                                    </div>
-                                </Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body className={cx('modal-body')}>
-                                <p className={cx('show-score')}>
-                                    Điểm của bạn là {score} /{' '}
-                                    {quiz?.questions.length}
-                                </p>
-                                <Accordion>
-                                    <Accordion.Item eventKey="0">
-                                        <Accordion.Header>
-                                            <p
-                                                className={cx(
-                                                    'accordion-header',
+                                                            <input
+                                                                type="radio"
+                                                                value={
+                                                                    options.value
+                                                                }
+                                                                name={x?.id}
+                                                                checked={
+                                                                    answer[
+                                                                        x?.id
+                                                                    ] ===
+                                                                    options.value
+                                                                }
+                                                                onChange={() =>
+                                                                    setAnswer(
+                                                                        (
+                                                                            answer,
+                                                                        ) => ({
+                                                                            ...answer,
+                                                                            [x?.id]:
+                                                                                options.value,
+                                                                        }),
+                                                                    )
+                                                                }
+                                                            />
+                                                            <label
+                                                                className={cx(
+                                                                    'option',
+                                                                )}
+                                                            >
+                                                                {' '}
+                                                                {options.value}
+                                                            </label>
+                                                        </div>
+                                                    ),
                                                 )}
-                                            >
-                                                {' '}
-                                                Xem đáp án{' '}
-                                            </p>
-                                        </Accordion.Header>
-                                        <Accordion.Body>
-                                            {quiz?.questions.map((x, index) => {
-                                                return (
-                                                    <div
-                                                        key={x.id}
-                                                        className={cx(
-                                                            'quiz-item',
-                                                        )}
-                                                    >
-                                                        <h3>
-                                                            {index + 1} .{' '}
-                                                            {x?.question}{' '}
-                                                        </h3>
-                                                        <div>{x.answer}</div>
-                                                    </div>
-                                                );
-                                            })}
-                                        </Accordion.Body>
-                                    </Accordion.Item>
-                                </Accordion>
-                                <Button
-                                    primary
-                                    className={cx('back-after')}
-                                    onClick={() => history(-1)}
-                                >
-                                    <div className={cx('back-after-text')}>
-                                        <ion-icon name="arrow-back-circle-outline"></ion-icon>
-                                        Quay lại trang chủ
-                                    </div>
-                                </Button>{' '}
-                                <Button
-                                    primary
-                                    className={cx('reload')}
-                                    onClick={() => history(0)}
-                                >
-                                    <div className={cx('reload-text')}>
-                                        <ion-icon name="reload-circle-outline"></ion-icon>
-                                        Làm lại
-                                    </div>
-                                </Button>{' '}
-                            </Modal.Body>
-                        </Modal>
-                    </>
-                }
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+
+                                <div className={cx('submit-btn')}>
+                                    <Button
+                                        primary
+                                        type="submit"
+                                        className={cx('submit')}
+                                        variant="outline-success"
+                                        onClick={() => setShow(true)}
+                                    >
+                                        <div className={cx('text-submit')}>
+                                            Submit
+                                            <ion-icon name="paper-plane-outline"></ion-icon>
+                                        </div>
+                                    </Button>
+                                </div>
+                            </form>
+                            <Modal
+                                show={show}
+                                onHide={() => setShow(false)}
+                                dialogClassName="modal-90w"
+                                aria-labelledby="example-custom-modal-styling-title"
+                            >
+                                <Modal.Header closeButton>
+                                    <Modal.Title id="example-custom-modal-styling-title">
+                                        <div className={cx('modal-title')}>
+                                            Chúc mừng bạn đã hoàn thành bài Quiz
+                                        </div>
+                                        <div className={cx('warning-title')}>
+                                            Lưu ý : Khi hết thời gian làm bài hệ
+                                            thống sẽ không chấm điểm
+                                        </div>
+                                    </Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body className={cx('modal-body')}>
+                                    <p className={cx('show-score')}>
+                                        Điểm của bạn là {score} /{' '}
+                                        {quiz?.questions.length}
+                                    </p>
+                                    <Accordion>
+                                        <Accordion.Item eventKey="0">
+                                            <Accordion.Header>
+                                                <p
+                                                    className={cx(
+                                                        'accordion-header',
+                                                    )}
+                                                >
+                                                    {' '}
+                                                    Xem đáp án{' '}
+                                                </p>
+                                            </Accordion.Header>
+                                            <Accordion.Body>
+                                                {quiz?.questions.map(
+                                                    (x, index) => {
+                                                        return (
+                                                            <div
+                                                                key={x.id}
+                                                                className={cx(
+                                                                    'quiz-item',
+                                                                )}
+                                                            >
+                                                                <h3>
+                                                                    {index + 1}{' '}
+                                                                    .{' '}
+                                                                    {
+                                                                        x?.question
+                                                                    }{' '}
+                                                                </h3>
+                                                                <div>
+                                                                    {x.answer}
+                                                                </div>
+                                                            </div>
+                                                        );
+                                                    },
+                                                )}
+                                            </Accordion.Body>
+                                        </Accordion.Item>
+                                    </Accordion>
+                                    <Button
+                                        primary
+                                        className={cx('back-after')}
+                                        onClick={() => history(-1)}
+                                    >
+                                        <div className={cx('back-after-text')}>
+                                            <ion-icon name="arrow-back-circle-outline"></ion-icon>
+                                            Quay lại trang chủ
+                                        </div>
+                                    </Button>{' '}
+                                    <Button
+                                        primary
+                                        className={cx('reload')}
+                                        onClick={() => history(0)}
+                                    >
+                                        <div className={cx('reload-text')}>
+                                            <ion-icon name="reload-circle-outline"></ion-icon>
+                                            Làm lại
+                                        </div>
+                                    </Button>{' '}
+                                    <Button
+                                        primary
+                                        className={cx('reload')}
+                                        onClick={() => history('/leaderboard')}
+                                    >
+                                        <div className={cx('reload-text')}>
+                                            <ion-icon name="reload-circle-outline"></ion-icon>
+                                            Xem bảng xếp hạng
+                                        </div>
+                                    </Button>{' '}
+                                </Modal.Body>
+                            </Modal>
+                        </>
+                    }
+                </div>
             </div>
-        </div>
         </Container>
     );
 }
