@@ -36,15 +36,15 @@ const mucluongData = [
 ];
 const gioitinhData = [
     {
-        value: '201',
+        value: true,
         name: 'Nam',
     },
     {
-        value: '202',
+        value: false,
         name: 'Nữ',
     },
     {
-        value: '203',
+        value: null,
         name: 'Không yêu cầu',
     },
 ];
@@ -199,7 +199,6 @@ function RecruiterPost() {
                 : formikValues.salary;
         const selectValues = { ...selectForm, salary };
         const data = { ...formikValues, ...selectValues };
-        // console.log('Data', data);
 
         dispatch(fetchPostJobDesc(data));
     };

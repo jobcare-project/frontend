@@ -45,7 +45,7 @@ const sidebarMenu = [
     },
     {
         title: 'Đăng bài',
-        to: config.routes.recruiterPostManage,
+        to: config.routes.recruiterPostSidebar,
         role: ['recruiter'],
         icon: <ion-icon name="duplicate"></ion-icon>,
     },
@@ -57,7 +57,7 @@ const sidebarMenu = [
     },
     {
         title: 'Quản lý bài đăng',
-        to: '/dashboard/quiz',
+        to: config.routes.recruiterPostManageSidebar,
         role: ['recruiter'],
         icon: <ion-icon name="newspaper"></ion-icon>,
     },

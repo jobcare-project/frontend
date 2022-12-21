@@ -28,6 +28,8 @@ import SavedRecruitment from '~/pages/SavePost/SavedRecruitment/SavedRecruitment
 import SavedBlog from '~/pages/SavePost/SavedBlog/SavedBlog';
 import SavedQuizz from '~/pages/SavePost/SavedQuizz/SavedQuizz';
 import Dashboard from '~/pages/Admin/Dashboard';
+import RecruiterPostManage from '~/pages/Recruiter/Post';
+import RecruiterManagePost from '~/pages/Recruiter/ManagePost';
 
 export const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -90,6 +92,16 @@ export const recruiterPrivateRoutes = [
     {
         path: config.routes.recruiter,
         component: Recruiter,
+        layout: SidebarLayout,
+    },
+    {
+        path: config.routes.recruiterPostSidebar,
+        component: RecruiterPostManage,
+        layout: SidebarLayout,
+    },
+    {
+        path: config.routes.recruiterPostManageSidebar,
+        component: RecruiterManagePost,
         layout: SidebarLayout,
     },
     {
