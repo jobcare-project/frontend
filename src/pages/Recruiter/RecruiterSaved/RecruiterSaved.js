@@ -11,7 +11,6 @@ import { fetchRecruiterDetail } from '../recruiterSlice';
 import classNames from 'classnames/bind';
 
 import styles from './RecruiterSaved.module.scss';
-import PaginationCOM from '~/pages/Home/BestRecruitment/pagination';
 
 const cx = classNames.bind(styles);
 function RecruiterSaved() {

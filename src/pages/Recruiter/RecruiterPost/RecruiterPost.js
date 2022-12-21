@@ -1,35 +1,21 @@
 import React from 'react';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import classNames from 'classnames/bind';
 import styles from './RecruiterPost.module.scss';
 import Button from '~/components/Button';
 import { useState } from 'react';
 import { getAllProvinces, getAllDistricts } from '~/helper/geomap';
-import {
-    Formik,
-    Form,
-    Field,
-    ErrorMessage,
-    useFormik,
-    useFormikContext,
-} from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-// import { FormInput } from '../RecruiterPost/Input/Input';
-import Input from '~/components/Input/Input/Input';
 import DropDown from '~/components/Input/DropDown/DropDown';
-import { useMemo } from 'react';
 // import { fetchPostJobDesc, homeSlice } from '~/pages/Home/homeSlice';
 import { fetchPostJobDesc, recruiterSlice } from '../recruiterSlice';
-import {
-    jobListSelector,
-    jobSelector,
-    messageSelector,
-} from '~/redux/Selectors/jobSelector';
+import { jobSelector } from '~/redux/Selectors/jobSelector';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import config from '~/config';
