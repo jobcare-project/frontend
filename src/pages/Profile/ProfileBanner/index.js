@@ -1,5 +1,4 @@
 import classNames from 'classnames/bind';
-import { Buffer } from 'buffer';
 
 import images from '~/assets/images';
 import styles from './ProfileBanner.module.scss';
@@ -15,12 +14,10 @@ function ProfileBanner({ username, avatarImg }) {
                 alt="background"
             />
             <div className={cx('user-profile')}>
-                {avatarImg?.data?.type === 'Buffer' ? (
+                {avatarImg ? (
                     <img
                         className={cx('avatar-img')}
-                        src={`data:${avatarImg.type};base64,${Buffer.from(
-                            avatarImg.data.data,
-                        ).toString('base64')}`}
+                        src={avatarImg}
                         alt="avatar"
                     />
                 ) : (

@@ -13,12 +13,12 @@ const cx = classNames.bind(styles);
 function Profile() {
     const userData = useSelector(accountsDataSelector);
 
-    const { fullname, image, email, address, phoneNumber, birth } = userData;
+    const { fullname, imageUrl, email, address, phoneNumber, birth } = userData;
 
     return (
         <Container>
             <div className={cx('wrapper')}>
-                <ProfileBanner username={fullname} avatarImg={image} />
+                <ProfileBanner username={fullname} avatarImg={imageUrl} />
 
                 <Box title="Giới thiệu">
                     <BoxItem

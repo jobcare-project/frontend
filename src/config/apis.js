@@ -15,12 +15,14 @@ export const jobsApiUrl = {
 
 export const uploadApiUrl = {
     uploadImage: 'api/upload',
+    uploadCloudinary: '/api/upload-cloudinary',
 };
 
 export const usersApiUrl = {
     allUsers: '/api/user/',
     deleteUser: '/api/user/',
     getDetailRecruiter: '/api/user/',
+    updateProfile: '/api/user/update',
 };
 
 export const searchApiUrl = {

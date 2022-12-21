@@ -51,7 +51,7 @@ function Settings() {
                             className={cx('right')}
                         >
                             <FormUpload
-                                data={userData?.image}
+                                data={userData?.imageUrl}
                                 label="Avatar"
                                 desc="Ảnh đại diện của bạn sẽ xuất hiện bên cạnh tên của bạn."
                             />
