@@ -117,7 +117,7 @@
         .subdesc-text-save {
             display: flex;
             position: relative;
-            right: 0;
+            right: 0 !important;
             cursor: pointer;
             &:hover {
                 color: var(--primary-color);

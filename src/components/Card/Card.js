@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
 import images from '~/assets/images';
-import config from '~/config';
 import { fetchDeletedJobDesc } from '~/pages/Recruiter/recruiterSlice';
 import { accountsDataSelector } from '~/redux/Selectors/authSelector';
 import { messageRecruiterSelector } from '~/redux/Selectors/recruiterSelector';
@@ -47,11 +47,9 @@ export default function Card({
     };
     const message = useSelector(messageRecruiterSelector);
     const handleDeletedPost = (id) => {
-        if (message) {
-            toast.success('Xoá bài thành công', toastifyOptions);
-            // toast.error('🦄 Vui lòng kiểm tra lại thông!', toastifyOptions);
-            dispatch(fetchDeletedJobDesc(data.id));
-        }
+        dispatch(fetchDeletedJobDesc(data.id));
+        // toast.success('Xoá bài thành công', toastifyOptions);
+        console.log('Mess:', message);
     };
     const navigate = useNavigate();
 

@@ -5,6 +5,7 @@ import { cvSlice } from '~/pages/CV/cvSlice';
 import { homeSlice } from '~/pages/Home/homeSlice';
 import { recruiterSlice } from '~/pages/Recruiter/recruiterSlice';
 import { recruitmentDetailSlice } from '~/pages/RecruitmentDetail/RecruitmentPageSlice';
+import { searchSlice } from './GlobalSlices/searchSlice';
 
 const store = configureStore({
     reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
         recruiter: recruiterSlice.reducer,
         admin: adminSlice.reducer,
         recruitmentDetail: recruitmentDetailSlice.reducer,
+        search: searchSlice.reducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({

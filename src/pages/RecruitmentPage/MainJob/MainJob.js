@@ -23,6 +23,7 @@ function MainJob() {
             setjobsItem(jobs);
         }
     }, [JSON.stringify(jobListData)]);
+
     return (
         <Container>
             <div className={cx('wrapper')}>

@@ -38,10 +38,52 @@ const sidebarMenu = [
         icon: <ion-icon name="add-circle"></ion-icon>,
     },
     {
-        title: 'CV',
+        title: 'Bảng tin',
+        to: config.routes.recruiter,
+        role: ['recruiter'],
+        icon: <ion-icon name="today"></ion-icon>,
+    },
+    {
+        title: 'Đăng bài',
+        to: config.routes.recruiterPostSidebar,
+        role: ['recruiter'],
+        icon: <ion-icon name="duplicate"></ion-icon>,
+    },
+    {
+        title: 'Quản lý CV',
         to: '/dashboard/quiz',
         role: ['recruiter'],
-        icon: <ion-icon name="newspaper-outline"></ion-icon>,
+        icon: <ion-icon name="layers"></ion-icon>,
+    },
+    {
+        title: 'Quản lý bài đăng',
+        to: config.routes.recruiterPostManageSidebar,
+        role: ['recruiter'],
+        icon: <ion-icon name="newspaper"></ion-icon>,
+    },
+    {
+        title: 'Quản lý blog',
+        to: '/dashboard/quiz',
+        role: ['recruiter'],
+        icon: <ion-icon name="library"></ion-icon>,
+    },
+    {
+        title: 'Tuyển dụng',
+        to: config.routes.saverecruitment,
+        role: ['user'],
+        icon: <ion-icon name="newspaper"></ion-icon>,
+    },
+    {
+        title: 'Quiz',
+        to: config.routes.savequiz,
+        role: ['user'],
+        icon: <ion-icon name="create-sharp"></ion-icon>,
+    },
+    {
+        title: 'Blog',
+        to: config.routes.saveblog,
+        role: ['user'],
+        icon: <ion-icon name="library"></ion-icon>,
     },
 ];
 

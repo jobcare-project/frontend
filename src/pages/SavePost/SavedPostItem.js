@@ -8,9 +8,6 @@ export default function SavedPostItem({ data }) {
                 data={data}
                 saved={<ion-icon name="heart-outline"></ion-icon>}
                 titleSaved="Lưu tin"
-                
-                titleDeleted="Xóa"
-                titlRepair="Sửa tin"
                 id={data.id}
             ></Card>
         </Col>

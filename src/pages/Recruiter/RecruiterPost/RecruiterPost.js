@@ -14,14 +14,13 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import DropDown from '~/components/Input/DropDown/DropDown';
 // import { fetchPostJobDesc, homeSlice } from '~/pages/Home/homeSlice';
+
 import { fetchPostJobDesc, recruiterSlice } from '../recruiterSlice';
-import { jobSelector } from '~/redux/Selectors/jobSelector';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import config from '~/config';
 import { messageRecruiterSelector } from '~/redux/Selectors/recruiterSelector';
 import TextEditor from '~/pages/Blogs/EditorContent/EditorContent';
-// import ModalDeleted from '~/pages/Profile/Modal/ModalPost/ModalDeleted';
 const cx = classNames.bind(styles);
 const mucluongData = [
     {
@@ -39,15 +38,15 @@ const mucluongData = [
 ];
 const gioitinhData = [
     {
-        value: '201',
+        value: true,
         name: 'Nam',
     },
     {
-        value: '202',
+        value: false,
         name: 'Nữ',
     },
     {
-        value: '203',
+        value: null,
         name: 'Không yêu cầu',
     },
 ];
@@ -115,158 +114,9 @@ const kinhnghiemData = [
         name: 'Trên 10 năm',
     },
 ];
-// const vipDateData = [
-//     {
-//         value: '10000',
-//         name: 'VIP 3 / 10.000đ / ngày',
-//     },
-//     {
-//         value: '20000',
-//         name: 'VIP 2 / 20.000đ / ngày',
-//     },
-//     {
-//         value: '30000',
-//         name: 'VIP 1 / 30.000đ / ngày',
-//     },
-// ];
-// const dateData = [
-//     {
-//         value: '0',
-//         name: 'Số ngày',
-//     },
-//     {
-//         value: '1',
-//         name: '1',
-//     },
-//     {
-//         value: '2',
-//         name: '2',
-//     },
-//     {
-//         value: '3',
-//         name: '3',
-//     },
-//     {
-//         value: '4',
-//         name: '4',
-//     },
-//     {
-//         value: '5',
-//         name: '5',
-//     },
-//     {
-//         value: '6',
-//         name: '6',
-//     },
-//     {
-//         value: '7',
-//         name: '7',
-//     },
-//     {
-//         value: '8',
-//         name: '8',
-//     },
-//     {
-//         value: '9',
-//         name: '9',
-//     },
-//     {
-//         value: '10',
-//         name: '10',
-//     },
-//     {
-//         value: '11',
-//         name: '11',
-//     },
-//     {
-//         value: '12',
-//         name: '12',
-//     },
-//     {
-//         value: '13',
-//         name: '13',
-//     },
-//     {
-//         value: '14',
-//         name: '14',
-//     },
-//     {
-//         value: '15',
-//         name: '15',
-//     },
-//     {
-//         value: '16',
-//         name: '16',
-//     },
-//     {
-//         value: '17',
-//         name: '17',
-//     },
-//     {
-//         value: '18',
-//         name: '18',
-//     },
-//     {
-//         value: '19',
-//         name: '19',
-//     },
-//     {
-//         value: '20',
-//         name: '20',
-//     },
-// ];
-// const vipMonthData = [
-//     {
-//         value: '700',
-//         name: 'Loại VIP',
-//     },
-//     {
-//         value: '701',
-//         name: 'VIP 3 / 250.000đ / tháng',
-//     },
-//     {
-//         value: '702',
-//         name: 'VIP 2 / 5500.000đ / tháng',
-//     },
-//     {
-//         value: '703',
-//         name: 'VIP 1 / 800.000đ / tháng',
-//     },
-// ];
 
-const checkboxData = [
-    {
-        id: 1,
-        name: 'Tin thường',
-    },
-    {
-        id: 2,
-        name: 'Tin VIP theo ngày',
-    },
-    {
-        id: 3,
-        name: 'Tin VIP theo tháng',
-    },
-];
-
-const optionVipData = [
-    {
-        id: '1',
-        name: 'Tin thường',
-    },
-    {
-        id: '2',
-        name: 'Tin VIP theo ngày',
-    },
-    {
-        id: '3',
-        name: 'Tin VIP theo tháng',
-    },
-];
 const TYPE_SALARY_DEFAULT = 'Thoả thuận';
 function RecruiterPost() {
-    // Modal
-    const [modalDeleted, setModalDeleted] = useState(false);
     // get values dropdown
     const [districtID, setDictricID] = useState('');
     const [selectForm, setSelectForm] = useState({
@@ -277,20 +127,10 @@ function RecruiterPost() {
         district: '',
         workFrom: '',
     });
-    // const [checked, setChecked] = useState('');
-    // const [typeChecked, setTypeChecked] = useState('');
-    // set value texarea
-    const [description, setDescription] = useState('');
-    const [requireCandidate, setRequireCandidate] = useState('');
-    const [benefit, setbenefit] = useState('');
     // check form
     const [checkboxForm, setCheckboxRule] = useState({
         vip: 'false',
     });
-    // const [quantityVipDay, setQuantityVipDay] = useState({
-    //     typeVipDay: '',
-    //     quantiyDay: '',
-    // });
     const toastifyOptions = {
         position: 'top-right',
         autoClose: 1000,
@@ -302,19 +142,6 @@ function RecruiterPost() {
         theme: 'light',
     };
 
-    // handle select VIP
-    // const handleChangeVipValues = (value, name, nameSelect) => {
-    //     setQuantityVipDay((prev) => {
-    //         return {
-    //             ...prev,
-    //             [nameSelect]: value,
-    //         };
-    //     });
-    // };
-    // const totalQuantityVipDays = useMemo(() => {
-    //     return +quantityVipDay.quantiyDay * +quantityVipDay.typeVipDay;
-    // }, [quantityVipDay]);
-    // formik data
     const formikRef = useRef(null);
     const dispatch = useDispatch();
     // Lấy dữ liệu Quận
@@ -348,16 +175,7 @@ function RecruiterPost() {
             };
         });
     };
-    // check type vip
-    // const handleChangeTypeChecked = (name) => {
-    //     setTypeChecked(name);
-    // };
-    // console.log({ checkboxRule });
-    const handleTextChange = (e, field, setState) => {
-        formikRef.current.setFieldValue(field, e.target.value);
-        setState(e.target.value);
-    };
-    const job = useSelector(jobSelector);
+
     const message = useSelector(messageRecruiterSelector);
     // console.log({ message });
 
@@ -370,7 +188,7 @@ function RecruiterPost() {
             dispatch(recruiterSlice.actions.restMessage(false));
             navigate(config.routes.recruitersaved);
         }
-    }, [job, message]);
+    }, [message]);
 
     const handleSubmit = () => {
         // console.log('submit');
@@ -383,7 +201,6 @@ function RecruiterPost() {
                 : formikValues.salary;
         const selectValues = { ...selectForm, salary };
         const data = { ...formikValues, ...selectValues };
-        // console.log('Data', data);
 
         dispatch(fetchPostJobDesc(data));
     };
@@ -725,7 +542,7 @@ function RecruiterPost() {
                                     </Col>
                                 </Row>
                             </div>
-                            <div className={cx('content-rule')}>
+                            {/* <div className={cx('content-rule')}>
                                 <div className={cx('checkbox-rule')}>
                                     <input
                                         type="checkbox"
@@ -737,7 +554,7 @@ function RecruiterPost() {
                                     Tôi cam kết thông tin mô tả về việc làm là
                                     thật và tuân thủ các quy tắc của JobCare.vn
                                 </div>
-                            </div>
+                            </div> */}
                             <div className={cx('submit-btn')}>
                                 <div className={cx('btn-right')}>
                                     <Button saveInput>Lưu nháp</Button>

@@ -31,7 +31,7 @@ const navigationMenu = [
         role: ['user'],
     },
     {
-        title: 'Đăng bài',
+        title: 'Blog',
         to: config.routes.blog,
         role: ['user', 'recruiter', 'admin'],
     },
@@ -41,7 +41,7 @@ const navigationMenu = [
         role: ['admin'],
     },
     {
-        title: 'Đăng bài',
+        title: 'Quản lý',
         to: config.routes.recruiter,
         role: ['recruiter'],
     },

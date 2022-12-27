@@ -2,7 +2,6 @@ import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
-import { Buffer } from 'buffer';
 
 import styles from './Header.module.scss';
 import images from '~/assets/images';
@@ -49,15 +48,11 @@ function Header() {
                             }}
                             className={cx('avatar')}
                         >
-                            {user.image ? (
+                            {user.imageUrl ? (
                                 <img
                                     className={cx('avatar-img')}
-                                    src={`data:${
-                                        user.image.data.type
-                                    };base64,${Buffer.from(
-                                        user.image.data.data,
-                                    ).toString('base64')} `}
-                                    alt={user.image.name}
+                                    src={user.imageUrl}
+                                    alt={user.imageUrl}
                                 />
                             ) : (
                                 <img

@@ -52,6 +52,11 @@ export const recruiterSlice = createSlice({
                 const { data, message } = action.payload;
                 state.job = data;
                 state.messsage = message;
+                // if deleted success
+                // state.recruiterJobList = state.recruiterJobList.filter(ruiterJob =>{
+                // console.log(ruiterJob);
+                //     return  ruiterJob.id !== data.id
+                // })
             })
             .addCase(fetchRecruiterDetail.pending, (state) => {
                 state.idLoading = true;

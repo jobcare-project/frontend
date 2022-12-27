@@ -1,41 +1,35 @@
 import React, { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
+import { Col, Container, Row } from 'react-bootstrap';
+import { Link, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
 import styles from './DetailInfor.module.scss';
 import images from '~/assets/images';
 import Button from '~/components/Button';
 import Modal from '~/components/Modal/ModalCv/ModalCv';
-
-import { Col, Container, Row } from 'react-bootstrap';
-import { Link, useParams } from 'react-router-dom';
 import config from '~/config';
-import { useDispatch, useSelector } from 'react-redux';
 import { jobDetailSelector } from '~/redux/Selectors/recruitmentDetail';
 import { fetchDetailJobDesc } from '../RecruitmentPageSlice';
 
-// window.scroll = function () {
-//     console.log(document.body.scroll);
-// };
-
-// window.scroll = function () {
-//     console.log(document.body.scroll);
-// };
-
 const cx = classNames.bind(styles);
 
-export default function DetailInfor({ data, to }) {
+export default function DetailInfor({ data }) {
+    const dispatch = useDispatch();
     const [modalOpen, setModalOpen] = useState(false);
     const { recruitmentId } = useParams();
-    // console.log('id:', recruitmentId);
-    const dispatch = useDispatch();
     const jobDetailData = useSelector(jobDetailSelector);
+
     useEffect(() => {
         dispatch(fetchDetailJobDesc(recruitmentId));
         // const jobs = jobListData.slice(0, 5);
         // setjobsItem(jobs);
     }, [dispatch, recruitmentId]);
+
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [recruitmentId]);
+
     return (
         <Container>
             <div className={cx('wrapper')}>
@@ -54,7 +48,7 @@ export default function DetailInfor({ data, to }) {
                             </h2>
                         </div>
                         <h3 className={cx('company-name')}>
-                            Công ty công nghệ BAP
+                            {jobDetailData?.recruiter_jobs?.fullname}
                         </h3>
                         <div className={cx('time')}>
                             <span className={cx('type-work-icon')}>
@@ -63,7 +57,7 @@ export default function DetailInfor({ data, to }) {
                                     className={cx('time-icon')}
                                 ></ion-icon>
                             </span>
-                            <span>Hạn nộp hồ sơ: {data?.createAt}</span>
+                            <span>Hạn nộp hồ sơ: {jobDetailData?.endDate}</span>
                         </div>
                     </div>
                     <div className={cx('box-logo')}>

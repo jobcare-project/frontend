@@ -52,7 +52,7 @@ export default function DropDown({
                     aria-hidden="true"
                     defaultValue={defaultValueProps}
                 >
-                    <option value="" selected disabled hidden>
+                    <option value={defaultValueProps} selected disabled hidden>
                         {defaultValueProps || title}
                     </option>
                     {renderDropDownData()}
