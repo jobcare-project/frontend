@@ -6,10 +6,7 @@ import { useDispatch } from 'react-redux';
 
 import images from '~/assets/images';
 import Button from '~/components/Button';
-import {
-    fetchUpdateProfile,
-    fetchUploadImage,
-} from '~/pages/Accounts/accountsSlice';
+import { fetchUpdateProfile } from '~/pages/Accounts/accountsSlice';
 import { cloudinaryUploadApi } from '~/services/uploadService';
 import styles from './FormUpload.module.scss';
 
@@ -31,16 +28,8 @@ function FormGroup({ label, data }) {
     }, [file]);
 
     const handleChangeFile = async (e) => {
-        // const fileChanged = e.target.files[0];
-        // const base64image = await getBase64FromFile(e.target.files[0]);
-
         const img = {
             preview: URL.createObjectURL(e.target.files[0]),
-            // data: {
-            //     name: fileChanged.name,
-            //     type: fileChanged.type,
-            //     data: base64image,
-            // },
             data: e.target.files[0],
         };
         setFile(img);
