@@ -8,10 +8,10 @@ import { fetchRecruiterDetail } from '../recruiterSlice';
 
 import classNames from 'classnames/bind';
 
-import styles from './ListPostOfRecruiter.module.scss';
+import styles from './ListRecruitmentPost.module.scss';
 
 const cx = classNames.bind(styles);
-function ListPostOfRecruiter() {
+function ListRecruitmentPost() {
     const userData = useSelector(accountsDataSelector);
     const recruiterJobList = useSelector(recruiterJobListSelector);
     const dispatch = useDispatch();
@@ -60,4 +60,4 @@ function ListPostOfRecruiter() {
     );
 }
 
-export default ListPostOfRecruiter;
+export default ListRecruitmentPost;

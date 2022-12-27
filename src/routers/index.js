@@ -19,8 +19,8 @@ import ManageQuiz from '~/pages/ManageQuiz';
 import IT from '~/pages/IT';
 import InformationTechnology from '~/pages/InformationTechnology/InformationTechnology';
 import UsersManage from '~/pages/Admin/UsersManage';
-import Recruiter from '~/pages/Recruiter/Recruiter';
-import ListPostOfRecruiter from '~/pages/Recruiter/RecruiterSaved/ListPostOfRecruiter';
+import Recruiter from '~/pages/Recruiter/RecruiterNews/RecruiterNews';
+import ListPostOfRecruiter from '~/pages/Recruiter/RecruiterSaved/ListRecruitmentPost';
 import RecruiterPostEdit from '~/pages/Recruiter/RecruiterPostEdit/RecruiterPostEdit';
 import ContentBlog from '~/pages/Blogs/BlogContent/BlogContent';
 import BlogDetail from '~/pages/Blogs/BlogDetail/BlogDetail';
@@ -123,7 +123,7 @@ export const recruiterPrivateRoutes = [
         layout: SidebarLayout,
     },
     {
-        path: config.routes.ListPostOfRecruiter,
+        path: config.routes.ListRecruitmentPost,
         component: ListPostOfRecruiter,
         layout: SidebarLayout,
     },

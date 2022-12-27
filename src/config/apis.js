@@ -34,4 +34,4 @@ export const chartApiUrl = {
     getAdminChart: '/api/chart/admin',
 };
 
-export const _LIMIT_PAGE = 8;
+export const _LIMIT_PAGE = 16;
