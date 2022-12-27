@@ -67,6 +67,24 @@ const sidebarMenu = [
         role: ['recruiter'],
         icon: <ion-icon name="library"></ion-icon>,
     },
+    {
+        title: 'Tuyển dụng',
+        to: config.routes.saverecruitment,
+        role: ['user'],
+        icon: <ion-icon name="newspaper"></ion-icon>,
+    },
+    {
+        title: 'Quiz',
+        to: config.routes.savequiz,
+        role: ['user'],
+        icon: <ion-icon name="create-sharp"></ion-icon>,
+    },
+    {
+        title: 'Blog',
+        to: config.routes.saveblog,
+        role: ['user'],
+        icon: <ion-icon name="library"></ion-icon>,
+    },
 ];
 
 function Sidebar({ role }) {

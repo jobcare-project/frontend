@@ -13,6 +13,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import DropDown from '~/components/Input/DropDown/DropDown';
+// import { fetchPostJobDesc, homeSlice } from '~/pages/Home/homeSlice';
+
 import { fetchPostJobDesc, recruiterSlice } from '../recruiterSlice';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -540,7 +542,7 @@ function RecruiterPost() {
                                     </Col>
                                 </Row>
                             </div>
-                            <div className={cx('content-rule')}>
+                            {/* <div className={cx('content-rule')}>
                                 <div className={cx('checkbox-rule')}>
                                     <input
                                         type="checkbox"
@@ -552,7 +554,7 @@ function RecruiterPost() {
                                     Tôi cam kết thông tin mô tả về việc làm là
                                     thật và tuân thủ các quy tắc của JobCare.vn
                                 </div>
-                            </div>
+                            </div> */}
                             <div className={cx('submit-btn')}>
                                 <div className={cx('btn-right')}>
                                     <Button saveInput>Lưu nháp</Button>

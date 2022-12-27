@@ -8,7 +8,9 @@ function SavedBlog() {
     return (
         <Container>
             <div className={cx('wrapper')}>
-                <h2>SavedBlog</h2>
+                <div className={cx('heading')}>
+                    <h2 className={cx('title-header')}>Blog đã lưu</h2>
+                </div>
             </div>
         </Container>
     );

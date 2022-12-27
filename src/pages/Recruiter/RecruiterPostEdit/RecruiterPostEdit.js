@@ -974,7 +974,7 @@ function RecruiterPostEdit() {
                                             handleSubmit();
                                         }}
                                     >
-                                        Đăng bài
+                                        Sửa tin
                                     </Button>
                                 </div>
                             </div>

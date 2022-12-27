@@ -41,7 +41,7 @@ export default function CardAds({ to }) {
                                         thân, tăng cơ hội thành công trong các
                                         cuộc phỏng vấn.
                                     </p>
-                                    <Button primary>Thử sức</Button>
+                                    <Button primary>Làm ngay</Button>
                                 </div>
                                 <div className={cx('image')}>
                                     <img src={images.testBox} alt="" />

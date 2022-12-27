@@ -55,14 +55,14 @@ function UserOptions({ user }) {
                 <ul className={cx('option-list')}>
                     <Link
                         className={cx('option-item-link')}
-                        to={config.routes.postblog}
+                        to={config.routes.createblog}
                     >
                         <li className={cx('option-item')}>Viết blog</li>
                     </Link>
 
                     <Link
                         className={cx('option-item-link')}
-                        to={config.routes.savepost}
+                        to={config.routes.saverecruitment}
                     >
                         <li className={cx('option-item')}>Bài viết đã lưu</li>
                     </Link>

@@ -25,10 +25,12 @@ function SavedRecruitment() {
         <Container>
             <div className={cx('wrapper')}>
                 <div className={cx('heading')}>
-                    <h2 className={cx('title-header')}>Bài viết</h2>
+                    <h2 className={cx('title-header')}>
+                        Tin tuyển dụng đã lưu
+                    </h2>
                 </div>
 
-                {jobListData.length ? (
+                {/* {jobListData.length ? (
                     <div className={cx('wrapper')}>
                         <Row>
                             {jobListData &&
@@ -47,7 +49,7 @@ function SavedRecruitment() {
                     </div>
                 ) : (
                     ''
-                )}
+                )} */}
             </div>
         </Container>
     );

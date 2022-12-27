@@ -2,19 +2,16 @@ import React, { useEffect } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import Card from '~/components/Card/Card';
-// import SavePost from '~/pages/SavePost/SavedPost';
-
 import { accountsDataSelector } from '~/redux/Selectors/authSelector';
 import { recruiterJobListSelector } from '~/redux/Selectors/recruiterSelector';
 import { fetchRecruiterDetail } from '../recruiterSlice';
 
 import classNames from 'classnames/bind';
 
-import styles from './RecruiterSaved.module.scss';
-import PaginationCOM from '~/pages/Home/BestRecruitment/pagination';
+import styles from './ListRecruitmentPost.module.scss';
 
 const cx = classNames.bind(styles);
-function RecruiterSaved() {
+function ListRecruitmentPost() {
     const userData = useSelector(accountsDataSelector);
     const recruiterJobList = useSelector(recruiterJobListSelector);
     const dispatch = useDispatch();
@@ -23,7 +20,7 @@ function RecruiterSaved() {
         dispatch(fetchRecruiterDetail(userData.id));
     }, []);
 
-    // console.log('recruiterJobList', recruiterJobList);
+    console.log('recruiterJobList', recruiterJobList);
 
     return (
         <Container>
@@ -63,4 +60,4 @@ function RecruiterSaved() {
     );
 }
 
-export default RecruiterSaved;
+export default ListRecruitmentPost;

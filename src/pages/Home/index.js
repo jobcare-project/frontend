@@ -8,8 +8,8 @@ export default function Home() {
     return (
         <>
             <FindJobs />
-            <BestRecruitment />
             <CardAds />
+            <BestRecruitment />
             {/* <RelatedJob /> */}
             <RuleBottom />
             <Signin />

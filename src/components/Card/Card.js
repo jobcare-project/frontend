@@ -47,11 +47,9 @@ export default function Card({
     };
     const message = useSelector(messageRecruiterSelector);
     const handleDeletedPost = (id) => {
-        if (message) {
-            toast.success('Xoá bài thành công', toastifyOptions);
-            // toast.error('🦄 Vui lòng kiểm tra lại thông!', toastifyOptions);
-            dispatch(fetchDeletedJobDesc(data.id));
-        }
+        dispatch(fetchDeletedJobDesc(data.id));
+        // toast.success('Xoá bài thành công', toastifyOptions);
+        console.log('Mess:', message);
     };
     const navigate = useNavigate();
 
