@@ -30,7 +30,7 @@ const routes = {
     blogcontent: '/blog/postblog/blogcontent',
     blogdetail: '/blog/blogpost/blogdetail/:id',
     showquizrecuiter:'/recruiter/showquizrecuiter' ,
-    rank:'/leaderboard'
+    rank:'/leaderboard/:id'
 };
 
 export default routes;

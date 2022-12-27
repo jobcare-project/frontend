@@ -1,8 +1,11 @@
 import {
     doc,
     getDoc,
-    updateDoc,
+    collection,
     serverTimestamp,
+    query,
+    getDocs,
+    setDoc,
 } from 'firebase/firestore';
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
@@ -62,9 +65,7 @@ function QuizDetail() {
     const [loading, setLoading] = useState(true);
 
     const userData = useSelector(accountsDataSelector);
-
-    console.log(userData);
-    console.log(score);
+    const titleQuiz = quiz?.title;
 
     // Detail quiz
     useEffect(() => {
@@ -85,7 +86,7 @@ function QuizDetail() {
     const history = useNavigate();
 
     //Function Submit Quiz and scoring
-    const handleSubmit = (evt) => {
+    const handleSubmit = async (evt) => {
         evt.preventDefault();
 
         const { complete, score } = getResults(quiz?.questions, answer);
@@ -94,13 +95,23 @@ function QuizDetail() {
 
         if (complete) {
             setScore(score);
-            updateDoc(doc(db, 'quiz', id), {
-                score,
-                userData,
-                timestamp: serverTimestamp(),
+            const q = query(collection(db, 'quiz'));
+            const querySnapshot = await getDocs(q);
+            const queryData = querySnapshot.docs.map((detail) => ({
+                ...detail.data(),
+                id: detail.id,
+            }));
+            queryData.map(async () => {
+                await setDoc(doc(db, `quiz/${id}/details`, userData.id), {
+                    score,
+                    userData,
+                    titleQuiz,
+                    timestamp: serverTimestamp(),
+                });
             });
         }
     };
+
     //Function time remaining
 
     const getTimeRemaining = (e) => {
@@ -336,36 +347,41 @@ function QuizDetail() {
                                             </Accordion.Body>
                                         </Accordion.Item>
                                     </Accordion>
-                                    <Button
-                                        primary
-                                        className={cx('back-after')}
-                                        onClick={() => history(-1)}
-                                    >
-                                        <div className={cx('back-after-text')}>
-                                            <ion-icon name="arrow-back-circle-outline"></ion-icon>
-                                            Quay lại trang chủ
-                                        </div>
-                                    </Button>{' '}
-                                    <Button
-                                        primary
-                                        className={cx('reload')}
-                                        onClick={() => history(0)}
-                                    >
-                                        <div className={cx('reload-text')}>
-                                            <ion-icon name="reload-circle-outline"></ion-icon>
-                                            Làm lại
-                                        </div>
-                                    </Button>{' '}
-                                    <Button
-                                        primary
-                                        className={cx('reload')}
-                                        onClick={() => history('/leaderboard')}
-                                    >
-                                        <div className={cx('reload-text')}>
-                                            <ion-icon name="reload-circle-outline"></ion-icon>
-                                            Xem bảng xếp hạng
-                                        </div>
-                                    </Button>{' '}
+                                    <div className={cx('btn')}>
+                                        <Button
+                                            primary
+                                            className={cx('back-after')}
+                                            onClick={() => history(-1)}
+                                        >
+                                            <div
+                                                className={cx(
+                                                    'back-after-text',
+                                                )}
+                                            >
+                                                Quay lại trang chủ
+                                            </div>
+                                        </Button>{' '}
+                                        <Button
+                                            primary
+                                            className={cx('reload')}
+                                            onClick={() => history(0)}
+                                        >
+                                            <div className={cx('reload-text')}>
+                                                Làm lại
+                                            </div>
+                                        </Button>{' '}
+                                        <Button
+                                            primary
+                                            className={cx('rank')}
+                                            onClick={() =>
+                                                history(`/leaderboard/${id}`)
+                                            }
+                                        >
+                                            <div className={cx('rank-text')}>
+                                                Xem bảng xếp hạng
+                                            </div>
+                                        </Button>{' '}
+                                    </div>
                                 </Modal.Body>
                             </Modal>
                         </>
