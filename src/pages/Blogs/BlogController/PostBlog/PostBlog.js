@@ -15,6 +15,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import TextEditor from '../../EditorContent/EditorContent';
 import styles from './PostBlog.module.scss';
 import Button from '~/components/Button';
+import config from '~/config';
 
 const initialState = {
     title: '',
@@ -58,6 +59,7 @@ function PostBlog() {
                 } catch (err) {
                     console.log(err);
                 }
+                navigate(config.routes.myblog);
             } else {
                 try {
                     await updateDoc(doc(db, 'blogs', id), {

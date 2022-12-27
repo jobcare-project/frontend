@@ -35,6 +35,7 @@ const routes = {
     postblog: '/blog/postblog',
     blogcontent: '/blog/postblog/blogcontent',
     blogdetail: '/blog/blogpost/blogdetail/:id',
+    myblog: '/blog/myblog',
 };
 
 export default routes;

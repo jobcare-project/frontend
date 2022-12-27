@@ -33,6 +33,7 @@ import RecruiterPostManage from '~/pages/Recruiter/Post';
 import RecruiterManagePost from '~/pages/Recruiter/ManagePost';
 import SavedQuiz from '~/pages/SavePost/SavedQuiz/SavedQuiz';
 import BlogController from '~/pages/Blogs/BlogController/BlogController';
+import MyBlog from '~/pages/Blogs/BlogController/MyBlog/MyBlog';
 
 export const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -95,6 +96,7 @@ export const privateRoutes = [
     { path: config.routes.displayquizz, component: DisplayQuizz },
     { path: config.routes.postquiz, component: PostQuiz },
     { path: config.routes.manageQuiz, component: PostQuiz },
+    { path: config.routes.myblog, component: MyBlog },
 ];
 
 export const userPrivateRoutes = [];
