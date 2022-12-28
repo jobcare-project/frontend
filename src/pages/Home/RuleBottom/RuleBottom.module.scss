@@ -2,32 +2,24 @@
     display: inline-block;
     margin-top: var(--margin-top-0);
     width: 100%;
-    background-image: linear-gradient(
-        180deg,
-        #d0eef9 0%,
-        #f8e6ec 60%,
-        #ffffff 100%
-    );
     .content {
         box-shadow: var(--box-shadown-0);
-        padding: var(--padding-1);
+        padding: var(--padding-2);
         margin: 50px 0;
         border-radius: var(--radius-1);
         background-color: var(--white-color);
         .content-header {
             color: var(--primary-color);
-            margin-left: 35%;
-            display: inline-block;
+            text-align: center;
             margin-bottom: 20px;
+            font-size: 28px;
         }
         .content-rule {
+            margin-bottom: 20px;
             h3 {
                 font-size: 20px;
                 font-weight: 700;
-                margin-bottom: 20px;
-            }
-            p {
-                font-size: 17px;
+                margin-bottom: 8px;
             }
         }
     }
@@ -38,8 +30,10 @@
         padding: var(--padding-2);
         margin: 50px 0;
         border-radius: var(--radius-1);
+        text-align: center;
         .number-use {
-            margin-left: 30%;
+            font-size: 32px;
+            font-weight: 600;
             color: var(--primary-color);
         }
     }

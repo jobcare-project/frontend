@@ -12,9 +12,10 @@ import {
 import { toast } from 'react-toastify';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import TextEditor from '../EditorContent/EditorContent';
+import TextEditor from '../../EditorContent/EditorContent';
 import styles from './PostBlog.module.scss';
 import Button from '~/components/Button';
+import config from '~/config';
 
 const initialState = {
     title: '',
@@ -58,6 +59,7 @@ function PostBlog() {
                 } catch (err) {
                     console.log(err);
                 }
+                navigate(config.routes.myblog);
             } else {
                 try {
                     await updateDoc(doc(db, 'blogs', id), {
@@ -83,7 +85,7 @@ function PostBlog() {
             <div className={cx('heading')}>
                 <h3 className={cx('heading-name')}>
                     <span className={cx('heading-text')}>
-                        {id ? 'Update Blog' : 'Create Blog'}
+                        {id ? 'Blog' : 'Blog'}
                     </span>{' '}
                     Nơi chia sẻ và giúp đỡ nhau phát triển
                 </h3>

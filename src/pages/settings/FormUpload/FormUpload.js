@@ -3,11 +3,14 @@ import { useEffect } from 'react';
 import { useState, useRef } from 'react';
 import { Col, Row } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { Buffer } from 'buffer';
 
 import images from '~/assets/images';
 import Button from '~/components/Button';
-import { fetchUploadImage } from '~/pages/Accounts/accountsSlice';
+import {
+    fetchUpdateProfile,
+    fetchUploadImage,
+} from '~/pages/Accounts/accountsSlice';
+import { cloudinaryUploadApi } from '~/services/uploadService';
 import styles from './FormUpload.module.scss';
 
 const cx = classNames.bind(styles);
@@ -48,9 +51,14 @@ function FormGroup({ label, data }) {
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append('file', file.data);
+        formData.append('file', file.data, 'file');
 
-        dispatch(fetchUploadImage(formData));
+        const res = await cloudinaryUploadApi(formData);
+
+        if (res.image_url) {
+            dispatch(fetchUpdateProfile({ imageUrl: res.image_url }));
+        }
+
         setVisibleControls(false);
     };
 
@@ -73,14 +81,10 @@ function FormGroup({ label, data }) {
                                                 src={file.preview}
                                                 alt="avatar"
                                             />
-                                        ) : data?.data?.type === 'Buffer' ? (
+                                        ) : data ? (
                                             <img
                                                 className={cx('preview-img')}
-                                                src={`data:${
-                                                    data.type
-                                                };base64,${Buffer.from(
-                                                    data.data.data,
-                                                ).toString('base64')}`}
+                                                src={data}
                                                 alt="avatar"
                                             />
                                         ) : (

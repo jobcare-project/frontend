@@ -1,45 +1,57 @@
 import classNames from 'classnames/bind';
+import { Col, Row } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import styles from './FindJobs.module.scss';
 import DropDown from '~/components/Input/DropDown/DropDown';
 import Input from '~/components/Input/Input/Input';
 
-import { Col, Row } from 'react-bootstrap';
-import Container from 'react-bootstrap/Container';
 import images from '~/assets/images';
 import Button from '~/components/Button';
+import {
+    fetchCategoriesSearch,
+    fetchJobListSearch,
+} from '~/redux/GlobalSlices/searchSlice';
+import {
+    searchCategoriesSelector,
+    searchJobListSelector,
+} from '~/redux/Selectors/searchSelector';
+import useDebounce from '~/hooks/useDebounce';
+import SearchResults from './SearchResults/SearchResults';
 
 const cx = classNames.bind(styles);
 
-const nganhngheData = [
-    {
-        value: '',
-        name: 'Ngành nghề',
-    },
-    {
-        value: '10101',
-        name: 'An toàn lao động',
-    },
-    {
-        value: '10102',
-        name: 'Bán hàng kỹ thuật',
-    },
-    {
-        value: '10004',
-        name: 'Bán lẻ / bán sỉ',
-    },
-    {
-        value: '10104',
-        name: 'Bất động sản',
-    },
-    {
-        value: '10005',
-        name: 'Bưu chính - Viễn thông',
-    },
-];
-
 export default function FindJobs() {
+    const dispatch = useDispatch();
+    const [searchText, setSearchText] = useState('');
+    const debounceSearch = useDebounce(searchText, 500);
+    const resultsSearch = useSelector(searchJobListSelector);
+
+    const { cityCategories, jobCategories, workFrom } = useSelector(
+        searchCategoriesSelector,
+    );
+
+    useEffect(() => {
+        dispatch(fetchCategoriesSearch());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    useEffect(() => {
+        if (searchText.trim()) {
+            dispatch(fetchJobListSearch(searchText));
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [debounceSearch]);
+
+    const handleChangeSearchText = (e) => {
+        setSearchText(e.target.value);
+    };
+
     const handleClickFindJobsBtn = (e) => {
-        console.log('handleClickFindJobsBtn');
+        e.preventDefault();
+        console.log('handleClickFindJobsBtn', searchText);
     };
 
     return (
@@ -49,73 +61,70 @@ export default function FindJobs() {
                 <Row>
                     <Col lg={8}>
                         <div className={cx('left')}>
-                            <Row>
-                                <Col lg={9}>
-                                    <Input
-                                        leftIcon={
-                                            <ion-icon name="search-outline"></ion-icon>
-                                        }
-                                        placeholder="Tên công việc, vị trí bạn muốn ứng tuyển..."
-                                    />
-                                    <div className={cx('advanced')}>
-                                        <h5 className={cx('advanced-title')}>
-                                            Tìm kiếm nâng cao
-                                        </h5>
-                                        <Row>
-                                            <Col lg={6}>
-                                                <DropDown
-                                                    title="Nghành nghề"
-                                                    data={nganhngheData}
-                                                />
-                                            </Col>
-                                            <Col lg={6}>
-                                                <DropDown
-                                                    title="Vị trí"
-                                                    data={nganhngheData}
-                                                />
-                                            </Col>
-                                            <Col lg={6}>
-                                                <DropDown
-                                                    title="Thành phố"
-                                                    data={nganhngheData}
-                                                />
-                                            </Col>
-                                            <Col lg={6}>
-                                                <DropDown
-                                                    title="Mức lương"
-                                                    data={nganhngheData}
-                                                />
-                                            </Col>
-                                            <Col lg={6}>
-                                                <DropDown
-                                                    title="Hình thức làm việc"
-                                                    data={nganhngheData}
-                                                />
-                                            </Col>
-                                            <Col lg={6}>
-                                                <DropDown
-                                                    title="Cấp bậc"
-                                                    data={nganhngheData}
-                                                />
-                                            </Col>
-                                        </Row>
-                                    </div>
-                                </Col>
+                            <form onSubmit={handleClickFindJobsBtn}>
+                                <Row>
+                                    <Col lg={9}>
+                                        <div className={cx('search')}>
+                                            <Input
+                                                leftIcon={
+                                                    <ion-icon name="search-outline"></ion-icon>
+                                                }
+                                                value={searchText}
+                                                onChange={
+                                                    handleChangeSearchText
+                                                }
+                                                placeholder="Tên công việc, vị trí bạn muốn ứng tuyển..."
+                                            />
+                                            {resultsSearch.length > 0 &&
+                                                searchText.trim() !== '' && (
+                                                    <SearchResults
+                                                        data={resultsSearch}
+                                                    />
+                                                )}
+                                        </div>
+                                        <div className={cx('advanced')}>
+                                            <h5
+                                                className={cx('advanced-title')}
+                                            >
+                                                Tìm kiếm nâng cao
+                                            </h5>
+                                            <Row>
+                                                <Col lg={6}>
+                                                    <DropDown
+                                                        title="Nghành nghề"
+                                                        data={jobCategories}
+                                                    />
+                                                </Col>
+                                                <Col lg={6}>
+                                                    <DropDown
+                                                        title="Thành phố"
+                                                        data={cityCategories}
+                                                    />
+                                                </Col>
+                                                <Col lg={6}>
+                                                    <DropDown
+                                                        title="Hình thức làm việc"
+                                                        data={workFrom}
+                                                    />
+                                                </Col>
+                                            </Row>
+                                        </div>
+                                    </Col>
 
-                                <Col lg={3}>
-                                    <div className={cx('controls-block')}>
-                                        <Button
-                                            className={cx('btn')}
-                                            onClick={() => {
-                                                handleClickFindJobsBtn();
-                                            }}
-                                            primary
-                                        >
-                                            Tìm việc ngay
-                                        </Button>
-                                    </div>
-                                </Col>
-                            </Row>
+                                    <Col lg={3}>
+                                        <div className={cx('controls-block')}>
+                                            <Button
+                                                type="submit"
+                                                className={cx('btn')}
+                                                onClick={handleClickFindJobsBtn}
+                                                primary
+                                            >
+                                                Tìm việc ngay
+                                            </Button>
+                                        </div>
+                                    </Col>
+                                </Row>
+                            </form>
                         </div>
                     </Col>
                     <Col lg={4}>

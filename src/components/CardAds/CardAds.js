@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import styles from './CardAds.module.scss';
 import images from '~/assets/images';
 import config from '~/config';
+import Button from '../Button';
 const cx = classNames.bind(styles);
 export default function CardAds({ to }) {
     return (
@@ -18,15 +19,11 @@ export default function CardAds({ to }) {
                                 <div className={cx('box-title')}>
                                     <h2>Tạo CV ấn tượng</h2>
                                     <p>
-                                        TopCV hiện có 50+ mẫu CV chuyên nghiệp,
-                                        độc đáo phù hợp với mọi ngành nghề.
+                                        Jobcare hiện có 50+ mẫu CV chuyên
+                                        nghiệp, độc đáo phù hợp với mọi ngành
+                                        nghề.
                                     </p>
-                                    <Link
-                                        className={cx('btn-do')}
-                                        to={config.routes.cv}
-                                    >
-                                        Tạo CV ngay
-                                    </Link>
+                                    <Button primary>Tạo CV ngay</Button>
                                 </div>
                                 <div className={cx('image')}>
                                     <img src={images.cvBox} alt="" />
@@ -44,12 +41,7 @@ export default function CardAds({ to }) {
                                         thân, tăng cơ hội thành công trong các
                                         cuộc phỏng vấn.
                                     </p>
-                                    <Link
-                                        className={cx('btn-do')}
-                                        to={config.routes.testuser}
-                                    >
-                                        Làm ngay
-                                    </Link>
+                                    <Button primary>Làm ngay</Button>
                                 </div>
                                 <div className={cx('image')}>
                                     <img src={images.testBox} alt="" />

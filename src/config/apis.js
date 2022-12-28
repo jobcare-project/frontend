@@ -15,11 +15,23 @@ export const jobsApiUrl = {
 
 export const uploadApiUrl = {
     uploadImage: 'api/upload',
+    uploadCloudinary: '/api/upload-cloudinary',
 };
 
 export const usersApiUrl = {
     allUsers: '/api/user/',
     deleteUser: '/api/user/',
     getDetailRecruiter: '/api/user/',
+    updateProfile: '/api/user/update',
 };
-export const _LIMIT_PAGE = 8;
+
+export const searchApiUrl = {
+    getCategories: '/api/search/categories',
+    getJobList: '/api/search/jobs',
+};
+
+export const chartApiUrl = {
+    getAdminChart: '/api/chart/admin',
+};
+
+export const _LIMIT_PAGE = 16;

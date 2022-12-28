@@ -90,6 +90,16 @@ function Search({ data }) {
                         </div>
                     </Col>
                 </Row>
+                <div className={cx('heading')}>
+                    <h2 className={cx('carousel-job')}>
+                        Tìm việc làm nhanh 24h, việc làm mới nhất mỗi ngày được
+                        cập nhât trên JobCare
+                    </h2>
+                    <p className={cx('carousel-find')}>
+                        Tiếp cận 30,000+ tin tuyển dụng việc làm mới mỗi ngày từ
+                        hàng nghìn doanh nghiệp uy tín tại Việt Nam
+                    </p>
+                </div>
             </Container>
         </div>
     );

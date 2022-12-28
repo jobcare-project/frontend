@@ -10,6 +10,7 @@ import {
     loginApi,
     logoutApi,
     registerApi,
+    updateProfileUserApi,
 } from '~/services/userService';
 import tokenService from '~/services/tokenService';
 import { uploadImageApi } from '~/services/uploadService';
@@ -90,6 +91,13 @@ export const accountsSlice = createSlice({
                 tokenService.removeAccessToken(LOCAL_STORAGE_TOKEN_NAME);
                 state.isAuth = false;
                 state.data = {};
+            })
+            .addCase(fetchUpdateProfile.pending, (state) => {
+                state.status = 'pending';
+            })
+            .addCase(fetchUpdateProfile.fulfilled, (state, action) => {
+                state.status = 'idle';
+                state.data = action.payload.data;
             });
     },
 });
@@ -144,6 +152,17 @@ export const fetchUploadImage = createAsyncThunk(
             const res = await uploadImageApi(payload);
             console.log('res fetchUploadImage:', res);
             return res;
+        } catch (error) {
+            return isRejectedWithValue(error.response);
+        }
+    },
+);
+
+export const fetchUpdateProfile = createAsyncThunk(
+    'accounts/fetchUpdateProfile',
+    async (data) => {
+        try {
+            return await updateProfileUserApi(data);
         } catch (error) {
             return isRejectedWithValue(error.response);
         }
