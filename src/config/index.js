@@ -6,6 +6,7 @@ import {
     usersApiUrl,
     searchApiUrl,
     chartApiUrl,
+    candidatesApiUrl,
 } from './apis';
 
 const config = {
@@ -16,6 +17,7 @@ const config = {
     usersApiUrl,
     searchApiUrl,
     chartApiUrl,
+    candidatesApiUrl,
 };
 
 export default config;

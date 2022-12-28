@@ -36,6 +36,7 @@ const routes = {
     blogcontent: '/blog/postblog/blogcontent',
     blogdetail: '/blog/blogpost/blogdetail/:id',
     myblog: '/blog/myblog',
+    recruiterManageCandidates: '/recruiter/manage-candidates',
 };
 
 export default routes;

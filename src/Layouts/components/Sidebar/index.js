@@ -51,7 +51,7 @@ const sidebarMenu = [
     },
     {
         title: 'Quản lý CV',
-        to: '/dashboard/quiz',
+        to: config.routes.recruiterManageCandidates,
         role: ['recruiter'],
         icon: <ion-icon name="layers"></ion-icon>,
     },

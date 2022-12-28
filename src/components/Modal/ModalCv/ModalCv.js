@@ -21,6 +21,8 @@ function Modal({ setOpenModal, data }) {
         setFile(file);
     };
 
+    console.log('job-data:', data);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -34,6 +36,7 @@ function Modal({ setOpenModal, data }) {
                 imageUrl: res.image_url,
                 jobId: data.id,
                 coverLetter,
+                recruiterId: data.recruiter_jobs.id,
             };
             dispatch(fetchApplyJobs(dataApplyJobs));
         }

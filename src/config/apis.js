@@ -35,4 +35,8 @@ export const chartApiUrl = {
     getAdminChart: '/api/chart/admin',
 };
 
+export const candidatesApiUrl = {
+    getCandidates: '/api/applicants',
+};
+
 export const _LIMIT_PAGE = 16;

@@ -2,7 +2,6 @@ import config from '~/config';
 import Home from '~/pages/Home';
 import Accounts from '~/pages/Accounts/Accounts';
 import Blog from '~/pages/Blogs/Blog';
-
 import TestUser from '~/pages/TestUser';
 import DisplayQuizz from '~/pages/DisplayQuizz';
 import RecruiterPost from '~/pages/Recruiter/RecruiterPost/RecruiterPost';
@@ -27,13 +26,13 @@ import BlogDetail from '~/pages/Blogs/BlogDetail/BlogDetail';
 import PostBlog from '~/pages/Blogs/BlogController/PostBlog/PostBlog';
 import SavedRecruitment from '~/pages/SavePost/SavedRecruitment/SavedRecruitment';
 import SavedBlog from '~/pages/SavePost/SavedBlog/SavedBlog';
-import SavedQuizz from '~/pages/SavePost/SavedQuiz/SavedQuiz';
 import Dashboard from '~/pages/Admin/Dashboard';
 import RecruiterPostManage from '~/pages/Recruiter/Post';
 import RecruiterManagePost from '~/pages/Recruiter/ManagePost';
 import SavedQuiz from '~/pages/SavePost/SavedQuiz/SavedQuiz';
 import BlogController from '~/pages/Blogs/BlogController/BlogController';
 import MyBlog from '~/pages/Blogs/BlogController/MyBlog/MyBlog';
+import ManageCandidates from '~/pages/Recruiter/ManageCandidates';
 
 export const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -120,6 +119,11 @@ export const recruiterPrivateRoutes = [
     {
         path: config.routes.recruiterPostManageSidebar,
         component: RecruiterManagePost,
+        layout: SidebarLayout,
+    },
+    {
+        path: config.routes.recruiterManageCandidates,
+        component: ManageCandidates,
         layout: SidebarLayout,
     },
     {
