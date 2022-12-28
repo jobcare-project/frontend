@@ -20,7 +20,7 @@ function ListRecruitmentPost() {
         dispatch(fetchRecruiterDetail(userData.id));
     }, []);
 
-    console.log('recruiterJobList', recruiterJobList);
+    // console.log('recruiterJobList', recruiterJobList);
 
     return (
         <Container>

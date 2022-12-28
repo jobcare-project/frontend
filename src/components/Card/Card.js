@@ -49,7 +49,7 @@ export default function Card({
     const handleDeletedPost = (id) => {
         dispatch(fetchDeletedJobDesc(data.id));
         // toast.success('Xoá bài thành công', toastifyOptions);
-        console.log('Mess:', message);
+        console.log('Mess:', data);
     };
     const navigate = useNavigate();
 
