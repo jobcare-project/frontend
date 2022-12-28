@@ -11,6 +11,7 @@ export const jobsApiUrl = {
     getList: '/api/job',
     postJobDesc: '/api/job',
     deletedJobDesc: '/api/job',
+    applyJobs: 'api/applicants',
 };
 
 export const uploadApiUrl = {
