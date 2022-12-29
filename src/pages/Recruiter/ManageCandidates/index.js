@@ -28,12 +28,12 @@ function ManageCandidates() {
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <th>No</th>
+                        <th>STT</th>
                         <th>Họ và tên</th>
                         <th>Email</th>
                         <th>CV</th>
-                        <th>Thời điểm</th>
                         <th>Công việc ứng tuyển</th>
+                        <th>Thời gian</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -48,12 +48,16 @@ function ManageCandidates() {
                                       </td>
                                       <td>{candidate.user_applicants.email}</td>
                                       <td>
-                                          <a href={candidate.imageUrl}>
+                                          <a
+                                              href={candidate.imageUrl}
+                                              target="_blank"
+                                              rel="noopener noreferrer"
+                                          >
                                               Xem CV
                                           </a>
                                       </td>
-                                      <td>{candidate.createdAt}</td>
                                       <td>{candidate.job_applicants.title}</td>
+                                      <td>{candidate.createdAt}</td>
                                       <td>
                                           <ion-icon name="trash-sharp"></ion-icon>
                                       </td>
