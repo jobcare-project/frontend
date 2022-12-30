@@ -63,7 +63,7 @@ const sidebarMenu = [
     },
     {
         title: 'Quản lý blog',
-        to: '/dashboard/quiz',
+        to: '/dashboard/blog/listblog',
         role: ['recruiter'],
         icon: <ion-icon name="library"></ion-icon>,
     },

@@ -17,7 +17,7 @@ const routes = {
     marketing: '/testuser/marketing',
     businessadministration: '/testuser/businessadministration',
     linguistics: '/testuser/linguistics',
-    postquiz: '/recruiter/recruiterpost/postquiz',
+    postquiz: '/recruiter/post/postquiz',
     manageQuiz: '/recruiter/recruiterpost/postquiz/:id',
     manageBlog: '/blog/postblog/:id',
     managequiz: '/managequiz',
@@ -35,6 +35,9 @@ const routes = {
     postblog: '/blog/postblog',
     blogcontent: '/blog/postblog/blogcontent',
     blogdetail: '/blog/blogpost/blogdetail/:id',
+    showquizrecuiter:'/recruiter/showquizrecuiter' ,
+    blogcontentrecuiter:'/dashboard/blog/listblog',
+    rank:'/leaderboard/:id',
     myblog: '/blog/myblog',
 };
 

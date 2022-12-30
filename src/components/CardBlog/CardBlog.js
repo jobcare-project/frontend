@@ -16,6 +16,9 @@ function CardBlog({
     titlRepair = '',
     titleSaved = '',
     handleDelete,
+    iconRepair,
+    iconDelete,
+    titlDelete,
 }) {
     return (
         <div className={cx('wrapper')}>
@@ -43,6 +46,30 @@ function CardBlog({
                     <span className={cx('share')}>
                         <ion-icon name="apps-outline"></ion-icon>
                     </span>
+                    <div className={cx('subdesc-text')}>
+                        <span onClick={() => handleDelete(data.id)}>
+                            {' '}
+                            {/* <ion-icon name="trash-outline"></ion-icon>  */}
+                            {iconDelete && (
+                                <ion-icon name="trash-outline"></ion-icon>
+                            )}
+                            {titlDelete}
+                        </span>
+                    </div>
+                    <Link
+                        to={{
+                            pathname: `/blog/postblog/${data.id}`,
+                        }}
+                    >
+                        <div className={cx('subdesc-text-repair')}>
+                            <div className={cx('subdesc-text-repair')}>
+                                {iconRepair && (
+                                    <ion-icon name="build-outline"></ion-icon>
+                                )}
+                                <span>{titlRepair}</span>
+                            </div>
+                        </div>
+                    </Link>
                 </div>
             </div>
             <Link
@@ -66,29 +93,7 @@ function CardBlog({
                     </div>
                 </div>
             </Link>
-            <div className={cx('subdesc-control')}>
-                <div className={cx('subdesc-text')}>
-                    <span onClick={() => handleDelete(data.id)}>
-                        {' '}
-                        <ion-icon name="trash-outline"></ion-icon> Xóa
-                    </span>
-                </div>
-                <Link
-                    to={{
-                        pathname: `/blog/postblog/${data.id}`,
-                    }}
-                >
-                    <div className={cx('subdesc-text-repair')}>
-                        {repair && (
-                            <span className={cx('subdesc-text')}>{repair}</span>
-                        )}
-                        <span>
-                            <ion-icon name="build-outline"></ion-icon>{' '}
-                            {titlRepair}
-                        </span>
-                    </div>
-                </Link>
-            </div>
+            <div className={cx('subdesc-control')}></div>
         </div>
     );
 }

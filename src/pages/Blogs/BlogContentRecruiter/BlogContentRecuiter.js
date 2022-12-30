@@ -1,6 +1,6 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import styles from './BlogContent.module.scss';
+import styles from './BlogContentRecruiter.module.scss';
 import classNames from 'classnames/bind';
 import Card from '~/components/Card/Card';
 import CardBlog from '~/components/CardBlog/CardBlog';
@@ -67,8 +67,11 @@ function ContentBlog({ data, to }) {
                                             <Col>
                                                 <CardBlog
                                                     data={blogs}
-                                                    // handleDelete={handleDelete}
+                                                    handleDelete={handleDelete}
+                                                    iconDelete={blogs}
+                                                    iconRepair={blogs}
                                                     // titlRepair="Sửa"
+                                                    // titlDelete="Xóa"
                                                 ></CardBlog>
                                             </Col>
                                         );
