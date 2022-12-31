@@ -33,8 +33,6 @@ export default function Card({
     const dispatch = useDispatch();
     const handleDeletedPost = (id) => {
         dispatch(fetchDeletedJobDesc(data.id));
-        // toast.success('Xoá bài thành công', toastifyOptions);
-        console.log('Mess:', data);
     };
 
     useEffect(() => {

@@ -27,13 +27,14 @@ import Input from '~/components/Input/Input/Input';
 import DropDown from '~/components/Input/DropDown/DropDown';
 import { useMemo } from 'react';
 import { fetchEditJobDesc, fetchPostJobDesc } from '~/pages/Home/homeSlice';
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { getDetailPost } from '~/services/jobService';
 import TextEditor from '~/pages/Blogs/EditorContent/EditorContent';
 import Button from '~/components/Button';
 import { messageRecruiterSelector } from '~/redux/Selectors/recruiterSelector';
 import { toast } from 'react-toastify';
 import config from '~/config';
+import { recruiterSlice } from '../recruiterSlice';
 const cx = classNames.bind(styles);
 const mucluongData = [
     {
@@ -371,8 +372,19 @@ function RecruiterPostEdit() {
         progress: undefined,
         theme: 'light',
     };
-    const message = useSelector(messageRecruiterSelector);
+
     const handleDeletedPost = (id) => {};
+    const message = useSelector(messageRecruiterSelector);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (message) {
+            toast.success('Sửa bài thành công', toastifyOptions);
+            dispatch(recruiterSlice.actions.restMessage(false));
+            navigate(config.routes.ListRecruitmentPost);
+        }
+    }, [message]);
+
     const handleSubmit = () => {
         // console.log(formikRef.current.values);
         const formikValues = formikRef.current.values;
@@ -383,11 +395,7 @@ function RecruiterPostEdit() {
                 : formikValues.salary;
         const selectValues = { ...selectForm, salary };
         const data = { ...formikValues, ...selectValues };
-        if (message) {
-            toast.success('Sửa bài thành công', toastifyOptions);
-            dispatch(fetchEditJobDesc({ id: params.id, data }));
-            Navigate(config.routes.recruitersaved);
-        }
+        dispatch(fetchEditJobDesc({ id: params.id, data }));
     };
 
     const objFillValues = [

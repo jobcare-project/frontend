@@ -177,8 +177,6 @@ function RecruiterPost() {
     };
 
     const message = useSelector(messageRecruiterSelector);
-    // console.log({ message });
-
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -186,7 +184,7 @@ function RecruiterPost() {
             toast.success('Đăng bài thành công', toastifyOptions);
             // toast.error('🦄 Vui lòng kiểm tra lại thông!', toastifyOptions);
             dispatch(recruiterSlice.actions.restMessage(false));
-            navigate(config.routes.recruitersaved);
+            navigate(config.routes.ListRecruitmentPost);
         }
     }, [message]);
 
