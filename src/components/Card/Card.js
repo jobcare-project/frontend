@@ -2,13 +2,11 @@ import classNames from 'classnames/bind';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 import images from '~/assets/images';
 import { fetchDeletedJobDesc } from '~/pages/Recruiter/recruiterSlice';
 import { accountsDataSelector } from '~/redux/Selectors/authSelector';
-import { messageRecruiterSelector } from '~/redux/Selectors/recruiterSelector';
 import ModalPost from '../Modal/ModalDeleted/ModalDeleted';
 
 import styles from './Card.module.scss';
@@ -33,25 +31,11 @@ export default function Card({
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const dispatch = useDispatch();
-
-    // dispatch and show message
-    const toastifyOptions = {
-        position: 'top-right',
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-    };
-    const message = useSelector(messageRecruiterSelector);
     const handleDeletedPost = (id) => {
         dispatch(fetchDeletedJobDesc(data.id));
         // toast.success('Xoá bài thành công', toastifyOptions);
-        console.log('Mess:', message);
+        console.log('Mess:', data);
     };
-    const navigate = useNavigate();
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -63,10 +47,6 @@ export default function Card({
             <Link
                 className={cx('link')}
                 to={`/recruitmentpage/recruitmentdetail/${data.id}`}
-                // onClick={() => {
-                //     console.log('navigate');
-                //     navigate(`/recruitmentpage/recruitmentdetail/${data.id}`);
-                // }}
             >
                 <div className={cx('image-block')}>
                     {data?.thumbnail ? (
@@ -105,10 +85,6 @@ export default function Card({
                                 <ion-icon name="location-outline"></ion-icon>
                                 <span>{data?.location}</span>
                             </div>
-                            {/* <div className={cx('subdesc-bottom')}>
-                                <ion-icon name="timer-outline"></ion-icon>
-                                <span>{data?.endDate}</span>
-                            </div> */}
                             <div className={cx('subdesc-item subdesc-right')}>
                                 <div className={cx('subdesc-text')}>
                                     <ion-icon name="timer-outline"></ion-icon>

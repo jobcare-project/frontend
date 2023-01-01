@@ -1,15 +1,9 @@
-import { async } from '@firebase/util';
 import {
     createAsyncThunk,
     createSlice,
     isRejectedWithValue,
 } from '@reduxjs/toolkit';
-import {
-    deletedJobDesc,
-    editJobDesc,
-    getListJobApi,
-    postJobDesc,
-} from '~/services/jobService';
+import { deletedJobDesc, postJobDesc } from '~/services/jobService';
 import { getDetailRecuiterByIdApi } from '~/services/userService';
 
 export const recruiterSlice = createSlice({
@@ -34,8 +28,7 @@ export const recruiterSlice = createSlice({
             })
             .addCase(fetchPostJobDesc.fulfilled, (state, action) => {
                 state.idLoading = false;
-                const { data, message, success } = action.payload;
-                console.log('payload', action.payload);
+                const { data, success } = action.payload;
                 state.job = data;
                 state.messsage = success;
             })
@@ -74,9 +67,7 @@ export const fetchPostJobDesc = createAsyncThunk(
     'recruiter/fetchPostJobDesc',
     async (data) => {
         try {
-            console.log('Data 1:', data);
             const res = await postJobDesc(data);
-            console.log(res);
             return res;
         } catch (error) {
             console.log(error);
@@ -84,6 +75,7 @@ export const fetchPostJobDesc = createAsyncThunk(
         }
     },
 );
+
 // deleted job
 export const fetchDeletedJobDesc = createAsyncThunk(
     'recruiter/fetchDeletedJobDesc',

@@ -13,7 +13,7 @@ function ManagePost() {
             <Container>
                 <Row>
                     <Col md={6} className={'mb-5'}>
-                        <Link to={config.routes.ListPostOfRecruiter}>
+                        <Link to={config.routes.ListRecruitmentPost}>
                             <div className={cx('control-block')}>
                                 <span className={cx('icon')}>
                                     <ion-icon name="save-outline"></ion-icon>

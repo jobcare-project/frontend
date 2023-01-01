@@ -4,7 +4,8 @@ const routes = {
     recruiter: '/recruiter/manager',
     recruiterPostSidebar: '/recruiter/post',
     recruiterPostManageSidebar: '/recruiter/managelistpost',
-    ListPostOfRecruiter: '/recruiter/ListRecruitmentPost',
+    ListPostOfRecruiter: '/recruiter/ListPostOfRecruiter',
+    ListRecruitmentPost: '/recruiter/listpost',
     profile: '/profile',
     settings: '/settings',
     accounts: '/accounts',
@@ -39,6 +40,7 @@ const routes = {
     blogcontentrecuiter:'/dashboard/blog/listblog',
     rank:'/leaderboard/:id',
     myblog: '/blog/myblog',
+    recruiterManageCandidates: '/recruiter/manage-candidates',
 };
 
 export default routes;

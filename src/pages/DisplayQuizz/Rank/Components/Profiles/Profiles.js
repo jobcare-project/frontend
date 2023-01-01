@@ -25,7 +25,7 @@ function Item(data) {
                 </thead>
                 <tbody>
                     {data.map((value, index) => (
-                        <tr key={index} >
+                        <tr key={index}>
                             <td>{index + 1}</td>
                             <td>{value.userData.email}</td>
                             <td>{value.timestamp.toDate().toDateString()}</td>
