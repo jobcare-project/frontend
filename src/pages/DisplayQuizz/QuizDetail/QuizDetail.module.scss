@@ -57,6 +57,9 @@
     .desc {
         font-size: 20px;
     }
+    .rank-btn {
+        font-size: 40px;
+    }
 }
 
 // // question
@@ -122,12 +125,19 @@
     }
 }
 
-.modal-title {
-    font-size: 25px;
+.modal-header {
+    text-align: center;
+    margin-left: 120px;
 }
+.modal {
+    text-align: center;
+    .modal-title {
+        font-size: 30px;
+    }
 
-.warning-title {
-    color: #f29c1f;
+    .warning-title {
+        color: #f29c1f;
+    }
 }
 
 .quiz-item-after {
@@ -143,13 +153,20 @@
     text-align: center;
 }
 
-.back-after,
-.reload,
-.rank {
-    margin: 50px 0 0px 30px;
-    .back-after-text,
-    .reload-text,
-    .rank-text {
+.btn {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0 50px 0;
+
+    .reload {
         font-size: 20px;
+        margin-left: 50px;
+    }
+    .back-after {
+        font-size: 20px;
+    }
+    .rank-btn{
+        font-size: 20px;
+        margin-left: 50px;
     }
 }

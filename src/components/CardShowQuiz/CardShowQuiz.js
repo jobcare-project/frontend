@@ -12,9 +12,12 @@ export default function CardShowQuiz({
     saved,
     titlRepair = '',
     titlDelete = '',
+    titlRank = '',
     iconRepair,
     iconDelete,
+    iconRank,
     titleSaved = '',
+
     handleDelete,
 }) {
     console.log(quiz);
@@ -85,6 +88,18 @@ export default function CardShowQuiz({
                             {titlDelete}
                         </span>
                     </div>
+                    <Link
+                        to={{
+                            pathname: `/leaderboard/${quiz.id}`,
+                        }}
+                    >
+                        <div className={cx('subdesc-text-repair')}>
+                            {iconRank && (
+                                <ion-icon name="people-outline"></ion-icon>
+                            )}
+                            <span>{titlRank}</span>
+                        </div>
+                    </Link>
 
                     <Link
                         to={{
@@ -98,6 +113,7 @@ export default function CardShowQuiz({
                             <span>{titlRepair}</span>
                         </div>
                     </Link>
+
                     <div className={cx('subdesc-text-save')}>
                         {saved && (
                             <span className={cx('subdesc-text')}>{saved}</span>

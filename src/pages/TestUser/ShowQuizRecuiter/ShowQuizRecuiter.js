@@ -85,8 +85,10 @@ function ShowQuizRecuiter() {
                                     handleDelete={handleDelete}
                                     iconDelete={quiz}
                                     iconRepair={quiz}
+                                    iconRank={quiz}
                                     titlRepair="Sửa"
                                     titlDelete="Xóa"
+                                    titlRank="Rank"
                                 ></CardShowQuiz>
                             </Col>
                         );

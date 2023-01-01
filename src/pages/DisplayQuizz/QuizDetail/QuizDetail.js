@@ -22,6 +22,7 @@ import Button from '~/components/Button';
 import Loading from '~/components/Loading/Loading';
 
 import { db } from '~/config/Firebase/firebase';
+import Rank from '../Rank';
 
 const cx = classNames.bind(styles);
 
@@ -60,6 +61,8 @@ function QuizDetail() {
     //State quiz time out
     const [pause, setPause] = useState(false);
     //State show form when complete quiz
+    const [lgShow, setLgShow] = useState(false);
+    //State show ranking
     const [show, setShow] = useState(false);
     //State when get API from firebase
     const [loading, setLoading] = useState(true);
@@ -139,7 +142,7 @@ function QuizDetail() {
         if (total < 0) {
             alert('Hết giờ');
             clearTimer(notime());
-            setShow(true);
+            setLgShow(true);
             setScore(score);
         }
     };
@@ -277,7 +280,7 @@ function QuizDetail() {
                                         type="submit"
                                         className={cx('submit')}
                                         variant="outline-success"
-                                        onClick={() => setShow(true)}
+                                        onClick={() => setLgShow(true)}
                                     >
                                         <div className={cx('text-submit')}>
                                             Submit
@@ -287,13 +290,19 @@ function QuizDetail() {
                                 </div>
                             </form>
                             <Modal
-                                show={show}
-                                onHide={() => setShow(false)}
-                                dialogClassName="modal-90w"
-                                aria-labelledby="example-custom-modal-styling-title"
+                                size="lg"
+                                show={lgShow}
+                                onHide={() => setLgShow(false)}
+                                aria-labelledby="example-modal-sizes-title-lg"
                             >
-                                <Modal.Header closeButton>
-                                    <Modal.Title id="example-custom-modal-styling-title">
+                                <Modal.Header
+                                    closeButton
+                                    className={cx('modal-header')}
+                                >
+                                    <Modal.Title
+                                        id="example-modal-sizes-title-lg"
+                                        className={cx('modal')}
+                                    >
                                         <div className={cx('modal-title')}>
                                             Chúc mừng bạn đã hoàn thành bài Quiz
                                         </div>
@@ -370,17 +379,32 @@ function QuizDetail() {
                                                 Làm lại
                                             </div>
                                         </Button>{' '}
-                                        <Button
-                                            primary
-                                            className={cx('rank')}
-                                            onClick={() =>
-                                                history(`/leaderboard/${id}`)
-                                            }
-                                        >
-                                            <div className={cx('rank-text')}>
+                                        <div >
+                                            <Button
+                                                primary
+                                                onClick={() => setShow(true)}
+                                                className={cx('rank-btn')}
+                                            >
                                                 Xem bảng xếp hạng
-                                            </div>
-                                        </Button>{' '}
+                                            </Button>
+                                            <Modal
+                                                size="lg"
+                                                show={show}
+                                                onHide={() => setShow(false)}
+                                                aria-labelledby="example-modal-sizes-title-lg"
+                                            >
+                                                <Modal.Header closeButton>
+                                                    <Modal.Title id="example-custom-modal-styling-title">
+                                                        Bảng xếp hạng
+                                                    </Modal.Title>
+                                                </Modal.Header>
+                                                <Modal.Body>
+                                                    <p>
+                                                        <Rank />
+                                                    </p>
+                                                </Modal.Body>
+                                            </Modal>
+                                        </div>
                                     </div>
                                 </Modal.Body>
                             </Modal>

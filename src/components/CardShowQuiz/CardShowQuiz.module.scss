@@ -87,7 +87,7 @@
         display: flex;
         justify-content: space-between;
         border-top: 1px solid #ccc;
-        margin: 10px 0 0 40px;
+        margin: 10px 0 0 0px;
 
         .subdesc-text {
             cursor: pointer;
@@ -112,8 +112,8 @@
             align-items: center;
             margin: 0;
             position: relative;
-            top: 10px;
-            left: 30px;
+            top: 8px;
+            left: 20px;
             &:hover {
                 color: var(--primary-color);
             }
