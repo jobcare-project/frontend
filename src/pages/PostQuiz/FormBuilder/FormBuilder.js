@@ -283,8 +283,6 @@ function FormBuilder() {
             category &&
             image &&
             formData &&
-            items &&
-            questions &&
             window.confirm('Bạn có muốn đăng bài quiz ?')
         ) {
             if (!id) {
@@ -379,6 +377,9 @@ function FormBuilder() {
                         className={cx('image')}
                         onChange={(e) => setFile(e.target.files[0])}
                     />
+                </div>
+                <div>
+                    <div className={cx('title-image')}>Xây dựng bài quiz</div>
                 </div>
                 <Nestable
                     items={items}
