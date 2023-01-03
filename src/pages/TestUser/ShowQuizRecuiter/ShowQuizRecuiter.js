@@ -4,8 +4,17 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Container } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
-import { collection, onSnapshot, doc, deleteDoc } from 'firebase/firestore';
+import {
+    collection,
+    onSnapshot,
+    doc,
+    deleteDoc,
+    query,
+    where,
+} from 'firebase/firestore';
 import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
+import { accountsDataSelector } from '~/redux/Selectors/authSelector';
 
 import { db } from '~/config/Firebase/firebase';
 
@@ -22,10 +31,15 @@ function ShowQuizRecuiter() {
     const [loading, setLoading] = useState(true);
     //
     const [filtered, setFiltered] = useState([]);
+
+    const userData = useSelector(accountsDataSelector);
     //
     const [activeGenre, setActiveGenre] = useState(0);
     //State when get API from firebase
-    const quizCollectionRef = collection(db, 'quiz');
+    const quizCollectionRef = query(
+        collection(db, 'quiz'),
+        where('userData.id', '==', userData.id),
+    );
     //Firebase snapShot
     useEffect(() => {
         onSnapshot(quizCollectionRef, (snapshot) => {

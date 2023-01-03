@@ -14,6 +14,8 @@ import { Col, Row } from 'react-bootstrap';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
+import { accountsDataSelector } from '~/redux/Selectors/authSelector';
 
 import styles from './FormBuilder.module.scss';
 
@@ -70,6 +72,8 @@ function FormBuilder() {
     const [image, setImage] = useState('');
 
     const { title, category, description } = form;
+
+    const userData = useSelector(accountsDataSelector);
 
     //Function leve page
     const history = useNavigate();
@@ -292,6 +296,7 @@ function FormBuilder() {
                         questions,
                         category,
                         image,
+                        userData,
                         timestamp: serverTimestamp(),
                     });
 
@@ -306,6 +311,7 @@ function FormBuilder() {
                         questions,
                         category,
                         image,
+                        userData,
                         timestamp: serverTimestamp(),
                     });
                     toast.success('Bài quiz đã được cập nhật thành công');

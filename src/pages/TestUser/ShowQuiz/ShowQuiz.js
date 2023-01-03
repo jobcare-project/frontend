@@ -4,9 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Container } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
-import { collection, onSnapshot, doc, deleteDoc } from 'firebase/firestore';
-import { toast } from 'react-toastify';
-
+import { collection, onSnapshot } from 'firebase/firestore';
 import { db } from '~/config/Firebase/firebase';
 
 import CardShowQuiz from '~/components/CardShowQuiz/CardShowQuiz';
@@ -51,18 +49,18 @@ function ShowQuiz() {
         });
     }, []);
     console.log(quiz);
-    const handleDelete = async (id) => {
-        if (window.confirm('Bạn có muốn xóa bài quiz ?')) {
-            try {
-                setLoading(true);
-                await deleteDoc(doc(db, 'quiz', id));
-                toast.success('Bài quiz đã được xóa thành công');
-                setLoading(false);
-            } catch (err) {
-                console.log(err);
-            }
-        }
-    };
+    // const handleDelete = async (id) => {
+    //     if (window.confirm('Bạn có muốn xóa bài quiz ?')) {
+    //         try {
+    //             setLoading(true);
+    //             await deleteDoc(doc(db, 'quiz', id));
+    //             toast.success('Bài quiz đã được xóa thành công');
+    //             setLoading(false);
+    //         } catch (err) {
+    //             console.log(err);
+    //         }
+    //     }
+    // };
     return loading ? (
         <Loading />
     ) : (
