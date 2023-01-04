@@ -37,6 +37,7 @@ export const recruiterSlice = createSlice({
             .addCase(fetchJobsPagination.pending, (state, action) => {
                 state.jobDisplayPagination = action.payload;
             })
+
             .addCase(fetchDeletedJobDesc.pending, (state) => {
                 state.idLoading = true;
             })

@@ -38,25 +38,19 @@ export default function DetailInfor({ data }) {
                             <div className={cx('title')}>
                                 <h2 className={cx('title-header')}>
                                     {jobDetailData?.title}
-                                    <span className={cx('type-work-icon')}>
-                                        <ion-icon
-                                            name="checkmark-circle-outline"
-                                            className={cx('check-icon')}
-                                        ></ion-icon>
-                                    </span>
                                 </h2>
                             </div>
                             <h3 className={cx('company-name')}>
                                 {jobDetailData?.recruiter_jobs?.fullname}
                             </h3>
                             <div className={cx('time')}>
-                                <span className={cx('type-work-icon')}>
+                                <span className={cx('type-work-icons')}>
                                     <ion-icon
                                         name="time-outline"
                                         className={cx('time-icon')}
                                     ></ion-icon>
                                 </span>
-                                <span>
+                                <span className={cx('end-day')}>
                                     Hạn nộp hồ sơ: {jobDetailData?.endDate}
                                 </span>
                             </div>
@@ -233,9 +227,6 @@ export default function DetailInfor({ data }) {
                                     )}
                                 </div>
                                 <div className={cx('time')}>
-                                    <span className={cx('type-work-icon')}>
-                                        <ion-icon name="time-outline"></ion-icon>
-                                    </span>
                                     <span>
                                         Hạn nộp hồ sơ: {jobDetailData?.endDay}
                                     </span>

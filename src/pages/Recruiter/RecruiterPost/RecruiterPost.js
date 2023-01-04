@@ -189,7 +189,6 @@ function RecruiterPost() {
     }, [message]);
 
     const handleSubmit = () => {
-        // console.log('submit');
         // console.log(formikRef.current.values);
         const formikValues = formikRef.current.values;
         // search timf lỗi formik

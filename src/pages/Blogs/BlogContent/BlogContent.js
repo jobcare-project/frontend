@@ -2,14 +2,12 @@ import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import styles from './BlogContent.module.scss';
 import classNames from 'classnames/bind';
-import Card from '~/components/Card/Card';
 import CardBlog from '~/components/CardBlog/CardBlog';
-import Input from '~/components/Input/Input/Input';
 import Loading from '~/components/Loading/Loading';
 import { toast } from 'react-toastify';
 
 import { db } from '~/config/Firebase/firebase';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 import { collection, deleteDoc, doc, onSnapshot } from 'firebase/firestore';
 const cx = classNames.bind(styles);

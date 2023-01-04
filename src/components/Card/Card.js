@@ -2,11 +2,17 @@ import classNames from 'classnames/bind';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import images from '~/assets/images';
-import { fetchDeletedJobDesc } from '~/pages/Recruiter/recruiterSlice';
+import config from '~/config';
+import {
+    fetchDeletedJobDesc,
+    recruiterSlice,
+} from '~/pages/Recruiter/recruiterSlice';
 import { accountsDataSelector } from '~/redux/Selectors/authSelector';
+import { messageRecruiterSelector } from '~/redux/Selectors/recruiterSelector';
 import ModalPost from '../Modal/ModalDeleted/ModalDeleted';
 
 import styles from './Card.module.scss';
@@ -34,6 +40,26 @@ export default function Card({
     const handleDeletedPost = (id) => {
         dispatch(fetchDeletedJobDesc(data.id));
     };
+    const toastifyOptions = {
+        position: 'top-right',
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+    };
+    // const message = useSelector(messageRecruiterSelector);
+    // const navigate = useNavigate();
+
+    // useEffect(() => {
+    //     if (message) {
+    //         toast.success('Xoá bài thành công', toastifyOptions);
+    //         dispatch(recruiterSlice.actions.restMessage(false));
+    //         console.log('mess', message);
+    //     }
+    // }, [message]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -41,7 +67,6 @@ export default function Card({
 
     return (
         <div className={cx('wrapper')}>
-            {/* /id */}
             <Link
                 className={cx('link')}
                 to={`/recruitmentpage/recruitmentdetail/${data.id}`}
@@ -93,7 +118,6 @@ export default function Card({
                     </div>
                 </div>
             </Link>
-            {/* convert to button  */}
             <ModalPost
                 handleClose={handleClose}
                 show={show}

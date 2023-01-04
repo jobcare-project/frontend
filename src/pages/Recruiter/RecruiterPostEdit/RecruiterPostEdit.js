@@ -2,19 +2,8 @@ import React, { useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from './RecruiterPost.module.scss';
 import { useState } from 'react';
-import {
-    getAllProvinces,
-    getAllDistricts,
-    fillMultipleStepInfo,
-} from '~/helper/geomap';
-import {
-    Formik,
-    Form,
-    Field,
-    ErrorMessage,
-    useFormik,
-    useFormikContext,
-} from 'formik';
+import { getAllProvinces, getAllDistricts } from '~/helper/geomap';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,8 +11,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-// import { FormInput } from '../RecruiterPostEdit/Input/Input';
-import Input from '~/components/Input/Input/Input';
 import DropDown from '~/components/Input/DropDown/DropDown';
 import { useMemo } from 'react';
 import { fetchEditJobDesc, fetchPostJobDesc } from '~/pages/Home/homeSlice';
@@ -430,369 +417,352 @@ function RecruiterPostEdit() {
         getPost();
     }, []);
 
-    return (
-        <div className={cx('wrapper')}>
-            <Container>
-                <Formik
-                    innerRef={formikRef}
-                    initialValues={{
-                        position: '',
-                        amount: '',
-                        salary: '',
-                        level: '',
-                        location: '',
-                        jobDescription: '',
-                        jobRequire: '',
-                        benefit: '',
-                        title: '',
-                    }}
-                    onSubmit={() => {
-                        handleSubmit();
-                    }}
-                    validationSchema={Yup.object({
-                        title: Yup.string()
-                            .required('Vui lòng nhập ô này')
-                            .min(10, 'Tiêu đề phải lớn hơn 10 ký tự')
-                            .max(70, 'Tiêu đề không được vượt quá 80 ký tự'),
-                        salary: Yup.number()
-                            .typeError('Vui lòng nhập số')
-                            .min(1, 'Vui lòng nhập số lớn hơn 0'),
-                        amount: Yup.number()
-                            .required('Vui lòng nhập ô này')
-                            .typeError('Vui lòng nhập số')
-                            .min(1, 'Tối thiểu 1 người'),
-                        level: Yup.string().required('Vui lòng nhập ô này'),
-                        location: Yup.string()
-                            .required('Vui lòng nhập ô này')
-                            .min(10, 'Vui lòng nhập đầy đủ địa chỉ làm việc'),
-                        jobDescription: Yup.string()
-                            .required('Vui lòng nhập ô này')
-                            .min(20, 'Tiêu đề phải lớn hơn 20 ký tự')
-                            .max(70, 'Tiêu đề không được vượt quá 80 ký tự'),
-                        jobRequire: Yup.string()
-                            .required('Vui lòng nhập ô này')
-                            .min(20, 'Tiêu đề phải lớn hơn 20 ký tự')
-                            .max(70, 'Tiêu đề không được vượt quá 80 ký tự'),
-                        benefit: Yup.string()
-                            .required('Vui lòng nhập ô này')
-                            .min(20, 'Tiêu đề phải lớn hơn 20 ký tự')
-                            .max(70, 'Tiêu đề không được vượt quá 80 ký tự'),
-                    })}
-                >
-                    <Form>
-                        <div className={cx('title-header')}>
-                            Tạo bài tuyển dụng mới
-                        </div>
-                        <div className={cx('post-title')}>Thông tin cơ bản</div>
-                        <div className={cx('title-post')}>
-                            <div className={cx('content-detail')}>
-                                <Row>
-                                    <Col sm={12} md={12} className={'mb-5'}>
-                                        <div className={cx('content-input')}>
-                                            <div className={cx('detail-name')}>
-                                                Vị trí muốn tuyển dụng
-                                            </div>
-                                            <Field
-                                                className={cx('input-text')}
-                                                name="title"
-                                                type="title"
-                                                placeholder="Nhập vị trí bạn muốn tuyển"
-                                            />
+    <div className={cx('wrapper')}>
+        <Container>
+            <Formik
+                innerRef={formikRef}
+                initialValues={{
+                    position: '',
+                    amount: '',
+                    salary: '',
+                    level: '',
+                    location: '',
+                    jobDescription: '',
+                    jobRequire: '',
+                    benefit: '',
+                    title: '',
+                }}
+                onSubmit={() => {
+                    handleSubmit();
+                }}
+                validationSchema={Yup.object({
+                    title: Yup.string()
+                        .required('Vui lòng nhập ô này')
+                        .min(10, 'Tiêu đề phải lớn hơn 10 ký tự')
+                        .max(70, 'Tiêu đề không được vượt quá 80 ký tự'),
+                    salary: Yup.number()
+                        .typeError('Vui lòng nhập số')
+                        .min(1, 'Vui lòng nhập số lớn hơn 0'),
+                    amount: Yup.number()
+                        .required('Vui lòng nhập ô này')
+                        .typeError('Vui lòng nhập số')
+                        .min(1, 'Tối thiểu 1 người'),
+                    level: Yup.string().required('Vui lòng nhập ô này'),
+                    location: Yup.string()
+                        .required('Vui lòng nhập ô này')
+                        .min(10, 'Vui lòng nhập đầy đủ địa chỉ làm việc'),
+                    jobDescription: Yup.string()
+                        .required('Vui lòng nhập ô này')
+                        .min(20, 'Tiêu đề phải lớn hơn 20 ký tự')
+                        .max(70, 'Tiêu đề không được vượt quá 80 ký tự'),
+                    jobRequire: Yup.string()
+                        .required('Vui lòng nhập ô này')
+                        .min(20, 'Tiêu đề phải lớn hơn 20 ký tự')
+                        .max(70, 'Tiêu đề không được vượt quá 80 ký tự'),
+                    benefit: Yup.string()
+                        .required('Vui lòng nhập ô này')
+                        .min(20, 'Tiêu đề phải lớn hơn 20 ký tự')
+                        .max(70, 'Tiêu đề không được vượt quá 80 ký tự'),
+                })}
+            >
+                <Form>
+                    <div className={cx('title-header')}>
+                        Tạo bài tuyển dụng mới
+                    </div>
+                    <div className={cx('post-title')}>Thông tin cơ bản</div>
+                    <div className={cx('title-post')}>
+                        <div className={cx('content-detail')}>
+                            <Row>
+                                <Col sm={12} md={12} className={'mb-5'}>
+                                    <div className={cx('content-input')}>
+                                        <div className={cx('detail-name')}>
+                                            Vị trí muốn tuyển dụng
                                         </div>
-                                        <p className={cx('message')}>
-                                            <ErrorMessage name="title" />
-                                        </p>
-                                    </Col>
+                                        <Field
+                                            className={cx('input-text')}
+                                            name="title"
+                                            type="title"
+                                            placeholder="Nhập vị trí bạn muốn tuyển"
+                                        />
+                                    </div>
+                                    <p className={cx('message')}>
+                                        <ErrorMessage name="title" />
+                                    </p>
+                                </Col>
 
-                                    <Col md={6} className={'mb-5'}>
-                                        <div className={cx('content-input')}>
-                                            <div className={cx('detail-name')}>
-                                                Nhập mức lương
-                                            </div>
+                                <Col md={6} className={'mb-5'}>
+                                    <div className={cx('content-input')}>
+                                        <div className={cx('detail-name')}>
+                                            Nhập mức lương
+                                        </div>
+                                        <div className={cx('salary-detail')}>
+                                            <Field
+                                                className={cx(
+                                                    'input-salary',
+                                                    typeSalary ==
+                                                        TYPE_SALARY_DEFAULT
+                                                        ? 'disable'
+                                                        : '',
+                                                )}
+                                                innerRef={salaryRef}
+                                                name="salary"
+                                                type="text"
+                                                placeholder="Nhập mức lương"
+                                            />
+
                                             <div
-                                                className={cx('salary-detail')}
+                                                className={cx('content-salary')}
                                             >
-                                                <Field
-                                                    className={cx(
-                                                        'input-salary',
-                                                        typeSalary ==
-                                                            TYPE_SALARY_DEFAULT
-                                                            ? 'disable'
-                                                            : '',
-                                                    )}
-                                                    innerRef={salaryRef}
-                                                    name="salary"
-                                                    type="text"
-                                                    placeholder="Nhập mức lương"
-                                                />
-
-                                                <div
-                                                    className={cx(
-                                                        'content-salary',
-                                                    )}
-                                                >
-                                                    <DropDown
-                                                        onChangeSelect={(
+                                                <DropDown
+                                                    onChangeSelect={(
+                                                        value,
+                                                        name,
+                                                    ) =>
+                                                        handleChangeSelect(
                                                             value,
                                                             name,
-                                                        ) =>
-                                                            handleChangeSelect(
-                                                                value,
-                                                                name,
-                                                                'salary',
-                                                            )
-                                                        }
-                                                        data={mucluongData}
-                                                        className={cx(
-                                                            'dropdown-detail',
-                                                        )}
-                                                        title="Mức lương"
-                                                    />
-                                                </div>
+                                                            'salary',
+                                                        )
+                                                    }
+                                                    data={mucluongData}
+                                                    className={cx(
+                                                        'dropdown-detail',
+                                                    )}
+                                                    title="Mức lương"
+                                                />
                                             </div>
                                         </div>
-                                        <p className={cx('message')}>
-                                            <ErrorMessage name="salary" />
-                                        </p>
-                                    </Col>
-                                    <Col md={6} className={'mb-5'}>
-                                        <div className={cx('content-input')}>
-                                            <div className={cx('detail-name')}>
-                                                Số lượng người
-                                            </div>
-                                            <Field
-                                                className={cx('input-text')}
-                                                name="amount"
-                                                type="text"
-                                                placeholder="Số lượng cần tuyển"
-                                            />
+                                    </div>
+                                    <p className={cx('message')}>
+                                        <ErrorMessage name="salary" />
+                                    </p>
+                                </Col>
+                                <Col md={6} className={'mb-5'}>
+                                    <div className={cx('content-input')}>
+                                        <div className={cx('detail-name')}>
+                                            Số lượng người
                                         </div>
-                                        <p className={cx('message')}>
-                                            <ErrorMessage name="amount" />
-                                        </p>
-                                    </Col>
-                                    <Col md={6} className={'mb-5'}>
-                                        <div className={cx('content-input')}>
-                                            <div className={cx('detail-name')}>
-                                                Hình thức làm việc
-                                            </div>
-                                            <DropDown
-                                                onChangeSelect={(value, name) =>
-                                                    handleChangeSelect(
-                                                        value,
-                                                        name,
-                                                        'workFrom',
-                                                    )
-                                                }
-                                                data={hinhthucData}
-                                                className={cx(
-                                                    'dropdown-detail',
-                                                )}
-                                                title="Chọn hình thức"
-                                                defaultValueProps={
-                                                    dataRecruiterEdit.workFrom
-                                                }
-                                            />
+                                        <Field
+                                            className={cx('input-text')}
+                                            name="amount"
+                                            type="text"
+                                            placeholder="Số lượng cần tuyển"
+                                        />
+                                    </div>
+                                    <p className={cx('message')}>
+                                        <ErrorMessage name="amount" />
+                                    </p>
+                                </Col>
+                                <Col md={6} className={'mb-5'}>
+                                    <div className={cx('content-input')}>
+                                        <div className={cx('detail-name')}>
+                                            Hình thức làm việc
                                         </div>
-                                    </Col>
-                                    <Col md={6} className={'mb-5'}>
-                                        <div className={cx('content-input')}>
-                                            <div className={cx('detail-name')}>
-                                                Giới tính
-                                            </div>
-                                            <DropDown
-                                                onChangeSelect={(value, name) =>
-                                                    handleChangeSelect(
-                                                        value,
-                                                        name,
-                                                        'gender',
-                                                    )
-                                                }
-                                                data={gioitinhData}
-                                                className={cx(
-                                                    'dropdown-detail',
-                                                )}
-                                                title="Giới tính"
-                                                defaultValueProps={
-                                                    dataRecruiterEdit.gender
-                                                }
-                                            />
+                                        <DropDown
+                                            onChangeSelect={(value, name) =>
+                                                handleChangeSelect(
+                                                    value,
+                                                    name,
+                                                    'workFrom',
+                                                )
+                                            }
+                                            data={hinhthucData}
+                                            className={cx('dropdown-detail')}
+                                            title="Chọn hình thức"
+                                            defaultValueProps={
+                                                dataRecruiterEdit.workFrom
+                                            }
+                                        />
+                                    </div>
+                                </Col>
+                                <Col md={6} className={'mb-5'}>
+                                    <div className={cx('content-input')}>
+                                        <div className={cx('detail-name')}>
+                                            Giới tính
                                         </div>
-                                    </Col>
-                                    <Col md={6} className={'mb-5'}>
-                                        <div className={cx('content-input')}>
-                                            <div className={cx('detail-name')}>
-                                                Vị trí
-                                            </div>
-                                            <Field
-                                                className={cx('input-text')}
-                                                name="level"
-                                                type="text"
-                                                placeholder="Nhập vị trí muốn tuyển dụng"
-                                            />
+                                        <DropDown
+                                            onChangeSelect={(value, name) =>
+                                                handleChangeSelect(
+                                                    value,
+                                                    name,
+                                                    'gender',
+                                                )
+                                            }
+                                            data={gioitinhData}
+                                            className={cx('dropdown-detail')}
+                                            title="Giới tính"
+                                            defaultValueProps={
+                                                dataRecruiterEdit.gender
+                                            }
+                                        />
+                                    </div>
+                                </Col>
+                                <Col md={6} className={'mb-5'}>
+                                    <div className={cx('content-input')}>
+                                        <div className={cx('detail-name')}>
+                                            Vị trí
                                         </div>
-                                        <p className={cx('message')}>
-                                            <ErrorMessage name="level" />
-                                        </p>
-                                    </Col>
-                                    <Col md={6} className={'mb-5'}>
-                                        <div className={cx('content-input')}>
-                                            <div className={cx('detail-name')}>
-                                                Kinh nghiệm
-                                            </div>
-                                            <DropDown
-                                                onChangeSelect={(value, name) =>
-                                                    handleChangeSelect(
-                                                        value,
-                                                        name,
-                                                        'experience',
-                                                    )
-                                                }
-                                                data={kinhnghiemData}
-                                                className={cx(
-                                                    'dropdown-detail',
-                                                )}
-                                                title="Kinh nghiệm"
-                                                defaultValueProps={
-                                                    dataRecruiterEdit.experience
-                                                }
-                                            />
+                                        <Field
+                                            className={cx('input-text')}
+                                            name="level"
+                                            type="text"
+                                            placeholder="Nhập vị trí muốn tuyển dụng"
+                                        />
+                                    </div>
+                                    <p className={cx('message')}>
+                                        <ErrorMessage name="level" />
+                                    </p>
+                                </Col>
+                                <Col md={6} className={'mb-5'}>
+                                    <div className={cx('content-input')}>
+                                        <div className={cx('detail-name')}>
+                                            Kinh nghiệm
                                         </div>
-                                    </Col>
-                                    <Col md={6} className={'mb-5'}>
-                                        <div className={cx('content-input')}>
-                                            <div className={cx('detail-name')}>
-                                                Thành phố
-                                            </div>
-                                            <DropDown
-                                                title=" Thành phố"
-                                                onChangeSelect={(value, name) =>
-                                                    handleChangeSelect(
-                                                        value,
-                                                        name,
-                                                        'city',
-                                                    )
-                                                }
-                                                data={getAllProvinces()}
-                                                className={cx(
-                                                    'dropdown-detail',
-                                                )}
-                                                defaultValueProps={
-                                                    dataRecruiterEdit.city
-                                                }
-                                            />
+                                        <DropDown
+                                            onChangeSelect={(value, name) =>
+                                                handleChangeSelect(
+                                                    value,
+                                                    name,
+                                                    'experience',
+                                                )
+                                            }
+                                            data={kinhnghiemData}
+                                            className={cx('dropdown-detail')}
+                                            title="Kinh nghiệm"
+                                            defaultValueProps={
+                                                dataRecruiterEdit.experience
+                                            }
+                                        />
+                                    </div>
+                                </Col>
+                                <Col md={6} className={'mb-5'}>
+                                    <div className={cx('content-input')}>
+                                        <div className={cx('detail-name')}>
+                                            Thành phố
                                         </div>
-                                    </Col>
-                                    <Col md={6} className={'mb-5'}>
-                                        <div className={cx('content-input')}>
-                                            <div className={cx('detail-name')}>
-                                                Quận/Huyện
-                                            </div>
-                                            <DropDown
-                                                title="Quận/Huyện"
-                                                data={getAllDistricts(
-                                                    districtID,
-                                                )}
-                                                className={cx(
-                                                    'dropdown-detail',
-                                                )}
-                                                onChangeSelect={(value, name) =>
-                                                    handleChangeSelect(
-                                                        value,
-                                                        name,
-                                                        'district',
-                                                    )
-                                                }
-                                                defaultValueProps={
-                                                    dataRecruiterEdit.district
-                                                }
-                                            />
+                                        <DropDown
+                                            title=" Thành phố"
+                                            onChangeSelect={(value, name) =>
+                                                handleChangeSelect(
+                                                    value,
+                                                    name,
+                                                    'city',
+                                                )
+                                            }
+                                            data={getAllProvinces()}
+                                            className={cx('dropdown-detail')}
+                                            defaultValueProps={
+                                                dataRecruiterEdit.city
+                                            }
+                                        />
+                                    </div>
+                                </Col>
+                                <Col md={6} className={'mb-5'}>
+                                    <div className={cx('content-input')}>
+                                        <div className={cx('detail-name')}>
+                                            Quận/Huyện
                                         </div>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col sm={12} md={12} className={'mb-5'}>
-                                        <div className={cx('content-input')}>
-                                            <div className={cx('detail-name')}>
-                                                Địa chỉ làm việc
-                                            </div>
-                                            <Field
-                                                className={cx('input-text')}
-                                                name="location"
-                                                type="text"
-                                                placeholder="Ví dụ: Tầng 6, số 20 Ông Ích Khiêm, Hải Châu, Đà Nẵng"
-                                            />
+                                        <DropDown
+                                            title="Quận/Huyện"
+                                            data={getAllDistricts(districtID)}
+                                            className={cx('dropdown-detail')}
+                                            onChangeSelect={(value, name) =>
+                                                handleChangeSelect(
+                                                    value,
+                                                    name,
+                                                    'district',
+                                                )
+                                            }
+                                            defaultValueProps={
+                                                dataRecruiterEdit.district
+                                            }
+                                        />
+                                    </div>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col sm={12} md={12} className={'mb-5'}>
+                                    <div className={cx('content-input')}>
+                                        <div className={cx('detail-name')}>
+                                            Địa chỉ làm việc
                                         </div>
-                                        <p className={cx('message')}>
-                                            <ErrorMessage name="location" />
-                                        </p>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col sm={12} md={12} className={'mb-5'}>
-                                        <div className={cx('content-input')}>
-                                            <div className={cx('detail-name')}>
-                                                Nhập mô tả công việc
-                                            </div>
-                                            <TextEditor
-                                                setValue={
-                                                    formikRef?.current
-                                                        ?.setFieldValue
-                                                }
-                                                fieldName={'jobDescription'}
-                                                isHidderTools={true}
-                                                defaultValueProps={description}
-                                            />
+                                        <Field
+                                            className={cx('input-text')}
+                                            name="location"
+                                            type="text"
+                                            placeholder="Ví dụ: Tầng 6, số 20 Ông Ích Khiêm, Hải Châu, Đà Nẵng"
+                                        />
+                                    </div>
+                                    <p className={cx('message')}>
+                                        <ErrorMessage name="location" />
+                                    </p>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col sm={12} md={12} className={'mb-5'}>
+                                    <div className={cx('content-input')}>
+                                        <div className={cx('detail-name')}>
+                                            Nhập mô tả công việc
                                         </div>
-                                        <p className={cx('message')}>
-                                            <ErrorMessage name="jobDescription" />
-                                        </p>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col sm={12} md={12} className={'mb-5'}>
-                                        <div className={cx('content-input')}>
-                                            <div className={cx('detail-name')}>
-                                                Yêu cầu ứng viên
-                                            </div>
-                                            <TextEditor
-                                                setValue={
-                                                    formikRef?.current
-                                                        ?.setFieldValue
-                                                }
-                                                fieldName={'jobRequire'}
-                                                isHidderTools={true}
-                                                defaultValueProps={description}
-                                            />
+                                        <TextEditor
+                                            setValue={
+                                                formikRef?.current
+                                                    ?.setFieldValue
+                                            }
+                                            fieldName={'jobDescription'}
+                                            isHidderTools={true}
+                                            defaultValueProps={description}
+                                        />
+                                    </div>
+                                    <p className={cx('message')}>
+                                        <ErrorMessage name="jobDescription" />
+                                    </p>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col sm={12} md={12} className={'mb-5'}>
+                                    <div className={cx('content-input')}>
+                                        <div className={cx('detail-name')}>
+                                            Yêu cầu ứng viên
                                         </div>
-                                        <p className={cx('message')}>
-                                            <ErrorMessage name="jobRequire" />
-                                        </p>
-                                    </Col>
-                                </Row>
-                                {/* Input job detail textarea */}
-                                <Row>
-                                    <Col sm={12} md={12} className={'mb-5'}>
-                                        <div className={cx('content-input')}>
-                                            <div className={cx('detail-name')}>
-                                                Quyền lợi
-                                            </div>
-                                            <TextEditor
-                                                setValue={
-                                                    formikRef?.current
-                                                        ?.setFieldValue
-                                                }
-                                                fieldName={'welfare'}
-                                                isHidderTools={true}
-                                                defaultValueProps={description}
-                                            />
+                                        <TextEditor
+                                            setValue={
+                                                formikRef?.current
+                                                    ?.setFieldValue
+                                            }
+                                            fieldName={'jobRequire'}
+                                            isHidderTools={true}
+                                            defaultValueProps={description}
+                                        />
+                                    </div>
+                                    <p className={cx('message')}>
+                                        <ErrorMessage name="jobRequire" />
+                                    </p>
+                                </Col>
+                            </Row>
+                            {/* Input job detail textarea */}
+                            <Row>
+                                <Col sm={12} md={12} className={'mb-5'}>
+                                    <div className={cx('content-input')}>
+                                        <div className={cx('detail-name')}>
+                                            Quyền lợi
                                         </div>
-                                        <p className={cx('message')}>
-                                            <ErrorMessage name="welfare" />
-                                        </p>
-                                    </Col>
-                                </Row>
-                                {/* <div className={cx('content-input')}>
+                                        <TextEditor
+                                            setValue={
+                                                formikRef?.current
+                                                    ?.setFieldValue
+                                            }
+                                            fieldName={'welfare'}
+                                            isHidderTools={true}
+                                            defaultValueProps={description}
+                                        />
+                                    </div>
+                                    <p className={cx('message')}>
+                                        <ErrorMessage name="welfare" />
+                                    </p>
+                                </Col>
+                            </Row>
+                            {/* <div className={cx('content-input')}>
                                     <div className={cx('detail-name')}>
                                         Hình thức đăng tin
                                     </div>
@@ -957,41 +927,40 @@ function RecruiterPostEdit() {
                                         </div>
                                     </div>
                                 </div> */}
+                        </div>
+                        <div className={cx('content-rule')}>
+                            <div className={cx('checkbox-rule')}>
+                                <input
+                                    type="checkbox"
+                                    checked={checkboxForm.rule}
+                                    onChange={handleChangeCheckboxRule}
+                                />
                             </div>
-                            <div className={cx('content-rule')}>
-                                <div className={cx('checkbox-rule')}>
-                                    <input
-                                        type="checkbox"
-                                        checked={checkboxForm.rule}
-                                        onChange={handleChangeCheckboxRule}
-                                    />
-                                </div>
-                                <div className={cx('rule')}>
-                                    Tôi cam kết thông tin mô tả về việc làm là
-                                    thật và tuân thủ các quy tắc của JobCare.vn
-                                </div>
-                            </div>
-                            <div className={cx('submit-btn')}>
-                                <div className={cx('btn-right')}>
-                                    {/* <Button saveInput>Lưu nháp</Button> */}
-                                    {/* <ModalDeleted></ModalDeleted> */}
-                                    <Button
-                                        type="submit"
-                                        primary
-                                        onClick={() => {
-                                            handleSubmit();
-                                        }}
-                                    >
-                                        Sửa tin
-                                    </Button>
-                                </div>
+                            <div className={cx('rule')}>
+                                Tôi cam kết thông tin mô tả về việc làm là thật
+                                và tuân thủ các quy tắc của JobCare.vn
                             </div>
                         </div>
-                    </Form>
-                </Formik>
-            </Container>
-        </div>
-    );
+                        <div className={cx('submit-btn')}>
+                            <div className={cx('btn-right')}>
+                                {/* <Button saveInput>Lưu nháp</Button> */}
+                                {/* <ModalDeleted></ModalDeleted> */}
+                                <Button
+                                    type="submit"
+                                    primary
+                                    onClick={() => {
+                                        handleSubmit();
+                                    }}
+                                >
+                                    Sửa tin
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                </Form>
+            </Formik>
+        </Container>
+    </div>;
 }
 
 export default RecruiterPostEdit;
