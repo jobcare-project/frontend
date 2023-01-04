@@ -109,15 +109,14 @@
             margin: 0;
             position: relative;
             top: 10px;
-            left: 40px;
+            // left: 40px;
             &:hover {
                 color: var(--primary-color);
             }
         }
         .subdesc-text-save {
             display: flex;
-            position: relative;
-            right: 0 !important;
+            justify-content: flex-end !important;
             cursor: pointer;
             &:hover {
                 color: var(--primary-color);

@@ -39,6 +39,8 @@ export default function Card({
     const dispatch = useDispatch();
     const handleDeletedPost = (id) => {
         dispatch(fetchDeletedJobDesc(data.id));
+        toast.success('Xoá bài thành công', toastifyOptions);
+        dispatch(recruiterSlice.actions.restMessage(false));
     };
     const toastifyOptions = {
         position: 'top-right',
@@ -50,16 +52,6 @@ export default function Card({
         progress: undefined,
         theme: 'light',
     };
-    // const message = useSelector(messageRecruiterSelector);
-    // const navigate = useNavigate();
-
-    // useEffect(() => {
-    //     if (message) {
-    //         toast.success('Xoá bài thành công', toastifyOptions);
-    //         dispatch(recruiterSlice.actions.restMessage(false));
-    //         console.log('mess', message);
-    //     }
-    // }, [message]);
 
     useEffect(() => {
         window.scrollTo(0, 0);
