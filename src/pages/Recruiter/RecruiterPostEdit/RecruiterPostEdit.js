@@ -5,7 +5,6 @@ import { useState } from 'react';
 import {
     getAllProvinces,
     getAllDistricts,
-    fillMultipleStepInfo,
 } from '~/helper/geomap';
 import {
     Formik,
@@ -26,8 +25,8 @@ import Container from 'react-bootstrap/Container';
 import Input from '~/components/Input/Input/Input';
 import DropDown from '~/components/Input/DropDown/DropDown';
 import { useMemo } from 'react';
-import { fetchEditJobDesc, fetchPostJobDesc } from '~/pages/Home/homeSlice';
-import { Navigate, useNavigate, useParams, useHistory } from 'react-router-dom';
+import { fetchEditJobDesc } from '~/pages/Home/homeSlice';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { getDetailPost } from '~/services/jobService';
 import TextEditor from '~/pages/Blogs/EditorContent/EditorContent';
 import Button from '~/components/Button';
