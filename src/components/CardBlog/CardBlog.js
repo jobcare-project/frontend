@@ -8,13 +8,7 @@ import config from '~/config';
 const cx = classNames.bind(styles);
 function CardBlog({
     data,
-    to,
-    deleted,
-    repair,
-    saved,
-    titleDeleted = '',
     titlRepair = '',
-    titleSaved = '',
     handleDelete,
     iconRepair,
     iconDelete,

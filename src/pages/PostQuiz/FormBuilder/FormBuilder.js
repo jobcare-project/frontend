@@ -34,6 +34,7 @@ const initialState = {
     title: '',
     description: '',
     category: '',
+    likes: []
 };
 
 //Category of quiz
@@ -276,8 +277,6 @@ function FormBuilder() {
             />
         );
     };
-
-    console.log(questions);
 
     //Submit to firebase
     const handleSubmit = async () => {

@@ -284,7 +284,6 @@ function QuizDetail() {
                                     >
                                         <div className={cx('text-submit')}>
                                             Submit
-                                            <ion-icon name="paper-plane-outline"></ion-icon>
                                         </div>
                                     </Button>
                                 </div>

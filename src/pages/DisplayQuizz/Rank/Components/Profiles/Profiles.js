@@ -19,6 +19,7 @@ function Item(data) {
                         <th>Top</th>
                         <th>Email</th>
                         <th>Ngày nộp bài</th>
+                        <th>CV</th>
                         <th>Tên bài Quiz</th>
                         <th>Điểm</th>
                     </tr>
@@ -29,6 +30,7 @@ function Item(data) {
                             <td>{index + 1}</td>
                             <td>{value.userData.email}</td>
                             <td>{value.timestamp.toDate().toDateString()}</td>
+                            <td>CV</td>
                             <td>{value.titleQuiz}</td>
                             <td>{value.score}</td>
                         </tr>

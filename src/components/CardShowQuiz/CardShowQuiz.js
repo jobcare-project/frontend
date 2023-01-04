@@ -6,10 +6,8 @@ import styles from './CardShowQuiz.module.scss';
 const cx = classNames.bind(styles);
 
 export default function CardShowQuiz({
-    to,
     quiz,
-    repair,
-    saved,
+    handleSaved,
     titlRepair = '',
     titlDelete = '',
     titlRank = '',
@@ -17,7 +15,6 @@ export default function CardShowQuiz({
     iconDelete,
     iconRank,
     titleSaved = '',
-
     handleDelete,
 }) {
     console.log(quiz);
@@ -115,10 +112,11 @@ export default function CardShowQuiz({
                     </Link>
 
                     <div className={cx('subdesc-text-save')}>
-                        {saved && (
-                            <span className={cx('subdesc-text')}>{saved}</span>
-                        )}
-                        <span>{titleSaved}</span>
+                        <span onClick={() => handleSaved(quiz.id)}>
+                            {' '}
+                            {/* <ion-icon name="trash-outline"></ion-icon>  */}
+                            {titleSaved}
+                        </span>
                     </div>
                 </div>
             </div>

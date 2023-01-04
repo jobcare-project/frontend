@@ -81,6 +81,7 @@ export const privateRoutes = [
     { path: config.routes.manageBlog, component: PostBlog },
     { path: config.routes.blogcontent, component: ContentBlog },
     { path: config.routes.blogdetail, component: BlogDetail },
+    { path: config.routes.blogdetail2, component: BlogDetail },
     {
         path: config.routes.saverecruitment,
         component: SavedRecruitment,
@@ -150,6 +151,8 @@ export const recruiterPrivateRoutes = [
         component: BlogContentRecruiter,
         layout: SidebarLayout,
     },
+    { path: config.routes.displayquizz2, component: DisplayQuizz },
+
     // {
     //     path: config.routes.usersManagement,
     //     component: UsersManage,
