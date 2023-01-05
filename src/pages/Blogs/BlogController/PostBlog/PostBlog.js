@@ -17,7 +17,6 @@ import { accountsDataSelector } from '~/redux/Selectors/authSelector';
 import TextEditor from '../../EditorContent/EditorContent';
 import styles from './PostBlog.module.scss';
 import Button from '~/components/Button';
-import config from '~/config';
 
 const initialState = {
     title: '',

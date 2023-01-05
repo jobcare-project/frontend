@@ -10,17 +10,15 @@ import {
     getDoc,
     serverTimestamp,
     doc,
-    updateDoc,
     addDoc,
 } from 'firebase/firestore';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { useNavigate, useParams } from 'react-router-dom';
+import {  useParams } from 'react-router-dom';
 import { accountsDataSelector } from '~/redux/Selectors/authSelector';
 import { db } from '~/config/Firebase/firebase';
-
 import CardShowQuiz from '~/components/CardShowQuiz/CardShowQuiz';
-import Loading from '~/components/Loading/Loading';
+
 
 const cx = classNames.bind(styles);
 
@@ -44,6 +42,7 @@ function ShowQuiz() {
                 }),
             );
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     useEffect(() => {
         id && getQuizDetail();
@@ -71,32 +70,18 @@ function ShowQuiz() {
             }
         }
     };
-    // const handleDelete = async (id) => {
-    //     if (window.confirm('Bạn có muốn xóa bài quiz ?')) {
-    //         try {
-    //             setLoading(true);
-    //             await deleteDoc(doc(db, 'quiz', id));
-    //             toast.success('Bài quiz đã được xóa thành công');
-    //             setLoading(false);
-    //         } catch (err) {
-    //             console.log(err);
-    //         }
-    //     }
-    // };
     return (
         <div className={cx('wrapper')}>
             <Container className={cx('container')}>
+                <h2 className={cx('heading')}>
+                    Các bài quiz được truy cập nhiều nhất
+                </h2>
                 <Row>
                     {quiz.slice(0, 8).map((quiz, index) => {
                         return (
                             <Col key={index} lg={3} md={4} sm={6}>
                                 <CardShowQuiz
                                     quiz={quiz}
-                                    // handleDelete={handleDelete}
-                                    // iconDelete={quiz}
-                                    // iconRepair={quiz}
-                                    // titlRepair="Sửa"
-                                    // titlDelete="Xóa"
                                     titleSaved="Lưu"
                                     handleSaved={handleSave}
                                 ></CardShowQuiz>

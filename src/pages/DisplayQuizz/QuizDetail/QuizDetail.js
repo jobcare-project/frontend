@@ -378,7 +378,7 @@ function QuizDetail() {
                                                 Làm lại
                                             </div>
                                         </Button>{' '}
-                                        <div >
+                                        <div>
                                             <Button
                                                 primary
                                                 onClick={() => setShow(true)}
@@ -398,9 +398,7 @@ function QuizDetail() {
                                                     </Modal.Title>
                                                 </Modal.Header>
                                                 <Modal.Body>
-                                                    <p>
-                                                        <Rank />
-                                                    </p>
+                                                    <Rank />
                                                 </Modal.Body>
                                             </Modal>
                                         </div>

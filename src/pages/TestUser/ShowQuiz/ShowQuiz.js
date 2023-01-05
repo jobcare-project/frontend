@@ -10,7 +10,6 @@ import {
     getDoc,
     serverTimestamp,
     doc,
-    updateDoc,
     addDoc,
 } from 'firebase/firestore';
 import { useSelector } from 'react-redux';

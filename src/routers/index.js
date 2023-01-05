@@ -14,9 +14,6 @@ import SidebarLayout from '~/Layouts/SidebarLayout';
 import CV from '~/pages/CV';
 import NonFooterLayout from '~/Layouts/NonFooterLayout';
 import Profile from '~/pages/Profile';
-import ManageQuiz from '~/pages/ManageQuiz';
-import IT from '~/pages/IT';
-import InformationTechnology from '~/pages/InformationTechnology/InformationTechnology';
 import UsersManage from '~/pages/Admin/UsersManage';
 import Recruiter from '~/pages/Recruiter/RecruiterNews/RecruiterNews';
 import ListPostOfRecruiter from '~/pages/Recruiter/RecruiterSaved/ListRecruitmentPost';
@@ -29,7 +26,6 @@ import SavedRecruitment from '~/pages/SavePost/SavedRecruitment/SavedRecruitment
 import SavedBlog from '~/pages/SavePost/SavedBlog/SavedBlog';
 import ShowQuizRecuiter from '~/pages/TestUser/ShowQuizRecuiter/ShowQuizRecuiter';
 import Rank from '~/pages/DisplayQuizz/Rank';
-import SavedQuizz from '~/pages/SavePost/SavedQuiz/SavedQuiz';
 import Dashboard from '~/pages/Admin/Dashboard';
 import RecruiterPostManage from '~/pages/Recruiter/Post';
 import RecruiterManagePost from '~/pages/Recruiter/ManagePost';
@@ -47,12 +43,6 @@ export const publicRoutes = [
     { path: config.routes.recruitmentpage, component: RecruitmentPage },
     { path: config.routes.recruiterpost, component: RecruiterPost },
     { path: config.routes.cv, component: CV, layout: NonFooterLayout },
-    { path: config.routes.itech, component: IT },
-    { path: config.routes.managequiz, component: ManageQuiz },
-    {
-        path: config.routes.informationtechnology,
-        component: InformationTechnology,
-    },
 
     { path: config.routes.recruitmentpage, component: RecruitmentPage },
     { path: config.routes.cv, component: CV, layout: NonFooterLayout },
