@@ -18,7 +18,6 @@ function RecruitmentDetail() {
                 <Search leftIcon></Search>
                 <div className={cx('container')}>
                     <DetailInfor></DetailInfor>
-                    {/* <RelatedJob></RelatedJob> */}
                 </div>
             </div>
         </>
