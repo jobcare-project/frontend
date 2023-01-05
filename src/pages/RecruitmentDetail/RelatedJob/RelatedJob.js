@@ -3,13 +3,11 @@ import styles from './RelatedJob.module.scss';
 import classNames from 'classnames/bind';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Card from '~/components/Card/Card';
-import CardShowQuiz from '~/components/CardShowQuiz/CardShowQuiz';
-import { collection, onSnapshot, doc, deleteDoc } from 'firebase/firestore';
-import { db } from '~/config/Firebase/firebase';
+
 import { Container } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { jobListSelector } from '~/redux/Selectors/jobSelector';
@@ -21,24 +19,6 @@ export default function RelatedJob() {
     const dispatch = useDispatch();
     const jobListData = useSelector(jobListSelector);
     ////State quiz from firebase
-    const [quiz, setQuiz] = useState([]);
-    //State when get API from firebase
-    //State when get API from firebase
-    const quizCollectionRef = collection(db, 'quiz');
-    //Firebase snapShot
-    useEffect(() => {
-        onSnapshot(quizCollectionRef, (snapshot) => {
-            setQuiz(
-                snapshot.docs.map((doc) => {
-                    return {
-                        id: doc.id,
-                        viewing: false,
-                        ...doc.data(),
-                    };
-                }),
-            );
-        });
-    }, []);
 
     useEffect(() => {
         dispatch(fetchListJob());
@@ -81,16 +61,6 @@ export default function RelatedJob() {
                 ) : (
                     ''
                 )}
-            </div>
-            <div className={cx('wrapper')}>
-                <div className={cx('related-job')}>
-                    <div className={cx('related-title')}>Bài quiz nổi bật</div>
-                    <div className={cx('related-more')}>
-                        <Link to={config.routes.testuser}>
-                            <span>Hiển thị thêm</span>
-                        </Link>
-                    </div>
-                </div>
             </div>
         </Container>
     );

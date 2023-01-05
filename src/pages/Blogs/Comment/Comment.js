@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import styles from './Comment.module.scss';
 import classNames from 'classnames/bind';
+import styles from './Comment.module.scss';
 import Button from '~/components/Button';
 import images from '~/assets/images';
 import Input from '~/components/Input/Input/Input';

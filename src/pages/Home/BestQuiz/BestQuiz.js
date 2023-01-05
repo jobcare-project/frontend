@@ -19,7 +19,6 @@ import { useParams } from 'react-router-dom';
 import styles from './BestQuiz.module.scss';
 import { accountsDataSelector } from '~/redux/Selectors/authSelector';
 import { db } from '~/config/Firebase/firebase';
-
 import CardShowQuiz from '~/components/CardShowQuiz/CardShowQuiz';
 
 const cx = classNames.bind(styles);
@@ -43,6 +42,7 @@ function ShowQuiz() {
                 }),
             );
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     useEffect(() => {
         id && getQuizDetail();
@@ -73,7 +73,9 @@ function ShowQuiz() {
     return (
         <div className={cx('wrapper')}>
             <Container className={cx('container')}>
-                <h3 className={cx('heading-job')}>Các bài Quiz nổi bật</h3>
+                <h2 className={cx('heading')}>
+                    Các bài quiz được truy cập nhiều nhất
+                </h2>
                 <Row>
                     {quiz.slice(0, 8).map((quiz, index) => {
                         return (

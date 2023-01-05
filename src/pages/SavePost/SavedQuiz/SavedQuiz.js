@@ -13,8 +13,6 @@ import {
     where,
 } from 'firebase/firestore';
 import { toast } from 'react-toastify';
-import { useSelector } from 'react-redux';
-import { accountsDataSelector } from '~/redux/Selectors/authSelector';
 
 import { db } from '~/config/Firebase/firebase';
 
@@ -32,7 +30,6 @@ function SavedQuiz() {
     //
     const [filtered, setFiltered] = useState([]);
 
-    const userData = useSelector(accountsDataSelector);
     //
     const [activeGenre, setActiveGenre] = useState(0);
     //State when get API from firebase
@@ -63,6 +60,7 @@ function SavedQuiz() {
             );
             setLoading(false);
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     console.log(quiz);
     const handleDelete = async (id) => {

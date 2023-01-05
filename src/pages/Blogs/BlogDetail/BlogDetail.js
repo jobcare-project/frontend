@@ -10,16 +10,19 @@ import {
 } from 'firebase/firestore';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import styles from './BlogDetail.module.scss';
 import classNames from 'classnames/bind';
 import { Container } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import styles from './BlogDetail.module.scss';
+
 import { db } from '~/config/Firebase/firebase';
 import Comment from '../Comment/Comment';
 import UserComments from '../Comment/UserComments';
-import { useSelector } from 'react-redux';
+
 import { accountsDataSelector } from '~/redux/Selectors/authSelector';
 import Loading from '~/components/Loading/Loading';
-import { toast } from 'react-toastify';
+
 const cx = classNames.bind(styles);
 
 function BlogDetail() {

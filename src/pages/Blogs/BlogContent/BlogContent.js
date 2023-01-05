@@ -1,15 +1,13 @@
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import styles from './BlogContent.module.scss';
 import classNames from 'classnames/bind';
+import { useState, useEffect } from 'react';
+import { collection, onSnapshot } from 'firebase/firestore';
+import styles from './BlogContent.module.scss';
 import CardBlog from '~/components/CardBlog/CardBlog';
 import Loading from '~/components/Loading/Loading';
-import { toast } from 'react-toastify';
-
 import { db } from '~/config/Firebase/firebase';
-import { useState, useEffect } from 'react';
 
-import { collection, deleteDoc, doc, onSnapshot } from 'firebase/firestore';
 const cx = classNames.bind(styles);
 function ContentBlog({ data, to }) {
     const [loading, setLoading] = useState(true);
@@ -29,18 +27,9 @@ function ContentBlog({ data, to }) {
             );
             setLoading(false);
         });
-    }, [blogs, blogCollectionRef]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-    const handleDelete = async (id) => {
-        if (window.confirm('Are you sure wanted to delete that blog ?')) {
-            try {
-                await deleteDoc(doc(db, 'blogs', id));
-                toast.success('Blog deleted successfully');
-            } catch (err) {
-                console.log(err);
-            }
-        }
-    };
     return loading ? (
         <Loading />
     ) : (
@@ -65,8 +54,6 @@ function ContentBlog({ data, to }) {
                                             <Col>
                                                 <CardBlog
                                                     data={blogs}
-                                                    // handleDelete={handleDelete}
-                                                    // titlRepair="Sửa"
                                                 ></CardBlog>
                                             </Col>
                                         );

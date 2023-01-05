@@ -3,14 +3,13 @@ import classNames from 'classnames/bind';
 import { collection, query, getDocs } from 'firebase/firestore';
 import { useParams } from 'react-router-dom';
 import { db } from '~/config/Firebase/firebase';
-import Button from '~/components/Button';
 import Profiles from '../Profiles';
 import styles from './Board.module.scss';
 
 const cx = classNames.bind(styles);
 
 export default function Board() {
-    const [period, setPeriod] = useState(0);
+    const [period, ] = useState(0);
     const [workData, setWorkData] = useState([]);
     const { id } = useParams();
     //get id from firebase from useParams
@@ -38,7 +37,6 @@ export default function Board() {
     getData();
     return (
         <div className={cx('wrapper')}>
-            <div className={cx('leaderboard')}>Leaderboard</div>
             <Profiles Leaderboard={between(workData, period)}></Profiles>
         </div>
     );

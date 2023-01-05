@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import { accountsDataSelector } from '~/redux/Selectors/authSelector';
 
 import { db } from '~/config/Firebase/firebase';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 import {
     collection,
@@ -43,6 +43,7 @@ function ContentBlog({ data, to }) {
             );
             setLoading(false);
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleDelete = async (id) => {

@@ -1,10 +1,7 @@
 import React from 'react';
-import classNames from 'classnames/bind';
 import Table from 'react-bootstrap/Table';
-import styles from './Profiles.module.scss';
 import { Container } from 'react-bootstrap';
 
-const cx = classNames.bind(styles);
 
 export default function profiles({ Leaderboard }) {
     return <div id="profile">{Item(Leaderboard)}</div>;
