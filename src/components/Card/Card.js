@@ -53,6 +53,10 @@ export default function Card({
         window.scrollTo(0, 0);
     }, []);
 
+    const handleSaveRecruitment = () => {
+        console.log('handleSaveRecruitment');
+    };
+
     return (
         <div className={cx('wrapper')}>
             <Link
@@ -147,10 +151,15 @@ export default function Card({
                     </>
                 )}
                 <div className={cx('subdesc-text-save')}>
-                    {saved && (
-                        <span className={cx('subdesc-text')}>{saved}</span>
-                    )}
-                    <span>{titleSaved}</span>
+                    <button
+                        className={cx('save-btn')}
+                        onClick={handleSaveRecruitment}
+                    >
+                        {saved && (
+                            <span className={cx('subdesc-text')}>{saved}</span>
+                        )}
+                        <span>{titleSaved}</span>
+                    </button>
                 </div>
             </div>
         </div>

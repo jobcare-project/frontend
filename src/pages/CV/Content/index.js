@@ -1,5 +1,4 @@
 import classNames from 'classnames/bind';
-import { useEffect } from 'react';
 import { forwardRef } from 'react';
 import { useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
