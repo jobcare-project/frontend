@@ -13,7 +13,8 @@ import {
     where,
 } from 'firebase/firestore';
 import { toast } from 'react-toastify';
-
+import { useSelector } from 'react-redux';
+import { accountsDataSelector } from '~/redux/Selectors/authSelector';
 import { db } from '~/config/Firebase/firebase';
 
 import CardShowQuiz from '~/components/CardShowQuiz/CardShowQuiz';
@@ -29,13 +30,15 @@ function SavedQuiz() {
     const [loading, setLoading] = useState(true);
     //
     const [filtered, setFiltered] = useState([]);
+    //
+    const userData = useSelector(accountsDataSelector);
 
     //
     const [activeGenre, setActiveGenre] = useState(0);
     //State when get API from firebase
     const quizCollectionRef = query(
-        collection(db, 'savepostquiz'),
-        where('item', '==', quiz.id),
+        collection(db, 'quiz'),
+        where('likes.userData', '==', userData.id),
     );
     //Firebase snapShot
     useEffect(() => {
@@ -60,25 +63,13 @@ function SavedQuiz() {
             );
             setLoading(false);
         });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     console.log(quiz);
-    const handleDelete = async (id) => {
-        if (window.confirm('Bạn có muốn xóa bài quiz ?')) {
-            try {
-                setLoading(true);
-                await deleteDoc(doc(db, 'savepostquiz', id));
-                toast.success('Bài quiz đã được xóa thành công');
-                setLoading(false);
-            } catch (err) {
-                console.log(err);
-            }
-        }
-    };
     return loading ? (
         <Loading />
     ) : (
         <div className={cx('wrapper')}>
+
             <Container className={cx('container')}>
                 <h2 className={cx('heading')}>
                     <Filter
@@ -94,12 +85,6 @@ function SavedQuiz() {
                             <Col key={index} lg={3} md={4} sm={6}>
                                 <CardShowQuiz
                                     quiz={quiz}
-                                    handleDelete={handleDelete}
-                                    iconDelete={quiz}
-                                    iconRepair={quiz}
-                                    iconRank={quiz}
-                                    titlRepair="Sửa"
-                                    titlDelete="Xóa"
                                     titlRank="Rank"
                                 ></CardShowQuiz>
                             </Col>

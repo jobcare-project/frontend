@@ -6,6 +6,8 @@ import {
     query,
     getDocs,
     setDoc,
+    Timestamp,
+    updateDoc
 } from 'firebase/firestore';
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
@@ -23,6 +25,7 @@ import Loading from '~/components/Loading/Loading';
 
 import { db } from '~/config/Firebase/firebase';
 import Rank from '../Rank';
+import { toast } from 'react-toastify';
 
 const cx = classNames.bind(styles);
 
@@ -66,6 +69,9 @@ function QuizDetail() {
     const [show, setShow] = useState(false);
     //State when get API from firebase
     const [loading, setLoading] = useState(true);
+    //
+    const [relatedQuiz, setRelatedQuiz] = useState([]);
+    const [likes, setLikes] = useState([]);
 
     const userData = useSelector(accountsDataSelector);
     const titleQuiz = quiz?.title;
@@ -78,11 +84,36 @@ function QuizDetail() {
 
     //Function detail quiz
     const getQuizDetail = async () => {
+        const quizRef = collection(db, 'quiz');
         const docRef = doc(db, 'quiz', id);
         const quizDetail = await getDoc(docRef);
 
         setQuiz(quizDetail.data());
+        const relatedQuizQuery = query(quizRef);
+        const relatedQuizSnapshot = await getDocs(relatedQuizQuery);
+        relatedQuizSnapshot.forEach((doc) => {
+            relatedQuiz.push({ id: doc.id, ...doc.data() });
+        });
+        setRelatedQuiz(relatedQuiz);
+        setLikes(
+            quizDetail.data().likes ? quizDetail.data().likes : [],
+        );
         setLoading(false);
+    };
+
+    //
+    const handleSave = async () => {
+        likes.push({
+            createdAt: Timestamp.fromDate(new Date()),
+            userData: userData.id,
+        });
+        toast.success('Comment posted successfully');
+        await updateDoc(doc(db, 'quiz', id), {
+            ...quiz,
+            likes,
+            timestamp: serverTimestamp(),
+        });
+        setLikes(likes);
     };
 
     //Function leve page
@@ -209,6 +240,7 @@ function QuizDetail() {
                     <div className={cx('quiz-heading')}>
                         <div className={cx('title')}>{quiz?.title}</div>
                         <div className={cx('desc')}>{quiz?.description}</div>
+                        <button onClick={handleSave} >Save</button>
                     </div>
                 </div>
 
