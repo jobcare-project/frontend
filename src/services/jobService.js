@@ -31,3 +31,7 @@ export const getDetailPost = (id) => {
 export const applyJobsApi = (data) => {
     return axiosClient.post(config.jobsApiUrl.applyJobs, data);
 };
+
+export const savedRecruitmentApi = (jobId) => {
+    return axiosClient.post(config.jobsApiUrl.savedRecruitment, jobId);
+};

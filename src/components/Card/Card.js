@@ -6,14 +6,12 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import images from '~/assets/images';
-import config from '~/config';
-import { fetchListJob } from '~/pages/Home/homeSlice';
 import {
     fetchDeletedJobDesc,
-    fetchRecruiterDetail,
     recruiterSlice,
 } from '~/pages/Recruiter/recruiterSlice';
 import { accountsDataSelector } from '~/redux/Selectors/authSelector';
+import { savedRecruitmentApi } from '~/services/jobService';
 import ModalPost from '../Modal/ModalDeleted/ModalDeleted';
 
 import styles from './Card.module.scss';
@@ -36,7 +34,6 @@ export default function Card({
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const dispatch = useDispatch();
-    console.log({ userData });
     const handleDeletedPost = (id) => {
         dispatch(fetchDeletedJobDesc(data.id));
         toast.success('Xoá bài thành công', toastifyOptions);
@@ -57,8 +54,13 @@ export default function Card({
         window.scrollTo(0, 0);
     }, []);
 
-    const handleSaveRecruitment = () => {
-        console.log('handleSaveRecruitment');
+    const handleSaveRecruitment = async () => {
+        try {
+            const newSaved = await savedRecruitmentApi({ jobId: data.id });
+            console.log('newSaved', newSaved);
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (

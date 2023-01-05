@@ -61,12 +61,12 @@ const sidebarMenu = [
         role: ['recruiter'],
         icon: <ion-icon name="newspaper"></ion-icon>,
     },
-    {
-        title: 'Quản lý blog',
-        to: '/dashboard/blog/listblog',
-        role: ['recruiter'],
-        icon: <ion-icon name="library"></ion-icon>,
-    },
+    // {
+    //     title: 'Quản lý blog',
+    //     to: '/dashboard/blog/listblog',
+    //     role: ['recruiter'],
+    //     icon: <ion-icon name="library"></ion-icon>,
+    // },
     {
         title: 'Tuyển dụng',
         to: config.routes.saverecruitment,

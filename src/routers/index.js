@@ -142,12 +142,6 @@ export const recruiterPrivateRoutes = [
         layout: SidebarLayout,
     },
     { path: config.routes.displayquizz2, component: DisplayQuizz },
-
-    // {
-    //     path: config.routes.usersManagement,
-    //     component: UsersManage,
-    //     layout: SidebarLayout,
-    // },
 ];
 
 export const adminPrivateRoutes = [

@@ -40,13 +40,9 @@ const PaginationStyled = styled.div`
     }
 `;
 const PaginationCOM = ({ items, setjobsItem }) => {
-    const [startPage, setStartPage] = useState(0);
-    const [endPage, setEndPage] = useState(5);
     const [activePage, setActivePage] = useState(1);
 
     const handlePageChange = (pageNumber) => {
-        let _pageBefore = 1;
-        console.log('_pageBefore', _pageBefore);
         setActivePage(pageNumber);
         let start;
         let end;
@@ -57,8 +53,6 @@ const PaginationCOM = ({ items, setjobsItem }) => {
             start = pageNumber * _LIMIT_PAGE - _LIMIT_PAGE;
             end = pageNumber * _LIMIT_PAGE;
         }
-        setStartPage(start);
-        setEndPage(end);
         const jobs = items.slice(start, end);
         setjobsItem(jobs);
     };

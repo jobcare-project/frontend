@@ -73,7 +73,7 @@ function ShowQuiz() {
     return (
         <div className={cx('wrapper')}>
             <Container className={cx('container')}>
-                <h2 className={cx('heading')}>
+                <h2 className={cx('heading-job')}>
                     Các bài quiz được truy cập nhiều nhất
                 </h2>
                 <Row>

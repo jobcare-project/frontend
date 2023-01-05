@@ -56,7 +56,16 @@ export default function DetailInfor({ data }) {
                             </div>
                         </div>
                         <div className={cx('box-logo')}>
-                            <img src={images.CV} alt="" />
+                            <img
+                                src={
+                                    jobDetailData?.recruiter_jobs?.imageUrl
+                                        ? jobDetailData?.recruiter_jobs
+                                              ?.imageUrl
+                                        : images.avatarDefault
+                                }
+                                alt={jobDetailData?.recruiter_jobs?.fullname}
+                            />
+                            {/* <img src={images.CV} alt="" /> */}
                         </div>
                     </div>
                     <div className={cx('content-detail')}>

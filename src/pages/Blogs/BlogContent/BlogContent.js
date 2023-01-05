@@ -7,6 +7,8 @@ import styles from './BlogContent.module.scss';
 import CardBlog from '~/components/CardBlog/CardBlog';
 import Loading from '~/components/Loading/Loading';
 import { db } from '~/config/Firebase/firebase';
+import Button from '~/components/Button';
+import config from '~/config';
 
 const cx = classNames.bind(styles);
 function ContentBlog({ data, to }) {
@@ -38,13 +40,30 @@ function ContentBlog({ data, to }) {
                 {blogs.length ? (
                     <div className={cx('container-left')}>
                         <div className={cx('heading')}>
-                            <h2 className={cx('header-title')}>
-                                Bài viết nổi bật
-                            </h2>
-                            <p className={cx('sub-heading')}>
-                                Tổng hợp các bài viết chia sẻ về kinh nghiệm học
-                                tập, ôn tập, phỏng vấn liên quan về nghề nghiệp
-                            </p>
+                            <Row>
+                                <Col md={9}>
+                                    <h2 className={cx('header-title')}>
+                                        Bài viết nổi bật
+                                    </h2>
+                                    <p className={cx('sub-heading')}>
+                                        Tổng hợp các bài viết chia sẻ về kinh
+                                        nghiệm học tập, ôn tập, phỏng vấn liên
+                                        quan về nghề nghiệp
+                                    </p>
+                                </Col>
+                                <Col md={3}>
+                                    <Button
+                                        to={config.routes.postblog}
+                                        primary
+                                        rounded
+                                        leftIcon={
+                                            <ion-icon name="add-outline"></ion-icon>
+                                        }
+                                    >
+                                        Viết Blogs
+                                    </Button>
+                                </Col>
+                            </Row>
                         </div>
                         <div className={cx('content-topic')}>
                             <div className={cx('content-blog')}>

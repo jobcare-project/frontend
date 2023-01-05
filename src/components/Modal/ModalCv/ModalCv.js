@@ -28,7 +28,6 @@ function Modal({ setOpenModal, data }) {
         formData.append('file', file, 'file');
 
         const res = await cloudinaryUploadApi(formData);
-        console.log('cloudinaryUploadApi-res:::', res);
 
         if (res.image_url) {
             const dataApplyJobs = {

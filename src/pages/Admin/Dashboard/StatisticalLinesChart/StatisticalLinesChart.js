@@ -30,18 +30,12 @@ export const options = {
         legend: {
             position: 'top',
         },
-        // title: {
-        //     display: true,
-        //     text: 'Chart.js Line Chart',
-        // },
     },
 };
 
 function StatisticalLinesChart({ data }) {
-    console.log('data-line:', data);
-
     const dataChart = {
-        labels: data?.jobCount.map((item) => item.month),
+        labels: data?.jobCount.map((item) => `Ngày mùng ${item.day}`),
         datasets: [
             {
                 label: 'Thống kê tuyển dụng',

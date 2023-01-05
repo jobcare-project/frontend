@@ -45,13 +45,13 @@ export default function RuleBottom({ data }) {
                 <div className={cx('content-box')}>
                     <Row>
                         <Col>
-                            <div className={cx('number-use')}>{data}3000+</div>
+                            <div className={cx('number-use')}>{data}2600+</div>
                             <div className={cx('detail-name')}>
                                 Ứng viên đang bật tìm việc trung bình/thời điểm
                             </div>
                         </Col>
                         <Col>
-                            <div className={cx('number-use')}>{data}3000+</div>
+                            <div className={cx('number-use')}>{data}1305+</div>
                             <div className={cx('detail-name')}>
                                 Doanh nghiệp đang sử dụng
                             </div>
@@ -63,7 +63,7 @@ export default function RuleBottom({ data }) {
                             </div>
                         </Col>
                         <Col>
-                            <div className={cx('number-use')}>{data}3000+</div>
+                            <div className={cx('number-use')}>{data}1022+</div>
                             <div className={cx('detail-name')}>
                                 Lượt ứng viên truy cập hàng tháng
                             </div>

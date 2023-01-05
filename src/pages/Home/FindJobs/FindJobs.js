@@ -97,14 +97,32 @@ export default function FindJobs() {
                                                 </Col>
                                                 <Col lg={6}>
                                                     <DropDown
+                                                        title="Vị trí"
+                                                        data={jobCategories}
+                                                    />
+                                                </Col>
+                                                <Col lg={6}>
+                                                    <DropDown
                                                         title="Thành phố"
                                                         data={cityCategories}
                                                     />
                                                 </Col>
                                                 <Col lg={6}>
                                                     <DropDown
+                                                        title="Mức lương"
+                                                        data={jobCategories}
+                                                    />
+                                                </Col>
+                                                <Col lg={6}>
+                                                    <DropDown
                                                         title="Hình thức làm việc"
                                                         data={workFrom}
+                                                    />
+                                                </Col>
+                                                <Col lg={6}>
+                                                    <DropDown
+                                                        title="Cấp bậc"
+                                                        data={jobCategories}
                                                     />
                                                 </Col>
                                             </Row>

@@ -57,7 +57,7 @@ function UserOptions({ user }) {
                         className={cx('option-item-link')}
                         to={config.routes.createblog}
                     >
-                        <li className={cx('option-item')}>Viết blog</li>
+                        <li className={cx('option-item')}>Blogs</li>
                     </Link>
 
                     <Link

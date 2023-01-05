@@ -150,7 +150,6 @@ export const fetchUploadImage = createAsyncThunk(
     async (payload) => {
         try {
             const res = await uploadImageApi(payload);
-            console.log('res fetchUploadImage:', res);
             return res;
         } catch (error) {
             return isRejectedWithValue(error.response);

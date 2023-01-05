@@ -17,13 +17,12 @@ export default function CardShowQuiz({
     titleSaved = '',
     handleDelete,
 }) {
-    console.log(quiz);
     return (
         <>
             <div className={cx('wrapper')}>
                 <Link
                     className={cx('link')}
-                    to={{ pathname: `displayquizz/${quiz.id}` }}
+                    to={{ pathname: `/testuser/displayquizz/${quiz.id}` }}
                 >
                     <div className={cx('image-block')}>
                         <img
@@ -51,7 +50,6 @@ export default function CardShowQuiz({
                                 >
                                     <div className={cx('subdesc-text')}>
                                         <ion-icon name="timer-outline"></ion-icon>
-                                        Được đăng vào
                                         <span>
                                             {quiz.timestamp
                                                 .toDate()

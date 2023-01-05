@@ -6,7 +6,6 @@ import styles from './SearchResults.module.scss';
 const cx = classNames.bind(styles);
 
 function SearchResults({ data }) {
-    console.log('data:', data);
     return (
         <ul className={cx('wrapper')}>
             {data.map((item) => (

@@ -12,6 +12,7 @@ export const jobsApiUrl = {
     postJobDesc: '/api/job',
     deletedJobDesc: '/api/job',
     applyJobs: 'api/applicants',
+    savedRecruitment: '/api/saved-recruitment',
 };
 
 export const uploadApiUrl = {
