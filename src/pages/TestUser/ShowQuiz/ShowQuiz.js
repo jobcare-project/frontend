@@ -50,7 +50,6 @@ function ShowQuiz() {
             setLoading(false);
         });
     }, []);
-    console.log(quiz);
     const handleDelete = async (id) => {
         if (window.confirm('Bạn có muốn xóa bài quiz ?')) {
             try {

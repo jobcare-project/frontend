@@ -24,49 +24,59 @@ function ManageCandidates() {
 
     return (
         <div className={cx('wrapper')}>
-            <h2 className={cx('title')}>Ứng viên đang chờ</h2>
-            <Table striped bordered hover>
-                <thead>
-                    <tr>
-                        <th>STT</th>
-                        <th>Họ và tên</th>
-                        <th>Email</th>
-                        <th>CV</th>
-                        <th>Công việc ứng tuyển</th>
-                        <th>Thời gian</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {candidates.length
-                        ? candidates.map((candidate, index) => {
-                              return (
-                                  <tr key={candidate.id}>
-                                      <td>{index + 1}</td>
-                                      <td>
-                                          {candidate.user_applicants.fullname}
-                                      </td>
-                                      <td>{candidate.user_applicants.email}</td>
-                                      <td>
-                                          <a
-                                              href={candidate.imageUrl}
-                                              target="_blank"
-                                              rel="noopener noreferrer"
-                                          >
-                                              Xem CV
-                                          </a>
-                                      </td>
-                                      <td>{candidate.job_applicants.title}</td>
-                                      <td>{candidate.createdAt}</td>
-                                      <td>
-                                          <ion-icon name="trash-sharp"></ion-icon>
-                                      </td>
-                                  </tr>
-                              );
-                          })
-                        : null}
-                </tbody>
-            </Table>
+            {candidates.length ? (
+                <>
+                    <h2 className={cx('title')}>Ứng viên đang chờ</h2>
+                    <Table striped bordered hover>
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Họ và tên</th>
+                                <th>Email</th>
+                                <th>CV</th>
+                                <th>Công việc ứng tuyển</th>
+                                <th>Thời gian</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {candidates.map((candidate, index) => {
+                                return (
+                                    <tr key={candidate.id}>
+                                        <td>{index + 1}</td>
+                                        <td>
+                                            {candidate.user_applicants.fullname}
+                                        </td>
+                                        <td>
+                                            {candidate.user_applicants.email}
+                                        </td>
+                                        <td>
+                                            <a
+                                                href={candidate.imageUrl}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                Xem CV
+                                            </a>
+                                        </td>
+                                        <td>
+                                            {candidate.job_applicants.title}
+                                        </td>
+                                        <td>{candidate.createdAt}</td>
+                                        <td>
+                                            <ion-icon name="trash-sharp"></ion-icon>
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </Table>
+                </>
+            ) : (
+                <h2 className={cx('title')}>
+                    Hiện tại chưa có ứng viên nào ứng tuyển
+                </h2>
+            )}
         </div>
     );
 }

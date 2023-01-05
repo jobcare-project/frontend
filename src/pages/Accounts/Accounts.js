@@ -23,6 +23,8 @@ export default function Accounts() {
     if (isAuth) {
         if (roleUser === 'admin') {
             return <Navigate to={config.routes.admin} replace />;
+        } else if (roleUser === 'recruiter') {
+            return <Navigate to={config.routes.recruiter} replace />;
         }
         return <Navigate to={config.routes.home} replace />;
     }
