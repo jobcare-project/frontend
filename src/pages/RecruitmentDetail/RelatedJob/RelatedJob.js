@@ -91,18 +91,6 @@ export default function RelatedJob() {
                         </Link>
                     </div>
                 </div>
-
-                <div className={cx('wrapper')}>
-                    <Row>
-                        {quiz.slice(0, 16).map((quiz, index) => {
-                            return (
-                                <Col key={index} lg={3} md={4} sm={6}>
-                                    <CardShowQuiz quiz={quiz}></CardShowQuiz>
-                                </Col>
-                            );
-                        })}
-                    </Row>
-                </div>
             </div>
         </Container>
     );

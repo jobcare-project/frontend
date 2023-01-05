@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import styles from './SavedQuiz.module.scss';
+import styles from './ShowQuizRecuiter.module.scss';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Container } from 'react-bootstrap';
@@ -20,11 +20,11 @@ import { db } from '~/config/Firebase/firebase';
 
 import CardShowQuiz from '~/components/CardShowQuiz/CardShowQuiz';
 import Loading from '~/components/Loading/Loading';
-import Filter from '~/pages/TestUser/Filter';
+import Filter from '../Filter';
 
 const cx = classNames.bind(styles);
 
-function SavedQuiz() {
+function ShowQuizRecuiter() {
     ////State quiz from firebase
     const [quiz, setQuiz] = useState([]);
     //State when get API from firebase
@@ -37,8 +37,8 @@ function SavedQuiz() {
     const [activeGenre, setActiveGenre] = useState(0);
     //State when get API from firebase
     const quizCollectionRef = query(
-        collection(db, 'savepostquiz'),
-        where('item', '==', quiz.id),
+        collection(db, 'quiz'),
+        where('userData.id', '==', userData.id),
     );
     //Firebase snapShot
     useEffect(() => {
@@ -69,7 +69,7 @@ function SavedQuiz() {
         if (window.confirm('Bạn có muốn xóa bài quiz ?')) {
             try {
                 setLoading(true);
-                await deleteDoc(doc(db, 'savepostquiz', id));
+                await deleteDoc(doc(db, 'quiz', id));
                 toast.success('Bài quiz đã được xóa thành công');
                 setLoading(false);
             } catch (err) {
@@ -113,4 +113,4 @@ function SavedQuiz() {
     );
 }
 
-export default SavedQuiz;
+export default ShowQuizRecuiter;

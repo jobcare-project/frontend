@@ -22,10 +22,14 @@ import Recruiter from '~/pages/Recruiter/RecruiterNews/RecruiterNews';
 import ListPostOfRecruiter from '~/pages/Recruiter/RecruiterSaved/ListRecruitmentPost';
 import RecruiterPostEdit from '~/pages/Recruiter/RecruiterPostEdit/RecruiterPostEdit';
 import ContentBlog from '~/pages/Blogs/BlogContent/BlogContent';
+import BlogContentRecruiter from '~/pages/Blogs/BlogContentRecruiter';
 import BlogDetail from '~/pages/Blogs/BlogDetail/BlogDetail';
 import PostBlog from '~/pages/Blogs/BlogController/PostBlog/PostBlog';
 import SavedRecruitment from '~/pages/SavePost/SavedRecruitment/SavedRecruitment';
 import SavedBlog from '~/pages/SavePost/SavedBlog/SavedBlog';
+import ShowQuizRecuiter from '~/pages/TestUser/ShowQuizRecuiter/ShowQuizRecuiter';
+import Rank from '~/pages/DisplayQuizz/Rank';
+import SavedQuizz from '~/pages/SavePost/SavedQuiz/SavedQuiz';
 import Dashboard from '~/pages/Admin/Dashboard';
 import RecruiterPostManage from '~/pages/Recruiter/Post';
 import RecruiterManagePost from '~/pages/Recruiter/ManagePost';
@@ -39,7 +43,7 @@ export const publicRoutes = [
     { path: config.routes.accounts, component: Accounts, layout: null },
     { path: config.routes.blog, component: Blog },
     { path: config.routes.testuser, component: TestUser },
-    { path: config.routes.displayquizz, component: DisplayQuizz },
+
     { path: config.routes.recruitmentpage, component: RecruitmentPage },
     { path: config.routes.recruiterpost, component: RecruiterPost },
     { path: config.routes.cv, component: CV, layout: NonFooterLayout },
@@ -49,6 +53,7 @@ export const publicRoutes = [
         path: config.routes.informationtechnology,
         component: InformationTechnology,
     },
+
     { path: config.routes.recruitmentpage, component: RecruitmentPage },
     { path: config.routes.cv, component: CV, layout: NonFooterLayout },
     { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
@@ -57,6 +62,10 @@ export const publicRoutes = [
 export const privateRoutes = [
     { path: config.routes.recruitmentpage, component: RecruitmentPage },
     { path: config.routes.profile, component: Profile },
+    { path: config.routes.settings, component: Settings },
+    { path: config.routes.savepost, component: SavePost },
+    { path: config.routes.recruitmentdetail, component: RecruitmentDetail },
+    { path: config.routes.rank, component: Rank },
     {
         path: config.routes.settings,
         component: Settings,
@@ -72,6 +81,7 @@ export const privateRoutes = [
     { path: config.routes.manageBlog, component: PostBlog },
     { path: config.routes.blogcontent, component: ContentBlog },
     { path: config.routes.blogdetail, component: BlogDetail },
+    { path: config.routes.blogdetail2, component: BlogDetail },
     {
         path: config.routes.saverecruitment,
         component: SavedRecruitment,
@@ -131,6 +141,23 @@ export const recruiterPrivateRoutes = [
         component: ListPostOfRecruiter,
         layout: SidebarLayout,
     },
+    {
+        path: config.routes.showquizrecuiter,
+        component: ShowQuizRecuiter,
+        layout: SidebarLayout,
+    },
+    {
+        path: config.routes.blogcontentrecuiter,
+        component: BlogContentRecruiter,
+        layout: SidebarLayout,
+    },
+    { path: config.routes.displayquizz2, component: DisplayQuizz },
+
+    // {
+    //     path: config.routes.usersManagement,
+    //     component: UsersManage,
+    //     layout: SidebarLayout,
+    // },
 ];
 
 export const adminPrivateRoutes = [

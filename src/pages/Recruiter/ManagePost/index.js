@@ -25,7 +25,7 @@ function ManagePost() {
                         </Link>
                     </Col>
                     <Col md={6} className={'mb-5'}>
-                        <Link to={config.routes.recruitersaved}>
+                        <Link to={config.routes.showquizrecuiter}>
                             <div className={cx('control-block')}>
                                 <span className={cx('icon')}>
                                     <ion-icon name="save-outline"></ion-icon>

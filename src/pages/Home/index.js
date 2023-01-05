@@ -1,4 +1,5 @@
 import CardAds from '~/components/CardAds/CardAds';
+import BestQuiz from './BestQuiz';
 import BestRecruitment from './BestRecruitment/BestRecruitment';
 import FindJobs from './FindJobs/FindJobs';
 import RuleBottom from './RuleBottom/RuleBottom';
@@ -10,7 +11,7 @@ export default function Home() {
             <FindJobs />
             <CardAds />
             <BestRecruitment />
-            {/* <RelatedJob /> */}
+            <BestQuiz />
             <RuleBottom />
             <Signin />
         </>

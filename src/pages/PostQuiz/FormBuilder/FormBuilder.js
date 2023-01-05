@@ -14,6 +14,8 @@ import { Col, Row } from 'react-bootstrap';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
+import { accountsDataSelector } from '~/redux/Selectors/authSelector';
 
 import styles from './FormBuilder.module.scss';
 
@@ -32,6 +34,7 @@ const initialState = {
     title: '',
     description: '',
     category: '',
+    likes: []
 };
 
 //Category of quiz
@@ -59,7 +62,7 @@ function FormBuilder() {
     const [form, setForm] = useState(initialState);
     //get id from firebase from useParams
     const { id } = useParams();
-    const [questions, setQuestions] = useState([]);
+    const [questions, setQuestions] = useState([{ question: '', answer: '' }]);
     //state form of data
     const [formData, setFormData] = useState('');
     //state upload image
@@ -70,6 +73,8 @@ function FormBuilder() {
     const [image, setImage] = useState('');
 
     const { title, category, description } = form;
+
+    const userData = useSelector(accountsDataSelector);
 
     //Function leve page
     const history = useNavigate();
@@ -142,8 +147,6 @@ function FormBuilder() {
     const addElement = () => {
         const questions = {
             id: uuid(),
-            question: '',
-            answer: '',
         };
         setQuestions((prevState) => [...prevState, questions]);
         setFormData(initVal);
@@ -152,29 +155,6 @@ function FormBuilder() {
     //Function to delete element
     const deleteEl = (id) => {
         setQuestions((prevState) => prevState.filter((val) => val.id !== id));
-    };
-
-    //Function to add element at specific pos and return arr
-    const addAfter = (elArray, index, newEl) => {
-        return [
-            ...elArray.slice(0, index + 1),
-            newEl,
-            ...elArray.slice(index + 1),
-        ];
-    };
-
-    //Function to duplicate element
-    const duplicateElement = (elId, elType) => {
-        let elIdx = questions.findIndex((el) => el.id === elId);
-        let newEl = {
-            id: uuid(),
-            question: '',
-            answer: '',
-            type: elType,
-            required: false,
-        };
-        let newArr = addAfter(questions, elIdx, newEl);
-        setQuestions(newArr);
     };
 
     //Function to handle sorting of elements
@@ -294,21 +274,18 @@ function FormBuilder() {
                 addOption={addOption}
                 handleOptionValues={handleOptionValues}
                 deleteOption={deleteOption}
-                duplicateElement={duplicateElement}
             />
         );
     };
 
     //Submit to firebase
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
         if (
-            title !== '' &&
-            description !== '' &&
-            questions !== [] &&
-            category !== '' &&
-            image !== [] &&
-            formData !== '' &&
+            title &&
+            description &&
+            category &&
+            image &&
+            formData &&
             window.confirm('Bạn có muốn đăng bài quiz ?')
         ) {
             if (!id) {
@@ -318,6 +295,7 @@ function FormBuilder() {
                         questions,
                         category,
                         image,
+                        userData,
                         timestamp: serverTimestamp(),
                     });
 
@@ -332,6 +310,7 @@ function FormBuilder() {
                         questions,
                         category,
                         image,
+                        userData,
                         timestamp: serverTimestamp(),
                     });
                     toast.success('Bài quiz đã được cập nhật thành công');
@@ -404,9 +383,12 @@ function FormBuilder() {
                         onChange={(e) => setFile(e.target.files[0])}
                     />
                 </div>
+                <div>
+                    <div className={cx('title-image')}>Xây dựng bài quiz</div>
+                </div>
                 <Nestable
                     items={items}
-                    question={questions}
+                    questions={questions}
                     setQuestions={setQuestions}
                     renderItem={renderElements}
                     maxDepth={1}

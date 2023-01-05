@@ -11,6 +11,8 @@ import {
 } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { accountsDataSelector } from '~/redux/Selectors/authSelector';
 
 import TextEditor from '../../EditorContent/EditorContent';
 import styles from './PostBlog.module.scss';
@@ -20,6 +22,7 @@ import config from '~/config';
 const initialState = {
     title: '',
     content: '',
+    comments: [],
 };
 
 const cx = classNames.bind(styles);
@@ -27,11 +30,15 @@ const cx = classNames.bind(styles);
 function PostBlog() {
     const [form, setForm] = useState(initialState);
 
+    const [content, setContent] = useState(initialState);
+
     const { id } = useParams();
 
     const navigate = useNavigate();
 
     const { title } = form;
+
+    const userData = useSelector(accountsDataSelector);
 
     useEffect(() => {
         id && getBlogDetail();
@@ -53,17 +60,20 @@ function PostBlog() {
                 try {
                     await addDoc(collection(db, 'blogs'), {
                         ...form,
+                        content,
+                        userData,
                         timestamp: serverTimestamp(),
                     });
                     toast.success('Blog đã được tạo thành công');
                 } catch (err) {
                     console.log(err);
                 }
-                navigate(config.routes.myblog);
             } else {
                 try {
                     await updateDoc(doc(db, 'blogs', id), {
                         ...form,
+                        content,
+                        userData,
                         timestamp: serverTimestamp(),
                     });
                     toast.success('Blog đã được cập nhật thành công');
@@ -76,9 +86,6 @@ function PostBlog() {
         }
 
         navigate(-1);
-    };
-    const setContent = (value) => {
-        setForm({ ...form, content: value });
     };
     return (
         <div className={cx('wrapper')}>
@@ -105,7 +112,6 @@ function PostBlog() {
                         <TextEditor
                             setContentBlog={setContent}
                             sHidderTools={false}
-                            set
                         />
                     </div>
                 </div>

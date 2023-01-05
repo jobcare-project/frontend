@@ -36,10 +36,15 @@ const RadioInput = ({
                         name={'question'}
                         placeholder="Nhập câu hỏi"
                     />
+                    <div>
+                        <Button text onClick={() => createNewOption(item.id)}>
+                            Thêm câu trả lời
+                        </Button>
+                    </div>
                     {item.options &&
                         item.options.length > 0 &&
                         item.options.map((opt, key) => (
-                            <div key={key} >
+                            <div key={key}>
                                 <input
                                     className={cx('input-option')}
                                     placeholder={`Nhập câu trả lời ${key + 1}`}
@@ -64,12 +69,6 @@ const RadioInput = ({
                                 </Button>
                             </div>
                         ))}
-
-                    <div>
-                        <Button text onClick={() => createNewOption(item.id)}>
-                            Thêm câu trả lời
-                        </Button>
-                    </div>
                     <input
                         className={cx('input-answer')}
                         defaultValue={item.answer}
