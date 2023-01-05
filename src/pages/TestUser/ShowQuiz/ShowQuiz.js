@@ -5,11 +5,7 @@ import Col from 'react-bootstrap/Col';
 import { Container } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import { collection, onSnapshot } from 'firebase/firestore';
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { accountsDataSelector } from '~/redux/Selectors/authSelector';
 import { db } from '~/config/Firebase/firebase';
-
 import CardShowQuiz from '~/components/CardShowQuiz/CardShowQuiz';
 import Loading from '~/components/Loading/Loading';
 import Filter from '../Filter';
@@ -27,8 +23,6 @@ function ShowQuiz() {
     const [activeGenre, setActiveGenre] = useState(0);
     //State when get API from firebase
     const quizCollectionRef = collection(db, 'quiz');
-    const userData = useSelector(accountsDataSelector);
-    const { id } = useParams();
     //Firebase snapShot
     useEffect(() => {
         onSnapshot(quizCollectionRef, (snapshot) => {
@@ -53,12 +47,11 @@ function ShowQuiz() {
             setLoading(false);
         });
     }, []);
-
     return loading ? (
         <Loading />
     ) : (
-        <div className={cx('wrapper')}>
-            <Container className={cx('container')}>
+        <Container>
+            <div className={cx('wrapper')}>
                 <h2 className={cx('heading')}>
                     <Filter
                         quiz={quiz}
@@ -76,8 +69,8 @@ function ShowQuiz() {
                         );
                     })}
                 </Row>
-            </Container>
-        </div>
+            </div>
+        </Container>
     );
 }
 

@@ -6,8 +6,6 @@ import {
     query,
     getDocs,
     setDoc,
-    Timestamp,
-    updateDoc
 } from 'firebase/firestore';
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
@@ -25,7 +23,7 @@ import Loading from '~/components/Loading/Loading';
 
 import { db } from '~/config/Firebase/firebase';
 import Rank from '../Rank';
-import { toast } from 'react-toastify';
+import Play from './Play';
 
 const cx = classNames.bind(styles);
 
@@ -70,8 +68,7 @@ function QuizDetail() {
     //State when get API from firebase
     const [loading, setLoading] = useState(true);
     //
-    const [relatedQuiz, setRelatedQuiz] = useState([]);
-    const [likes, setLikes] = useState([]);
+    const [username, setUsername] = useState(null);
 
     const userData = useSelector(accountsDataSelector);
     const titleQuiz = quiz?.title;
@@ -84,36 +81,11 @@ function QuizDetail() {
 
     //Function detail quiz
     const getQuizDetail = async () => {
-        const quizRef = collection(db, 'quiz');
         const docRef = doc(db, 'quiz', id);
         const quizDetail = await getDoc(docRef);
 
         setQuiz(quizDetail.data());
-        const relatedQuizQuery = query(quizRef);
-        const relatedQuizSnapshot = await getDocs(relatedQuizQuery);
-        relatedQuizSnapshot.forEach((doc) => {
-            relatedQuiz.push({ id: doc.id, ...doc.data() });
-        });
-        setRelatedQuiz(relatedQuiz);
-        setLikes(
-            quizDetail.data().likes ? quizDetail.data().likes : [],
-        );
         setLoading(false);
-    };
-
-    //
-    const handleSave = async () => {
-        likes.push({
-            createdAt: Timestamp.fromDate(new Date()),
-            userData: userData.id,
-        });
-        toast.success('Comment posted successfully');
-        await updateDoc(doc(db, 'quiz', id), {
-            ...quiz,
-            likes,
-            timestamp: serverTimestamp(),
-        });
-        setLikes(likes);
     };
 
     //Function leve page
@@ -221,225 +193,291 @@ function QuizDetail() {
         <Loading />
     ) : (
         <Container>
-            <div className={cx('wrapper')}>
-                <div className={cx('time-quiz')}>
-                    <div className={cx('notification-bar')}>
-                        <h5 className={cx('total-question-icon')}>
-                            <ion-icon name="reader-outline"></ion-icon>
-                        </h5>
-                        <h5 className={cx('total-question')}>
-                            {quiz?.questions.length} câu
-                        </h5>
-                        <h5 className={cx('time-icon')}>
-                            <ion-icon name="time-outline"></ion-icon>
-                        </h5>
-                        <h5 className={cx('time')}>{timer}</h5>
-                    </div>
-                </div>
-                <div className={cx('information')}>
-                    <div className={cx('quiz-heading')}>
-                        <div className={cx('title')}>{quiz?.title}</div>
-                        <div className={cx('desc')}>{quiz?.description}</div>
-                        <button onClick={handleSave} >Save</button>
-                    </div>
-                </div>
+            <div className="app_container">
+                {username ? (
+                    <>
+                        <div className={cx('wrapper')}>
+                            <div className={cx('time-quiz')}>
+                                <div className={cx('notification-bar')}>
+                                    <h5 className={cx('total-question-icon')}>
+                                        <ion-icon name="reader-outline"></ion-icon>
+                                    </h5>
+                                    <h5 className={cx('total-question')}>
+                                        {quiz?.questions.length} câu
+                                    </h5>
+                                    <h5 className={cx('time-icon')}>
+                                        <ion-icon name="time-outline"></ion-icon>
+                                    </h5>
+                                    <h5 className={cx('time')}>{timer}</h5>
+                                </div>
+                            </div>
+                            <div className={cx('information')}>
+                                <div className={cx('quiz-heading')}>
+                                    <div className={cx('title')}>
+                                        {quiz?.title}
+                                    </div>
+                                    <div className={cx('desc')}>
+                                        {quiz?.description}
+                                    </div>
+                                </div>
+                            </div>
 
-                <div className={cx('container')}>
-                    {
-                        <>
-                            <form onSubmit={handleSubmit}>
-                                {quiz?.questions.map((x, index) => {
-                                    return (
-                                        <div
-                                            key={x?.id}
-                                            className={cx('quiz-item')}
-                                        >
-                                            <h3>
-                                                {index + 1} . {x?.question}{' '}
-                                            </h3>
-                                            <div>
-                                                {x.options?.map(
-                                                    (options, index) => (
-                                                        <div
-                                                            key={index}
-                                                            className={cx(
-                                                                'quiz-options',
+                            <div className={cx('container')}>
+                                {
+                                    <>
+                                        <form onSubmit={handleSubmit}>
+                                            {quiz?.questions.map((x, index) => {
+                                                return (
+                                                    <div
+                                                        key={x?.id}
+                                                        className={cx(
+                                                            'quiz-item',
+                                                        )}
+                                                    >
+                                                        <h3>
+                                                            {index + 1} .{' '}
+                                                            {x?.question}{' '}
+                                                        </h3>
+                                                        <div>
+                                                            {x.options?.map(
+                                                                (
+                                                                    options,
+                                                                    index,
+                                                                ) => (
+                                                                    <div
+                                                                        key={
+                                                                            index
+                                                                        }
+                                                                        className={cx(
+                                                                            'quiz-options',
+                                                                        )}
+                                                                    >
+                                                                        <input
+                                                                            type="radio"
+                                                                            value={
+                                                                                options.value
+                                                                            }
+                                                                            name={
+                                                                                x?.id
+                                                                            }
+                                                                            checked={
+                                                                                answer[
+                                                                                    x
+                                                                                        ?.id
+                                                                                ] ===
+                                                                                options.value
+                                                                            }
+                                                                            onChange={() =>
+                                                                                setAnswer(
+                                                                                    (
+                                                                                        answer,
+                                                                                    ) => ({
+                                                                                        ...answer,
+                                                                                        [x?.id]:
+                                                                                            options.value,
+                                                                                    }),
+                                                                                )
+                                                                            }
+                                                                        />
+                                                                        <label
+                                                                            className={cx(
+                                                                                'option',
+                                                                            )}
+                                                                        >
+                                                                            {' '}
+                                                                            {
+                                                                                options.value
+                                                                            }
+                                                                        </label>
+                                                                    </div>
+                                                                ),
                                                             )}
-                                                        >
-                                                            <input
-                                                                type="radio"
-                                                                value={
-                                                                    options.value
-                                                                }
-                                                                name={x?.id}
-                                                                checked={
-                                                                    answer[
-                                                                        x?.id
-                                                                    ] ===
-                                                                    options.value
-                                                                }
-                                                                onChange={() =>
-                                                                    setAnswer(
-                                                                        (
-                                                                            answer,
-                                                                        ) => ({
-                                                                            ...answer,
-                                                                            [x?.id]:
-                                                                                options.value,
-                                                                        }),
-                                                                    )
-                                                                }
-                                                            />
-                                                            <label
+                                                        </div>
+                                                    </div>
+                                                );
+                                            })}
+
+                                            <div className={cx('submit-btn')}>
+                                                <Button
+                                                    primary
+                                                    type="submit"
+                                                    className={cx('submit')}
+                                                    variant="outline-success"
+                                                    onClick={() =>
+                                                        setLgShow(true)
+                                                    }
+                                                >
+                                                    <div
+                                                        className={cx(
+                                                            'text-submit',
+                                                        )}
+                                                    >
+                                                        Submit
+                                                    </div>
+                                                </Button>
+                                            </div>
+                                        </form>
+                                        <Modal
+                                            size="lg"
+                                            show={lgShow}
+                                            onHide={() => setLgShow(false)}
+                                            aria-labelledby="example-modal-sizes-title-lg"
+                                        >
+                                            <Modal.Header
+                                                closeButton
+                                                className={cx('modal-header')}
+                                            >
+                                                <Modal.Title
+                                                    id="example-modal-sizes-title-lg"
+                                                    className={cx('modal')}
+                                                >
+                                                    <div
+                                                        className={cx(
+                                                            'modal-title',
+                                                        )}
+                                                    >
+                                                        Chúc mừng bạn đã hoàn
+                                                        thành bài Quiz
+                                                    </div>
+                                                    <div
+                                                        className={cx(
+                                                            'warning-title',
+                                                        )}
+                                                    >
+                                                        Lưu ý : Khi hết thời
+                                                        gian làm bài hệ thống sẽ
+                                                        không chấm điểm
+                                                    </div>
+                                                </Modal.Title>
+                                            </Modal.Header>
+                                            <Modal.Body
+                                                className={cx('modal-body')}
+                                            >
+                                                <p className={cx('show-score')}>
+                                                    Điểm của bạn là {score} /{' '}
+                                                    {quiz?.questions.length}
+                                                </p>
+                                                <Accordion>
+                                                    <Accordion.Item eventKey="0">
+                                                        <Accordion.Header>
+                                                            <p
                                                                 className={cx(
-                                                                    'option',
+                                                                    'accordion-header',
                                                                 )}
                                                             >
                                                                 {' '}
-                                                                {options.value}
-                                                            </label>
+                                                                Xem đáp án{' '}
+                                                            </p>
+                                                        </Accordion.Header>
+                                                        <Accordion.Body>
+                                                            {quiz?.questions.map(
+                                                                (x, index) => {
+                                                                    return (
+                                                                        <div
+                                                                            key={
+                                                                                x.id
+                                                                            }
+                                                                            className={cx(
+                                                                                'quiz-item',
+                                                                            )}
+                                                                        >
+                                                                            <h3>
+                                                                                {index +
+                                                                                    1}{' '}
+                                                                                .{' '}
+                                                                                {
+                                                                                    x?.question
+                                                                                }{' '}
+                                                                            </h3>
+                                                                            <div>
+                                                                                {
+                                                                                    x.answer
+                                                                                }
+                                                                            </div>
+                                                                        </div>
+                                                                    );
+                                                                },
+                                                            )}
+                                                        </Accordion.Body>
+                                                    </Accordion.Item>
+                                                </Accordion>
+                                                <div className={cx('btn')}>
+                                                    <Button
+                                                        primary
+                                                        className={cx(
+                                                            'back-after',
+                                                        )}
+                                                        onClick={() =>
+                                                            history(-1)
+                                                        }
+                                                    >
+                                                        <div
+                                                            className={cx(
+                                                                'back-after-text',
+                                                            )}
+                                                        >
+                                                            Quay lại trang chủ
                                                         </div>
-                                                    ),
-                                                )}
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-
-                                <div className={cx('submit-btn')}>
-                                    <Button
-                                        primary
-                                        type="submit"
-                                        className={cx('submit')}
-                                        variant="outline-success"
-                                        onClick={() => setLgShow(true)}
-                                    >
-                                        <div className={cx('text-submit')}>
-                                            Submit
-                                        </div>
-                                    </Button>
-                                </div>
-                            </form>
-                            <Modal
-                                size="lg"
-                                show={lgShow}
-                                onHide={() => setLgShow(false)}
-                                aria-labelledby="example-modal-sizes-title-lg"
-                            >
-                                <Modal.Header
-                                    closeButton
-                                    className={cx('modal-header')}
-                                >
-                                    <Modal.Title
-                                        id="example-modal-sizes-title-lg"
-                                        className={cx('modal')}
-                                    >
-                                        <div className={cx('modal-title')}>
-                                            Chúc mừng bạn đã hoàn thành bài Quiz
-                                        </div>
-                                        <div className={cx('warning-title')}>
-                                            Lưu ý : Khi hết thời gian làm bài hệ
-                                            thống sẽ không chấm điểm
-                                        </div>
-                                    </Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body className={cx('modal-body')}>
-                                    <p className={cx('show-score')}>
-                                        Điểm của bạn là {score} /{' '}
-                                        {quiz?.questions.length}
-                                    </p>
-                                    <Accordion>
-                                        <Accordion.Item eventKey="0">
-                                            <Accordion.Header>
-                                                <p
-                                                    className={cx(
-                                                        'accordion-header',
-                                                    )}
-                                                >
-                                                    {' '}
-                                                    Xem đáp án{' '}
-                                                </p>
-                                            </Accordion.Header>
-                                            <Accordion.Body>
-                                                {quiz?.questions.map(
-                                                    (x, index) => {
-                                                        return (
-                                                            <div
-                                                                key={x.id}
-                                                                className={cx(
-                                                                    'quiz-item',
-                                                                )}
+                                                    </Button>{' '}
+                                                    <Button
+                                                        primary
+                                                        className={cx('reload')}
+                                                        onClick={() =>
+                                                            history(0)
+                                                        }
+                                                    >
+                                                        <div
+                                                            className={cx(
+                                                                'reload-text',
+                                                            )}
+                                                        >
+                                                            Làm lại
+                                                        </div>
+                                                    </Button>{' '}
+                                                    <div>
+                                                        <Button
+                                                            primary
+                                                            onClick={() =>
+                                                                setShow(true)
+                                                            }
+                                                            className={cx(
+                                                                'rank-btn',
+                                                            )}
+                                                        >
+                                                            Xem bảng xếp hạng
+                                                        </Button>
+                                                        <Modal
+                                                            size="lg"
+                                                            show={show}
+                                                            onHide={() =>
+                                                                setShow(false)
+                                                            }
+                                                            aria-labelledby="example-modal-sizes-title-lg"
+                                                        >
+                                                            <Modal.Header
+                                                                closeButton
                                                             >
-                                                                <h3>
-                                                                    {index + 1}{' '}
-                                                                    .{' '}
-                                                                    {
-                                                                        x?.question
-                                                                    }{' '}
-                                                                </h3>
-                                                                <div>
-                                                                    {x.answer}
-                                                                </div>
-                                                            </div>
-                                                        );
-                                                    },
-                                                )}
-                                            </Accordion.Body>
-                                        </Accordion.Item>
-                                    </Accordion>
-                                    <div className={cx('btn')}>
-                                        <Button
-                                            primary
-                                            className={cx('back-after')}
-                                            onClick={() => history(-1)}
-                                        >
-                                            <div
-                                                className={cx(
-                                                    'back-after-text',
-                                                )}
-                                            >
-                                                Quay lại trang chủ
-                                            </div>
-                                        </Button>{' '}
-                                        <Button
-                                            primary
-                                            className={cx('reload')}
-                                            onClick={() => history(0)}
-                                        >
-                                            <div className={cx('reload-text')}>
-                                                Làm lại
-                                            </div>
-                                        </Button>{' '}
-                                        <div>
-                                            <Button
-                                                primary
-                                                onClick={() => setShow(true)}
-                                                className={cx('rank-btn')}
-                                            >
-                                                Xem bảng xếp hạng
-                                            </Button>
-                                            <Modal
-                                                size="lg"
-                                                show={show}
-                                                onHide={() => setShow(false)}
-                                                aria-labelledby="example-modal-sizes-title-lg"
-                                            >
-                                                <Modal.Header closeButton>
-                                                    <Modal.Title id="example-custom-modal-styling-title">
-                                                        Bảng xếp hạng
-                                                    </Modal.Title>
-                                                </Modal.Header>
-                                                <Modal.Body>
-                                                    <Rank />
-                                                </Modal.Body>
-                                            </Modal>
-                                        </div>
-                                    </div>
-                                </Modal.Body>
-                            </Modal>
-                        </>
-                    }
-                </div>
+                                                                <Modal.Title id="example-custom-modal-styling-title">
+                                                                    Bảng xếp
+                                                                    hạng
+                                                                </Modal.Title>
+                                                            </Modal.Header>
+                                                            <Modal.Body>
+                                                                <Rank />
+                                                            </Modal.Body>
+                                                        </Modal>
+                                                    </div>
+                                                </div>
+                                            </Modal.Body>
+                                        </Modal>
+                                    </>
+                                }
+                            </div>
+                        </div>
+                    </>
+                ) : (
+                    <Play setUsername={setUsername} />
+                )}
             </div>
         </Container>
     );

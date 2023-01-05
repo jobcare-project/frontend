@@ -89,7 +89,7 @@
         }
     }
 }
-.small-title{
+.small-title {
     margin: 100px 50px 50px 200px;
 }
 
@@ -100,4 +100,11 @@
     100% {
         transform: rotate(360deg);
     }
+}
+.scroll {
+    border-top: 1px solid #9c9a9a;
+    margin-top: 50px;
+}
+.small-title{
+    font-size: 20px;
 }

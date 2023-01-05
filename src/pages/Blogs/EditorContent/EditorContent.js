@@ -39,10 +39,10 @@ const TextEditor = ({
                     draftToHtml(convertToRaw(editorState.getCurrentContent())),
                 );
             }
-            console.log(
-                'draft',
-                draftToHtml(convertToRaw(editorState.getCurrentContent())),
-            );
+            // console.log(
+            //     'draft',
+            //     draftToHtml(convertToRaw(editorState.getCurrentContent())),
+            // );
         } else {
             setContentBlog(
                 draftToHtml(convertToRaw(editorState.getCurrentContent())),

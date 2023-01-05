@@ -34,7 +34,7 @@ const initialState = {
     title: '',
     description: '',
     category: '',
-    likes: []
+    likes: {} ,
 };
 
 //Category of quiz

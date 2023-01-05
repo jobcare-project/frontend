@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 import { Route } from 'react-router-dom';
+
 import DefaultLayout from '~/Layouts/DefaultLayout';
 
 export const renderRoutes = (routes) => {

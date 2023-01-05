@@ -15,11 +15,6 @@ const navigationMenu = [
         role: ['user'],
     },
     {
-        title: 'Tuyển dụng',
-        to: '/recruitment/recruiter',
-        role: ['recruiter'],
-    },
-    {
         title: 'Làm bài test',
         to: '/testuser',
         role: ['user'],
@@ -31,11 +26,6 @@ const navigationMenu = [
         role: ['user'],
     },
     {
-        title: 'Blog',
-        to: config.routes.blog,
-        role: ['user', 'recruiter', 'admin'],
-    },
-    {
         title: 'Quản lý',
         to: config.routes.admin,
         role: ['admin'],
@@ -44,6 +34,11 @@ const navigationMenu = [
         title: 'Quản lý',
         to: config.routes.recruiter,
         role: ['recruiter'],
+    },
+    {
+        title: 'Blog',
+        to: config.routes.blog,
+        role: ['user', 'recruiter', 'admin'],
     },
 ];
 

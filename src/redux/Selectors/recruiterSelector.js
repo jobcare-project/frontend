@@ -12,3 +12,4 @@ export const messageRecruiterSelector = (state) => {
 
 export const recruiterJobListSelector = (state) =>
     state.recruiter?.recruiterJobList;
+ 

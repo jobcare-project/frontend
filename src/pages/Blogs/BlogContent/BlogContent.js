@@ -9,7 +9,7 @@ import Loading from '~/components/Loading/Loading';
 import { db } from '~/config/Firebase/firebase';
 
 const cx = classNames.bind(styles);
-function ContentBlog({ data, to }) {
+function ContentBlog() {
     const [loading, setLoading] = useState(true);
     const [blogs, setBlogs] = useState([]);
     const blogCollectionRef = collection(db, 'blogs');

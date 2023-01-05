@@ -59,20 +59,24 @@ function BlogDetail() {
 
     const handleComment = async (e) => {
         e.preventDefault();
-        comments.push({
-            createdAt: Timestamp.fromDate(new Date()),
-            userData,
-            name: userData.fullname,
-            body: userComment,
-        });
-        toast.success('Comment posted successfully');
-        await updateDoc(doc(db, 'blogs', id), {
-            ...blog,
-            comments,
-            timestamp: serverTimestamp(),
-        });
-        setComments(comments);
-        setUserComment('');
+        if (userComment) {
+            comments.push({
+                createdAt: Timestamp.fromDate(new Date()),
+                userData,
+                name: userData.fullname,
+                body: userComment,
+            });
+            toast.success('Comment posted successfully');
+            await updateDoc(doc(db, 'blogs', id), {
+                ...blog,
+                comments,
+                timestamp: serverTimestamp(),
+            });
+            setComments(comments);
+            setUserComment('');
+        } else {
+            return toast.error('Hãy điền đầy đủ các trường');
+        }
     };
 
     // console.log('relatedQuizs', relatedBlogs);
@@ -93,7 +97,7 @@ function BlogDetail() {
                                         <ion-icon name="heart-outline"></ion-icon>
                                     </span>
                                     <span className={cx('heart-reaction')}>
-                                        12
+                                        0
                                     </span>
                                 </div>
                                 <div className={cx('icon-comment')}>
@@ -121,19 +125,21 @@ function BlogDetail() {
                         </div>
                     </div>
                 </div>
-                <Comment
-                    userComment={userComment}
-                    setUserComment={setUserComment}
-                    handleComment={handleComment}
-                />
-                <div className={cx('scroll')}>
-                    <h4 className={cx('small-title')}>
-                        {comments?.length} bình luận
-                    </h4>
-                    <div>
-                        {comments?.map((comment) => (
-                            <UserComments {...comment} />
-                        ))}
+                <div className={cx('comment')}>
+                    <Comment
+                        userComment={userComment}
+                        setUserComment={setUserComment}
+                        handleComment={handleComment}
+                    />
+                    <div className={cx('scroll')}>
+                        <h4 className={cx('small-title')}>
+                            {comments?.length} bình luận
+                        </h4>
+                        <div>
+                            {comments?.map((comment) => (
+                                <UserComments {...comment} />
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,3 +1,4 @@
+import moment from 'moment/moment';
 import React from 'react';
 import { toast } from 'react-toastify';
 import classNames from 'classnames/bind';
@@ -21,6 +22,7 @@ import { useNavigate } from 'react-router-dom';
 import config from '~/config';
 import { messageRecruiterSelector } from '~/redux/Selectors/recruiterSelector';
 import TextEditor from '~/pages/Blogs/EditorContent/EditorContent';
+import uuid from 'react-uuid';
 const cx = classNames.bind(styles);
 const mucluongData = [
     {
@@ -115,6 +117,8 @@ const kinhnghiemData = [
     },
 ];
 
+const next15day = moment().add(15, 'days').calendar();
+
 const TYPE_SALARY_DEFAULT = 'Thoả thuận';
 function RecruiterPost() {
     // get values dropdown
@@ -177,8 +181,6 @@ function RecruiterPost() {
     };
 
     const message = useSelector(messageRecruiterSelector);
-    // console.log({ message });
-
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -186,12 +188,11 @@ function RecruiterPost() {
             toast.success('Đăng bài thành công', toastifyOptions);
             // toast.error('🦄 Vui lòng kiểm tra lại thông!', toastifyOptions);
             dispatch(recruiterSlice.actions.restMessage(false));
-            navigate(config.routes.recruitersaved);
+            navigate(config.routes.ListRecruitmentPost);
         }
     }, [message]);
 
     const handleSubmit = () => {
-        // console.log('submit');
         // console.log(formikRef.current.values);
         const formikValues = formikRef.current.values;
         // search timf lỗi formik
@@ -218,6 +219,9 @@ function RecruiterPost() {
                         jobDescription: '',
                         jobRequire: '',
                         welfare: '',
+                        skills: '',
+                        categoryId: 1,
+                        endDate: next15day,
                     }}
                     onSubmit={(values, { setSubmitting }) => {
                         setTimeout(() => {

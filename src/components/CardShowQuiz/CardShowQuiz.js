@@ -16,6 +16,7 @@ export default function CardShowQuiz({
     iconRank,
     titleSaved = '',
     handleDelete,
+    iconSave
 }) {
     console.log(quiz);
     return (
@@ -39,9 +40,9 @@ export default function CardShowQuiz({
                                 {quiz?.description}
                             </div>
                         )}
-                        {quiz.recruiter_jobs?.fullname && (
+                        {quiz?.recruiter_jobs?.fullname && (
                             <div className={cx('description')}>
-                                {quiz.recruiter_jobs.fullname}
+                                {quiz?.recruiter_jobs.fullname}
                             </div>
                         )}
                         <div className={cx('subdesc')}>
@@ -51,7 +52,6 @@ export default function CardShowQuiz({
                                 >
                                     <div className={cx('subdesc-text')}>
                                         <ion-icon name="timer-outline"></ion-icon>
-                                        Được đăng vào
                                         <span>
                                             {quiz.timestamp
                                                 .toDate()
@@ -113,8 +113,9 @@ export default function CardShowQuiz({
 
                     <div className={cx('subdesc-text-save')}>
                         <span onClick={() => handleSaved(quiz.id)}>
-                            {' '}
-                            <ion-icon name="heart-outline"></ion-icon>
+                            {iconSave && (
+                                <ion-icon name="heart-outline"></ion-icon>
+                            )}
                             {titleSaved}
                         </span>
                     </div>

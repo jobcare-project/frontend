@@ -9,23 +9,32 @@ import { useDispatch, useSelector } from 'react-redux';
 import Card from '~/components/Card/Card';
 import { fetchListJob } from '../homeSlice';
 import { jobListSelector } from '~/redux/Selectors/jobSelector';
+import { Link } from 'react-router-dom';
+import config from '~/config';
 
 const cx = classNames.bind(styles);
 
-export default function BestRecruitment() {
+export default function BestRecruitment({ to }) {
     const dispatch = useDispatch();
     const jobListData = useSelector(jobListSelector);
 
     useEffect(() => {
         dispatch(fetchListJob());
-        /* eslint-disable react-hooks/exhaustive-deps */
     }, []);
 
     return (
         <Container>
             {jobListData.length ? (
                 <div className={cx('wrapper')}>
-                    <h2 className={cx('heading')}>Việc làm tiêu biểu</h2>
+                    <div className={cx('heading')}>
+                        <h3 className={cx('heading-job')}>Việc làm mới nhất</h3>
+                        <Link
+                            className={cx('heading-more')}
+                            to={config.routes.recruitmentpage}
+                        >
+                            Hiển thị thêm
+                        </Link>
+                    </div>
                     <Row>
                         {jobListData &&
                             jobListData.map((recruitment) => {

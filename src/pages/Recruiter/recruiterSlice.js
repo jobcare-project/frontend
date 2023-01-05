@@ -37,6 +37,7 @@ export const recruiterSlice = createSlice({
             .addCase(fetchJobsPagination.pending, (state, action) => {
                 state.jobDisplayPagination = action.payload;
             })
+
             .addCase(fetchDeletedJobDesc.pending, (state) => {
                 state.idLoading = true;
             })
@@ -46,10 +47,10 @@ export const recruiterSlice = createSlice({
                 state.job = data;
                 state.messsage = message;
                 // if deleted success
-                // state.recruiterJobList = state.recruiterJobList.filter(ruiterJob =>{
-                // console.log(ruiterJob);
-                //     return  ruiterJob.id !== data.id
-                // })
+                const newData = state.recruiterJobList.filter((ruiterJob) => {
+                    return ruiterJob.id !== data.id;
+                });
+                state.recruiterJobList = newData;
             })
             .addCase(fetchRecruiterDetail.pending, (state) => {
                 state.idLoading = true;

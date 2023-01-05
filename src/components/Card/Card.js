@@ -3,9 +3,13 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import images from '~/assets/images';
-import { fetchDeletedJobDesc } from '~/pages/Recruiter/recruiterSlice';
+import {
+    fetchDeletedJobDesc,
+    recruiterSlice,
+} from '~/pages/Recruiter/recruiterSlice';
 import { accountsDataSelector } from '~/redux/Selectors/authSelector';
 import ModalPost from '../Modal/ModalDeleted/ModalDeleted';
 
@@ -22,8 +26,6 @@ export default function Card({
     titleDeleted = '',
     titleRepair = '',
     titleSaved = '',
-    onDelete,
-    id,
 }) {
     const [show, setShow] = useState(false);
     const userData = useSelector(accountsDataSelector);
@@ -33,8 +35,18 @@ export default function Card({
     const dispatch = useDispatch();
     const handleDeletedPost = (id) => {
         dispatch(fetchDeletedJobDesc(data.id));
-        // toast.success('Xoá bài thành công', toastifyOptions);
-        console.log('Mess:', data);
+        toast.success('Xoá bài thành công', toastifyOptions);
+        dispatch(recruiterSlice.actions.restMessage(false));
+    };
+    const toastifyOptions = {
+        position: 'top-right',
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
     };
 
     useEffect(() => {
@@ -43,16 +55,21 @@ export default function Card({
 
     return (
         <div className={cx('wrapper')}>
-            {/* /id */}
             <Link
                 className={cx('link')}
                 to={`/recruitmentpage/recruitmentdetail/${data.id}`}
             >
                 <div className={cx('image-block')}>
-                    {data?.thumbnail ? (
+                    {userData?.id === data?.recruiterId ? (
                         <img
                             className={cx('image')}
-                            src={data?.thumbnail}
+                            src={userData?.imageUrl}
+                            alt="anh nha tuyen dung"
+                        />
+                    ) : data?.recruiter_jobs?.imageUrl ? (
+                        <img
+                            className={cx('image')}
+                            src={data?.recruiter_jobs?.imageUrl}
                             alt="anh nha tuyen dung"
                         />
                     ) : (
@@ -70,9 +87,9 @@ export default function Card({
                             {data?.description}
                         </div>
                     )}
-                    {data.recruiter_jobs?.fullname && (
+                    {data?.recruiter_jobs?.fullname && (
                         <div className={cx('description')}>
-                            {data.recruiter_jobs.fullname}
+                            {data?.recruiter_jobs.fullname}
                         </div>
                     )}
                     <div className={cx('subdesc')}>
@@ -83,19 +100,20 @@ export default function Card({
                             </div>
                             <div className={cx('subdesc-text')}>
                                 <ion-icon name="location-outline"></ion-icon>
-                                <span>{data?.location}</span>
+                                <span>
+                                    {data?.city ? data?.city : data?.location}
+                                </span>
                             </div>
                             <div className={cx('subdesc-item subdesc-right')}>
                                 <div className={cx('subdesc-text')}>
                                     <ion-icon name="timer-outline"></ion-icon>
-                                    <span>{data?.createAt}</span>
+                                    <span>{data?.endDate}</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </Link>
-            {/* convert to button  */}
             <ModalPost
                 handleClose={handleClose}
                 show={show}
