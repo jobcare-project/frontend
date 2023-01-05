@@ -14,11 +14,11 @@ const navigationMenu = [
         to: config.routes.recruitmentpage,
         role: ['user'],
     },
-    {
-        title: 'Tuyển dụng',
-        to: '/recruitment/recruiter',
-        role: ['recruiter'],
-    },
+    // {
+    //     title: 'Tuyển dụng',
+    //     to: config.routes.recruitmentpage,
+    //     role: ['recruiter'],
+    // },
     {
         title: 'Làm bài test',
         to: '/testuser',
@@ -31,15 +31,16 @@ const navigationMenu = [
         role: ['user'],
     },
     {
-        title: 'Blog',
-        to: config.routes.blog,
-        role: ['user', 'recruiter', 'admin'],
-    },
-    {
         title: 'Quản lý',
         to: config.routes.admin,
         role: ['admin'],
     },
+    {
+        title: 'Blog',
+        to: config.routes.blog,
+        role: ['user', 'recruiter', 'admin'],
+    },
+
     {
         title: 'Quản lý',
         to: config.routes.recruiter,
