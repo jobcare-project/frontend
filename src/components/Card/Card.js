@@ -6,8 +6,11 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import images from '~/assets/images';
+import config from '~/config';
+import { fetchListJob } from '~/pages/Home/homeSlice';
 import {
     fetchDeletedJobDesc,
+    fetchRecruiterDetail,
     recruiterSlice,
 } from '~/pages/Recruiter/recruiterSlice';
 import { accountsDataSelector } from '~/redux/Selectors/authSelector';
@@ -33,6 +36,7 @@ export default function Card({
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const dispatch = useDispatch();
+    console.log({ userData });
     const handleDeletedPost = (id) => {
         dispatch(fetchDeletedJobDesc(data.id));
         toast.success('Xoá bài thành công', toastifyOptions);
