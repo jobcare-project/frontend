@@ -21,8 +21,6 @@ function Modal({ setOpenModal, data }) {
         setFile(file);
     };
 
-    console.log('job-data:', data);
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -30,6 +28,7 @@ function Modal({ setOpenModal, data }) {
         formData.append('file', file, 'file');
 
         const res = await cloudinaryUploadApi(formData);
+        console.log('cloudinaryUploadApi-res:::', res);
 
         if (res.image_url) {
             const dataApplyJobs = {
@@ -40,6 +39,7 @@ function Modal({ setOpenModal, data }) {
             };
             dispatch(fetchApplyJobs(dataApplyJobs));
         }
+        setOpenModal(false);
     };
 
     return (

@@ -2,7 +2,6 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import { useSelector } from 'react-redux';
 
-import RelatedJob from './RelatedJob/RelatedJob';
 import styles from './RecruitmentDetail.module.scss';
 import Search from '../RecruitmentPage/Search/SearchJob/Search';
 import DetailInfor from '~/pages/RecruitmentDetail/DetailInfor/DetailInfor';
@@ -19,7 +18,7 @@ function RecruitmentDetail() {
                 <Search leftIcon></Search>
                 <div className={cx('container')}>
                     <DetailInfor></DetailInfor>
-                    <RelatedJob></RelatedJob>
+                    {/* <RelatedJob></RelatedJob> */}
                 </div>
             </div>
         </>

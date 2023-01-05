@@ -72,10 +72,10 @@ export default function Card({
                 to={`/recruitmentpage/recruitmentdetail/${data.id}`}
             >
                 <div className={cx('image-block')}>
-                    {data?.thumbnail ? (
+                    {data?.recruiter_jobs.imageUrl ? (
                         <img
                             className={cx('image')}
-                            src={data?.thumbnail}
+                            src={data?.recruiter_jobs.imageUrl}
                             alt="anh nha tuyen dung"
                         />
                     ) : (
@@ -93,9 +93,9 @@ export default function Card({
                             {data?.description}
                         </div>
                     )}
-                    {data.recruiter_jobs?.fullname && (
+                    {data?.recruiter_jobs?.fullname && (
                         <div className={cx('description')}>
-                            {data.recruiter_jobs.fullname}
+                            {data?.recruiter_jobs.fullname}
                         </div>
                     )}
                     <div className={cx('subdesc')}>
@@ -111,7 +111,7 @@ export default function Card({
                             <div className={cx('subdesc-item subdesc-right')}>
                                 <div className={cx('subdesc-text')}>
                                     <ion-icon name="timer-outline"></ion-icon>
-                                    <span>{data?.createAt}</span>
+                                    <span>{data?.endDate}</span>
                                 </div>
                             </div>
                         </div>

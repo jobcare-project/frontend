@@ -39,9 +39,9 @@ export default function CardShowQuiz({
                                 {quiz?.description}
                             </div>
                         )}
-                        {quiz.recruiter_jobs?.fullname && (
+                        {quiz?.recruiter_jobs?.fullname && (
                             <div className={cx('description')}>
-                                {quiz.recruiter_jobs.fullname}
+                                {quiz?.recruiter_jobs.fullname}
                             </div>
                         )}
                         <div className={cx('subdesc')}>

@@ -1,3 +1,4 @@
+import moment from 'moment/moment';
 import React from 'react';
 import { toast } from 'react-toastify';
 import classNames from 'classnames/bind';
@@ -21,6 +22,7 @@ import { useNavigate } from 'react-router-dom';
 import config from '~/config';
 import { messageRecruiterSelector } from '~/redux/Selectors/recruiterSelector';
 import TextEditor from '~/pages/Blogs/EditorContent/EditorContent';
+import uuid from 'react-uuid';
 const cx = classNames.bind(styles);
 const mucluongData = [
     {
@@ -114,6 +116,8 @@ const kinhnghiemData = [
         name: 'Trên 10 năm',
     },
 ];
+
+const next15day = moment().add(15, 'days').calendar();
 
 const TYPE_SALARY_DEFAULT = 'Thoả thuận';
 function RecruiterPost() {
@@ -215,6 +219,9 @@ function RecruiterPost() {
                         jobDescription: '',
                         jobRequire: '',
                         welfare: '',
+                        skills: '',
+                        categoryId: 1,
+                        endDate: next15day,
                     }}
                     onSubmit={(values, { setSubmitting }) => {
                         setTimeout(() => {
