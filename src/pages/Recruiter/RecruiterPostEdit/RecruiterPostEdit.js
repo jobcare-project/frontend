@@ -2,10 +2,7 @@ import React, { useEffect } from 'react';
 import classNames from 'classnames/bind';
 import styles from './RecruiterPost.module.scss';
 import { useState } from 'react';
-import {
-    getAllProvinces,
-    getAllDistricts,
-} from '~/helper/geomap';
+import { getAllProvinces, getAllDistricts } from '~/helper/geomap';
 import {
     Formik,
     Form,
@@ -25,7 +22,6 @@ import Container from 'react-bootstrap/Container';
 import Input from '~/components/Input/Input/Input';
 import DropDown from '~/components/Input/DropDown/DropDown';
 import { useMemo } from 'react';
-import { fetchEditJobDesc } from '~/pages/Home/homeSlice';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { getDetailPost } from '~/services/jobService';
 import TextEditor from '~/pages/Blogs/EditorContent/EditorContent';
@@ -33,7 +29,7 @@ import Button from '~/components/Button';
 import { messageRecruiterSelector } from '~/redux/Selectors/recruiterSelector';
 import { toast } from 'react-toastify';
 import config from '~/config';
-import { recruiterSlice } from '../recruiterSlice';
+import { fetchEditJobDesc, recruiterSlice } from '../recruiterSlice';
 const cx = classNames.bind(styles);
 const mucluongData = [
     {
@@ -373,8 +369,17 @@ function RecruiterPostEdit() {
     };
 
     const handleDeletedPost = (id) => {};
+
     const message = useSelector(messageRecruiterSelector);
     const navigate = useNavigate();
+    useEffect(() => {
+        console.log('message', message);
+        if (message === 'success') {
+            toast.success('Sửa bài thành công', toastifyOptions);
+            dispatch(recruiterSlice.actions.restMessage(false));
+            navigate(config.routes.ListRecruitmentPost);
+        }
+    }, [message]);
 
     const handleSubmit = () => {
         // console.log(formikRef.current.values);
@@ -387,18 +392,8 @@ function RecruiterPostEdit() {
         const selectValues = { ...selectForm, salary };
         const data = { ...formikValues, ...selectValues };
         dispatch(fetchEditJobDesc({ id: params.id, data }));
-        // if (message) {
-
-        // }
     };
-    useEffect(() => {
-        console.log('message', message);
-        if (message === 'Thành công') {
-            toast.success('Sửa bài thành công', toastifyOptions);
-            dispatch(recruiterSlice.actions.restMessage(false));
-            navigate(config.routes.ListRecruitmentPost);
-        }
-    }, [message]);
+
     const objFillValues = [
         'title',
         'salary',

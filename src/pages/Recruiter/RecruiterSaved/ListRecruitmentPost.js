@@ -16,8 +16,9 @@ function ListRecruitmentPost() {
     const userData = useSelector(accountsDataSelector);
     const recruiterJobList = useSelector(recruiterJobListSelector);
     const dispatch = useDispatch();
-
+    console.log('lit job', recruiterJobList);
     useEffect(() => {
+        console.log('fetch');
         dispatch(fetchRecruiterDetail(userData.id));
     }, []);
 
@@ -58,5 +59,3 @@ function ListRecruitmentPost() {
 }
 
 export default ListRecruitmentPost;
-
-

@@ -3,7 +3,11 @@ import {
     createSlice,
     isRejectedWithValue,
 } from '@reduxjs/toolkit';
-import { deletedJobDesc, postJobDesc } from '~/services/jobService';
+import {
+    deletedJobDesc,
+    editJobDesc,
+    postJobDesc,
+} from '~/services/jobService';
 import { getDetailRecuiterByIdApi } from '~/services/userService';
 
 export const recruiterSlice = createSlice({
@@ -43,12 +47,9 @@ export const recruiterSlice = createSlice({
             })
             .addCase(fetchDeletedJobDesc.fulfilled, (state, action) => {
                 state.idLoading = false;
-                const { data, message } = action.payload;
-                state.job = data;
-                state.messsage = message;
-                // if deleted success
+                const id = action.payload.id;
                 const newData = state.recruiterJobList.filter((ruiterJob) => {
-                    return ruiterJob.id !== data.id;
+                    return ruiterJob.id !== id;
                 });
                 state.recruiterJobList = newData;
             })
@@ -58,11 +59,21 @@ export const recruiterSlice = createSlice({
             .addCase(fetchRecruiterDetail.fulfilled, (state, action) => {
                 const recruiterDetailData = action.payload.data;
                 state.recruiterJobList = recruiterDetailData.recruiter_jobs;
+            })
+            // edit
+            .addCase(fetchEditJobDesc.pending, (state) => {
+                state.idLoading = true;
+            })
+            .addCase(fetchEditJobDesc.fulfilled, (state, action) => {
+                state.idLoading = false;
+                // const { data, message } = action.payload;
+                // state.job = data;
+                state.messsage = 'success';
             });
     },
 });
 
-// dispatch(fetchPostJobDesc(data));
+
 // post a job
 export const fetchPostJobDesc = createAsyncThunk(
     'recruiter/fetchPostJobDesc',
@@ -82,8 +93,11 @@ export const fetchDeletedJobDesc = createAsyncThunk(
     'recruiter/fetchDeletedJobDesc',
     async (id) => {
         try {
-            const res = await deletedJobDesc(id);
-            return res;
+            const data = await deletedJobDesc(id);
+            return {
+                data,
+                id,
+            };
         } catch (error) {
             console.log(error);
             return isRejectedWithValue(error.response);
@@ -93,12 +107,11 @@ export const fetchDeletedJobDesc = createAsyncThunk(
 
 // edit job
 export const fetchEditJobDesc = createAsyncThunk(
-    'recruiter/fetchPostJobDesc',
-    async (id, data) => {
-        console.log('data fetch', data);
+    'recruiter/fetchEditJobDesc',
+    async (body) => {
         try {
-            // const res = await editJobDesc(id, data);
-            // return res.data;
+            const res = await editJobDesc(body);
+            return res.data;
         } catch (error) {
             console.log(error);
             return isRejectedWithValue(error.response);

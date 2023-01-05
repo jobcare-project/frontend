@@ -39,7 +39,6 @@ export const homeSlice = createSlice({
             .addCase(fetchPostJobDesc.fulfilled, (state, action) => {
                 state.idLoading = false;
                 const { data, message, success } = action.payload;
-                console.log(action.payload);
                 state.job = data;
                 state.messsage = success;
             })
