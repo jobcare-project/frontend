@@ -13,7 +13,6 @@ const cx = classNames.bind(styles);
 function SavedRecruitment() {
     const dispatch = useDispatch();
     const savedRecruitmentList = useSelector(savedRecruitmentListSelector);
-    console.log('savedRecruitmentList', savedRecruitmentList);
 
     useEffect(() => {
         dispatch(fetchSavedRecruitments());

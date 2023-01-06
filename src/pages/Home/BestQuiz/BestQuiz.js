@@ -70,6 +70,10 @@ function ShowQuiz() {
             }
         }
     };
+
+    if (!quiz.length) {
+        return '';
+    }
     return (
         <div className={cx('wrapper')}>
             <Container className={cx('container')}>

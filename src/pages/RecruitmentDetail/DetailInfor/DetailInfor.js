@@ -41,6 +41,7 @@ export default function DetailInfor({ data }) {
                                 </h2>
                             </div>
                             <h3 className={cx('company-name')}>
+                                Nhà tuyển dụng:{' '}
                                 {jobDetailData.recruiter_jobs?.fullname}
                             </h3>
                             <div className={cx('time')}>

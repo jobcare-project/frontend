@@ -1,5 +1,5 @@
 .wrapper {
-    width: 1280px;
+    min-height: 100vh;
     margin: 0 auto;
     padding: 15px;
     margin-top: 30px;
@@ -105,6 +105,6 @@
     border-top: 1px solid #9c9a9a;
     margin-top: 50px;
 }
-.small-title{
+.small-title {
     font-size: 20px;
 }

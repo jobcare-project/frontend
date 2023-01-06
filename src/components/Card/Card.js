@@ -10,7 +10,10 @@ import {
     fetchDeletedJobDesc,
     recruiterSlice,
 } from '~/pages/Recruiter/recruiterSlice';
-import { accountsDataSelector } from '~/redux/Selectors/authSelector';
+import {
+    accountsDataSelector,
+    isAuthSelector,
+} from '~/redux/Selectors/authSelector';
 import { savedRecruitmentListSelector } from '~/redux/Selectors/jobSelector';
 import { savedRecruitmentApi } from '~/services/jobService';
 import ModalPost from '../Modal/ModalDeleted/ModalDeleted';
@@ -31,7 +34,7 @@ export default function Card({
 }) {
     const userData = useSelector(accountsDataSelector);
     const savedRecruitmentList = useSelector(savedRecruitmentListSelector);
-
+    const isAuth = useSelector(isAuthSelector);
     const [show, setShow] = useState(false);
     const [isSaved, setIsSaved] = useState(false);
     const handleClose = () => setShow(false);
@@ -58,7 +61,7 @@ export default function Card({
     }, []);
 
     useEffect(() => {
-        const isSaved = savedRecruitmentList.find(
+        const isSaved = savedRecruitmentList?.find(
             (recruitment) => recruitment.jobId === data.id,
         );
         if (isSaved) {
@@ -67,6 +70,10 @@ export default function Card({
     }, [savedRecruitmentList, data]);
 
     const handleSaveRecruitment = async () => {
+        if (!isAuth) {
+            alert('Bạn cần đăng nhập để sử dụng chức năng này!');
+        }
+
         try {
             await savedRecruitmentApi({ jobId: data.id });
             setIsSaved(!isSaved);
@@ -143,7 +150,7 @@ export default function Card({
             />
 
             <div className={cx('subdesc-control')}>
-                {data.recruiterId === userData.id && (
+                {data.recruiterId === userData.id ? (
                     <>
                         <div
                             onClick={handleShow}
@@ -167,26 +174,31 @@ export default function Card({
                             </div>
                         </Link>
                     </>
-                )}
-                <div className={cx('subdesc-text-save')}>
-                    <button
-                        className={
-                            isSaved ? cx('save-btn', 'active') : cx('save-btn')
-                        }
-                        onClick={handleSaveRecruitment}
-                    >
-                        {saved && (
-                            <span className={cx('subdesc-text')}>
-                                {isSaved ? (
-                                    <ion-icon name="heart"></ion-icon>
-                                ) : (
-                                    saved
+                ) : (
+                    userData.role !== 'recruiter' && (
+                        <div className={cx('subdesc-text-save')}>
+                            <button
+                                className={
+                                    isSaved
+                                        ? cx('save-btn', 'active')
+                                        : cx('save-btn')
+                                }
+                                onClick={handleSaveRecruitment}
+                            >
+                                {saved && (
+                                    <span className={cx('subdesc-text')}>
+                                        {isSaved ? (
+                                            <ion-icon name="heart"></ion-icon>
+                                        ) : (
+                                            saved
+                                        )}
+                                    </span>
                                 )}
-                            </span>
-                        )}
-                        <span>{isSaved ? 'Hủy lưu' : titleSaved}</span>
-                    </button>
-                </div>
+                                <span>{isSaved ? 'Hủy lưu' : titleSaved}</span>
+                            </button>
+                        </div>
+                    )
+                )}
             </div>
         </div>
     );
