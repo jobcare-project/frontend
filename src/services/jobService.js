@@ -35,3 +35,7 @@ export const applyJobsApi = (data) => {
 export const savedRecruitmentApi = (jobId) => {
     return axiosClient.post(config.jobsApiUrl.savedRecruitment, jobId);
 };
+
+export const getAllSavedRecruitmentsApi = () => {
+    return axiosClient.get(config.jobsApiUrl.savedRecruitment);
+};

@@ -13,3 +13,7 @@ export const jobSelector = (state) => {
 export const messageSelector = (state) => {
     return state.home?.messsage;
 };
+
+export const savedRecruitmentListSelector = (state) => {
+    return state.accounts.savedRecruitmentsList;
+};

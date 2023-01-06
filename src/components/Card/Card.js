@@ -11,6 +11,7 @@ import {
     recruiterSlice,
 } from '~/pages/Recruiter/recruiterSlice';
 import { accountsDataSelector } from '~/redux/Selectors/authSelector';
+import { savedRecruitmentListSelector } from '~/redux/Selectors/jobSelector';
 import { savedRecruitmentApi } from '~/services/jobService';
 import ModalPost from '../Modal/ModalDeleted/ModalDeleted';
 
@@ -28,9 +29,11 @@ export default function Card({
     titleRepair = '',
     titleSaved = '',
 }) {
-    const [show, setShow] = useState(false);
     const userData = useSelector(accountsDataSelector);
+    const savedRecruitmentList = useSelector(savedRecruitmentListSelector);
 
+    const [show, setShow] = useState(false);
+    const [isSaved, setIsSaved] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const dispatch = useDispatch();
@@ -54,10 +57,19 @@ export default function Card({
         window.scrollTo(0, 0);
     }, []);
 
+    useEffect(() => {
+        const isSaved = savedRecruitmentList.find(
+            (recruitment) => recruitment.jobId === data.id,
+        );
+        if (isSaved) {
+            setIsSaved(isSaved);
+        }
+    }, [savedRecruitmentList, data]);
+
     const handleSaveRecruitment = async () => {
         try {
-            const newSaved = await savedRecruitmentApi({ jobId: data.id });
-            console.log('newSaved', newSaved);
+            await savedRecruitmentApi({ jobId: data.id });
+            setIsSaved(!isSaved);
         } catch (error) {
             console.log(error);
         }
@@ -158,13 +170,21 @@ export default function Card({
                 )}
                 <div className={cx('subdesc-text-save')}>
                     <button
-                        className={cx('save-btn')}
+                        className={
+                            isSaved ? cx('save-btn', 'active') : cx('save-btn')
+                        }
                         onClick={handleSaveRecruitment}
                     >
                         {saved && (
-                            <span className={cx('subdesc-text')}>{saved}</span>
+                            <span className={cx('subdesc-text')}>
+                                {isSaved ? (
+                                    <ion-icon name="heart"></ion-icon>
+                                ) : (
+                                    saved
+                                )}
+                            </span>
                         )}
-                        <span>{titleSaved}</span>
+                        <span>{isSaved ? 'Hủy lưu' : titleSaved}</span>
                     </button>
                 </div>
             </div>

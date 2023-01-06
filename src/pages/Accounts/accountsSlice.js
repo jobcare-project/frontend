@@ -14,6 +14,7 @@ import {
 } from '~/services/userService';
 import tokenService from '~/services/tokenService';
 import { uploadImageApi } from '~/services/uploadService';
+import { getAllSavedRecruitmentsApi } from '~/services/jobService';
 
 export const accountsSlice = createSlice({
     name: 'accounts',
@@ -23,6 +24,7 @@ export const accountsSlice = createSlice({
         isAuth: undefined,
         message: '',
         data: {},
+        savedRecruitmentsList: [],
     },
     reducers: {},
     extraReducers: (builder) => {
@@ -98,6 +100,13 @@ export const accountsSlice = createSlice({
             .addCase(fetchUpdateProfile.fulfilled, (state, action) => {
                 state.status = 'idle';
                 state.data = action.payload.data;
+            })
+            .addCase(fetchSavedRecruitments.pending, (state) => {
+                state.status = 'pending';
+            })
+            .addCase(fetchSavedRecruitments.fulfilled, (state, action) => {
+                state.status = 'idle';
+                state.savedRecruitmentsList = action.payload.data;
             });
     },
 });
@@ -162,6 +171,17 @@ export const fetchUpdateProfile = createAsyncThunk(
     async (data) => {
         try {
             return await updateProfileUserApi(data);
+        } catch (error) {
+            return isRejectedWithValue(error.response);
+        }
+    },
+);
+
+export const fetchSavedRecruitments = createAsyncThunk(
+    'accounts/fetchSavedRecruitments',
+    async () => {
+        try {
+            return await getAllSavedRecruitmentsApi();
         } catch (error) {
             return isRejectedWithValue(error.response);
         }

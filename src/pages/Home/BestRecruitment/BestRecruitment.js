@@ -5,12 +5,13 @@ import Col from 'react-bootstrap/Col';
 import { Container } from 'react-bootstrap';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import Card from '~/components/Card/Card';
 import { fetchListJob } from '../homeSlice';
 import { jobListSelector } from '~/redux/Selectors/jobSelector';
-import { Link } from 'react-router-dom';
 import config from '~/config';
+import { fetchSavedRecruitments } from '~/pages/Accounts/accountsSlice';
 
 const cx = classNames.bind(styles);
 
@@ -20,6 +21,7 @@ export default function BestRecruitment({ to }) {
 
     useEffect(() => {
         dispatch(fetchListJob());
+        dispatch(fetchSavedRecruitments());
     }, []);
 
     return (

@@ -124,3 +124,21 @@
         }
     }
 }
+
+.save-btn {
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    .subdesc-text {
+        padding-right: 6px;
+    }
+    &.active {
+        .subdesc-text {
+            color: var(--primary-color);
+        }
+    }
+    &:hover {
+        cursor: pointer;
+        color: var(--primary-color);
+    }
+}

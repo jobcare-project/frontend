@@ -16,6 +16,7 @@ export default function CardShowQuiz({
     iconRank,
     titleSaved = '',
     handleDelete,
+    iconSave
 }) {
     return (
         <>
@@ -111,8 +112,9 @@ export default function CardShowQuiz({
 
                     <div className={cx('subdesc-text-save')}>
                         <span onClick={() => handleSaved(quiz.id)}>
-                            {' '}
-                            {/* <ion-icon name="trash-outline"></ion-icon>  */}
+                            {iconSave && (
+                                <ion-icon name="heart-outline"></ion-icon>
+                            )}
                             {titleSaved}
                         </span>
                     </div>

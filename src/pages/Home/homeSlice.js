@@ -38,7 +38,7 @@ export const homeSlice = createSlice({
             })
             .addCase(fetchPostJobDesc.fulfilled, (state, action) => {
                 state.idLoading = false;
-                const { data, message, success } = action.payload;
+                const { data, success } = action.payload;
                 state.job = data;
                 state.messsage = success;
             })
@@ -58,8 +58,6 @@ export const homeSlice = createSlice({
 export const fetchListJob = createAsyncThunk('home/fetchListJob', async () => {
     try {
         const res = await getListJobApi();
-        // dispatch(fetchListJobPagination(res.data))
-        // fetchListJobPagination(res.data);
         return res.data;
     } catch (error) {
         console.log(error);

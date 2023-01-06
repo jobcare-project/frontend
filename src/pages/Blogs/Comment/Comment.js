@@ -23,6 +23,7 @@ function Comment({ userComment, setUserComment, handleComment }) {
                     />
                     <div className={cx('comment-input')}>
                         <Input
+                            primary
                             comment
                             placeholder="Viết bình luận của bạn"
                             value={userComment}

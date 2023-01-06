@@ -11,7 +11,7 @@ import Button from '~/components/Button';
 import config from '~/config';
 
 const cx = classNames.bind(styles);
-function ContentBlog({ data, to }) {
+function ContentBlog() {
     const [loading, setLoading] = useState(true);
     const [blogs, setBlogs] = useState([]);
     const blogCollectionRef = collection(db, 'blogs');

@@ -9,6 +9,7 @@ import { fetchListJob } from '~/pages/Home/homeSlice';
 import { jobListSelector } from '~/redux/Selectors/jobSelector';
 import PaginationCOM from '~/pages/Home/BestRecruitment/pagination';
 import { _LIMIT_PAGE } from '~/config/apis';
+import { fetchSavedRecruitments } from '~/pages/Accounts/accountsSlice';
 
 const cx = classNames.bind(styles);
 function MainJob() {
@@ -18,6 +19,7 @@ function MainJob() {
 
     useEffect(() => {
         dispatch(fetchListJob());
+        dispatch(fetchSavedRecruitments());
         if (jobListData.length > 0) {
             const jobs = jobListData.slice(0, _LIMIT_PAGE);
             setjobsItem(jobs);
