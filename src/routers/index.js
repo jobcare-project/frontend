@@ -33,6 +33,7 @@ import SavedQuiz from '~/pages/SavePost/SavedQuiz/SavedQuiz';
 import BlogController from '~/pages/Blogs/BlogController/BlogController';
 import MyBlog from '~/pages/Blogs/BlogController/MyBlog/MyBlog';
 import ManageCandidates from '~/pages/Recruiter/ManageCandidates';
+import PostManage from '~/pages/Admin/PostManage/PostManage';
 
 export const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -149,6 +150,11 @@ export const adminPrivateRoutes = [
     {
         path: config.routes.usersManagement,
         component: UsersManage,
+        layout: SidebarLayout,
+    },
+    {
+        path: config.routes.postManageAdmin,
+        component: PostManage,
         layout: SidebarLayout,
     },
 ];

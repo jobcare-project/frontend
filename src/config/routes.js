@@ -37,6 +37,7 @@ const routes = {
     rank: '/leaderboard/:id',
     myblog: '/blog/myblog',
     recruiterManageCandidates: '/recruiter/manage-candidates',
+    postManageAdmin: '/admin/postmanage',
 };
 
 export default routes;

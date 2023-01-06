@@ -58,7 +58,7 @@ export default function Card({
     }, []);
 
     useEffect(() => {
-        const isSaved = savedRecruitmentList.find(
+        const isSaved = savedRecruitmentList?.find(
             (recruitment) => recruitment.jobId === data.id,
         );
         if (isSaved) {

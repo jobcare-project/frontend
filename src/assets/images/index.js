@@ -12,6 +12,7 @@ const images = {
     icon: {
         list: require('~/assets/images/list.png'),
     },
+    fix: require('~/assets/images/fix.png'),
 };
 
 export default images;

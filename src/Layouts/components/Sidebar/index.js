@@ -21,7 +21,7 @@ const sidebarMenu = [
     },
     {
         title: 'Blog',
-        to: '/dashboard/blog',
+        to: config.routes.postManageAdmin,
         role: ['admin'],
         icon: <ion-icon name="book-sharp"></ion-icon>,
     },
