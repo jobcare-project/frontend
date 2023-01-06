@@ -8,23 +8,7 @@ import images from '~/assets/images';
 
 const cx = classNames.bind(styles);
 
-const dataSlider = [
-    {
-        thumb: images.backgroundAccounts,
-    },
-    {
-        thumb: images.backgroundAccounts,
-    },
-    {
-        thumb: images.backgroundAccounts,
-    },
-    {
-        thumb: images.backgroundAccounts,
-    },
-    {
-        thumb: images.backgroundAccounts,
-    },
-];
+const dataSlider = images.sliderImages.map((image) => ({ thumb: image.thumb }));
 
 function Carousel() {
     const settings = {
@@ -42,16 +26,6 @@ function Carousel() {
     return (
         <div className={cx('wrapper')}>
             <Container>
-                {/* <div className={cx('heading')}>
-                    <h2 className={cx('carousel-job')}>
-                        Tìm việc làm nhanh 24h, việc làm mới nhất mỗi ngày được
-                        cập nhât trên JobCare
-                    </h2>
-                    <p className={cx('carousel-find')}>
-                        Tiếp cận 30,000+ tin tuyển dụng việc làm mới mỗi ngày từ
-                        hàng nghìn doanh nghiệp uy tín tại Việt Nam
-                    </p>
-                </div> */}
                 <Slider {...settings} className={cx('slider')}>
                     {dataSlider.map((sliderItem, index) => {
                         return (
